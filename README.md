@@ -26,7 +26,7 @@ A meme mod packed with China's iconic internet jokes and absurdist viral legends
 
 最后，以那个经典的、作为本模组标志的表情，作为这段话的结尾吧：
 
-![滑稽](https://img.moegirl.org.cn/common/thumb/9/9c/%E6%BB%91%E7%A8%BD%E8%A1%A8%E6%83%85.png/64px-%E6%BB%91%E7%A8%BD%E8%A1%A8%E6%83%85.png)
+![滑稽](src/main/resources/assets/huajiage/textures/item/huaji.png)
 
 ——mrqx0195
 
