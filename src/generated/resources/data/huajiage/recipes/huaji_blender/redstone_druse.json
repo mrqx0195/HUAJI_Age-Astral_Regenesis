@@ -1,0 +1,9 @@
+{
+  "type": "huajiage:huaji_blender",
+  "experience": 1.0,
+  "ingredient": {
+    "tag": "forge:storage_blocks/redstone"
+  },
+  "processTime": 100,
+  "result": "huajiage:redstone_druse"
+}

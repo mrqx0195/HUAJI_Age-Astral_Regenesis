@@ -1,0 +1,9 @@
+{
+  "type": "huajiage:huaji_blender",
+  "experience": 1.0,
+  "ingredient": {
+    "tag": "forge:storage_blocks/gold"
+  },
+  "processTime": 100,
+  "result": "huajiage:huaji_ingot"
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "F": {
+      "item": "huajiage:hope_flower"
+    },
+    "N": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "S": {
+      "item": "huajiage:infinite_universe_star"
+    }
+  },
+  "pattern": [
+    "FFF",
+    "NSN",
+    " N "
+  ],
+  "result": {
+    "item": "huajiage:lord_key"
+  },
+  "show_notification": true
+}

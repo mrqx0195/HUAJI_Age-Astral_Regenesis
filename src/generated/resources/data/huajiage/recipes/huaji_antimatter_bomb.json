@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "J": {
+      "item": "huajiage:huaji_bomb"
+    },
+    "P": {
+      "item": "huajiage:anti_huaji"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "PJP",
+    "PPP"
+  ],
+  "result": {
+    "item": "huajiage:huaji_antimatter_bomb"
+  },
+  "show_notification": true
+}

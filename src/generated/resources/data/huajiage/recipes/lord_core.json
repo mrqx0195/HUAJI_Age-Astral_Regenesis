@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "huajiage:airspace_star"
+    },
+    "E": {
+      "item": "huajiage:ether_circumflux_board"
+    },
+    "S": {
+      "item": "huajiage:huaji_star"
+    }
+  },
+  "pattern": [
+    " ES",
+    "EAE",
+    " E "
+  ],
+  "result": {
+    "item": "huajiage:lord_core"
+  },
+  "show_notification": true
+}

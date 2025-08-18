@@ -1,6 +1,0 @@
-{
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "huajiage:items/multi_knife_shiny"
-        }
-}

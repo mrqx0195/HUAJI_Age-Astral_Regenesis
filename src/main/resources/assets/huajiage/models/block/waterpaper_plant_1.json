@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "huaji:blocks/waterpaper_plant_1"
-    }
-}

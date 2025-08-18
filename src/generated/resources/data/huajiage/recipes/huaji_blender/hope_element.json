@@ -1,0 +1,9 @@
+{
+  "type": "huajiage:huaji_blender",
+  "experience": 1.0,
+  "ingredient": {
+    "item": "minecraft:chorus_flower"
+  },
+  "processTime": 100,
+  "result": "huajiage:hope_element"
+}

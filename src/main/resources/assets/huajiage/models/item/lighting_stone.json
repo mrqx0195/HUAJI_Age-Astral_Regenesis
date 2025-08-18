@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "huaji:items/lighting_stone_open"
-    }
-}

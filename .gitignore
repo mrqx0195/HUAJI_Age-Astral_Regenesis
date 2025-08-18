@@ -1,22 +1,21 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
 .classpath
+.eclipse
+.gradle
+.idea
+.metadata
 .project
-
-# idea
-out
+.settings
+.vscode
+*.iml
 *.ipr
 *.iws
-*.iml
-.idea
-
-# gradle
+*.launch
+bin
 build
-.gradle
-
-# other
 eclipse
+forge*changelog.txt
+out
 run
+libs
+/src/generated/resources/.cache/
+/src/main/resources/assets/huajiage/sounds/

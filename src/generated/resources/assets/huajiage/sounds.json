@@ -1,0 +1,32 @@
+{
+  "exglutenbur_flavor1": {
+    "sounds": [
+      "huajiage:exglutenbur_flavor1"
+    ],
+    "subtitle": "subtitles.huajiage.exglutenbur_flavor1"
+  },
+  "exglutenbur_flavor2": {
+    "sounds": [
+      "huajiage:exglutenbur_flavor2"
+    ],
+    "subtitle": "subtitles.huajiage.exglutenbur_flavor2"
+  },
+  "exglutenbur_flavor3": {
+    "sounds": [
+      "huajiage:exglutenbur_flavor3"
+    ],
+    "subtitle": "subtitles.huajiage.exglutenbur_flavor3"
+  },
+  "exglutenbur_hit": {
+    "sounds": [
+      "huajiage:exglutenbur_hit"
+    ],
+    "subtitle": "subtitles.huajiage.exglutenbur_hit"
+  },
+  "stella": {
+    "sounds": [
+      "huajiage:stella"
+    ],
+    "subtitle": "subtitles.huajiage.stella"
+  }
+}

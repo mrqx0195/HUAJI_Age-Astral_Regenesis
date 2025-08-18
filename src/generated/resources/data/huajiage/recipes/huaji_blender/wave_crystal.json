@@ -1,0 +1,9 @@
+{
+  "type": "huajiage:huaji_blender",
+  "experience": 1.0,
+  "ingredient": {
+    "item": "minecraft:sea_lantern"
+  },
+  "processTime": 100,
+  "result": "huajiage:wave_crystal"
+}

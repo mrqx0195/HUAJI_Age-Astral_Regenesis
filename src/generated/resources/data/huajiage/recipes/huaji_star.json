@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "J": {
+      "item": "huajiage:huaji"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "pattern": [
+    " J ",
+    "JSJ",
+    " J "
+  ],
+  "result": {
+    "item": "huajiage:huaji_star"
+  },
+  "show_notification": true
+}

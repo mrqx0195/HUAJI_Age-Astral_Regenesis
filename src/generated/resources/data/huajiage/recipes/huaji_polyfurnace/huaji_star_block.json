@@ -1,0 +1,9 @@
+{
+  "type": "huajiage:huaji_polyfurnace",
+  "experience": 90.0,
+  "ingredient": {
+    "item": "huajiage:huaji_star_block"
+  },
+  "point": 9,
+  "processTime": 200
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "E": {
+      "item": "huajiage:ether_point"
+    },
+    "N": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "S": {
+      "item": "huajiage:airspace_star"
+    }
+  },
+  "pattern": [
+    " NE",
+    "NS ",
+    "E  "
+  ],
+  "result": {
+    "item": "huajiage:hero_bow"
+  },
+  "show_notification": true
+}

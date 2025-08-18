@@ -1,0 +1,14 @@
+{
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "mixins": [
+    "MixinAbstractArrow",
+    "MixinOreFeature"
+  ],
+  "package": "net.mrqx.huajiage.mixin",
+  "refmap": "huajiage.refmap.json",
+  "required": true,
+  "client": [
+    "AccessorModelPart"
+  ]
+}

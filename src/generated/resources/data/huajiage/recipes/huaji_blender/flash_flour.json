@@ -1,0 +1,9 @@
+{
+  "type": "huajiage:huaji_blender",
+  "experience": 1.0,
+  "ingredient": {
+    "item": "minecraft:hay_block"
+  },
+  "processTime": 100,
+  "result": "huajiage:flash_flour"
+}

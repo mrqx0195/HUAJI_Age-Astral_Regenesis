@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "huajiage:airspace_star_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "huajiage:airspace_star"
+  }
+}

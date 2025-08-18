@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "huajiage:neutron_star_fragment"
+  },
+  "base": {
+    "item": "huajiage:huaji_helmet"
+  },
+  "result": {
+    "item": "huajiage:50_50_helmet"
+  },
+  "template": {
+    "item": "huajiage:ether_circumflux_board"
+  }
+}

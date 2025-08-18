@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "N": {
+      "item": "huajiage:ether_point"
+    }
+  },
+  "pattern": [
+    "ENE",
+    " N ",
+    "ENE"
+  ],
+  "result": {
+    "item": "huajiage:ether_circumflux_board"
+  },
+  "show_notification": true
+}

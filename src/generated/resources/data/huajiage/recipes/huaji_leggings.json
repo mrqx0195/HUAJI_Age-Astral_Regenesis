@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "H": {
+      "item": "huajiage:huaji_ingot"
+    }
+  },
+  "pattern": [
+    "HDH",
+    "H H",
+    "H H"
+  ],
+  "result": {
+    "item": "huajiage:huaji_leggings"
+  },
+  "show_notification": true
+}

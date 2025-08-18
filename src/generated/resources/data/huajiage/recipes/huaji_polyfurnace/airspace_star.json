@@ -1,0 +1,9 @@
+{
+  "type": "huajiage:huaji_polyfurnace",
+  "experience": 730.0,
+  "ingredient": {
+    "item": "huajiage:airspace_star"
+  },
+  "point": 73,
+  "processTime": 200
+}

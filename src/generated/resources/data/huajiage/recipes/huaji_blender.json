@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:beacon"
+    },
+    "J": {
+      "item": "huajiage:huaji"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "OJO",
+    "JBJ",
+    "OJO"
+  ],
+  "result": {
+    "item": "huajiage:huaji_blender"
+  },
+  "show_notification": true
+}

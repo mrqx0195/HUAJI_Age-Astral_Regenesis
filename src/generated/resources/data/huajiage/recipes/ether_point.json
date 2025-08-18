@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "J": {
+      "item": "huajiage:redstone_druse"
+    },
+    "S": {
+      "item": "huajiage:huaji_star"
+    }
+  },
+  "pattern": [
+    " J ",
+    "JSJ",
+    " J "
+  ],
+  "result": {
+    "item": "huajiage:ether_point"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "huajiage:block/huaji_star_block"
+    }
+  }
+}

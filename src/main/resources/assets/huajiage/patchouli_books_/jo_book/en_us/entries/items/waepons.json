@@ -1,0 +1,68 @@
+{
+  "sortnum": 1,
+  "name": "Weapon",
+  "icon": "huajiage:huaji_star_sword",
+  "category": "huajiage:items_category",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is king NY Gilgamesh's treasure house."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_sword",
+      "title": "HUAJI Sword",
+      "text": "Looks very Cool sword, HMMM ~ function ~ a little sharp does it count?"
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_star_sword",
+      "title": "Star Sword",
+      "text": "It is said that $(1)Lord.Lu$() once transformed it into a galactic array of blaster guns, which could easily wipe out stars and shatter them. However, this is only a distant legend now."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_latiao_sword",
+      "title": "Latiao Sword -HUAJI",
+      "text": "$(3)<$(l:https://www.mcmod.cn/class/552.html) Latiao Craft$()$(3)Linkage>$()Gift from Latiao plane, made by craft similar to Star Sword, delicious and fun.$(li)In constraint mode, the attack speed is increased, and every few seconds, the satiety repair durability is $(li)In liberation mode, the right click consumes 20 durability to restore 1 satiety and releases $(4) fire jump $()."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:exglutenbur",
+      "title": "Exglutenbur",
+      "text": "Living in seclusion in the 'spicy gluten island' of $(4)$(l)gluten brother $() under the guard of the hot pot lake of the Deification Weapons, with a powerful two forms, but it is said that only the real warrior dare to liberate its $(7)$(l) third form $()."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:hero_bow",
+      "title": "Bow of the great hero",
+      "text": "$(4)$(l)Stella！！！$(li)$(3)(The damage caused by the big bang can be turned off by configuration file)"
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:multi_knife",
+      "title": "Multi Stacks Knife",
+      "text": "The knife with which Mr. Dior practised every day."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:road_roller",
+      "title": "Road Roller",
+      "text": "Road Roller!!!$(li)One septum hit per 10m during the stop adds 2 impact damage and 5 consecutive hits will cause a large explosion.$(li)$(3)$(l)(Damage can be closed by configuration file)"
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:huaji_sword",
+      "recipe2": "huajiage:huaji_star_sword"
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:exglutenbur",
+      "recipe2": "huajiage:hero_bow"
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:latiao_sword"
+    }
+  ]
+}

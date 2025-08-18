@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:cooked_beef"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "H": {
+      "item": "minecraft:cooked_chicken"
+    },
+    "J": {
+      "item": "huajiage:huaji"
+    },
+    "M": {
+      "item": "minecraft:cooked_mutton"
+    },
+    "O": {
+      "item": "minecraft:bowl"
+    },
+    "R": {
+      "item": "minecraft:cooked_rabbit"
+    }
+  },
+  "pattern": [
+    "HBM",
+    "JRJ",
+    "EOE"
+  ],
+  "result": {
+    "item": "huajiage:egg_rice"
+  },
+  "show_notification": true
+}

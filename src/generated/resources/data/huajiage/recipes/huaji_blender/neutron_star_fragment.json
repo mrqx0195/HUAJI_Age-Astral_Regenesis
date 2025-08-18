@@ -1,0 +1,9 @@
+{
+  "type": "huajiage:huaji_blender",
+  "experience": 1.0,
+  "ingredient": {
+    "item": "huajiage:huaji_star"
+  },
+  "processTime": 100,
+  "result": "huajiage:neutron_star_fragment"
+}

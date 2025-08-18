@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "J": {
+      "item": "huajiage:huaji_star_block"
+    },
+    "S": {
+      "item": "huajiage:huaji_star"
+    }
+  },
+  "pattern": [
+    "JJJ",
+    "JSJ",
+    "JJJ"
+  ],
+  "result": {
+    "item": "huajiage:airspace_star"
+  },
+  "show_notification": true
+}

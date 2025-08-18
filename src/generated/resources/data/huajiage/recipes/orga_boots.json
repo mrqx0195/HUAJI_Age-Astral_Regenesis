@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "F": {
+      "item": "huajiage:hope_flower"
+    },
+    "H": {
+      "item": "huajiage:huaji_helmet"
+    },
+    "N": {
+      "item": "huajiage:neutron_star_fragment"
+    }
+  },
+  "pattern": [
+    "FHF",
+    "N N"
+  ],
+  "result": {
+    "item": "huajiage:orga_boots"
+  },
+  "show_notification": true
+}

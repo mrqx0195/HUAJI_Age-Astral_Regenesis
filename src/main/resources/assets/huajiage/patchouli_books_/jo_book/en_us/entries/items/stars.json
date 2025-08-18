@@ -1,0 +1,41 @@
+{
+  "sortnum": 2,
+  "name": "Shining Stars",
+  "icon": "huajiage:huaji_star",
+  "category": "huajiage:items_material",
+  "pages": [
+    {
+      "type": "text",
+      "text": "'At any given time, it is the common man who breaks the stars.'$(br) 'stars?'$(br)'Nothing, it's just a thing of the past.'$(br)Far away, came a call of Stella!!!)"
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_star",
+      "title": "HUAJI Star",
+      "text": "The star that condenses HUAJI force, synthesize the basic material of advanced prop."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_star_sky",
+      "title": "Airspace Star ",
+      "text": "The stars shining in the sky dominate the endless HUAJI under the dome.$(li)It can be found in the treasure chest of the city of the end"
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_star_universe",
+      "title": "Infinite Universe Star",
+      "text": "The infinite power of the stars is concentrated here, and the great power that springs from it is quite near its original point."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_star_poly",
+      "title": "Multiple superposition state HUAJI star",
+      "text": "The HUAJI star, which is superposed by multiple quantum states, is a transitional intermediate product of melting furnace polymerization of Infinite Universe Star."
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:huaji_star_recipe",
+      "recipe2": "huajiage:huaji_star_sky_recipe"
+    }
+  ]
+}

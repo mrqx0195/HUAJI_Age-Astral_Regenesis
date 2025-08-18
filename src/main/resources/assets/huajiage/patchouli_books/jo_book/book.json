@@ -1,8 +1,0 @@
-{
-	"name": "patchouil.huajiage.book.name",
-	"landing_text": "patchouil.huajiage.book.landing",
-	"show_progress": false, 
-      "model":"huajiage:book_huaji",
-	  "creative_tab":"huajiage.huaji",
-       "version": 1
-}

@@ -1,0 +1,29 @@
+{
+  "sortnum": 1,
+  "name": "Machines",
+  "icon": "huajiage:huaji_blender",
+  "category": "huajiage:blocks_category",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Silkworm to death silk, wax torch ashes tears dry, I would like to turn the eyes into a lighthouse, illuminate your great future!No problem, done!AOLIGEI ! ! !---Giant Jhnson Jone"
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_blender",
+      "title": "§lHUAJI Blender",
+      "text": "An important instrument that infuses HUAJI power$(br2)$(li)$(l)$(l:items/material)HUAJI Perfusion"
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_poly_furnace",
+      "title": "§e§lHUAJI §d§lPolyfurnace。",
+      "text": "Assemble the ultimate secret instrument of Infinite Universe Star$(br2)$(li)$(l)$(l:items/ultra_mat)Infinite Polymerization"
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:huaji_blender",
+      "recipe2": "huajiage:huaji_poly_furnace"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "huajiage:huaji_star"
+    },
+    {
+      "item": "huajiage:egg_rice"
+    },
+    {
+      "item": "minecraft:diamond_block"
+    }
+  ],
+  "result": {
+    "item": "huajiage:ultimate_egg_rice"
+  }
+}

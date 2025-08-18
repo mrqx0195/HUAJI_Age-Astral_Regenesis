@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "G": {
+      "item": "huajiage:baked_gluten"
+    },
+    "N": {
+      "item": "huajiage:neutron_star_fragment"
+    }
+  },
+  "pattern": [
+    "NGN",
+    "NGN",
+    " B "
+  ],
+  "result": {
+    "item": "huajiage:exglutenbur"
+  },
+  "show_notification": true
+}

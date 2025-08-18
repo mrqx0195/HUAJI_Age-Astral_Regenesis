@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": {
+      "item": "huajiage:huaji_ingot"
+    }
+  },
+  "pattern": [
+    "HHH",
+    "H H"
+  ],
+  "result": {
+    "item": "huajiage:huaji_helmet"
+  },
+  "show_notification": true
+}
