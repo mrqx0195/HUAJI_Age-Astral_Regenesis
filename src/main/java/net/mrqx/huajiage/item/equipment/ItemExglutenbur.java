@@ -50,8 +50,8 @@ public class ItemExglutenbur extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltips.1",
-                Minecraft.getInstance().options.keyShift.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC),
-                Minecraft.getInstance().options.keyUse.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC)
+                Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC),
+                Minecraft.getInstance().options.keyUse.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC)
         ).withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
         switch (Flavor.getFlavor(stack)) {
             case FRAGRANT -> tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltips.2",

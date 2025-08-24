@@ -15,11 +15,7 @@ public class HuaJiSoundDefinitions extends SoundDefinitionsProvider {
 
     @Override
     public void registerSounds() {
-        this.addSoundWithSubTitle(HuaJiSoundEvents.EXGLUTENBUR_1.get());
-        this.addSoundWithSubTitle(HuaJiSoundEvents.EXGLUTENBUR_2.get());
-        this.addSoundWithSubTitle(HuaJiSoundEvents.EXGLUTENBUR_3.get());
-        this.addSoundWithSubTitle(HuaJiSoundEvents.EXGLUTENBUR_HIT.get());
-        this.addSoundWithSubTitle(HuaJiSoundEvents.STELLA.get());
+        HuaJiSoundEvents.SOUND_EVENTS.getEntries().forEach(soundEvent -> this.addSoundWithSubTitle(soundEvent.get()));
     }
 
     protected void addSoundWithSubTitle(SoundEvent soundEvent) {

@@ -40,6 +40,7 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.minecraftforge.network.NetworkHooks;
 import net.mrqx.huajiage.block.BlockHuaJiPolyfurnace;
 import net.mrqx.huajiage.block.inventory.HuaJiPolyfurnaceMenu;
+import net.mrqx.huajiage.config.HuaJiCommonConfig;
 import net.mrqx.huajiage.recipe.HuaJiPolyfurnaceRecipe;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
 import net.mrqx.huajiage.registy.HuaJiMenus;
@@ -49,6 +50,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
@@ -65,10 +67,11 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     public static final int DATA_FE_ENERGY = 4;
     public static final int NUM_DATA_VALUES = 5;
     public static final int BURN_TIME_STANDARD = 200;
-    // TODO: Config
-    public static final int TOTAL_POINT = 2008;
-    public static final int MAX_ENERGY = 5000;
-    public static final int FE_CAPACITY = 350000000;
+
+    public static final int TOTAL_POINT = HuaJiCommonConfig.POLYFURNACE_TOTAL_POINT.get();
+    public static final int MAX_ENERGY = HuaJiCommonConfig.POLYFURNACE_MAX_ENERGY.get();
+    public static final int FE_CAPACITY = HuaJiCommonConfig.POLYFURNACE_MAX_FE.get();
+    public static final int FE_CONVERT = HuaJiCommonConfig.POLYFURNACE_FE_CONVERT.get();
 
     public static final String HUAJI_POLYFURNACE_TIME_PREFIX = "huaji_polyfurnace/time_";
     protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
@@ -170,7 +173,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
 
     @Override
     protected @NotNull AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory) {
-        return new HuaJiPolyfurnaceMenu(HuaJiMenus.HUAJI_POLYFURNACE.get(), pContainerId, pInventory, this, this.dataAccess, this.level, this.worldPosition);
+        return new HuaJiPolyfurnaceMenu(HuaJiMenus.HUAJI_POLYFURNACE.get(), pContainerId, pInventory, this, this.dataAccess, Objects.requireNonNull(this.level), this.worldPosition);
     }
 
     public void openMenu(Player pPlayer) {
@@ -204,12 +207,11 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
             }
 
             pBlockEntity.energyHandler.ifPresent(energyStorage -> {
-                // TODO: Config
                 int extract = energyStorage.extractEnergy(energyStorage.getMaxEnergyStored(), true);
-                if (extract >= 100) {
-                    int addEnergy = Math.min(extract / 100, MAX_ENERGY - pBlockEntity.energy);
+                if (extract >= FE_CONVERT) {
+                    int addEnergy = Math.min(extract / FE_CONVERT, MAX_ENERGY - pBlockEntity.energy);
                     if (addEnergy > 0) {
-                        energyStorage.extractEnergy(addEnergy * 100, false);
+                        energyStorage.extractEnergy(addEnergy * FE_CONVERT, false);
                         pBlockEntity.energy += addEnergy;
                     }
                 }
@@ -378,7 +380,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
         }
 
         if (pIndex == 0 && !flag) {
-            this.processingTotalTime = getTotalProcessTime(this.level, this);
+            this.processingTotalTime = getTotalProcessTime(Objects.requireNonNull(this.level), this);
             this.processingProgress = 0;
             this.setChanged();
         }

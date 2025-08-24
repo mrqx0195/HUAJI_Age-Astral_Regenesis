@@ -31,7 +31,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.client.HuaJiKeyMappings;
 import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.ModelFiftyFiftyHelmet;
-import net.mrqx.huajiage.event.ChangeModeEvent;
+import net.mrqx.huajiage.event.KeyInputEvent;
+import net.mrqx.huajiage.network.HuaJiKeyMessage;
 import net.mrqx.huajiage.registy.HuaJiEffects;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
@@ -82,10 +83,10 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltips.1",
-                Minecraft.getInstance().options.keyShift.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC)
+                Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC)
         ).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("item.huajiage.tooltips.shift.1",
-                        Minecraft.getInstance().options.keyShift.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC))
+                        Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC))
                 .withStyle(ChatFormatting.DARK_RED));
         if (Screen.hasShiftDown()) {
             if (Minecraft.getInstance().player != null) {
@@ -104,8 +105,7 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
             }
         }
         tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltips.2",
-                Minecraft.getInstance().options.keyShift.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC),
-                HuaJiKeyMappings.KEY_CHANGE_MODE.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC)
+                HuaJiKeyMappings.KEY_CHANGE_MODE.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC)
         ).withStyle(ChatFormatting.GOLD));
         tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltips.mode", Mode.getMode(stack).equals(Mode.ON)
                 ? Component.translatable(this.getDescriptionId() + ".tooltips.mode.on").withStyle(ChatFormatting.GOLD)
@@ -175,10 +175,10 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
     }
 
     @SubscribeEvent
-    public static void onChangeModeEvent(ChangeModeEvent event) {
-        if (event.shift) {
+    public static void onChangeModeEvent(KeyInputEvent event) {
+        if (!event.oldCommand.contains(HuaJiKeyMessage.Keys.CHANGE_MODE) && event.currentCommand.contains(HuaJiKeyMessage.Keys.CHANGE_MODE)) {
             if (isFiftyFiftyActive(event.getEntity())) {
-                ItemStack itemStack = event.getEntity().getInventory().armor.get(3);
+                ItemStack itemStack = event.getEntity().getItemBySlot(EquipmentSlot.HEAD);
                 Mode.changeMode(itemStack);
                 if (Mode.getMode(itemStack).equals(Mode.ON)) {
                     event.getEntity().sendSystemMessage(Component.translatable("message.huajiage.50_50_helmet.open", event.getEntity().getDisplayName())

@@ -63,7 +63,6 @@ public class HuajiAgeJeiPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(@NotNull IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(HuaJiBlenderScreen.class, 77, 31, 25, 12, BLENDER_JEI_TYPE);
-        // TODO: HuaJiPolyfurnaceScreen
         registration.addRecipeClickArea(HuaJiPolyfurnaceScreen.class, 62, 26, 86, 15, POLYFURNACE_JEI_TYPE);
     }
 

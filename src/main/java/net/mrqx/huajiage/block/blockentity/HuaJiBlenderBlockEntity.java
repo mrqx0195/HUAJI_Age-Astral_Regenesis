@@ -334,7 +334,9 @@ public class HuaJiBlenderBlockEntity extends BaseContainerBlockEntity implements
         }
 
         if (pIndex == 0 && !flag) {
-            this.processingTotalTime = getTotalProcessTime(this.level, this);
+            if (this.level != null) {
+                this.processingTotalTime = getTotalProcessTime(this.level, this);
+            }
             this.processingProgress = 0;
             this.setChanged();
         }

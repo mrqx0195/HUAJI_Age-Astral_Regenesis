@@ -9,10 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrqx.huajiage.HuaJiAgeMod;
-import net.mrqx.huajiage.item.BaseBlockItem;
-import net.mrqx.huajiage.item.BaseItem;
-import net.mrqx.huajiage.item.ItemLordCore;
-import net.mrqx.huajiage.item.ItemLordKey;
+import net.mrqx.huajiage.item.*;
 import net.mrqx.huajiage.item.equipment.ItemExglutenbur;
 import net.mrqx.huajiage.item.equipment.ItemHeroBow;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
@@ -101,6 +98,12 @@ public class HuaJiItems {
     public static final RegistryObject<Item> LORD_CORE = ITEMS.register("lord_core", () -> new ItemLordCore(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
     public static final RegistryObject<Item> LORD_KEY = ITEMS.register("lord_key", () -> new ItemLordKey(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
 
+    /**
+     * Stands
+     */
+    public static final RegistryObject<Item> DISC = ITEMS.register("disc", () -> new ItemDisc(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> SINGULARITY = ITEMS.register("singularity", () -> new ItemSingularity(new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ROAD_ROLLER = ITEMS.register("road_roller", () -> new ItemRoadRoller(new Item.Properties().rarity(Rarity.RARE)));
 
     /**
      * Block Items

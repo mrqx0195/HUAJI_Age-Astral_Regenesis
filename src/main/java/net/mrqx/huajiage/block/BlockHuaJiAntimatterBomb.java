@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class BlockHuaJiAntimatterBomb extends BlockHuaJiBomb {
-    protected int radius = 10;
+    protected final int radius = 10;
 
     public BlockHuaJiAntimatterBomb(Properties pProperties) {
         super(pProperties);

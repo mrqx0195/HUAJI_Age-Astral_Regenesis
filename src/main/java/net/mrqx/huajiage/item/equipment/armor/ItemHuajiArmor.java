@@ -16,7 +16,7 @@ public abstract class ItemHuajiArmor extends ArmorItem {
     }
 
     @Override
-    public @Nullable String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+    public @Nullable String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, @Nullable String type) {
         return String.format(java.util.Locale.ROOT, "huajiage:textures/models/armor/huaji_layer_%d%s.png", (slot == EquipmentSlot.LEGS ? 2 : 1), type == null ? "" : String.format(java.util.Locale.ROOT, "_%s", type));
     }
 

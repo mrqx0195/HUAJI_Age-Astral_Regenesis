@@ -58,8 +58,8 @@ public class EntityHeroArrow extends AbstractArrow implements ItemSupplier {
     }
 
     protected void explode() {
-        Explosion explosion = new ExplosionHeroArrow(this.level(), this, HuaJiDamageSources.stella(this.level(), this, this.getOwner(), this.position()),
-                null, getX(), getY(), getZ(), 50, Explosion.BlockInteraction.KEEP, getBaseDamage(), getKnockback());
+        Explosion explosion = new ExplosionHuaJi(this.level(), this, HuaJiDamageSources.stella(this.level(), this, this.getOwner(), this.position()),
+                null, getX(), getY(), getZ(), 50, Explosion.BlockInteraction.KEEP, this.getBaseDamage(), this.getKnockback(), true);
 
         explosion.explode();
         explosion.finalizeExplosion(true);
@@ -69,11 +69,9 @@ public class EntityHeroArrow extends AbstractArrow implements ItemSupplier {
     public void tick() {
         super.tick();
         if (this.level() instanceof ServerLevel serverLevel) {
-            serverLevel.broadcastEntityEvent(this, (byte) 0);
             serverLevel.getChunkSource().addRegionTicket(HuaJiTickets.HERO_TICKET, new ChunkPos(this.blockPosition()), 2, Unit.INSTANCE, true);
-            double r = (Math.random() - 0.5) * 0.5;
-            serverLevel.sendParticles(ParticleTypes.LAVA, getX() + r, getY(), getZ() + r, 5, 0, 0, 0, 0.01);
-            serverLevel.sendParticles(ParticleTypes.FIREWORK, getX(), getY(), getZ(), 0, 0, 0, 0, 0);
+            serverLevel.sendParticles(ParticleTypes.LAVA, getX(), getY(), getZ(), 5, 0, 0, 0, 0.01);
+            serverLevel.sendParticles(ParticleTypes.FIREWORK, getX(), getY(), getZ(), 0, 0, 0, 0, 0.3);
         }
         if (this.inGroundTime > 2) {
             this.discard();

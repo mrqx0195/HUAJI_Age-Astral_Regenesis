@@ -41,6 +41,14 @@ public class ItemHeroBow extends BowItem {
     }
 
     @Override
+    public @NotNull String getDescriptionId(@NotNull ItemStack pStack) {
+        if (Mode.getMode(pStack).equals(Mode.ON)) {
+            return super.getDescriptionId(pStack) + ".on";
+        }
+        return super.getDescriptionId(pStack);
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         int index = 1;
@@ -55,7 +63,7 @@ public class ItemHeroBow extends BowItem {
             }
         }
         tooltip.add(Component.translatable("item.huajiage.tooltips.shift.1",
-                        Minecraft.getInstance().options.keyShift.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC))
+                        Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC))
                 .withStyle(ChatFormatting.DARK_RED));
         if (Screen.hasShiftDown()) {
             tooltip.add(Component.translatable("message.huajiage.prefix", Component.translatable(this.getDescriptionId() + ".tooltips.shift.1")
@@ -63,8 +71,8 @@ public class ItemHeroBow extends BowItem {
             tooltip.add(Component.translatable("message.huajiage.prefix", Mode.getMode(stack).equals(Mode.ON)
                     ? Component.translatable(this.getDescriptionId() + ".tooltips.shift.on.1").withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD)
                     : Component.translatable(this.getDescriptionId() + ".tooltips.shift.2",
-                            Minecraft.getInstance().options.keyShift.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC),
-                            Minecraft.getInstance().options.keyAttack.getKey().getDisplayName().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC))
+                            Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC),
+                            Minecraft.getInstance().options.keyAttack.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC))
                     .withStyle(ChatFormatting.AQUA)));
         }
     }
@@ -87,7 +95,7 @@ public class ItemHeroBow extends BowItem {
             }
 
             if (itemstack.isEmpty()) {
-                itemstack = new ItemStack(Items.ARROW);
+                itemstack = Items.ARROW.getDefaultInstance();
             }
 
             float f = getPowerForTime(i);
@@ -102,7 +110,7 @@ public class ItemHeroBow extends BowItem {
                         abstractarrow.setPierceLevel((byte) 127);
                     }
 
-                    abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, f * (isOn ? 12 : 6), 1);
+                    abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, f * (isOn ? 10 : 6), 1);
                     if (f >= 1.0F) {
                         abstractarrow.setCritArrow(true);
                     }

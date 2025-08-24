@@ -17,7 +17,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrqx.huajiage.HuaJiAgeMod;
@@ -48,7 +47,7 @@ public class LayerLordLu<T extends LivingEntity, M extends EntityModel<T>> exten
             if (pLivingEntity.isCrouching()) {
                 pPoseStack.mulPose(Axis.XP.rotation(-0.5f));
             }
-            Minecraft.getInstance().getItemRenderer().renderStatic(pLivingEntity, new ItemStack(HuaJiItems.LORD_CORE.get()),
+            Minecraft.getInstance().getItemRenderer().renderStatic(pLivingEntity, HuaJiItems.LORD_CORE.get().getDefaultInstance(),
                     ItemDisplayContext.FIXED, false, pPoseStack, pBuffer, pLivingEntity.level(), pPackedLight, OverlayTexture.NO_OVERLAY, pLivingEntity.getId());
             pPoseStack.popPose();
 

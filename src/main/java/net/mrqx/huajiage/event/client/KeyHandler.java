@@ -1,28 +1,60 @@
 package net.mrqx.huajiage.event.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.client.HuaJiKeyMappings;
-import net.mrqx.huajiage.network.ChangeModeMessage;
+import net.mrqx.huajiage.network.HuaJiKeyMessage;
 import net.mrqx.huajiage.network.NetworkManager;
 
+import java.util.EnumSet;
+
 @Mod.EventBusSubscriber
+@OnlyIn(Dist.CLIENT)
 public class KeyHandler {
-    public static boolean changeModeIsDown = false;
+    private static final EnumSet<HuaJiKeyMessage.Keys> KEY_SET = EnumSet.noneOf(HuaJiKeyMessage.Keys.class);
 
     @SubscribeEvent
-    public static void onClientTickEvent(TickEvent.ClientTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) {
+    @OnlyIn(Dist.CLIENT)
+    public static void onClientTickEvent(TickEvent.RenderTickEvent event) {
+        if (event.phase != TickEvent.Phase.START) {
+            return;
+        }
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (player == null) {
             return;
         }
 
-        if (changeModeIsDown != HuaJiKeyMappings.KEY_CHANGE_MODE.isDown() && HuaJiKeyMappings.KEY_CHANGE_MODE.isDown()) {
-            ChangeModeMessage message = new ChangeModeMessage();
-            message.shift = Minecraft.getInstance().options.keyShift.isDown();
-            NetworkManager.INSTANCE.sendToServer(message);
+        EnumSet<HuaJiKeyMessage.Keys> newKeySet = EnumSet.noneOf(HuaJiKeyMessage.Keys.class);
+
+        if (HuaJiKeyMappings.KEY_CHANGE_MODE.isDown()) {
+            newKeySet.add(HuaJiKeyMessage.Keys.CHANGE_MODE);
         }
-        changeModeIsDown = HuaJiKeyMappings.KEY_CHANGE_MODE.isDown();
+
+        if (HuaJiKeyMappings.KEY_TRIGGER_STAND.isDown()) {
+            newKeySet.add(HuaJiKeyMessage.Keys.TRIGGER_STAND);
+        }
+
+        if (HuaJiKeyMappings.KEY_CHANGE_STAND_MODE.isDown()) {
+            newKeySet.add(HuaJiKeyMessage.Keys.CHANGE_STAND_MODE);
+        }
+
+        if (HuaJiKeyMappings.KEY_STAND_SKILL.isDown()) {
+            newKeySet.add(HuaJiKeyMessage.Keys.STAND_SKILL);
+        }
+
+        if (!KEY_SET.equals(newKeySet)) {
+            HuaJiKeyMessage message = new HuaJiKeyMessage();
+            message.oldCommand = KEY_SET.clone();
+            message.currentCommand = newKeySet.clone();
+            NetworkManager.INSTANCE.sendToServer(message);
+
+            KEY_SET.clear();
+            KEY_SET.addAll(newKeySet);
+        }
     }
 }

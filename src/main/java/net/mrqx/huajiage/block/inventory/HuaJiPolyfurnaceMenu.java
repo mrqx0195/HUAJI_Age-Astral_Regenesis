@@ -37,11 +37,11 @@ public class HuaJiPolyfurnaceMenu extends AbstractContainerMenu {
     public static final int FUEL_SLOT_INDEX = INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
     public static final int OUTPUT_SLOT_INDEX = FUEL_SLOT_INDEX + FUEL_SLOTS_COUNT;
 
-    public HuaJiPolyfurnaceMenu(int pContainerId, Inventory pPlayerInventory, Level level, BlockPos worldPosition) {
+    public HuaJiPolyfurnaceMenu(int pContainerId, Inventory pPlayerInventory, @Nullable Level level, @Nullable BlockPos worldPosition) {
         this(HuaJiMenus.HUAJI_POLYFURNACE.get(), pContainerId, pPlayerInventory, new SimpleContainer(3), new SimpleContainerData(5), level, worldPosition);
     }
 
-    public HuaJiPolyfurnaceMenu(MenuType<?> pMenuType, int pContainerId, Inventory pPlayerInventory, Container pContainer, ContainerData pData, Level level, BlockPos worldPosition) {
+    public HuaJiPolyfurnaceMenu(MenuType<?> pMenuType, int pContainerId, Inventory pPlayerInventory, Container pContainer, ContainerData pData, @Nullable Level level, @Nullable BlockPos worldPosition) {
         super(pMenuType, pContainerId);
         this.container = pContainer;
         this.data = pData;

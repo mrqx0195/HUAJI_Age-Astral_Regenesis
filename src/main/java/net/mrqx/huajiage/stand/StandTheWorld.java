@@ -1,0 +1,242 @@
+package net.mrqx.huajiage.stand;
+
+import com.mega.endinglib.util.time.TimeStopUtils;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.mrqx.huajiage.HuaJiAgeMod;
+import net.mrqx.huajiage.capability.stand.IStandData;
+import net.mrqx.huajiage.client.HuaJiLayers;
+import net.mrqx.huajiage.client.model.stand.ModelStandBase;
+import net.mrqx.huajiage.client.model.stand.ModelTheWorld;
+import net.mrqx.huajiage.client.model.stand.ModelTheWorldIdle;
+import net.mrqx.huajiage.entity.EntityRoadRoller;
+import net.mrqx.huajiage.registy.HuaJiItems;
+import net.mrqx.huajiage.registy.HuaJiSoundEvents;
+import net.mrqx.huajiage.utils.HuaJiDamageSources;
+import net.mrqx.huajiage.utils.HuaJiMathHelper;
+import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+public class StandTheWorld extends AbstractStand {
+    public static final BiConsumer<LivingEntity, IStandData> THE_WORLD_TICK = (living, data) -> {
+        AbstractStand stand = AbstractStand.getStand(data.getStand());
+        if (stand instanceof StandTheWorld theWorld && !living.level().isClientSide && STATE_DEFAULT.equals(data.getState())) {
+            living.level().getEntitiesOfClass(Entity.class, living.getBoundingBox().inflate(stand.getDistance(living, data))).forEach(entity -> {
+                if (HuaJiMathHelper.getDegreeXZ(living.getLookAngle(), HuaJiMathHelper.getVectorEntityEye(living, entity)) > 90) {
+                    return;
+                }
+                Vec3 back = HuaJiMathHelper.getVectorEntityEye(living, entity);
+                DamageSource damageSource = HuaJiDamageSources.standHit(living.level(), living, living, living.position());
+
+                if (entity instanceof EnderDragonPart enderDragonPart) {
+                    enderDragonPart.parentMob.hurt(enderDragonPart.parentMob.head, damageSource, stand.getDamage(living, data));
+                } else if (entity instanceof LivingEntity target && !target.equals(living)) {
+                    boolean isTimeStopping = TimeStopUtils.isTimeStop && TimeStopUtils.andSameDimension(living.level());
+                    if (living.level().getGameTime() % 4 == 0 || isTimeStopping) {
+                        target.invulnerableTime = 0;
+                        target.hurt(damageSource, stand.getDamage(living, data) / 2);
+                        target.invulnerableTime = 0;
+                        living.level().levelEvent(2001, target.blockPosition().offset(0, (int) (target.getEyePosition(0).y - target.position().y), 0), Block.getId(Blocks.OBSIDIAN.defaultBlockState()));
+                        if (HuaJiMathHelper.getVectorEntityEye(living, target).length() < stand.getDistance(living, data)) {
+                            target.setDeltaMovement(back);
+                        }
+                        theWorld.counter += isTimeStopping ? 1 : 5;
+                        if (data.getLevel() > 0 && theWorld.counter > 4) {
+                            theWorld.counter = 0;
+                            HuajiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, living.getSoundSource(), 0.25F);
+                            HuajiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.DIO_HIT.get(), living.getSoundSource(), 0.75F);
+                        }
+                    }
+                } else if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
+                    if (entity instanceof EntityRoadRoller roadRoller) {
+                        roadRoller.hurt(damageSource, stand.getDamage(living, data) / 2);
+                    } else {
+                        entity.setDeltaMovement(back.scale(stand.getDamage(living, data) / 10));
+                    }
+                }
+            });
+        }
+    };
+
+    public static final BiConsumer<LivingEntity, IStandData> THE_WORLD_DO_SKILL = (living, data) -> {
+        AbstractStand stand = AbstractStand.getStand(data.getStand());
+        if (stand != null && !living.level().isClientSide) {
+            int time = (data.getLevel() > 0 ? 9 : 5) * 20;
+            TimeStopUtils.use(true, living, true, time);
+            if (!living.level().isClientSide) {
+                SoundEvent soundEvent = switch (living.level().random.nextInt(4)) {
+                    case 1 -> HuaJiSoundEvents.THE_WORLD_1.get();
+                    case 2 -> HuaJiSoundEvents.THE_WORLD_2.get();
+                    case 3 -> HuaJiSoundEvents.THE_WORLD_3.get();
+                    default -> HuaJiSoundEvents.THE_WORLD.get();
+                };
+                HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
+            }
+            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time, 4));
+            living.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, time, 0));
+            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time, 4));
+            living.addEffect(new MobEffectInstance(MobEffects.JUMP, time, 4));
+            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time, 2));
+            living.heal(5);
+            if (living instanceof Player player && player.level().random.nextDouble() < 0.3) {
+                player.addItem(HuaJiItems.ROAD_ROLLER.get().getDefaultInstance());
+            }
+        }
+    };
+
+    public int counter = 0;
+
+    public StandTheWorld() {
+        super(THE_WORLD_TICK, THE_WORLD_DO_SKILL);
+    }
+
+    @Override
+    public String getDescriptionId() {
+        return "stand.huajiage.the_world";
+    }
+
+    @Override
+    public void onTriggered(LivingEntity livingEntity, IStandData data) {
+        super.onTriggered(livingEntity, data);
+        HuajiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_THE_WORLD_HIT_1.get() : HuaJiSoundEvents.STAND_THE_WORLD_HIT_2.get(), livingEntity.getSoundSource(), 1);
+    }
+
+    @Override
+    public float getDamage(LivingEntity livingEntity, IStandData data) {
+        return 10;
+    }
+
+    @Override
+    public float getSpeed(LivingEntity livingEntity, IStandData data) {
+        return 1.2F;
+    }
+
+    @Override
+    public int getDuration(LivingEntity livingEntity, IStandData data) {
+        return 200;
+    }
+
+    @Override
+    public float getDistance(LivingEntity livingEntity, IStandData data) {
+        return data.getLevel() > 0 ? 3 : 2;
+    }
+
+    @Override
+    public long getDefaultMaxEnergy() {
+        return 75 * 1200;
+    }
+
+    @Override
+    public int chargePerTick(LivingEntity livingEntity, IStandData data) {
+        return 75;
+    }
+
+    @Override
+    public int getMaxLevel(LivingEntity livingEntity, IStandData data) {
+        return 1;
+    }
+
+    @Override
+    public int skillEnergyDemand(LivingEntity livingEntity, IStandData data) {
+        return 60000;
+    }
+
+    @Override
+    public List<String> getStates() {
+        return List.of(STATE_DEFAULT, STATE_IDLE);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("the_world", STATE_DEFAULT);
+
+    @OnlyIn(Dist.CLIENT)
+    public static final ModelLayerLocation IDLE_LAYER = HuaJiLayers.create("the_world", STATE_IDLE);
+
+    @OnlyIn(Dist.CLIENT)
+    public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
+            STATE_DEFAULT, DEFAULT_LAYER,
+            STATE_IDLE, IDLE_LAYER
+    );
+
+    @OnlyIn(Dist.CLIENT)
+    public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
+            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/entity_the_world_default.png"),
+            STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/entity_the_world_idle.png")
+    );
+
+    @OnlyIn(Dist.CLIENT)
+    public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
+            STATE_DEFAULT, List.of(0.0, -0.2, -0.75),
+            STATE_IDLE, List.of(-0.45, -0.2, 0.45)
+    );
+
+    @OnlyIn(Dist.CLIENT)
+    public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
+            DEFAULT_LAYER, ModelTheWorld::createBodyLayer,
+            IDLE_LAYER, ModelTheWorldIdle::createBodyLayer
+    );
+
+    @OnlyIn(Dist.CLIENT)
+    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_SUPPLIER_MAP = Map.of(
+            DEFAULT_LAYER, ModelTheWorld::new,
+            IDLE_LAYER, ModelTheWorldIdle::new
+    );
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public Map<String, ModelLayerLocation> getModelLocations() {
+        return MODEL_LAYER_MAP;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public Map<String, ResourceLocation> getModelTextures() {
+        return TEXTURE_MAP;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public Map<String, List<Double>> getModelTranslations() {
+        return TRANSLATION_MAP;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
+        return MODEL_MAP;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelSupplier() {
+        return MODEL_SUPPLIER_MAP;
+    }
+
+    @Override
+    public boolean shouldRenderExtra(LivingEntity livingEntity, IStandData data) {
+        return data.getLevel() >= 1;
+    }
+}

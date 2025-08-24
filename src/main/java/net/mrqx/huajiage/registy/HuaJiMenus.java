@@ -11,6 +11,8 @@ import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.block.inventory.HuaJiBlenderMenu;
 import net.mrqx.huajiage.block.inventory.HuaJiPolyfurnaceMenu;
 
+import java.util.Objects;
+
 public class HuaJiMenus {
     public static final DeferredRegister<MenuType<?>> CONTAINER_TYPES = DeferredRegister
             .create(ForgeRegistries.MENU_TYPES, HuaJiAgeMod.MODID);
@@ -19,5 +21,5 @@ public class HuaJiMenus {
             .register("huaji_blender", () -> new MenuType<>(HuaJiBlenderMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
     public static final RegistryObject<MenuType<HuaJiPolyfurnaceMenu>> HUAJI_POLYFURNACE = CONTAINER_TYPES
-            .register("huaji_polyfurnace", () -> IForgeMenuType.create((windowId, inv, data) -> new HuaJiPolyfurnaceMenu(windowId, inv, Minecraft.getInstance().level, data.readBlockPos())));
+            .register("huaji_polyfurnace", () -> IForgeMenuType.create((windowId, inv, data) -> new HuaJiPolyfurnaceMenu(windowId, inv, Objects.requireNonNull(Minecraft.getInstance().level), data.readBlockPos())));
 }

@@ -27,18 +27,14 @@ public class ModelFiftyFiftyHelmet extends HuaJiArmorModel {
 
     @Override
     public void renderToBuffer(@NotNull PoseStack pPoseStack, @NotNull VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
+        pPoseStack.pushPose();
         if (this.young) {
-            pPoseStack.pushPose();
             float f = 1.5F / 2.0F;
             pPoseStack.scale(f, f, f);
             pPoseStack.translate(0.0F, 1.0f, 0.0F);
-            this.renderHelmet(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
-            pPoseStack.popPose();
-        } else {
-            pPoseStack.pushPose();
-            this.renderHelmet(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
-            pPoseStack.popPose();
         }
+        this.renderHelmet(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+        pPoseStack.popPose();
     }
 
     private void renderHelmet(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {

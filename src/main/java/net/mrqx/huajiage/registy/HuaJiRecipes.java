@@ -25,7 +25,7 @@ public class HuaJiRecipes {
 
     public static final RegistryObject<HuaJiBlenderRecipeSerializer> HUAJI_BLENDER_RECIPE_SERIALIZER = RECIPE_SERIALIZER
             .register("huaji_blender", HuaJiBlenderRecipeSerializer::new);
-    
+
     public static final RegistryObject<RecipeType<HuaJiPolyfurnaceRecipe>> HUAJI_POLYFURNACE_RECIPE_TYPE = RECIPE_TYPES
             .register("huaji_polyfurnace", () -> recipeType("huaji_polyfurnace"));
 

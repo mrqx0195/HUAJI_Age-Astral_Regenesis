@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ItemLordCore extends BaseItem {
     public ItemLordCore(Properties properties) {
-        super((properties));
+        super(properties);
     }
 
     @Override
@@ -42,8 +42,10 @@ public class ItemLordCore extends BaseItem {
             } else if (player.getServer() != null) {
                 player.getServer().getPlayerList().broadcastSystemMessage(Component.translatable("message.huajiage.50_50_helmet.active", player.getDisplayName())
                         .withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD), false);
+                if (!player.isCreative()) {
+                    pStack.shrink(1);
+                }
             }
-            pStack.shrink(1);
         }
         return pStack;
     }

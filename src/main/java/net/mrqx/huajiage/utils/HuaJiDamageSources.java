@@ -29,4 +29,14 @@ public class HuaJiDamageSources {
         return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HuaJiDamageTypes.FIVE),
                 damageSource.getDirectEntity(), damageSource.getEntity(), damageSource.getSourcePosition());
     }
+
+    public static DamageSource emeraldSplash(Level level, @Nullable Entity pDirectEntity, @Nullable Entity pCausingEntity, @Nullable Vec3 pDamageSourcePosition) {
+        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HuaJiDamageTypes.EMERALD_SPLASH),
+                pDirectEntity, pCausingEntity, pDamageSourcePosition);
+    }
+
+    public static DamageSource standHit(Level level, @Nullable Entity pDirectEntity, @Nullable Entity pCausingEntity, @Nullable Vec3 pDamageSourcePosition) {
+        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HuaJiDamageTypes.STAND_HIT),
+                pDirectEntity, pCausingEntity, pDamageSourcePosition);
+    }
 }

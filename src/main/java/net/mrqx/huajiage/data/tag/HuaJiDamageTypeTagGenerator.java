@@ -31,8 +31,10 @@ public class HuaJiDamageTypeTagGenerator extends TagsProvider<DamageType> {
                 .add(HuaJiDamageTypes.ANTIMATTER)
                 .add(HuaJiDamageTypes.KE_DAI_JIN_LA)
                 .add(HuaJiDamageTypes.STELLA)
-                .add(HuaJiDamageTypes.FIVE);
-        
+                .add(HuaJiDamageTypes.FIVE)
+                .add(HuaJiDamageTypes.EMERALD_SPLASH)
+                .add(HuaJiDamageTypes.STAND_HIT);
+
         tag(DamageTypeTags.BYPASSES_EFFECTS)
                 .add(HuaJiDamageTypes.ANTIMATTER)
                 .add(HuaJiDamageTypes.STELLA)

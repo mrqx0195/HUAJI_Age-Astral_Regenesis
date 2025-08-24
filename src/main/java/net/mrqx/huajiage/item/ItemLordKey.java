@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ItemLordKey extends BaseItem {
     public ItemLordKey(Properties properties) {
-        super((properties));
+        super(properties);
     }
 
     @Override
@@ -49,8 +49,10 @@ public class ItemLordKey extends BaseItem {
                 }
                 player.getServer().getPlayerList().broadcastSystemMessage(Component.translatable("message.huajiage.50_50_helmet.lord", player.getDisplayName())
                         .withStyle(ChatFormatting.GRAY, ChatFormatting.BOLD), false);
+                if (!player.isCreative()) {
+                    pStack.shrink(1);
+                }
             }
-            pStack.shrink(1);
         }
         return pStack;
     }

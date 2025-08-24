@@ -44,7 +44,7 @@ public class HuaJiPolyfurnaceRecipe implements Recipe<Container> {
 
     @Override
     public @NotNull ItemStack assemble(@NotNull Container pContainer, @NotNull RegistryAccess pRegistryAccess) {
-        return new ItemStack(HuaJiItems.INFINITE_UNIVERSE_STAR.get());
+        return HuaJiItems.INFINITE_UNIVERSE_STAR.get().getDefaultInstance();
     }
 
     @Override
@@ -69,11 +69,11 @@ public class HuaJiPolyfurnaceRecipe implements Recipe<Container> {
 
     @Override
     public @NotNull ItemStack getResultItem(@NotNull RegistryAccess pRegistryAccess) {
-        return new ItemStack(HuaJiItems.INFINITE_UNIVERSE_STAR.get());
+        return HuaJiItems.INFINITE_UNIVERSE_STAR.get().getDefaultInstance();
     }
 
     public @NotNull ItemStack getResultItem() {
-        return new ItemStack(HuaJiItems.INFINITE_UNIVERSE_STAR.get());
+        return HuaJiItems.INFINITE_UNIVERSE_STAR.get().getDefaultInstance();
     }
 
     @Override

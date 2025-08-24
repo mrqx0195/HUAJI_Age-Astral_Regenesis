@@ -12,9 +12,11 @@ public class NetworkManager {
             new ResourceLocation(HuaJiAgeMod.MODID, "main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals);
 
+    @SuppressWarnings("all")
     public static void register() {
         int id = 0;
-        INSTANCE.registerMessage(id, ChangeModeMessage.class, ChangeModeMessage::encode, ChangeModeMessage::decode,
-                ChangeModeMessage::handle);
+        INSTANCE.registerMessage(id++, HuaJiKeyMessage.class, HuaJiKeyMessage::encode, HuaJiKeyMessage::decode, HuaJiKeyMessage::handle);
+        INSTANCE.registerMessage(id++, StandSyncMessage.class, StandSyncMessage::encode, StandSyncMessage::decode, StandSyncMessage::handle);
+        INSTANCE.registerMessage(id++, HuaJiSoundMessage.class, HuaJiSoundMessage::encode, HuaJiSoundMessage::decode, HuaJiSoundMessage::handle);
     }
 }

@@ -92,8 +92,8 @@ public class HuaJiMathHelper {
 
     public static Vec3 getPositionRelative2D(Entity entity, float x, float z) {
         float yaw = entity.getYRot();
-        if (entity instanceof LivingEntity) {
-            yaw = entity.getYHeadRot();
+        if (entity instanceof LivingEntity living) {
+            yaw = living.yBodyRot;
         }
         Vec3 forward = getVectorForRotation(0, yaw);
         Vec3 vertical = getVectorForRotation(0, yaw + 90);

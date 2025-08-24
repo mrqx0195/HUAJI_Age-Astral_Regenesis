@@ -51,5 +51,7 @@ public class HuaJiItemModelGenerator extends ItemModelProvider {
         basicItem(HuaJiItems.FIFTY_FIFTY_HELMET.get());
         basicItem(HuaJiItems.LORD_KEY.get());
 
+        basicItem(HuaJiItems.DISC.get());
+        basicItem(HuaJiItems.SINGULARITY.get());
     }
 }

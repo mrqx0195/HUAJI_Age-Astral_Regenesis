@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
  * <p>
  * Original source: <a href="https://github.com/VazkiiMods/Botania/blob/1.20.x/Xplat/src/main/java/vazkii/botania/common/helper/ItemNBTHelper.java">VazkiiMods/Botania/.../ItemNBTHelper.java</a>
  * <p>
- * License: <a href="http://botaniamod.net/license.php">Botania License</a>
+ * License: <a href="https://botaniamod.net/license.html">Botania License</a>
  *
  * @author Vazkii
  */
@@ -146,7 +146,7 @@ public class ItemTagHelper {
 
     @Nullable
     @Contract("_, _, !null -> !null")
-    public static String getString(ItemStack stack, String tag, String defaultExpected) {
+    public static String getString(ItemStack stack, String tag, @Nullable String defaultExpected) {
         return verifyExistance(stack, tag) ? stack.getOrCreateTag().getString(tag) : defaultExpected;
     }
 

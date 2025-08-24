@@ -9,7 +9,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.ProtectionEnchantment;
@@ -28,7 +30,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class ExplosionHeroArrow extends Explosion {
+public class ExplosionHuaJi extends Explosion {
     private static final ExplosionDamageCalculator EXPLOSION_DAMAGE_CALCULATOR = new ExplosionDamageCalculator();
     private final Level level;
     private final double x;
@@ -40,11 +42,12 @@ public class ExplosionHeroArrow extends Explosion {
     private final double baseDamage;
     private final double knockback;
     private final ExplosionDamageCalculator damageCalculator;
+    private final boolean damageDecrease;
 
-    public ExplosionHeroArrow(Level pLevel, @Nullable Entity pSource,
-                              @Nullable DamageSource pDamageSource, @Nullable ExplosionDamageCalculator pDamageCalculator,
-                              double pToBlowX, double pToBlowY, double pToBlowZ, float pRadius,
-                              BlockInteraction pBlockInteraction, double baseDamage, double knockback) {
+    public ExplosionHuaJi(Level pLevel, @Nullable Entity pSource,
+                          @Nullable DamageSource pDamageSource, @Nullable ExplosionDamageCalculator pDamageCalculator,
+                          double pToBlowX, double pToBlowY, double pToBlowZ, float pRadius,
+                          BlockInteraction pBlockInteraction, double baseDamage, double knockback, boolean damageDecrease) {
         super(pLevel, pSource, pDamageSource, pDamageCalculator, pToBlowX, pToBlowY, pToBlowZ, pRadius, false, pBlockInteraction);
         this.level = pLevel;
         this.source = pSource;
@@ -54,6 +57,7 @@ public class ExplosionHeroArrow extends Explosion {
         this.z = pToBlowZ;
         this.baseDamage = baseDamage;
         this.knockback = knockback;
+        this.damageDecrease = damageDecrease;
         this.damageCalculator = pDamageCalculator == null ? (pSource == null ? EXPLOSION_DAMAGE_CALCULATOR : new EntityBasedExplosionDamageCalculator(pSource)) : pDamageCalculator;
     }
 
@@ -126,8 +130,12 @@ public class ExplosionHeroArrow extends Explosion {
                     d5 /= d13;
                     d7 /= d13;
                     d9 /= d13;
-                    double d10 = 1.0D - d12;
-                    entity.hurt(this.getDamageSource(), (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f2 + 1.0D) * baseDamage));
+
+                    if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
+                        double d10 = 1.0D - d12;
+                        entity.hurt(this.getDamageSource(), damageDecrease ? (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f2 + 1.0D) * baseDamage) : (float) baseDamage);
+                    }
+
                     double d11;
                     if (entity instanceof LivingEntity livingentity) {
                         d11 = ProtectionEnchantment.getExplosionKnockbackAfterDampener(livingentity, knockback);
@@ -154,9 +162,9 @@ public class ExplosionHeroArrow extends Explosion {
     public void finalizeExplosion(boolean pSpawnParticles) {
         if (pSpawnParticles && this.level instanceof ServerLevel serverLevel) {
             if (this.radius >= 2.0F) {
-                serverLevel.sendParticles(ParticleTypes.EXPLOSION_EMITTER, this.x, this.y, this.z, 1, 0, 0, 0, 1);
+                serverLevel.sendParticles(ParticleTypes.EXPLOSION_EMITTER, this.x, this.y, this.z, 0, 1, 0, 0, 1);
             } else {
-                serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.x, this.y, this.z, 1, 0, 0, 0, 1);
+                serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.x, this.y, this.z, 0, 1, 0, 0, 1);
             }
         }
         if (this.level.isClientSide) {

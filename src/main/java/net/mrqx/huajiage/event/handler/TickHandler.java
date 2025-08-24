@@ -5,12 +5,19 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.PacketDistributor;
+import net.mrqx.huajiage.capability.stand.IStandData;
+import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
+import net.mrqx.huajiage.network.NetworkManager;
+import net.mrqx.huajiage.network.StandSyncMessage;
+import net.mrqx.huajiage.stand.AbstractStand;
 
 @Mod.EventBusSubscriber
-public class PlayerTickHandler {
+public class TickHandler {
     @SubscribeEvent
     public static void onPlayerTickEvent(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
@@ -31,5 +38,25 @@ public class PlayerTickHandler {
                 persistentData.putBoolean(ItemFiftyFiftyHelmet.FIFTY_FIFTY_LORD_FLY_KEY, false);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onLivingTickEvent(LivingEvent.LivingTickEvent event) {
+        event.getEntity().getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
+            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            if (stand != null) {
+                stand.tick(event.getEntity(), data);
+            }
+            if (!event.getEntity().level().isClientSide) {
+                event.getEntity().level().players().forEach(player -> {
+                    if (player instanceof ServerPlayer serverPlayer) {
+                        StandSyncMessage message = new StandSyncMessage();
+                        message.data = IStandData.serializeNBT(data);
+                        message.entityId = event.getEntity().getId();
+                        NetworkManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), message);
+                    }
+                });
+            }
+        });
     }
 }
