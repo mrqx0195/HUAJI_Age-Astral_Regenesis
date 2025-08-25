@@ -33,6 +33,7 @@ import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiMathHelper;
 import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.StandUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -85,7 +86,7 @@ public class StandTheWorld extends AbstractStand {
         AbstractStand stand = AbstractStand.getStand(data.getStand());
         if (stand != null && !living.level().isClientSide) {
             int time = (data.getLevel() > 0 ? 9 : 5) * 20;
-            TimeStopUtils.use(true, living, true, time);
+            StandUtils.standTimeStop(true, living, true, time);
             if (!living.level().isClientSide) {
                 SoundEvent soundEvent = switch (living.level().random.nextInt(4)) {
                     case 1 -> HuaJiSoundEvents.THE_WORLD_1.get();
@@ -95,11 +96,10 @@ public class StandTheWorld extends AbstractStand {
                 };
                 HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
             }
-            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time, 4));
-            living.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, time, 0));
-            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time, 4));
-            living.addEffect(new MobEffectInstance(MobEffects.JUMP, time, 4));
-            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time, 2));
+            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time, 4, false, false));
+            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time, 4, false, false));
+            living.addEffect(new MobEffectInstance(MobEffects.JUMP, time, 4, false, false));
+            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time, 2, false, false));
             living.heal(5);
             if (living instanceof Player player && player.level().random.nextDouble() < 0.3) {
                 player.addItem(HuaJiItems.ROAD_ROLLER.get().getDefaultInstance());
@@ -121,7 +121,7 @@ public class StandTheWorld extends AbstractStand {
     @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
-        HuajiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_THE_WORLD_HIT_1.get() : HuaJiSoundEvents.STAND_THE_WORLD_HIT_2.get(), livingEntity.getSoundSource(), 1);
+        HuajiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_THE_WORLD_HIT_1.get() : HuaJiSoundEvents.STAND_THE_WORLD_HIT_2.get(), livingEntity.getSoundSource());
     }
 
     @Override

@@ -8,7 +8,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.PacketDistributor;
@@ -41,56 +40,58 @@ public class HuajiSoundPlayer {
     @OnlyIn(Dist.CLIENT)
     public static void playClient(SoundInstance sound) {
         Minecraft.getInstance().getSoundManager().play(sound);
+    }
 
+    public static void playMovingSoundToClient(Entity target, SoundEvent sound, SoundSource category) {
+        playMovingSoundToClient(target, sound, category, 1, 1);
     }
 
     public static void playMovingSoundToClient(Entity target, SoundEvent sound, SoundSource category, float volume) {
-        target.level().players().forEach(player -> {
-            if (player instanceof ServerPlayer serverPlayer) {
-                HuaJiSoundMessage message = new HuaJiSoundMessage();
-                message.soundEvent = sound.getLocation();
-                message.source = category;
-                message.entityId = target.getId();
-                message.volume = volume;
-                NetworkManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), message);
-            }
-        });
+        playMovingSoundToClient(target, sound, category, volume, 1);
+    }
+
+    public static void playMovingSoundToClient(Entity target, SoundEvent sound, SoundSource category, float volume, float pitch) {
+        if (!target.level().isClientSide) {
+            HuaJiSoundMessage message = new HuaJiSoundMessage();
+            message.soundEvent = sound.getLocation();
+            message.source = category;
+            message.entityId = target.getId();
+            message.volume = volume;
+            message.pitch = pitch;
+            target.level().players().forEach(player -> {
+                if (player instanceof ServerPlayer serverPlayer) {
+                    NetworkManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), message);
+                }
+            });
+        }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static QuadConsumer<ResourceLocation, SoundSource, Integer, Float> playMovingSoundClient() {
-        return (sound, category, target, volume) -> {
+    public static PentaConsumer<ResourceLocation, SoundSource, Integer, Float, Float> playMovingSoundClient() {
+        return (sound, category, target, volume, pitch) -> {
             if (Minecraft.getInstance().level != null) {
                 Entity entity = Minecraft.getInstance().level.getEntity(target);
                 if (entity != null) {
                     SoundEvent soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(sound);
                     if (soundEvent != null) {
-                        playClient(new HuajiMovingSoundInstance(soundEvent, category, entity).setVolume(volume));
+                        playClient(getMovingSound(entity, soundEvent, category, volume, pitch));
                     }
                 }
             }
         };
     }
 
-    public static HuajiMovingSoundInstance getMovingSound(Entity target, SoundEvent sound, SoundSource category, float volume) {
-        HuajiMovingSoundInstance soundInstance = new HuajiMovingSoundInstance(sound, category, target);
-        return soundInstance.setVolume(volume);
+    public static HuajiMovingSoundInstance getMovingSound(Entity entity, SoundEvent soundEvent, SoundSource category) {
+        HuajiMovingSoundInstance soundInstance = new HuajiMovingSoundInstance(soundEvent, category, entity);
+        soundInstance.tick();
+        return soundInstance;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static void playClient(Level world, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch) {
-        world.playSound(null, x, y, z, sound, category, volume, pitch);
+    public static HuajiMovingSoundInstance getMovingSound(Entity entity, SoundEvent soundEvent, SoundSource category, float volume) {
+        return getMovingSound(entity, soundEvent, category).setVolume(volume);
     }
 
-    @FunctionalInterface
-    public interface QuadConsumer<T, U, V, W> {
-        void accept(T var1, U var2, V var3, W var4);
-
-        default QuadConsumer<T, U, V, W> andThen(QuadConsumer<? super T, ? super U, ? super V, ? super W> after) {
-            return (t, u, v, w) -> {
-                this.accept(t, u, v, w);
-                after.accept(t, u, v, w);
-            };
-        }
+    public static HuajiMovingSoundInstance getMovingSound(Entity entity, SoundEvent soundEvent, SoundSource category, float volume, float pitch) {
+        return getMovingSound(entity, soundEvent, category).setVolume(volume).setPitch(pitch);
     }
 }

@@ -2,7 +2,7 @@
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
 @OnlyIn(Dist.CLIENT)
-package net.mrqx.huajiage.client.model;
+package net.mrqx.huajiage.client.renderer.shader;
 
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;

@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -26,6 +25,7 @@ import net.mrqx.huajiage.entity.EntityHeroArrow;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
+import net.mrqx.huajiage.utils.HuajiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -142,12 +142,11 @@ public class ItemHeroBow extends BowItem {
 
                     if (isOn) {
                         player.hurt(HuaJiDamageSources.stella(pLevel, null, player, player.position()), player.getMaxHealth() * 5);
-                        pLevel.playSound(null, player.getX(), player.getY(), player.getZ(), HuaJiSoundEvents.STELLA.get(), SoundSource.PLAYERS, 1, 1);
-
+                        HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.STELLA.get(), player.getSoundSource());
                     }
                 }
 
-                pLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARROW_SHOOT, player.getSoundSource(), 1, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
                 player.awardStat(Stats.ITEM_USED.get(this));
             }
@@ -168,7 +167,7 @@ public class ItemHeroBow extends BowItem {
             player.getCooldowns().addCooldown(HuaJiItems.HERO_BOW.get(), 10);
             if (Mode.getMode(player.getMainHandItem()).equals(Mode.ON) && player.level().isClientSide) {
                 player.sendSystemMessage(Component.translatable("message.huajiage.stella_warning").withStyle(ChatFormatting.YELLOW));
-                player.playSound(SoundEvents.TOTEM_USE);
+                HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.TOTEM_USE, player.getSoundSource());
             }
         }
     }

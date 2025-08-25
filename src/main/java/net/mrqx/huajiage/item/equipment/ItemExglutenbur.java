@@ -6,7 +6,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -26,6 +25,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -34,6 +35,7 @@ import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiMathHelper;
+import net.mrqx.huajiage.utils.HuajiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -92,6 +94,39 @@ public class ItemExglutenbur extends SwordItem {
     }
 
     @Override
+    public boolean onLeftClickEntity(ItemStack pStack, Player pAttacker, Entity pTarget) {
+        if (Flavor.getFlavor(pStack) == Flavor.LIME) {
+            boolean flag2 = (pAttacker.getAttackStrengthScale(0.5F) > 0.9F)
+                    && pAttacker.fallDistance > 0.0F && !pAttacker.onGround()
+                    && !pAttacker.onClimbable() && !pAttacker.isInWater()
+                    && !pAttacker.hasEffect(MobEffects.BLINDNESS) && !pAttacker.isPassenger()
+                    && pTarget instanceof LivingEntity;
+            flag2 = flag2 && !pAttacker.isSprinting();
+            CriticalHitEvent hitResult = ForgeHooks.getCriticalHit(pAttacker, pTarget, flag2, flag2 ? 1.5F : 1.0F);
+            flag2 = hitResult != null;
+            if (flag2 || pTarget.level().getRandom().nextDouble() < 0.3d) {
+                pAttacker.heal(10f);
+                pStack.hurtAndBreak(3 * 29, pAttacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                pTarget.hurt(HuaJiDamageSources.keDaiJinLa(pTarget.level(), pAttacker, null, pAttacker.position()), 50f);
+                HuajiSoundPlayer.playMovingSoundToClient(pTarget, HuaJiSoundEvents.EXGLUTENBUR_HIT.get(), pAttacker.getSoundSource());
+                pAttacker.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.kdjl").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.BOLD));
+                pTarget.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.kdjl").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.BOLD));
+                List<LivingEntity> entities = pTarget.level().getEntitiesOfClass(LivingEntity.class, pTarget.getBoundingBox().inflate(5));
+                for (LivingEntity entity : entities) {
+                    if (entity != pAttacker && entity != pTarget) {
+                        Vec3 vec = HuaJiMathHelper.getVectorEntity(pTarget, entity);
+                        if (vec.length() != 0) {
+                            entity.hurt(HuaJiDamageSources.keDaiJinLa(pTarget.level(), pAttacker, null, pAttacker.position()), (float) (20f / vec.length()));
+                            entity.setDeltaMovement(entity.getDeltaMovement().add(-vec.x / vec.length(), -vec.y / vec.length(), -vec.z / vec.length()));
+                        }
+                    }
+                }
+            }
+        }
+        return super.onLeftClickEntity(pStack, pAttacker, pTarget);
+    }
+
+    @Override
     public boolean hurtEnemy(@NotNull ItemStack pStack, @NotNull LivingEntity pTarget, @NotNull LivingEntity pAttacker) {
         switch (Flavor.getFlavor(pStack)) {
             case FRAGRANT -> {
@@ -106,7 +141,7 @@ public class ItemExglutenbur extends SwordItem {
             }
             case SPICY -> {
                 pTarget.setSecondsOnFire(5);
-                pTarget.playSound(SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, 1f, 1f);
+                HuajiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, pTarget.getSoundSource());
                 List<LivingEntity> entities = pTarget.level().getEntitiesOfClass(LivingEntity.class, pTarget.getBoundingBox().inflate(2));
                 for (LivingEntity entity : entities) {
                     if (!entity.equals(pAttacker) && !entity.equals(pTarget)) {
@@ -118,39 +153,11 @@ public class ItemExglutenbur extends SwordItem {
                 pStack.hurtAndBreak(1, pAttacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
             }
             case LIME -> {
-                pTarget.playSound(SoundEvents.STONE_BREAK, 1f, 1f);
-                pTarget.playSound(SoundEvents.FIRE_EXTINGUISH, 1f, 1f);
+                HuajiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.STONE_BREAK, pAttacker.getSoundSource());
+                HuajiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.FIRE_EXTINGUISH, pAttacker.getSoundSource());
                 pTarget.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 2));
                 pTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 9));
                 pTarget.level().levelEvent(2001, pTarget.blockPosition(), Block.getId(Blocks.OBSIDIAN.defaultBlockState()));
-                boolean flag2 = false;
-                if (pAttacker instanceof Player player) {
-                    flag2 = (player.getAttackStrengthScale(0.5F) > 0.9F)
-                            && player.fallDistance > 0.0F && !player.onGround()
-                            && !player.onClimbable() && !player.isInWater()
-                            && !player.hasEffect(MobEffects.BLINDNESS) && !player.isPassenger()
-                            && pTarget instanceof LivingEntity;
-                    flag2 = flag2 && !player.isSprinting();
-                    net.minecraftforge.event.entity.player.CriticalHitEvent hitResult = net.minecraftforge.common.ForgeHooks.getCriticalHit(player, pTarget, flag2, flag2 ? 1.5F : 1.0F);
-                    flag2 = hitResult != null;
-                }
-                if (flag2 || pTarget.level().getRandom().nextDouble() < 0.3d) {
-                    pAttacker.heal(10f);
-                    pStack.hurtAndBreak(3 * 29, pAttacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
-                    pTarget.hurt(HuaJiDamageSources.keDaiJinLa(pTarget.level(), pAttacker, null, pAttacker.position()), 50f);
-                    pTarget.playSound(HuaJiSoundEvents.EXGLUTENBUR_HIT.get(), 1f, 1f);
-                    pAttacker.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.kdjl").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.BOLD));
-                    List<LivingEntity> entities = pTarget.level().getEntitiesOfClass(LivingEntity.class, pTarget.getBoundingBox().inflate(5));
-                    for (LivingEntity entity : entities) {
-                        if (entity != pAttacker && entity != pTarget) {
-                            Vec3 vec = HuaJiMathHelper.getVectorEntity(pTarget, entity);
-                            if (vec.length() != 0) {
-                                entity.hurt(HuaJiDamageSources.keDaiJinLa(pTarget.level(), pAttacker, null, pAttacker.position()), (float) (20f / vec.length()));
-                                entity.setDeltaMovement(entity.getDeltaMovement().add(-vec.x / vec.length(), -vec.y / vec.length(), -vec.z / vec.length()));
-                            }
-                        }
-                    }
-                }
                 pAttacker.heal(1);
                 pStack.hurtAndBreak(12, pAttacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
             }
@@ -196,15 +203,15 @@ public class ItemExglutenbur extends SwordItem {
             if (!player.level().isClientSide) {
                 switch (Flavor.getFlavor(event.getEntity().getMainHandItem())) {
                     case FRAGRANT -> {
-                        player.level().playSound(player, player.blockPosition(), HuaJiSoundEvents.EXGLUTENBUR_1.get(), SoundSource.PLAYERS);
+                        HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_1.get(), player.getSoundSource());
                         player.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.flavor.1").withStyle(ChatFormatting.GOLD));
                     }
                     case SPICY -> {
-                        player.level().playSound(player, player.blockPosition(), HuaJiSoundEvents.EXGLUTENBUR_2.get(), SoundSource.PLAYERS);
+                        HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_2.get(), player.getSoundSource());
                         player.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.flavor.2").withStyle(ChatFormatting.RED));
                     }
                     case LIME -> {
-                        player.level().playSound(player, player.blockPosition(), HuaJiSoundEvents.EXGLUTENBUR_3.get(), SoundSource.PLAYERS);
+                        HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_3.get(), player.getSoundSource());
                         player.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.flavor.3").withStyle(ChatFormatting.GRAY, ChatFormatting.BOLD));
                     }
                     default -> {

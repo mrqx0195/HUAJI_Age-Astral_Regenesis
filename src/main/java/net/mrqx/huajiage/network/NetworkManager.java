@@ -18,5 +18,6 @@ public class NetworkManager {
         INSTANCE.registerMessage(id++, HuaJiKeyMessage.class, HuaJiKeyMessage::encode, HuaJiKeyMessage::decode, HuaJiKeyMessage::handle);
         INSTANCE.registerMessage(id++, StandSyncMessage.class, StandSyncMessage::encode, StandSyncMessage::decode, StandSyncMessage::handle);
         INSTANCE.registerMessage(id++, HuaJiSoundMessage.class, HuaJiSoundMessage::encode, HuaJiSoundMessage::decode, HuaJiSoundMessage::handle);
+        INSTANCE.registerMessage(id++, TimeStopEffectMessage.class, TimeStopEffectMessage::encode, TimeStopEffectMessage::decode, TimeStopEffectMessage::handle);
     }
 }

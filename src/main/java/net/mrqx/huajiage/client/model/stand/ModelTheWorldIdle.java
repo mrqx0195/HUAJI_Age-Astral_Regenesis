@@ -133,8 +133,9 @@ public class ModelTheWorldIdle extends ModelStandBase {
         body.y += off;
         leftleg.y += off;
         rightleg.y += off;
-        gears.y += -0.3f;
-        gears.z += -0.2f;
+        gears.y += 20;
+        gears.z += -8;
+        gears.xScale = gears.yScale = gears.zScale = 2;
         gear1.yRot = pAgeInTicks / 10;
         gear2.yRot = pAgeInTicks / 15;
 

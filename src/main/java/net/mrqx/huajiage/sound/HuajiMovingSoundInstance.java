@@ -21,6 +21,11 @@ public class HuajiMovingSoundInstance extends AbstractTickableSoundInstance {
         return this;
     }
 
+    public HuajiMovingSoundInstance setPitch(float pitch) {
+        this.pitch = pitch;
+        return this;
+    }
+
     public HuajiMovingSoundInstance setLoop() {
         this.looping = true;
         return this;

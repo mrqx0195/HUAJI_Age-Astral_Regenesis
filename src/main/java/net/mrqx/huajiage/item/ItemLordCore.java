@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
+import net.mrqx.huajiage.utils.HuajiSoundPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemLordCore extends BaseItem {
@@ -35,8 +36,8 @@ public class ItemLordCore extends BaseItem {
         super.finishUsingItem(pStack, pLevel, pLivingEntity);
         if (pLivingEntity instanceof Player player && ItemFiftyFiftyHelmet.hasFiftyFiftyHelmet(player)) {
             ItemFiftyFiftyHelmet.setFiftyFiftyActive(player, true);
-            player.playSound(SoundEvents.ANVIL_LAND, 1f, 1f);
-            player.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
+            HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ANVIL_LAND, player.getSoundSource());
+            HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, player.getSoundSource());
             if (pLevel.isClientSide) {
                 Minecraft.getInstance().gameRenderer.displayItemActivation(pStack.copy());
             } else if (player.getServer() != null) {

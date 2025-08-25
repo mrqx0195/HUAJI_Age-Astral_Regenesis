@@ -48,11 +48,11 @@ public class TickHandler {
                 stand.tick(event.getEntity(), data);
             }
             if (!event.getEntity().level().isClientSide) {
+                StandSyncMessage message = new StandSyncMessage();
+                message.data = IStandData.serializeNBT(data);
+                message.entityId = event.getEntity().getId();
                 event.getEntity().level().players().forEach(player -> {
                     if (player instanceof ServerPlayer serverPlayer) {
-                        StandSyncMessage message = new StandSyncMessage();
-                        message.data = IStandData.serializeNBT(data);
-                        message.entityId = event.getEntity().getId();
                         NetworkManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), message);
                     }
                 });

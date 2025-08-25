@@ -127,7 +127,7 @@ public class StandHierophantGreen extends AbstractStand {
                 bullet.setYRot(360 * ry / 20);
                 living.level().addFreshEntity(bullet);
             }
-            HuajiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH.get(), living.getSoundSource(), 1);
+            HuajiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH.get(), living.getSoundSource());
         }
     };
 
@@ -143,7 +143,7 @@ public class StandHierophantGreen extends AbstractStand {
     @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
-        HuajiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_1.get() : HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_2.get(), livingEntity.getSoundSource(), 1);
+        HuajiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_1.get() : HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_2.get(), livingEntity.getSoundSource());
     }
 
     @Override
