@@ -15,11 +15,13 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
-import net.mrqx.huajiage.client.renderer.RenderHeroArrow;
-import net.mrqx.huajiage.client.renderer.RenderItemBullet;
-import net.mrqx.huajiage.client.renderer.RenderRoadRoller;
+import net.mrqx.huajiage.client.renderer.entity.RenderFivePower;
+import net.mrqx.huajiage.client.renderer.entity.RenderHeroArrow;
+import net.mrqx.huajiage.client.renderer.entity.RenderItemBullet;
+import net.mrqx.huajiage.client.renderer.entity.RenderRoadRoller;
 import net.mrqx.huajiage.config.HuaJiClientConfig;
 import net.mrqx.huajiage.config.HuaJiCommonConfig;
+import net.mrqx.huajiage.entity.EntityFivePower;
 import net.mrqx.huajiage.entity.EntityHeroArrow;
 import net.mrqx.huajiage.entity.EntityItemBullet;
 import net.mrqx.huajiage.entity.EntityRoadRoller;
@@ -58,15 +60,18 @@ public class HuaJiAgeMod {
             bus = Mod.EventBusSubscriber.Bus.MOD
     )
     public static class RegistryEvents {
-        public static final ResourceLocation ENTITY_HERO_ARROW_RESOURCE_LOCATION = new ResourceLocation(MODID, classToString(EntityHeroArrow.class));
-        public static final ResourceLocation ENTITY_ITEM_BULLET_RESOURCE_LOCATION = new ResourceLocation(MODID, classToString(EntityItemBullet.class));
-        public static final ResourceLocation ENTITY_ROAD_ROLLER_RESOURCE_LOCATION = new ResourceLocation(MODID, classToString(EntityRoadRoller.class));
-        @SuppressWarnings("all")
+        public static final ResourceLocation ENTITY_HERO_ARROW_RESOURCE_LOCATION = prefix(classToString(EntityHeroArrow.class));
+        public static final ResourceLocation ENTITY_ITEM_BULLET_RESOURCE_LOCATION = prefix(classToString(EntityItemBullet.class));
+        public static final ResourceLocation ENTITY_ROAD_ROLLER_RESOURCE_LOCATION = prefix(classToString(EntityRoadRoller.class));
+        public static final ResourceLocation ENTITY_ENTITY_FIVE_POWER_RESOURCE_LOCATION = prefix(classToString(EntityFivePower.class));
+        @SuppressWarnings("NotNullFieldNotInitialized")
         public static EntityType<EntityHeroArrow> heroArrowEntityType;
-        @SuppressWarnings("all")
+        @SuppressWarnings("NotNullFieldNotInitialized")
         public static EntityType<EntityItemBullet> itemBulletEntityType;
-        @SuppressWarnings("all")
+        @SuppressWarnings("NotNullFieldNotInitialized")
         public static EntityType<EntityRoadRoller> roadRollerEntityType;
+        @SuppressWarnings("NotNullFieldNotInitialized")
+        public static EntityType<EntityFivePower> fivePowerEntityType;
 
         @SubscribeEvent
         public static void register(RegisterEvent event) {
@@ -91,6 +96,13 @@ public class HuaJiAgeMod {
                         .setCustomClientFactory(EntityRoadRoller::createInstance)
                         .build(ENTITY_ROAD_ROLLER_RESOURCE_LOCATION.toString());
                 entityTypeRegisterHelper.register(ENTITY_ROAD_ROLLER_RESOURCE_LOCATION, roadRollerEntityType);
+
+                fivePowerEntityType = EntityType.Builder
+                        .of(EntityFivePower::create, MobCategory.MISC).sized(0.7F, 0.7F)
+                        .setTrackingRange(8).setUpdateInterval(3)
+                        .setCustomClientFactory(EntityFivePower::createInstance)
+                        .build(ENTITY_ENTITY_FIVE_POWER_RESOURCE_LOCATION.toString());
+                entityTypeRegisterHelper.register(ENTITY_ENTITY_FIVE_POWER_RESOURCE_LOCATION, fivePowerEntityType);
             });
         }
 
@@ -99,6 +111,7 @@ public class HuaJiAgeMod {
             event.registerEntityRenderer(heroArrowEntityType, RenderHeroArrow::new);
             event.registerEntityRenderer(itemBulletEntityType, RenderItemBullet::new);
             event.registerEntityRenderer(roadRollerEntityType, RenderRoadRoller::new);
+            event.registerEntityRenderer(fivePowerEntityType, RenderFivePower::new);
         }
 
         private static String classToString(Class<? extends Entity> entityClass) {

@@ -30,6 +30,9 @@ import net.mrqx.huajiage.client.screen.HuaJiBlenderScreen;
 import net.mrqx.huajiage.client.screen.HuaJiPolyfurnaceScreen;
 import net.mrqx.huajiage.item.equipment.ItemExglutenbur;
 import net.mrqx.huajiage.item.equipment.ItemHeroBow;
+import net.mrqx.huajiage.item.equipment.ItemHuajiLaTiaoSword;
+import net.mrqx.huajiage.item.equipment.ItemHuajiStarSword;
+import net.mrqx.huajiage.item.equipment.armor.ItemOrgaArmor;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiMenus;
 import net.mrqx.huajiage.registy.HuaJiStands;
@@ -56,6 +59,14 @@ public class ClientHandler {
                     (stack, level, living, id) -> living != null && living.getMainHandItem().is(HuaJiItems.HERO_BOW.get())
                             && stack.is(HuaJiItems.HERO_BOW.get()) && ItemHeroBow.Mode.getMode(stack).equals(ItemHeroBow.Mode.ON)
                             && (float) (stack.getUseDuration() - living.getUseItemRemainingTicks()) / 20.0F >= 1 ? 1 : 0);
+
+            ItemProperties.register(HuaJiItems.HUAJI_STAR_SWORD.get(), HuaJiAgeMod.prefix("burst"),
+                    (stack, level, living, id) -> ItemHuajiStarSword.Mode.getMode(stack).equals(ItemHuajiStarSword.Mode.ON) ? 1 : 0);
+            ItemProperties.register(HuaJiItems.HUAJI_LATIAO_SWORD.get(), HuaJiAgeMod.prefix("burst"),
+                    (stack, level, living, id) -> ItemHuajiLaTiaoSword.Mode.getMode(stack).equals(ItemHuajiLaTiaoSword.Mode.ON) ? 1 : 0);
+
+            ItemProperties.register(HuaJiItems.INFINITE_CHARM.get(), HuaJiAgeMod.prefix("orga"),
+                    (stack, level, living, id) -> living != null && ItemOrgaArmor.hasAllOrgaArmor(living) ? 1 : 0);
         });
     }
 
@@ -97,7 +108,7 @@ public class ClientHandler {
                 (resourceLocation, bakedModel) -> new ModelDisc(bakedModel));
     }
 
-    @SuppressWarnings("all")
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private static void addPlayerLayer(EntityRenderersEvent.AddLayers event, String skin) {
         EntityRenderer<? extends Player> renderer = event.getSkin(skin);
         if (renderer instanceof LivingEntityRenderer livingRenderer) {
@@ -107,10 +118,10 @@ public class ClientHandler {
     }
 
 
-    @SuppressWarnings("all")
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private static void addEntityLayer(EntityRenderersEvent.AddLayers event, EntityRenderer<?> renderer) {
         if (renderer instanceof LivingEntityRenderer livingRenderer) {
-            livingRenderer.addLayer(new LayerLordLu<>(livingRenderer, event.getEntityModels()));
+            livingRenderer.addLayer(new LayerLordLu(livingRenderer, event.getEntityModels()));
             livingRenderer.addLayer(new LayerStand(livingRenderer, event.getEntityModels()));
         }
     }

@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-@SuppressWarnings("all")
+@SuppressWarnings({"AlibabaLowerCamelCaseVariableNaming", "unused"})
 public class HuaJiMathHelper {
     public static Vec3 getVectorEntity(Entity source, Entity target) {
         BlockPos eaterPos = source.blockPosition();

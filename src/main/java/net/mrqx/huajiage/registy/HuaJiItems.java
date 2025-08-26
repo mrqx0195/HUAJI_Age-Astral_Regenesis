@@ -10,8 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.item.*;
-import net.mrqx.huajiage.item.equipment.ItemExglutenbur;
-import net.mrqx.huajiage.item.equipment.ItemHeroBow;
+import net.mrqx.huajiage.item.equipment.*;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
 import net.mrqx.huajiage.item.equipment.armor.ItemHuajiArmor;
 import net.mrqx.huajiage.item.equipment.armor.ItemOrgaArmor;
@@ -41,6 +40,7 @@ public class HuaJiItems {
     public static final RegistryObject<Item> HUAJI_STAR = ITEMS.register("huaji_star", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final RegistryObject<Item> AIRSPACE_STAR = ITEMS.register("airspace_star", () -> new BaseItem(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
     public static final RegistryObject<Item> INFINITE_UNIVERSE_STAR = ITEMS.register("infinite_universe_star", () -> new BaseItem(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> HUAJI_STAR_POLY = ITEMS.register("huaji_star_poly", () -> new BaseItem(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
 
     /**
      * Foods
@@ -78,11 +78,21 @@ public class HuaJiItems {
                     .effect(() -> new MobEffectInstance(MobEffects.JUMP, 1800, 2), 1)
                     .nutrition(5).saturationMod(2).build())));
 
+    public static final RegistryObject<Item> DIO_BREAD = ITEMS.register("dio_bread", () -> new BaseItem(new Item.Properties()
+            .food(new FoodProperties.Builder()
+                    .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F)
+                    .nutrition(3).saturationMod(0.3F).build())));
+
     /**
      * Weapons
      */
+    public static final RegistryObject<Item> HUAJI_SWORD = ITEMS.register("huaji_sword", () -> new ItemHuaJiSword(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> HUAJI_STAR_SWORD = ITEMS.register("huaji_star_sword", () -> new ItemHuajiStarSword(new Item.Properties().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> HUAJI_LATIAO_SWORD = ITEMS.register("huaji_latiao_sword", () -> new ItemHuajiLaTiaoSword(new Item.Properties().rarity(Rarity.RARE)));
     public static final RegistryObject<Item> EXGLUTENBUR = ITEMS.register("exglutenbur", () -> new ItemExglutenbur(new Item.Properties().rarity(Rarity.EPIC).fireResistant().durability(5400)));
     public static final RegistryObject<Item> HERO_BOW = ITEMS.register("hero_bow", () -> new ItemHeroBow(new Item.Properties().rarity(Rarity.EPIC).fireResistant().durability(384)));
+    public static final RegistryObject<Item> MULTI_KNIFE = ITEMS.register("multi_knife", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> MULTI_KNIFE_SHINY = ITEMS.register("multi_knife_shiny", () -> new BaseItem(new Item.Properties().rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> HUAJI_HELMET = ITEMS.register("huaji_helmet", () -> new ItemHuajiArmor.ItemHuajiArmorHelmet(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> HUAJI_CHESTPLATE = ITEMS.register("huaji_chestplate", () -> new ItemHuajiArmor.ItemHuajiArmorChestplate(new Item.Properties().rarity(Rarity.UNCOMMON)));
@@ -98,12 +108,19 @@ public class HuaJiItems {
     public static final RegistryObject<Item> LORD_CORE = ITEMS.register("lord_core", () -> new ItemLordCore(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
     public static final RegistryObject<Item> LORD_KEY = ITEMS.register("lord_key", () -> new ItemLordKey(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<Item> SECOND_FOIL = ITEMS.register("second_foil", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> INFINITE_CHARM = ITEMS.register("infinite_charm", () -> new ItemInfiniteCharm(new Item.Properties().rarity(Rarity.UNCOMMON)));
+
     /**
      * Stands
      */
-    public static final RegistryObject<Item> DISC = ITEMS.register("disc", () -> new ItemDisc(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> DISC = ITEMS.register("disc", () -> new ItemDisc(new Item.Properties()));
     public static final RegistryObject<Item> SINGULARITY = ITEMS.register("singularity", () -> new ItemSingularity(new Item.Properties().rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> ROAD_ROLLER = ITEMS.register("road_roller", () -> new ItemRoadRoller(new Item.Properties().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> ARROW_STAND = ITEMS.register("arrow_stand", () -> new BaseItem(new Item.Properties().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> ARROW_REQUIEM = ITEMS.register("arrow_requiem", () -> new BaseItem(new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> TAROT = ITEMS.register("tarot", () -> new BaseItem(new Item.Properties()));
 
     /**
      * Block Items

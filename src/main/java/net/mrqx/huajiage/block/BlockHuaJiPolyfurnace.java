@@ -130,7 +130,7 @@ public class BlockHuaJiPolyfurnace extends BaseEntityBlock {
 
     @Override
     @Nullable
-    @SuppressWarnings("all")
+    @SuppressWarnings("unchecked")
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         return createFurnaceTicker(pLevel, pBlockEntityType, (BlockEntityType<? extends HuaJiPolyfurnaceBlockEntity>) HuaJiBlocks.HUAJI_POLYFURNACE_BLOCK_ENTITY.get());
     }

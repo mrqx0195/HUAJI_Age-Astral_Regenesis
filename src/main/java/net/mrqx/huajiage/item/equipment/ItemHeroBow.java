@@ -154,7 +154,7 @@ public class ItemHeroBow extends BowItem {
     }
 
     @SubscribeEvent
-    public static void onRightClick(PlayerInteractEvent event) {
+    public static void onLeftClick(PlayerInteractEvent event) {
         if (!event.getEntity().getMainHandItem().is(HuaJiItems.HERO_BOW.get())
                 || !event.getEntity().isShiftKeyDown()
                 || event.getEntity().getCooldowns().isOnCooldown(HuaJiItems.HERO_BOW.get())) {
@@ -165,7 +165,7 @@ public class ItemHeroBow extends BowItem {
                 || event instanceof PlayerInteractEvent.LeftClickEmpty) {
             Mode.changeMode(player.getMainHandItem());
             player.getCooldowns().addCooldown(HuaJiItems.HERO_BOW.get(), 10);
-            if (Mode.getMode(player.getMainHandItem()).equals(Mode.ON) && player.level().isClientSide) {
+            if (Mode.getMode(player.getMainHandItem()).equals(Mode.ON)) {
                 player.sendSystemMessage(Component.translatable("message.huajiage.stella_warning").withStyle(ChatFormatting.YELLOW));
                 HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.TOTEM_USE, player.getSoundSource());
             }

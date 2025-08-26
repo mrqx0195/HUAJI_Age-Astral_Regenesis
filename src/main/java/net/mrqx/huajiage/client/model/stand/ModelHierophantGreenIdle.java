@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Made with Blockbench 4.12.6
  */
-@SuppressWarnings("all")
 public class ModelHierophantGreenIdle extends ModelStandBase {
     private final ModelPart head;
     private final ModelPart body;

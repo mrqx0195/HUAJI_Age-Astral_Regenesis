@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_flash_flour": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:flash_flour"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "huajiage:raw_gluten_from_flash_flour_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_flash_flour",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "huajiage:raw_gluten_from_flash_flour_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

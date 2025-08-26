@@ -30,6 +30,11 @@ public class HuaJiDamageSources {
                 damageSource.getDirectEntity(), damageSource.getEntity(), damageSource.getSourcePosition());
     }
 
+    public static DamageSource five(Level level, @Nullable Entity pDirectEntity, @Nullable Entity pCausingEntity, @Nullable Vec3 pDamageSourcePosition) {
+        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HuaJiDamageTypes.FIVE),
+                pDirectEntity, pCausingEntity, pDamageSourcePosition);
+    }
+
     public static DamageSource emeraldSplash(Level level, @Nullable Entity pDirectEntity, @Nullable Entity pCausingEntity, @Nullable Vec3 pDamageSourcePosition) {
         return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HuaJiDamageTypes.EMERALD_SPLASH),
                 pDirectEntity, pCausingEntity, pDamageSourcePosition);

@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Made with Blockbench 4.12.6
  */
-@SuppressWarnings("all")
 public class ModelTheWorldIdle extends ModelStandBase {
     private final ModelPart head;
     private final ModelPart body;
@@ -134,7 +133,7 @@ public class ModelTheWorldIdle extends ModelStandBase {
         leftleg.y += off;
         rightleg.y += off;
         gears.y += 20;
-        gears.z += -8;
+        gears.z -= 8;
         gears.xScale = gears.yScale = gears.zScale = 2;
         gear1.yRot = pAgeInTicks / 10;
         gear2.yRot = pAgeInTicks / 15;

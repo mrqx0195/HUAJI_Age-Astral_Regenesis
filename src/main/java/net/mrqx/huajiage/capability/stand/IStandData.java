@@ -3,12 +3,13 @@ package net.mrqx.huajiage.capability.stand;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.mrqx.huajiage.stand.AbstractStand;
+import org.jetbrains.annotations.Nullable;
 
 public interface IStandData {
-    @SuppressWarnings("all")
-    public static CompoundTag serializeNBT(IStandData data) {
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    static CompoundTag serializeNBT(IStandData data) {
         CompoundTag tag = new CompoundTag();
-        tag.putString("stand", data.getStand().toString());
+        tag.putString("stand", String.valueOf(data.getStand()));
         tag.putInt("level", data.getLevel());
         tag.putBoolean("isTriggered", data.isTriggered());
         tag.putString("state", data.getState());
@@ -17,8 +18,8 @@ public interface IStandData {
         return tag;
     }
 
-    @SuppressWarnings("all")
-    public static void deserializeNBT(CompoundTag nbt, IStandData data) {
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    static void deserializeNBT(CompoundTag nbt, IStandData data) {
         data.setStand(ResourceLocation.tryParse(nbt.getString("stand")));
         data.setLevel(nbt.getInt("level"));
         data.setTriggered(nbt.getBoolean("isTriggered"));
@@ -29,8 +30,9 @@ public interface IStandData {
 
     void setStand(AbstractStand stand);
 
-    void setStand(ResourceLocation stand);
+    void setStand(@Nullable ResourceLocation stand);
 
+    @Nullable
     ResourceLocation getStand();
 
     void setLevel(int level);

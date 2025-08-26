@@ -1,14 +1,15 @@
 package net.mrqx.huajiage.capability.stand;
 
 import net.minecraft.resources.ResourceLocation;
-import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import net.mrqx.huajiage.stand.AbstractStand;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
 public class StandData implements IStandData {
-    private ResourceLocation stand = HuaJiAgeMod.prefix("null");
+    @Nullable
+    private ResourceLocation stand = null;
     private int level = 0;
     private boolean triggered = false;
     private String state = AbstractStand.STATE_DEFAULT;
@@ -25,11 +26,12 @@ public class StandData implements IStandData {
     }
 
     @Override
-    public void setStand(ResourceLocation stand) {
+    public void setStand(@Nullable ResourceLocation stand) {
         this.stand = stand;
     }
 
     @Override
+    @Nullable
     public ResourceLocation getStand() {
         return stand;
     }

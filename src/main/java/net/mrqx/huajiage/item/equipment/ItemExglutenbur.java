@@ -45,7 +45,7 @@ import java.util.List;
 @Mod.EventBusSubscriber
 public class ItemExglutenbur extends SwordItem {
     public ItemExglutenbur(Properties pProperties) {
-        super(HuaJiTiers.EXGLUTENBUR.get(), 3, -2.4F, pProperties);
+        super(HuaJiTiers.EXGLUTENBUR.get(), 6, -2.4F, pProperties);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ItemExglutenbur extends SwordItem {
         Multimap<Attribute, AttributeModifier> multimap = HashMultimap.create();
         if (slot == EquipmentSlot.MAINHAND) {
             multimap.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier",
-                    Flavor.getFlavor(stack).equals(Flavor.FRAGRANT) ? -2.4 + 0.7F : -2.4, AttributeModifier.Operation.ADDITION));
+                    Flavor.getFlavor(stack).equals(Flavor.FRAGRANT) ? -1.7 : -2.4, AttributeModifier.Operation.ADDITION));
             switch (Flavor.getFlavor(stack)) {
                 case FRAGRANT ->
                         multimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier",
@@ -171,15 +171,15 @@ public class ItemExglutenbur extends SwordItem {
             switch (Flavor.getFlavor(pStack)) {
                 case FRAGRANT -> {
                     if (!pLevel.isClientSide) {
-                        living.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0));
-                        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 2));
-                        living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 2));
+                        living.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false));
+                        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 2, false, false));
+                        living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 2, false, false));
                     }
                 }
                 case LIME -> {
                     if (!pLevel.isClientSide) {
-                        living.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 1));
-                        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 4));
+                        living.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 1, false, false));
+                        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 4, false, false));
                     }
                 }
             }

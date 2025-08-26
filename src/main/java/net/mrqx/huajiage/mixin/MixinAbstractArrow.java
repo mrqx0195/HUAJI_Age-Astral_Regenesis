@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(AbstractArrow.class)
 public abstract class MixinAbstractArrow {
-    @SuppressWarnings("all")
+    @SuppressWarnings({"ConstantValue", "EqualsBetweenInconvertibleTypes"})
     @Redirect(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addParticle(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V"))
     private void injectAddParticle(Level instance, ParticleOptions pParticleData, double pX, double pY, double pZ, double xSpeed, double ySpeed, double zSpeed) {
         if (!this.getClass().equals(EntityHeroArrow.class)) {

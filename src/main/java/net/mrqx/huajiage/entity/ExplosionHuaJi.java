@@ -29,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class ExplosionHuaJi extends Explosion {
     private static final ExplosionDamageCalculator EXPLOSION_DAMAGE_CALCULATOR = new ExplosionDamageCalculator();
@@ -43,11 +44,12 @@ public class ExplosionHuaJi extends Explosion {
     private final double knockback;
     private final ExplosionDamageCalculator damageCalculator;
     private final boolean damageDecrease;
+    private final Consumer<Entity> onHitEntity;
 
     public ExplosionHuaJi(Level pLevel, @Nullable Entity pSource,
                           @Nullable DamageSource pDamageSource, @Nullable ExplosionDamageCalculator pDamageCalculator,
                           double pToBlowX, double pToBlowY, double pToBlowZ, float pRadius,
-                          BlockInteraction pBlockInteraction, double baseDamage, double knockback, boolean damageDecrease) {
+                          BlockInteraction pBlockInteraction, double baseDamage, double knockback, boolean damageDecrease, Consumer<Entity> onHitEntity) {
         super(pLevel, pSource, pDamageSource, pDamageCalculator, pToBlowX, pToBlowY, pToBlowZ, pRadius, false, pBlockInteraction);
         this.level = pLevel;
         this.source = pSource;
@@ -59,6 +61,15 @@ public class ExplosionHuaJi extends Explosion {
         this.knockback = knockback;
         this.damageDecrease = damageDecrease;
         this.damageCalculator = pDamageCalculator == null ? (pSource == null ? EXPLOSION_DAMAGE_CALCULATOR : new EntityBasedExplosionDamageCalculator(pSource)) : pDamageCalculator;
+        this.onHitEntity = onHitEntity;
+    }
+
+    public ExplosionHuaJi(Level pLevel, @Nullable Entity pSource,
+                          @Nullable DamageSource pDamageSource, @Nullable ExplosionDamageCalculator pDamageCalculator,
+                          double pToBlowX, double pToBlowY, double pToBlowZ, float pRadius,
+                          BlockInteraction pBlockInteraction, double baseDamage, double knockback, boolean damageDecrease) {
+        this(pLevel, pSource, pDamageSource, pDamageCalculator, pToBlowX, pToBlowY, pToBlowZ, pRadius, pBlockInteraction, baseDamage, knockback, damageDecrease, entity -> {
+        });
     }
 
     @Override
@@ -153,6 +164,7 @@ public class ExplosionHuaJi extends Explosion {
                             this.getHitPlayers().put(player, vec31);
                         }
                     }
+                    this.onHitEntity.accept(entity);
                 }
             }
         }

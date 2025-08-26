@@ -131,7 +131,7 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
 
     @Override
     @Nullable
-    @SuppressWarnings("all")
+    @SuppressWarnings("unchecked")
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         return createFurnaceTicker(pLevel, pBlockEntityType, (BlockEntityType<? extends HuaJiBlenderBlockEntity>) HuaJiBlocks.HUAJI_BLENDER_BLOCK_ENTITY.get());
     }

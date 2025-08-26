@@ -2,7 +2,6 @@ package net.mrqx.huajiage.capability.stand;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
@@ -24,30 +23,17 @@ public class StandDataCapabilityProvider implements ICapabilityProvider, INBTSer
     }
 
     @Override
-    @SuppressWarnings("all")
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
-        state.ifPresent(data -> {
-            tag.putString("stand", data.getStand().toString());
-            tag.putInt("level", data.getLevel());
-            tag.putBoolean("isTriggered", data.isTriggered());
-            tag.putString("state", data.getState());
-            tag.putLong("energy", data.getEnergy());
-            tag.putLong("maxEnergy", data.getMaxEnergy());
-        });
-        return tag;
+        tag.put("temp", new CompoundTag());
+        state.ifPresent(data -> tag.put("temp", IStandData.serializeNBT(data)));
+        return tag.getCompound("temp");
     }
 
     @Override
-    @SuppressWarnings("all")
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     public void deserializeNBT(CompoundTag nbt) {
-        state.ifPresent(data -> {
-            data.setStand(ResourceLocation.tryParse(nbt.getString("stand")));
-            data.setLevel(nbt.getInt("level"));
-            data.setTriggered(nbt.getBoolean("isTriggered"));
-            data.setState(nbt.getString("state"));
-            data.setEnergy(nbt.getLong("energy"));
-            data.setMaxEnergy(nbt.getLong("maxEnergy"));
-        });
+        state.ifPresent(data -> IStandData.deserializeNBT(nbt, data));
     }
 }

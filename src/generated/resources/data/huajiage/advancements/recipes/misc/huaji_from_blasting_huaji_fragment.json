@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_huaji_fragment": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_fragment"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "huajiage:huaji_from_blasting_huaji_fragment"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_huaji_fragment",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "huajiage:huaji_from_blasting_huaji_fragment"
+    ]
+  },
+  "sends_telemetry_event": false
+}

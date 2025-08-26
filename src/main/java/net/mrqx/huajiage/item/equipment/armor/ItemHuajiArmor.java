@@ -34,7 +34,7 @@ public abstract class ItemHuajiArmor extends ArmorItem {
         @Override
         public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
             if (player.getInventory().armor.get(2).equals(stack)) {
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 0));
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 0, false, false));
             }
         }
     }
@@ -47,7 +47,7 @@ public abstract class ItemHuajiArmor extends ArmorItem {
         @Override
         public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
             if (player.getInventory().armor.get(1).equals(stack)) {
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0));
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false));
             }
         }
     }
@@ -60,7 +60,7 @@ public abstract class ItemHuajiArmor extends ArmorItem {
         @Override
         public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
             if (player.getInventory().armor.get(0).equals(stack)) {
-                player.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0));
+                player.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
             }
         }
     }

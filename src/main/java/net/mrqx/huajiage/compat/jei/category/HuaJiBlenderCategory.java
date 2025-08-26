@@ -10,6 +10,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.AbstractRecipeCategory;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.compat.jei.HuajiAgeJeiPlugin;
 import net.mrqx.huajiage.recipe.HuaJiBlenderRecipe;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
@@ -19,7 +20,7 @@ public class HuaJiBlenderCategory extends AbstractRecipeCategory<HuaJiBlenderRec
     private final IDrawableStatic background;
     private final IDrawableAnimated animatedFlame;
     private final IDrawableAnimated arrow;
-    protected static final ResourceLocation TEXTURE = new ResourceLocation("huajiage", "textures/jei/gui_huaji_blader_jei.png");
+    protected static final ResourceLocation TEXTURE = HuaJiAgeMod.prefix("textures/jei/gui_huaji_blender.png");
 
     public HuaJiBlenderCategory(IGuiHelper guiHelper) {
         super(

@@ -65,11 +65,11 @@ public abstract class ItemOrgaArmor extends ArmorItem {
         }
     }
 
-    public static boolean hasAllOrgaArmor(Player player) {
-        return player.getInventory().armor.get(0).is(HuaJiItems.ORGA_BOOTS.get())
-                && player.getInventory().armor.get(1).is(HuaJiItems.ORGA_LEGGINGS.get())
-                && player.getInventory().armor.get(2).is(HuaJiItems.ORGA_CHESTPLATE.get())
-                && player.getInventory().armor.get(3).is(HuaJiItems.ORGA_HELMET.get());
+    public static boolean hasAllOrgaArmor(LivingEntity livingEntity) {
+        return livingEntity.getItemBySlot(EquipmentSlot.FEET).is(HuaJiItems.ORGA_BOOTS.get())
+                && livingEntity.getItemBySlot(EquipmentSlot.LEGS).is(HuaJiItems.ORGA_LEGGINGS.get())
+                && livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(HuaJiItems.ORGA_CHESTPLATE.get())
+                && livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(HuaJiItems.ORGA_HELMET.get());
     }
 
     public static class ItemOrgaArmorHelmet extends ItemOrgaArmor {

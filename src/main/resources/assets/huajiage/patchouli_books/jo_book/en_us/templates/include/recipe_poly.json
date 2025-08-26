@@ -1,0 +1,28 @@
+{
+  "processor": "net.mrqx.huajiage.compat.patchouli.processor.RecipePolyfurnaceProcessor",
+  "components": [
+    {
+      "type": "patchouli:custom",
+      "class": "net.mrqx.huajiage.compat.patchouli.component.HuaJiPolyfurnaceComponent",
+      "x": 3
+    },
+    {
+      "type": "patchouli:header",
+      "text": "#ipool",
+      "x": 53,
+      "y": 41
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#item_in",
+      "x": 21,
+      "y": 19
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#item_out",
+      "x": 81,
+      "y": 19
+    }
+  ]
+}

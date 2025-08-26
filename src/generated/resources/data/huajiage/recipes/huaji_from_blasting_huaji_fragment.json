@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "huaji",
+  "ingredient": {
+    "item": "huajiage:huaji_fragment"
+  },
+  "result": "huajiage:huaji"
+}

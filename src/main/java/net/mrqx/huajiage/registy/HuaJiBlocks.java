@@ -55,12 +55,12 @@ public class HuaJiBlocks {
     );
 
     /**
-     * Block Entitys
+     * Block Entities
      */
-    @SuppressWarnings("all")
+    @SuppressWarnings("DataFlowIssue")
     public static final RegistryObject<BlockEntityType<?>> HUAJI_BLENDER_BLOCK_ENTITY = BLOCK_ENTITIES
             .register("huaji_blender", () -> BlockEntityType.Builder.of(HuaJiBlenderBlockEntity::new, HUAJI_BLENDER.get()).build(null));
-    @SuppressWarnings("all")
+    @SuppressWarnings("DataFlowIssue")
     public static final RegistryObject<BlockEntityType<?>> HUAJI_POLYFURNACE_BLOCK_ENTITY = BLOCK_ENTITIES
             .register("huaji_polyfurnace", () -> BlockEntityType.Builder.of(HuaJiPolyfurnaceBlockEntity::new, HUAJI_POLYFURNACE.get()).build(null));
 }

@@ -1,0 +1,20 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "huajiage:item/latiao_sword"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "huajiage:burst": 0
+      },
+      "model": "huajiage:item/latiao_sword"
+    },
+    {
+      "predicate": {
+        "huajiage:burst": 1
+      },
+      "model": "huajiage:item/latiao_sword_s"
+    }
+  ]
+}

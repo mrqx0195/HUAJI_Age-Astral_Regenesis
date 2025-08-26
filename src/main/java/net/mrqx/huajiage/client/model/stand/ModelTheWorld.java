@@ -18,7 +18,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Made with Blockbench 4.12.6
  */
-@SuppressWarnings("all")
 public class ModelTheWorld extends ModelStandBase {
     private final ModelPart head;
     private final ModelPart body;
@@ -57,6 +56,7 @@ public class ModelTheWorld extends ModelStandBase {
         this.handr5 = this.right_hands.getChild("handr5");
     }
 
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();

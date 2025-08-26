@@ -1,0 +1,58 @@
+{
+  "sortnum": 5,
+  "name": "Armor",
+  "icon": "huajiage:50_50_helmet",
+  "category": "huajiage:items_category",
+  "pages": [
+    {
+      "type": "text",
+      "text": "There's a lot to see here~"
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:huaji_helmet",
+      "title": "HUAJI Armor",
+      "text": "Made of gold block infused with $(e)$(l)666funny power$()，model $(l)8848$() HUAJI set，the choice of successful people."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:50_50_helmet",
+      "title": "Super Plugin Helmet",
+      "text": "In ancient times, the awei people picked up a magic weapon at the foot of huannong mountain, which has been immortal for thousands of years and is still as bright as new. It is said that this is the blessing of Buddha lu lai.In modern times, archeologists at tieba have identified it as a relic left by Lord.Lu from an"
+    },
+    {
+      "type": "text",
+      "text": "earlier era, in which a powerful sleeping force could not even erase the collapse of the universe.Today, this power is quite weak, less than a millionth of the power of Lord."
+    },
+    {
+      "type": "spotlight",
+      "item": "huajiage:orga_helmet",
+      "title": "Orga Armor",
+      "text": "The most useless suit is nothing but a chant of flowers of hope.$(li)Launch an Olga cause-and-effect attack while dying$(li)Will not die before the flowers of hope are over$(li)Can use THE ARROW to awaken Requiem"
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:huaji_helmet",
+      "recipe2": "huajiage:huaji_chestplate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:huaji_leggings",
+      "recipe2": "huajiage:huaji_boots"
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:orga_helmet",
+      "recipe2": "huajiage:orga_chestplate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "huajiage:orga_leggings",
+      "recipe2": "huajiage:orga_boots"
+    },
+    {
+      "type": "smithing",
+      "recipe": "huajiage:50_50_helmet_smithing"
+    }
+  ]
+}

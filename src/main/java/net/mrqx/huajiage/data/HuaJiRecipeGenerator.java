@@ -4,14 +4,19 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.recipe.HuaJiBlenderRecipeBuilder;
 import net.mrqx.huajiage.recipe.HuaJiPolyfurnaceRecipeBuilder;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class HuaJiRecipeGenerator extends RecipeProvider {
@@ -46,7 +51,9 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
 
     private static void vanillaRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
         oreSmelting(pWriter, ImmutableList.of(HuaJiItems.HUAJI_FRAGMENT.get()), RecipeCategory.MISC, HuaJiItems.HUAJI.get(), 1.0F, 200, "huaji");
+        oreBlasting(pWriter, ImmutableList.of(HuaJiItems.HUAJI_FRAGMENT.get()), RecipeCategory.MISC, HuaJiItems.HUAJI.get(), 1.0F, 200, "huaji");
         oreSmelting(pWriter, ImmutableList.of(HuaJiItems.HUAJI_ORE.get()), RecipeCategory.MISC, HuaJiItems.HUAJI.get(), 1.0F, 200, "huaji");
+        oreBlasting(pWriter, ImmutableList.of(HuaJiItems.HUAJI_ORE.get()), RecipeCategory.MISC, HuaJiItems.HUAJI.get(), 1.0F, 200, "huaji");
 
         nineBlockStorageRecipes(pWriter, RecipeCategory.MISC, HuaJiItems.HUAJI_STAR.get(), RecipeCategory.MISC, HuaJiItems.HUAJI_STAR_BLOCK.get());
         nineBlockStorageRecipes(pWriter, RecipeCategory.MISC, HuaJiItems.AIRSPACE_STAR.get(), RecipeCategory.MISC, HuaJiItems.AIRSPACE_STAR_BLOCK.get());
@@ -214,7 +221,7 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
 
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get()), Ingredient.of(HuaJiItems.HUAJI_HELMET.get()),
                         Ingredient.of(HuaJiItems.NEUTRON_STAR_FRAGMENT.get()), RecipeCategory.COMBAT, HuaJiItems.FIFTY_FIFTY_HELMET.get())
-                .unlocks("has_ether_circumflux_board", has(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get())).save(pWriter, getItemName(HuaJiItems.FIFTY_FIFTY_HELMET.get()) + "_smithing");
+                .unlocks("has_ether_circumflux_board", has(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get())).save(pWriter, HuaJiAgeMod.prefix(getItemName(HuaJiItems.FIFTY_FIFTY_HELMET.get()) + "_smithing"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.HERO_BOW.get())
                 .pattern(" NE")
@@ -242,5 +249,37 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
                 .define('F', HuaJiItems.HOPE_FLOWER.get())
                 .unlockedBy("has_airspace_star", has(HuaJiItems.INFINITE_UNIVERSE_STAR.get())).save(pWriter);
+    }
+
+
+    protected static void oreSmelting(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+        oreCooking(finishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, ingredients, category, result, experience, cookingTime, group, "_from_smelting");
+    }
+
+    protected static void oreBlasting(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+        oreCooking(finishedRecipeConsumer, RecipeSerializer.BLASTING_RECIPE, ingredients, category, result, experience, cookingTime, group, "_from_blasting");
+    }
+
+    protected static void oreCooking(Consumer<FinishedRecipe> finishedRecipeConsumer, RecipeSerializer<? extends AbstractCookingRecipe> cookingSerializer, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group, String recipeName) {
+        for (ItemLike itemlike : ingredients) {
+            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), category, result, experience, cookingTime, cookingSerializer).group(group).unlockedBy(getHasName(itemlike), has(itemlike)).save(finishedRecipeConsumer, HuaJiAgeMod.prefix(getItemName(result) + recipeName + "_" + getItemName(itemlike)));
+        }
+    }
+
+    protected static void nineBlockStorageRecipes(Consumer<FinishedRecipe> finishedRecipeConsumer, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed) {
+        nineBlockStorageRecipes(finishedRecipeConsumer, unpackedCategory, unpacked, packedCategory, packed, getSimpleRecipeName(packed) + "_packed", null, getSimpleRecipeName(unpacked) + "_unpacked", null);
+    }
+
+    protected static void nineBlockStorageRecipes(Consumer<FinishedRecipe> finishedRecipeConsumer, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {
+        ShapelessRecipeBuilder.shapeless(unpackedCategory, unpacked, 9).requires(packed).group(unpackedGroup).unlockedBy(getHasName(packed), has(packed)).save(finishedRecipeConsumer, HuaJiAgeMod.prefix(unpackedName));
+        ShapedRecipeBuilder.shaped(packedCategory, packed).define('#', unpacked).pattern("###").pattern("###").pattern("###").group(packedGroup).unlockedBy(getHasName(unpacked), has(unpacked)).save(finishedRecipeConsumer, HuaJiAgeMod.prefix(packedName));
+    }
+
+    protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> finishedRecipeConsumer, RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount).unlockedBy(getHasName(material), has(material)).save(finishedRecipeConsumer, HuaJiAgeMod.prefix(getConversionRecipeName(result, material) + "_stonecutting"));
+    }
+
+    protected static void simpleCookingRecipe(Consumer<FinishedRecipe> finishedRecipeConsumer, String cookingMethod, RecipeSerializer<? extends AbstractCookingRecipe> cookingSerializer, int cookingTime, ItemLike ingredient, ItemLike result, float experience) {
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(ingredient), RecipeCategory.FOOD, result, experience, cookingTime, cookingSerializer).unlockedBy(getHasName(ingredient), has(ingredient)).save(finishedRecipeConsumer, HuaJiAgeMod.prefix(getItemName(result) + "_from_" + cookingMethod));
     }
 }

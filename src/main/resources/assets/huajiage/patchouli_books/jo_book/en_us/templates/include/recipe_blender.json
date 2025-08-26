@@ -1,0 +1,22 @@
+{
+  "processor": "net.mrqx.huajiage.compat.patchouli.processor.RecipeBlenderProcessor",
+  "components": [
+    {
+      "type": "patchouli:custom",
+      "class": "net.mrqx.huajiage.compat.patchouli.component.HuaJiBlenderComponent",
+      "x": 5
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#item_in",
+      "x": 23,
+      "y": 19
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#item_out",
+      "x": 77,
+      "y": 19
+    }
+  ]
+}

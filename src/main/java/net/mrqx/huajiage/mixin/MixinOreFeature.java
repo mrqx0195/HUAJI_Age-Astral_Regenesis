@@ -22,6 +22,7 @@ import java.util.Iterator;
 
 @Mixin(OreFeature.class)
 public abstract class MixinOreFeature {
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     @Inject(method = "doPlace(Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/levelgen/feature/configurations/OreConfiguration;DDDDDDIIIII)Z",
             at = @At(
                     value = "INVOKE",
@@ -30,7 +31,6 @@ public abstract class MixinOreFeature {
             ),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    @SuppressWarnings("all")
     private void injectDoPlace(WorldGenLevel pLevel, RandomSource pRandom, OreConfiguration pConfig,
                                double pMinX, double pMaxX, double pMinZ, double pMaxZ, double pMinY, double pMaxY,
                                int pX, int pY, int pZ, int pWidth, int pHeight, CallbackInfoReturnable<Boolean> cir,

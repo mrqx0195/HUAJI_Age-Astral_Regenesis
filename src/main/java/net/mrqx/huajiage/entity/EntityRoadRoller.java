@@ -132,7 +132,7 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
 
     protected void explode() {
         this.hasExploded = true;
-        Explosion explosion = new ExplosionHuaJi(this.level(), this.getOwner(), HuaJiDamageSources.emeraldSplash(this.level(), this, this.getOwner(), this.position()),
+        Explosion explosion = new ExplosionHuaJi(this.level(), this.getOwner(), HuaJiDamageSources.standHit(this.level(), this, this.getOwner(), this.position()),
                 null, getX(), getY(), getZ(), 4F, Explosion.BlockInteraction.KEEP, this.getDamage(), 0, false);
 
         explosion.explode();

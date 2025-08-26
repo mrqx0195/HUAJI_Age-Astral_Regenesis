@@ -12,6 +12,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.block.blockentity.HuaJiPolyfurnaceBlockEntity;
 import net.mrqx.huajiage.compat.jei.DrawableComponent;
 import net.mrqx.huajiage.compat.jei.HuajiAgeJeiPlugin;
@@ -26,9 +27,9 @@ public class HuaJiPolyfurnaceCategory extends AbstractRecipeCategory<HuaJiPolyfu
     private final IDrawableAnimated pool;
     private final DrawableComponent poolText;
     private final DrawableComponent pointText;
-    protected static final ResourceLocation TEXTURE = new ResourceLocation("huajiage", "textures/jei/gui_huaji_poly_jei.png");
+    protected static final ResourceLocation TEXTURE = HuaJiAgeMod.prefix("textures/jei/gui_huaji_polyfurnace.png");
 
-    @SuppressWarnings("all")
+    @SuppressWarnings("DataFlowIssue")
     public HuaJiPolyfurnaceCategory(IGuiHelper guiHelper) {
         super(
                 HuajiAgeJeiPlugin.POLYFURNACE_JEI_TYPE,

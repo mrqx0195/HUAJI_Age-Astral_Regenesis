@@ -118,8 +118,8 @@ public abstract class AbstractStand {
     }
 
     @Nullable
-    public static AbstractStand getStand(ResourceLocation resourceLocation) {
-        return HuaJiStands.REGISTRY.get().getValue(resourceLocation);
+    public static AbstractStand getStand(@Nullable ResourceLocation resourceLocation) {
+        return resourceLocation == null ? null : HuaJiStands.REGISTRY.get().getValue(resourceLocation);
     }
 
     @OnlyIn(Dist.CLIENT)
