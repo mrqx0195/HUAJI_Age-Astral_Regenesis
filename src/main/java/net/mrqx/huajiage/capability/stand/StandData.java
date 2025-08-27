@@ -6,8 +6,6 @@ import net.mrqx.huajiage.stand.AbstractStand;
 import net.mrqx.huajiage.utils.Scheduler;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 public class StandData implements IStandData {
     @Nullable
     private ResourceLocation stand = null;
@@ -20,7 +18,7 @@ public class StandData implements IStandData {
 
     @Override
     public void setStand(AbstractStand stand) {
-        setStand(Objects.requireNonNull(HuaJiStands.REGISTRY.get().getKey(stand)));
+        setStand(HuaJiStands.REGISTRY.get().getKey(stand));
         setState(AbstractStand.STATE_DEFAULT);
         setLevel(0);
         setTriggered(false);

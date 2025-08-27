@@ -3,6 +3,7 @@ package net.mrqx.huajiage.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -27,6 +28,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.mrqx.huajiage.block.blockentity.HuaJiBlenderBlockEntity;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
+import net.mrqx.huajiage.registy.HuaJiSoundEvents;
+import net.mrqx.huajiage.utils.HuajiSoundPlayer;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -47,6 +50,7 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
             return InteractionResult.SUCCESS;
         } else {
             this.openContainer(pLevel, pPos, pPlayer);
+            HuajiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.NOISE_FURNACE.get(), SoundSource.BLOCKS);
             return InteractionResult.CONSUME;
         }
     }

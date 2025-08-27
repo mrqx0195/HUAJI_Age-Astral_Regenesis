@@ -52,7 +52,7 @@ public class StandExtraRenderer {
                             guiGraphics.drawString(minecraft.font, Component.translatable("stand.huajiage.state", Component.translatable("stand.huajiage.state." + data.getState())).withStyle(ChatFormatting.BOLD),
                                     8 + x, 30 + 16 + y, 0xFFFFFF, true);
                             guiGraphics.drawString(minecraft.font, Component.translatable("stand.huajiage.mp", data.getEnergy(), data.getMaxEnergy()).withStyle(ChatFormatting.BOLD),
-                                    8 + x, 40 + 16 + y, stand.skillEnergyDemand(player, data) <= data.getEnergy() ? 0x00FFFC : 0xFFFFFF, true);
+                                    8 + x, 40 + 16 + y, stand.skillEnergyDemand(player, data) >= 0 && stand.skillEnergyDemand(player, data) <= data.getEnergy() ? 0x00FFFC : 0xFFFFFF, true);
                         }
                     }
                 }

@@ -83,39 +83,36 @@ public class StandTheWorld extends AbstractStand {
     };
 
     public static final BiConsumer<LivingEntity, IStandData> THE_WORLD_DO_SKILL = (living, data) -> {
-        AbstractStand stand = AbstractStand.getStand(data.getStand());
-        if (stand != null && !living.level().isClientSide) {
-            int time = (data.getLevel() > 0 ? 9 : 5) * 20;
-            int castTime;
-            SoundEvent soundEvent;
-            switch (living.level().random.nextInt(4)) {
-                case 1 -> {
-                    soundEvent = HuaJiSoundEvents.THE_WORLD_1.get();
-                    castTime = 40;
-                }
-                case 2 -> {
-                    soundEvent = HuaJiSoundEvents.THE_WORLD_2.get();
-                    castTime = 80;
-                }
-                case 3 -> {
-                    soundEvent = HuaJiSoundEvents.THE_WORLD_3.get();
-                    castTime = 40;
-                }
-                default -> {
-                    soundEvent = HuaJiSoundEvents.THE_WORLD.get();
-                    castTime = 20;
-                }
+        int time = (data.getLevel() > 1 ? 9 : 5) * 20;
+        int castTime;
+        SoundEvent soundEvent;
+        switch (living.level().random.nextInt(4)) {
+            case 1 -> {
+                soundEvent = HuaJiSoundEvents.THE_WORLD_1.get();
+                castTime = 40;
             }
-            HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
-            StandUtils.standTimeStop(true, living, data, true, time, castTime);
-            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + 10, 4, false, false));
-            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + 10, 4, false, false));
-            living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + 10, 4, false, false));
-            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time + 10, 2, false, false));
-            living.heal(5);
-            if (living instanceof Player player && player.level().random.nextDouble() < 0.3) {
-                player.addItem(HuaJiItems.ROAD_ROLLER.get().getDefaultInstance());
+            case 2 -> {
+                soundEvent = HuaJiSoundEvents.THE_WORLD_2.get();
+                castTime = 80;
             }
+            case 3 -> {
+                soundEvent = HuaJiSoundEvents.THE_WORLD_3.get();
+                castTime = 40;
+            }
+            default -> {
+                soundEvent = HuaJiSoundEvents.THE_WORLD.get();
+                castTime = 20;
+            }
+        }
+        HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
+        StandUtils.standTimeStop(true, living, data, true, time, castTime);
+        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + 10, 4, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + 10, 4, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + 10, 4, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time + 10, 2, false, false));
+        living.heal(5);
+        if (living instanceof Player player && player.level().random.nextDouble() < 0.3) {
+            player.addItem(HuaJiItems.ROAD_ROLLER.get().getDefaultInstance());
         }
     };
 
@@ -167,13 +164,13 @@ public class StandTheWorld extends AbstractStand {
     }
 
     @Override
-    public int getMaxLevel(LivingEntity livingEntity, IStandData data) {
-        return 1;
+    public int getMaxLevel() {
+        return 2;
     }
 
     @Override
     public int skillEnergyDemand(LivingEntity livingEntity, IStandData data) {
-        return 60000;
+        return data.getLevel() > 0 ? 60000 : -1;
     }
 
     @Override

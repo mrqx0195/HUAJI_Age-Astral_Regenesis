@@ -65,9 +65,9 @@ public class ShaderHandler {
                             return;
                         }
 
-                        if (timePassed == 10) {
+                        if (timePassed == 1) {
                             addShader(new ResourceLocation("shaders/post/invert.json"));
-                        } else if (timePassed == 30) {
+                        } else if (timePassed == 20) {
                             if (!HuaJiCompat.getInstance().hasFantasyEnding) {
                                 addShader(new ResourceLocation("shaders/post/desaturate.json"));
                             } else {
@@ -82,8 +82,6 @@ public class ShaderHandler {
                         } else if (endTime - timePassed <= 3) {
                             HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
                         }
-
-                        HuajiSoundPlayer.clientSoundsTick();
 
                         lastRenderTime = timePassed;
                     }

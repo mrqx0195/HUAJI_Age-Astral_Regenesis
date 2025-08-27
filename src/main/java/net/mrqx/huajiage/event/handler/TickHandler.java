@@ -1,9 +1,14 @@
 package net.mrqx.huajiage.event.handler;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -11,10 +16,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.item.ItemSingularity;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
 import net.mrqx.huajiage.network.NetworkManager;
 import net.mrqx.huajiage.network.StandSyncMessage;
 import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.utils.HuaJiDamageSources;
+import net.mrqx.huajiage.utils.HuajiSoundPlayer;
 
 @Mod.EventBusSubscriber
 public class TickHandler {
@@ -36,6 +44,35 @@ public class TickHandler {
                     serverPlayer.onUpdateAbilities();
                 }
                 persistentData.putBoolean(ItemFiftyFiftyHelmet.FIFTY_FIFTY_LORD_FLY_KEY, false);
+            }
+            if (persistentData.contains(ItemSingularity.SINGULARITY_COUNT, Tag.TAG_INT)) {
+                int count = persistentData.getInt(ItemSingularity.SINGULARITY_COUNT);
+                if (count <= 0 && serverPlayer.isAlive()) {
+                    persistentData.remove(ItemSingularity.SINGULARITY_COUNT);
+                    serverPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
+                        AbstractStand stand = AbstractStand.getStand(data.getStand());
+                        if (stand != null && stand.getMaxLevel() >= data.getLevel() + 1) {
+                            data.setLevel(Math.min(stand.getMaxLevel(), data.getLevel() + 1));
+                            HuajiSoundPlayer.playMovingSoundToClient(serverPlayer, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, serverPlayer.getSoundSource(), 2);
+                            if (serverPlayer.level() instanceof ServerLevel level) {
+                                Vec3 targetCoordinates = serverPlayer.getEyePosition();
+                                for (int d = 0; d < 360; d += 15) {
+                                    level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING,
+                                            targetCoordinates.x + 0.5 * Math.sin(d), targetCoordinates.y + 0.1, targetCoordinates.z + 0.5 * Math.cos(d),
+                                            0, 0.5 * Math.sin(d), 0, 0.5 * Math.cos(d), 1);
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    persistentData.putInt(ItemSingularity.SINGULARITY_COUNT, count - 1);
+                    serverPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data ->
+                            serverPlayer.hurt(HuaJiDamageSources.singularity(serverPlayer.level(), serverPlayer), data.getLevel()));
+                    serverPlayer.hurt(HuaJiDamageSources.singularity(serverPlayer.level(), serverPlayer), 1);
+                    if (!serverPlayer.isAlive()) {
+                        persistentData.remove(ItemSingularity.SINGULARITY_COUNT);
+                    }
+                }
             }
         }
     }

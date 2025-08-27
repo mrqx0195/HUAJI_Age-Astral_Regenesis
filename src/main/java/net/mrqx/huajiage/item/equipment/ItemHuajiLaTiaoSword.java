@@ -115,12 +115,10 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
                 }
                 if (serverPlayer.level() instanceof ServerLevel level) {
                     Vec3 targetCoordinates = serverPlayer.position();
-                    for (int i = 0; i < 10; ++i) {
-                        for (int d = 0; d < 360; d += 15) {
-                            level.sendParticles(ParticleTypes.FLAME,
-                                    targetCoordinates.x + 0.5 * Math.sin(d), targetCoordinates.y + 0.1, targetCoordinates.z + 0.5 * Math.cos(d),
-                                    0, 0.5 * Math.sin(d), 0, 0.5 * Math.cos(d), 1);
-                        }
+                    for (int d = 0; d < 360; d += 15) {
+                        level.sendParticles(ParticleTypes.FLAME,
+                                targetCoordinates.x + 0.5 * Math.sin(d), targetCoordinates.y + 0.1, targetCoordinates.z + 0.5 * Math.cos(d),
+                                0, 0.5 * Math.sin(d), 0, 0.5 * Math.cos(d), 1);
                     }
                 }
             }

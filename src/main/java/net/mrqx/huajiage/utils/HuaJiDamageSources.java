@@ -44,4 +44,9 @@ public class HuaJiDamageSources {
         return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HuaJiDamageTypes.STAND_HIT),
                 pDirectEntity, pCausingEntity, pDamageSourcePosition);
     }
+
+    public static DamageSource singularity(Level level, @Nullable Entity entity) {
+        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HuaJiDamageTypes.SINGULARITY),
+                entity, entity, entity != null ? entity.position() : null);
+    }
 }

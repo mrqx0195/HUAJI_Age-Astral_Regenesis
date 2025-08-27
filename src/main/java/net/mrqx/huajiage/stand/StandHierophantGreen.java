@@ -148,11 +148,11 @@ public class StandHierophantGreen extends AbstractStand {
 
     @Override
     public int skillEnergyDemand(LivingEntity livingEntity, IStandData data) {
-        return 70000;
+        return data.getLevel() > 0 ? 70000 : -1;
     }
 
     @Override
-    public int getMaxLevel(LivingEntity livingEntity, IStandData data) {
+    public int getMaxLevel() {
         return 1;
     }
 

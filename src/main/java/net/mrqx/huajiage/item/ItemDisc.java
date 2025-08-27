@@ -43,6 +43,8 @@ public class ItemDisc extends BaseItem {
             tooltip.add(Component.translatable("item.huajiage.tooltips.stand",
                             Component.translatable("stand." + resourceLocation.getNamespace() + "." + resourceLocation.getPath()))
                     .withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("stand.huajiage.level", ItemTagHelper.getInt(stack, DISC_STAND_LEVEL_KEY, 0))
+                    .withStyle(ChatFormatting.GRAY));
         }
     }
 

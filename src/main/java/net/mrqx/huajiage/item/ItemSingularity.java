@@ -1,8 +1,13 @@
 package net.mrqx.huajiage.item;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -21,6 +26,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @Mod.EventBusSubscriber
 public class ItemSingularity extends BaseItem {
+    public static final String SINGULARITY_COUNT = "huajiage.singularityCount";
+
     public ItemSingularity(Properties properties) {
         super(properties);
     }
@@ -56,9 +63,18 @@ public class ItemSingularity extends BaseItem {
         AtomicBoolean flag = new AtomicBoolean(false);
         pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
             AbstractStand stand = AbstractStand.getStand(data.getStand());
-            if (stand != null && stand.getMaxLevel(pPlayer, data) >= data.getLevel() + 1) {
-                data.setLevel(Math.min(stand.getMaxLevel(pPlayer, data), data.getLevel() + 1));
-                flag.set(true);
+            if (stand != null && stand.getMaxLevel() >= data.getLevel() + 1) {
+                CompoundTag persistentData = pPlayer.getPersistentData();
+                if (!persistentData.contains(SINGULARITY_COUNT, Tag.TAG_INT) || persistentData.getInt(SINGULARITY_COUNT) <= 0) {
+                    persistentData.putInt(SINGULARITY_COUNT, 200);
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 9));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 9));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 5));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 9));
+                    pPlayer.sendSystemMessage(Component.translatable("message.huajiage.singularity").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
+                    flag.set(true);
+                }
             }
         });
         if (flag.get()) {

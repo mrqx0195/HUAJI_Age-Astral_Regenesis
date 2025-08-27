@@ -45,6 +45,7 @@ public class HuaJiItemModelGenerator extends ItemModelProvider {
         basicItem(HuaJiItems.RAW_GLUTEN.get());
         basicItem(HuaJiItems.BAKED_GLUTEN.get());
         basicItem(HuaJiItems.DIO_BREAD.get());
+        basicItem(HuaJiItems.REO_CHERRY.get());
 
         swordItem(HuaJiItems.HUAJI_SWORD.get());
         swordItem(HuaJiItems.MULTI_KNIFE.get());

@@ -82,7 +82,7 @@ public abstract class AbstractStand {
         livingEntity.sendSystemMessage(Component.translatable(this.getDescriptionId() + ".triggered"));
     }
 
-    public int getMaxLevel(LivingEntity livingEntity, IStandData data) {
+    public int getMaxLevel() {
         return 0;
     }
 
