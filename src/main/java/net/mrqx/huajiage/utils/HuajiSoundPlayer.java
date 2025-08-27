@@ -3,6 +3,7 @@ package net.mrqx.huajiage.utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.client.resources.sounds.TickableSoundInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -17,9 +18,13 @@ import net.mrqx.huajiage.network.NetworkManager;
 import net.mrqx.huajiage.sound.HuajiMovingSoundInstance;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HuajiSoundPlayer {
     @Nullable
     private static SoundInstance currentMusic;
+    public static final List<TickableSoundInstance> STORAGE_TICKABLE_SOUNDS = new ArrayList<>();
 
     @OnlyIn(Dist.CLIENT)
     public static void playMusic(SoundEvent sound) {
@@ -40,6 +45,15 @@ public class HuajiSoundPlayer {
     @OnlyIn(Dist.CLIENT)
     public static void playClient(SoundInstance sound) {
         Minecraft.getInstance().getSoundManager().play(sound);
+        if (sound instanceof TickableSoundInstance tickableSoundInstance) {
+            STORAGE_TICKABLE_SOUNDS.add(tickableSoundInstance);
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void clientSoundsTick() {
+        HuajiSoundPlayer.STORAGE_TICKABLE_SOUNDS.forEach(TickableSoundInstance::tick);
+        HuajiSoundPlayer.STORAGE_TICKABLE_SOUNDS.removeIf(TickableSoundInstance::isStopped);
     }
 
     public static void playMovingSoundToClient(Entity target, SoundEvent sound, SoundSource category) {

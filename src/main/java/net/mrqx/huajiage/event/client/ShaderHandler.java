@@ -53,7 +53,7 @@ public class ShaderHandler {
     public static void onRenderLevelStageEvent(RenderLevelStageEvent event) {
         if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_LEVEL)) {
             Minecraft minecraft = Minecraft.getInstance();
-            if (minecraft.level != null && minecraft.player != null && Minecraft.renderNames() && minecraft.screen == null && !HuaJiCompat.getInstance().hasFantasyEnding) {
+            if (minecraft.level != null && minecraft.player != null && Minecraft.renderNames() && minecraft.screen == null) {
                 TIME_STOP_EFFECT_TICK.forEach((level, entry) -> {
                     if (minecraft.level.dimension().location().equals(level)) {
                         long endTime = entry.getValue();
@@ -68,16 +68,22 @@ public class ShaderHandler {
                         if (timePassed == 10) {
                             addShader(new ResourceLocation("shaders/post/invert.json"));
                         } else if (timePassed == 30) {
-                            addShader(new ResourceLocation("shaders/post/desaturate.json"));
+                            if (!HuaJiCompat.getInstance().hasFantasyEnding) {
+                                addShader(new ResourceLocation("shaders/post/desaturate.json"));
+                            } else {
+                                HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
+                            }
                         }
 
                         if (endTime - timePassed == 20) {
-                            minecraft.getSoundManager().play(HuajiSoundPlayer.getMovingSound(minecraft.player, HuaJiSoundEvents.THE_WORLD_RE.get(), SoundSource.PLAYERS, 1));
+                            HuajiSoundPlayer.playClient(HuajiSoundPlayer.getMovingSound(minecraft.player, HuaJiSoundEvents.THE_WORLD_RE.get(), SoundSource.PLAYERS, 1));
                         } else if (endTime - timePassed == 10) {
                             addShader(new ResourceLocation("shaders/post/pencil.json"));
                         } else if (endTime - timePassed <= 3) {
                             HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
                         }
+
+                        HuajiSoundPlayer.clientSoundsTick();
 
                         lastRenderTime = timePassed;
                     }
@@ -126,6 +132,7 @@ public class ShaderHandler {
                         }
                     } else {
                         removeList.add(level);
+                        HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
                     }
                 }
             });

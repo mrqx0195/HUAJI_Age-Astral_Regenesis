@@ -86,20 +86,32 @@ public class StandTheWorld extends AbstractStand {
         AbstractStand stand = AbstractStand.getStand(data.getStand());
         if (stand != null && !living.level().isClientSide) {
             int time = (data.getLevel() > 0 ? 9 : 5) * 20;
-            StandUtils.standTimeStop(true, living, true, time);
-            if (!living.level().isClientSide) {
-                SoundEvent soundEvent = switch (living.level().random.nextInt(4)) {
-                    case 1 -> HuaJiSoundEvents.THE_WORLD_1.get();
-                    case 2 -> HuaJiSoundEvents.THE_WORLD_2.get();
-                    case 3 -> HuaJiSoundEvents.THE_WORLD_3.get();
-                    default -> HuaJiSoundEvents.THE_WORLD.get();
-                };
-                HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
+            int castTime;
+            SoundEvent soundEvent;
+            switch (living.level().random.nextInt(4)) {
+                case 1 -> {
+                    soundEvent = HuaJiSoundEvents.THE_WORLD_1.get();
+                    castTime = 40;
+                }
+                case 2 -> {
+                    soundEvent = HuaJiSoundEvents.THE_WORLD_2.get();
+                    castTime = 80;
+                }
+                case 3 -> {
+                    soundEvent = HuaJiSoundEvents.THE_WORLD_3.get();
+                    castTime = 40;
+                }
+                default -> {
+                    soundEvent = HuaJiSoundEvents.THE_WORLD.get();
+                    castTime = 20;
+                }
             }
-            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time, 4, false, false));
-            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time, 4, false, false));
-            living.addEffect(new MobEffectInstance(MobEffects.JUMP, time, 4, false, false));
-            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time, 2, false, false));
+            HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
+            StandUtils.standTimeStop(true, living, data, true, time, castTime);
+            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + 10, 4, false, false));
+            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + 10, 4, false, false));
+            living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + 10, 4, false, false));
+            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time + 10, 2, false, false));
             living.heal(5);
             if (living instanceof Player player && player.level().random.nextDouble() < 0.3) {
                 player.addItem(HuaJiItems.ROAD_ROLLER.get().getDefaultInstance());

@@ -76,7 +76,7 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DAMAGE, 5F);
-        this.entityData.define(LIFE, 0L);
+        this.entityData.define(LIFE, 200L);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
     public void tick() {
         this.setLife(this.getLife() - 1);
         super.tick();
-        if (this.getLife() < -300) {
+        if (this.getLife() < 0) {
             this.discard();
         }
     }

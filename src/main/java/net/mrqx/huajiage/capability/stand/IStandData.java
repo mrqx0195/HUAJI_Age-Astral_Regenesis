@@ -3,6 +3,7 @@ package net.mrqx.huajiage.capability.stand;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.utils.Scheduler;
 import org.jetbrains.annotations.Nullable;
 
 public interface IStandData {
@@ -34,6 +35,8 @@ public interface IStandData {
 
     @Nullable
     ResourceLocation getStand();
+
+    Scheduler getScheduler();
 
     void setLevel(int level);
 

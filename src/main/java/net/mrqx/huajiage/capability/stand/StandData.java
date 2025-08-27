@@ -3,6 +3,7 @@ package net.mrqx.huajiage.capability.stand;
 import net.minecraft.resources.ResourceLocation;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.utils.Scheduler;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class StandData implements IStandData {
     private String state = AbstractStand.STATE_DEFAULT;
     private long energy = 0;
     private long maxEnergy = 0;
+    Scheduler scheduler = new Scheduler();
 
     @Override
     public void setStand(AbstractStand stand) {
@@ -34,6 +36,11 @@ public class StandData implements IStandData {
     @Nullable
     public ResourceLocation getStand() {
         return stand;
+    }
+
+    @Override
+    public Scheduler getScheduler() {
+        return scheduler;
     }
 
     @Override

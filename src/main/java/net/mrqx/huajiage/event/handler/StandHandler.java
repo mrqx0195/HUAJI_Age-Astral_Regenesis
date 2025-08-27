@@ -1,7 +1,9 @@
 package net.mrqx.huajiage.event.handler;
 
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.event.KeyInputEvent;
 import net.mrqx.huajiage.network.HuaJiKeyMessage;
@@ -40,5 +42,14 @@ public class StandHandler {
                 }
             }
         });
+    }
+
+    @SubscribeEvent
+    public static void onClone(PlayerEvent.Clone event) {
+        event.getOriginal().reviveCaps();
+        event.getOriginal().getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(oldData ->
+                event.getEntity().getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(newData ->
+                        IStandData.deserializeNBT(IStandData.serializeNBT(oldData), newData)));
+        event.getOriginal().invalidateCaps();
     }
 }

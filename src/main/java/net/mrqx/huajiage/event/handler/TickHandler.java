@@ -44,6 +44,7 @@ public class TickHandler {
     public static void onLivingTickEvent(LivingEvent.LivingTickEvent event) {
         event.getEntity().getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
             AbstractStand stand = AbstractStand.getStand(data.getStand());
+            data.getScheduler().onTick(event.getEntity());
             if (stand != null) {
                 stand.tick(event.getEntity(), data);
             }
