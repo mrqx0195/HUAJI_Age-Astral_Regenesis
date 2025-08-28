@@ -106,7 +106,7 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
                     serverPlayer.getFoodData().setFoodLevel(serverPlayer.getFoodData().getFoodLevel() + 2);
                     itemStack.hurtAndBreak(20, serverPlayer, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
                 }
-                serverPlayer.setDeltaMovement(serverPlayer.getDeltaMovement().add(0, 0.6, 0));
+                serverPlayer.setDeltaMovement(serverPlayer.getDeltaMovement().x, 0.6, serverPlayer.getDeltaMovement().z);
                 serverPlayer.fallDistance = 0;
                 player.getCooldowns().addCooldown(HuaJiItems.HUAJI_LATIAO_SWORD.get(), 10);
                 MinecraftServer server = serverPlayer.getServer();

@@ -99,10 +99,12 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
     public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
         this.setDamage(this.getDamage() + pAmount);
         if (this.level() instanceof ServerLevel serverLevel) {
-            if (hitTime == 0) {
-                HuajiSoundPlayer.playMovingSoundToClient(this, HuaJiSoundEvents.DIO_FLAG.get(), this.getSoundSource(), 2F);
-            } else if (hitTime % 4 == 0) {
-                HuajiSoundPlayer.playMovingSoundToClient(this, HuaJiSoundEvents.DIO_HIT.get(), this.getSoundSource(), 0.75F);
+            if (pSource.getEntity() != null) {
+                if (hitTime == 0) {
+                    HuajiSoundPlayer.playMovingSoundToClient(pSource.getEntity(), HuaJiSoundEvents.DIO_FLAG.get(), pSource.getEntity().getSoundSource(), 2F);
+                } else if (hitTime % 4 == 0) {
+                    HuajiSoundPlayer.playMovingSoundToClient(pSource.getEntity(), HuaJiSoundEvents.DIO_HIT.get(), pSource.getEntity().getSoundSource(), 0.75F);
+                }
             }
             hitTime++;
             serverLevel.sendParticles(ParticleTypes.LAVA, getX(), getY(), getZ(), 5, 1, 1, 1, 1);

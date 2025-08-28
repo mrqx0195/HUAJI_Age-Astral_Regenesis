@@ -5,16 +5,20 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.client.layer.LayerStand;
 import net.mrqx.huajiage.config.HuaJiClientConfig;
 import net.mrqx.huajiage.item.ItemDisc;
+import net.mrqx.huajiage.mixin.AccessorLivingEntityRenderer;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.stand.AbstractStand;
 
@@ -54,6 +58,30 @@ public class StandExtraRenderer {
                             guiGraphics.drawString(minecraft.font, Component.translatable("stand.huajiage.mp", data.getEnergy(), data.getMaxEnergy()).withStyle(ChatFormatting.BOLD),
                                     8 + x, 40 + 16 + y, stand.skillEnergyDemand(player, data) >= 0 && stand.skillEnergyDemand(player, data) <= data.getEnergy() ? 0x00FFFC : 0xFFFFFF, true);
                         }
+                    }
+                }
+            });
+        }
+    }
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static void onRenderHandEvent(RenderHandEvent event) {
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (player != null) {
+            player.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
+                AbstractStand stand = AbstractStand.getStand(data.getStand());
+                if (stand != null) {
+                    stand.getModelLocations().get(data.getState());
+                    if (Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player) instanceof LivingEntityRenderer<?, ?> renderer) {
+                        AccessorLivingEntityRenderer accessorLivingEntityRenderer = (AccessorLivingEntityRenderer) renderer;
+                        accessorLivingEntityRenderer.getLayers().forEach(layer -> {
+                            if (layer instanceof LayerStand<?, ?> layerStand) {
+                                // 我TM在写啥
+                                layerStand.renderHand(event, player);
+                            }
+                        });
                     }
                 }
             });

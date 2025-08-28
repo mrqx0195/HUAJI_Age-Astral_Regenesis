@@ -7,15 +7,17 @@ import net.minecraft.world.level.timers.TimerQueue;
 
 public class Scheduler {
     private final TimerQueue<LivingEntity> queue = new TimerQueue<>(new TimerCallbacks<>());
+    private long timer = 0;
 
     public Scheduler() {
     }
 
     public void onTick(LivingEntity entity) {
-        queue.tick(entity, entity.level().getGameTime());
+        queue.tick(entity, timer);
+        timer++;
     }
 
     public void schedule(String key, long time, TimerCallback<LivingEntity> callback) {
-        queue.schedule(key, time, callback);
+        queue.schedule(key, this.timer + time, callback);
     }
 }

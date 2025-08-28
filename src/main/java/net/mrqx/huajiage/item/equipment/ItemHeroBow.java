@@ -8,7 +8,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -167,7 +169,25 @@ public class ItemHeroBow extends BowItem {
             player.getCooldowns().addCooldown(HuaJiItems.HERO_BOW.get(), 10);
             if (Mode.getMode(player.getMainHandItem()).equals(Mode.ON)) {
                 player.sendSystemMessage(Component.translatable("message.huajiage.stella_warning").withStyle(ChatFormatting.YELLOW));
-                HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.TOTEM_USE, player.getSoundSource());
+                HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ENDER_DRAGON_GROWL, player.getSoundSource());
+            }
+        }
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+        super.inventoryTick(stack, level, entity, slotId, isSelected);
+        if (entity instanceof LivingEntity living && living.getMainHandItem().equals(stack) && Mode.getMode(stack) == Mode.ON) {
+            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 260, 2));
+            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 260, 2));
+            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 260, 3));
+            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 260, 2));
+            living.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0));
+            if (living.hasEffect(MobEffects.POISON)) {
+                living.removeEffect(MobEffects.POISON);
+            }
+            if (living.hasEffect(MobEffects.WITHER)) {
+                living.removeEffect(MobEffects.WITHER);
             }
         }
     }

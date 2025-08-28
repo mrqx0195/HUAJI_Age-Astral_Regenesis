@@ -45,6 +45,8 @@ public class ItemDisc extends BaseItem {
                     .withStyle(ChatFormatting.GRAY));
             tooltip.add(Component.translatable("stand.huajiage.level", ItemTagHelper.getInt(stack, DISC_STAND_LEVEL_KEY, 0))
                     .withStyle(ChatFormatting.GRAY));
+        } else {
+            tooltip.add(Component.translatable("item.huajiage.disc.tooltips.craft").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         }
     }
 
@@ -56,6 +58,7 @@ public class ItemDisc extends BaseItem {
         if (stand != null) {
             pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                 data.setStand(stand);
+                data.setMaxEnergy(stand.getMaxEnergy(pPlayer, data));
                 data.setLevel(ItemTagHelper.getInt(itemStack, DISC_STAND_LEVEL_KEY, 0));
             });
             if (!pPlayer.isCreative()) {

@@ -10,6 +10,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,6 +19,7 @@ import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
+import net.mrqx.huajiage.registy.HuaJiEffects;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,8 +32,9 @@ import java.util.function.Supplier;
 public abstract class AbstractStand {
     public static final ResourceKey<Registry<AbstractStand>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(HuaJiAgeMod.prefix("stands"));
-    public static final String STATE_DEFAULT = "default";
-    public static final String STATE_IDLE = "idle";
+    public static final String STATE_DEFAULT = "huajiage.default";
+    public static final String STATE_IDLE = "huajiage.idle";
+    public static final String STATE_FLY = "huajiage.fly";
 
     protected final BiConsumer<LivingEntity, IStandData> tick;
     protected final BiConsumer<LivingEntity, IStandData> doSkill;
@@ -80,6 +83,7 @@ public abstract class AbstractStand {
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         data.setState(AbstractStand.STATE_DEFAULT);
         livingEntity.sendSystemMessage(Component.translatable(this.getDescriptionId() + ".triggered"));
+        livingEntity.addEffect(new MobEffectInstance(HuaJiEffects.STAND_POWER.get(), this.getDuration(livingEntity, data), data.getLevel()));
     }
 
     public int getMaxLevel() {
@@ -94,7 +98,9 @@ public abstract class AbstractStand {
 
     public abstract float getDistance(LivingEntity livingEntity, IStandData data);
 
-    public abstract long getDefaultMaxEnergy();
+    public long getMaxEnergy(LivingEntity livingEntity, IStandData data) {
+        return this.chargePerTick(livingEntity, data) * 1200L;
+    }
 
     public abstract List<String> getStates();
 
@@ -111,7 +117,11 @@ public abstract class AbstractStand {
     public abstract Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels();
 
     @OnlyIn(Dist.CLIENT)
-    public abstract Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelSupplier();
+    public abstract Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction();
+
+    public boolean shouldRenderHand(LivingEntity livingEntity, IStandData data) {
+        return true;
+    }
 
     public boolean shouldRenderExtra(LivingEntity livingEntity, IStandData data) {
         return false;

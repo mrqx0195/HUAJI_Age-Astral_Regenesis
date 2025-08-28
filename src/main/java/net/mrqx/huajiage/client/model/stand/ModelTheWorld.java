@@ -5,19 +5,23 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.registy.HuaJiEffects;
 import net.mrqx.huajiage.stand.AbstractStand;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Made with Blockbench 4.12.6
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class ModelTheWorld extends ModelStandBase {
     private final ModelPart head;
     private final ModelPart body;
@@ -144,22 +148,7 @@ public class ModelTheWorld extends ModelStandBase {
     public void setupAnim(@NotNull Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         float off = (float) Math.cos(0.1 * pAgeInTicks);
 
-        head.resetPose();
-        body.resetPose();
-        leftleg.resetPose();
-        rightleg.resetPose();
-        handl1.resetPose();
-        handl2.resetPose();
-        handl3.resetPose();
-        handl4.resetPose();
-        handl5.resetPose();
-        handr1.resetPose();
-        handr2.resetPose();
-        handr3.resetPose();
-        handr4.resetPose();
-        handr5.resetPose();
-        left_hands.resetPose();
-        right_hands.resetPose();
+        this.resetPoses();
 
         head.y += off;
         body.y += off;
@@ -176,6 +165,25 @@ public class ModelTheWorld extends ModelStandBase {
                 additionalAnim(pAgeInTicks, pNetHeadYaw, pHeadPitch, speed * 4 / 3);
             }
         });
+    }
+
+    private void resetPoses() {
+        head.resetPose();
+        body.resetPose();
+        leftleg.resetPose();
+        rightleg.resetPose();
+        handl1.resetPose();
+        handl2.resetPose();
+        handl3.resetPose();
+        handl4.resetPose();
+        handl5.resetPose();
+        handr1.resetPose();
+        handr2.resetPose();
+        handr3.resetPose();
+        handr4.resetPose();
+        handr5.resetPose();
+        left_hands.resetPose();
+        right_hands.resetPose();
     }
 
     protected void additionalAnim(float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, float speed) {
@@ -234,5 +242,18 @@ public class ModelTheWorld extends ModelStandBase {
         left_hands.render(pPoseStack, vertexconsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, 0.5F);
         right_hands.render(pPoseStack, vertexconsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, 0.5F);
         pPoseStack.popPose();
+    }
+
+    @Override
+    public void renderHand(RenderHandEvent event, LocalPlayer player, AbstractStand stand, IStandData data) {
+        PoseStack poseStack = event.getPoseStack();
+        VertexConsumer vertexConsumer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
+        poseStack.translate(0, -1, -0.75);
+        float alpha = player.hasEffect(HuaJiEffects.STAND_POWER.get()) ? 0.6F : 0.3F;
+        float speed = stand.getSpeed(player, data);
+        this.resetPoses();
+        additionalAnim(player.tickCount, 0, -1, speed * 4 / 3);
+        left_hands.render(poseStack, vertexConsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, alpha);
+        right_hands.render(poseStack, vertexConsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, alpha);
     }
 }

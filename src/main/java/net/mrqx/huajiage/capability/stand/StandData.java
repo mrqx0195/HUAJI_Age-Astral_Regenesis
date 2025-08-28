@@ -22,7 +22,6 @@ public class StandData implements IStandData {
         setState(AbstractStand.STATE_DEFAULT);
         setLevel(0);
         setTriggered(false);
-        setMaxEnergy(stand.getDefaultMaxEnergy());
     }
 
     @Override

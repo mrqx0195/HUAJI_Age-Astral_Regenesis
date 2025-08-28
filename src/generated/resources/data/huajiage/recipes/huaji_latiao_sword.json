@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "H": {
+      "item": "huajiage:huaji_sword"
+    },
+    "N": {
+      "item": "ltc2:hotaurum_sword"
+    }
+  },
+  "pattern": [
+    " N ",
+    "NHN",
+    " D "
+  ],
+  "result": {
+    "item": "huajiage:huaji_latiao_sword"
+  },
+  "show_notification": true
+}

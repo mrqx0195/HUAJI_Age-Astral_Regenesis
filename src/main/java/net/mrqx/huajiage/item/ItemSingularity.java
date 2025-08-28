@@ -16,7 +16,9 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.utils.HuajiSoundPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -72,6 +74,9 @@ public class ItemSingularity extends BaseItem {
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 9));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 5));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 9));
+                    HuajiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.CHARGE.get(), pPlayer.getSoundSource());
+                    HuajiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.ENERGY_HIT.get(), pPlayer.getSoundSource());
+                    HuajiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.NOISE_FURNACE.get(), pPlayer.getSoundSource());
                     pPlayer.sendSystemMessage(Component.translatable("message.huajiage.singularity").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
                     flag.set(true);
                 }

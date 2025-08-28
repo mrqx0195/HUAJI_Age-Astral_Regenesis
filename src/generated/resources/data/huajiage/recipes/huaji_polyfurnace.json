@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "huajiage:hope_flower"
+    },
+    "B": {
+      "item": "huajiage:huaji_blender"
+    },
+    "J": {
+      "item": "huajiage:huaji_star_block"
+    },
+    "O": {
+      "item": "huajiage:ether_circumflux_board"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "ABA",
+    "JJJ"
+  ],
+  "result": {
+    "item": "huajiage:huaji_polyfurnace"
+  },
+  "show_notification": true
+}

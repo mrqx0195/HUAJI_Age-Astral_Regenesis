@@ -18,6 +18,7 @@ public class HuaJiSoundEvents {
     public static final RegistryObject<SoundEvent> EXGLUTENBUR_HIT = registerSound("exglutenbur_hit");
     public static final RegistryObject<SoundEvent> ORGA_SHOT = registerSound("orga_shot");
     public static final RegistryObject<SoundEvent> ORGA_FLOWER = registerSound("orga_flower");
+    public static final RegistryObject<SoundEvent> ORGA_REQUIEM = registerSound("orga_requiem");
     public static final RegistryObject<SoundEvent> ORGA_REQUIEM_1 = registerSound("orga_requiem_1");
     public static final RegistryObject<SoundEvent> ORGA_REQUIEM_2 = registerSound("orga_requiem_2");
     public static final RegistryObject<SoundEvent> ORGA_REQUIEM_3 = registerSound("orga_requiem_3");

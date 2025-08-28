@@ -113,7 +113,9 @@ public class ClientHandler {
         EntityRenderer<? extends Player> renderer = event.getSkin(skin);
         if (renderer instanceof LivingEntityRenderer livingRenderer) {
             livingRenderer.addLayer(new LayerLordLu(livingRenderer, event.getEntityModels()));
-            livingRenderer.addLayer(new LayerStand(livingRenderer, event.getEntityModels()));
+            LayerStand layerStand = new LayerStand(livingRenderer, event.getEntityModels());
+            livingRenderer.addLayer(layerStand);
+            LayerStand.PLAYER_LAYERS_MAP.put(skin, layerStand);
         }
     }
 

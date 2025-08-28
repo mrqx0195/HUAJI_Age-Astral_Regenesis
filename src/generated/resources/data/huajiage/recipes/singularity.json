@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "huajiage:exglutenbur"
+    },
+    "B": {
+      "item": "huajiage:infinite_universe_star"
+    },
+    "C": {
+      "item": "huajiage:ultimate_egg_rice"
+    },
+    "D": {
+      "item": "huajiage:hope_flower"
+    },
+    "E": {
+      "item": "huajiage:lord_key"
+    },
+    "O": {
+      "item": "huajiage:disc"
+    }
+  },
+  "pattern": [
+    "OAO",
+    "DBC",
+    "OEO"
+  ],
+  "result": {
+    "item": "huajiage:singularity"
+  },
+  "show_notification": true
+}

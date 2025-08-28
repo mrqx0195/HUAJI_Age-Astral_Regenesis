@@ -20,7 +20,7 @@ import net.mrqx.huajiage.network.TimeStopEffectMessage;
 
 public class StandUtils {
     public static void standTimeStop(boolean isStop, LivingEntity source, IStandData data, boolean force, int time, int castTime) {
-        data.getScheduler().schedule("StandTimeStop", source.level().getGameTime() + castTime, (living, manager, gameTime) -> {
+        data.getScheduler().schedule("StandTimeStop", castTime, (living, manager, gameTime) -> {
             StandUtils.standTimeStop(isStop, source, force, time);
             MinecraftServer server = source.getServer();
             if (server != null) {

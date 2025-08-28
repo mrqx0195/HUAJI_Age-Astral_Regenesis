@@ -177,13 +177,8 @@ public class StandHierophantGreen extends AbstractStand {
     }
 
     @Override
-    public long getDefaultMaxEnergy() {
-        return 80 * 1200;
-    }
-
-    @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return 80;
+        return data.getState().equals(STATE_IDLE) ? 160 : 80;
     }
 
     @Override
@@ -222,7 +217,7 @@ public class StandHierophantGreen extends AbstractStand {
     );
 
     @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_SUPPLIER_MAP = Map.of(
+    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
             DEFAULT_LAYER, ModelHierophantGreen::new,
             IDLE_LAYER, ModelHierophantGreenIdle::new
     );
@@ -253,8 +248,8 @@ public class StandHierophantGreen extends AbstractStand {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelSupplier() {
-        return MODEL_SUPPLIER_MAP;
+    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
+        return MODEL_FUNCTION_MAP;
     }
 
     @Override

@@ -54,6 +54,7 @@ public class ItemTarot extends BaseItem {
                     if (stand1 == null) {
                         data.setStand(stand);
                         data.setLevel(ItemTagHelper.getInt(itemStack, TAROT_STAND_LEVEL_KEY, 0));
+                        data.setMaxEnergy(stand.getMaxEnergy(pPlayer, data));
                         itemStack.getOrCreateTag().remove(TAROT_STAND_KEY);
                         itemStack.getOrCreateTag().remove(TAROT_STAND_LEVEL_KEY);
                         pPlayer.swing(pUsedHand, true);

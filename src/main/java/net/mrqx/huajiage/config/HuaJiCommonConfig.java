@@ -54,7 +54,8 @@ public class HuaJiCommonConfig {
                 .defineListAllowEmpty(List.of("arrow_stand_weight_list"),
                         List.of(
                                 List.of("huajiage:hierophant_green", 1.0),
-                                List.of("huajiage:the_world", 0.8)
+                                List.of("huajiage:the_world", 0.8),
+                                List.of("huajiage:star_platinum", 0.8)
                         ),
                         it -> it instanceof List<?> list && list.size() == 2
                                 && list.get(0) instanceof String

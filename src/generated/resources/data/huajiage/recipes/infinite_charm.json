@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "huajiage:infinite_universe_star"
+    },
+    "J": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "O": {
+      "item": "huajiage:hope_flower"
+    }
+  },
+  "pattern": [
+    "OJO",
+    "JBJ",
+    "OJO"
+  ],
+  "result": {
+    "item": "huajiage:infinite_charm"
+  },
+  "show_notification": true
+}

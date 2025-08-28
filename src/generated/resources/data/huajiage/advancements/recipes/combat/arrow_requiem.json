@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_arrow_stand": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:arrow_stand"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "huajiage:arrow_requiem"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_arrow_stand",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "huajiage:arrow_requiem"
+    ]
+  },
+  "sends_telemetry_event": false
+}

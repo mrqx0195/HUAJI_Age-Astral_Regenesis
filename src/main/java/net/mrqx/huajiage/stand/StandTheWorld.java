@@ -60,7 +60,9 @@ public class StandTheWorld extends AbstractStand {
                         target.invulnerableTime = 0;
                         target.hurt(damageSource, stand.getDamage(living, data) / 2);
                         target.invulnerableTime = 0;
-                        living.level().levelEvent(2001, target.blockPosition().offset(0, (int) (target.getEyePosition(0).y - target.position().y), 0), Block.getId(Blocks.OBSIDIAN.defaultBlockState()));
+                        if (!isTimeStopping) {
+                            living.level().levelEvent(2001, target.blockPosition().offset(0, (int) (target.getEyePosition(0).y - target.position().y), 0), Block.getId(Blocks.OBSIDIAN.defaultBlockState()));
+                        }
                         if (HuaJiMathHelper.getVectorEntityEye(living, target).length() < stand.getDistance(living, data)) {
                             target.setDeltaMovement(back);
                         }
@@ -106,10 +108,10 @@ public class StandTheWorld extends AbstractStand {
         }
         HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
         StandUtils.standTimeStop(true, living, data, true, time, castTime);
-        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + 10, 4, false, false));
-        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + 10, 4, false, false));
-        living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + 10, 4, false, false));
-        living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time + 10, 2, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + castTime, 4, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + castTime, 4, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + castTime, 4, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, time + castTime, 2, false, false));
         living.heal(5);
         if (living instanceof Player player && player.level().random.nextDouble() < 0.3) {
             player.addItem(HuaJiItems.ROAD_ROLLER.get().getDefaultInstance());
@@ -154,13 +156,8 @@ public class StandTheWorld extends AbstractStand {
     }
 
     @Override
-    public long getDefaultMaxEnergy() {
-        return 75 * 1200;
-    }
-
-    @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return 75;
+        return data.getState().equals(STATE_IDLE) ? 150 : 75;
     }
 
     @Override
@@ -209,7 +206,7 @@ public class StandTheWorld extends AbstractStand {
     );
 
     @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_SUPPLIER_MAP = Map.of(
+    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
             DEFAULT_LAYER, ModelTheWorld::new,
             IDLE_LAYER, ModelTheWorldIdle::new
     );
@@ -240,8 +237,13 @@ public class StandTheWorld extends AbstractStand {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelSupplier() {
-        return MODEL_SUPPLIER_MAP;
+    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
+        return MODEL_FUNCTION_MAP;
+    }
+
+    @Override
+    public boolean shouldRenderHand(LivingEntity livingEntity, IStandData data) {
+        return !(data.isTriggered() && data.getState().equals(STATE_DEFAULT));
     }
 
     @Override

@@ -37,6 +37,8 @@ public class ItemArrowStand extends BaseItem {
                             AbstractStand stand2 = HuaJiStands.REGISTRY.get().getValue(new ResourceLocation(stand1));
                             if (stand2 != null) {
                                 data.setStand(stand2);
+                                data.setLevel(0);
+                                data.setMaxEnergy(stand2.getMaxEnergy(pPlayer, data));
                                 pPlayer.sendSystemMessage(Component.translatable("message.huajiage.stand.gain", Component.translatable(stand2.getDescriptionId())).withStyle(ChatFormatting.AQUA, ChatFormatting.BOLD));
                             } else {
                                 throw new IllegalArgumentException("Unknown registry key of stand: " + stand1);

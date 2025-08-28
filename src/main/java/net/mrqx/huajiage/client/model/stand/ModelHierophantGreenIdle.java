@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Made with Blockbench 4.12.6
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class ModelHierophantGreenIdle extends ModelStandBase {
     private final ModelPart head;
     private final ModelPart body;
@@ -142,14 +143,7 @@ public class ModelHierophantGreenIdle extends ModelStandBase {
     public void setupAnim(@NotNull Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         float off = (float) Math.cos(0.1 * pAgeInTicks);
 
-        head.resetPose();
-        body.resetPose();
-        strips.resetPose();
-        strip2.resetPose();
-        strip4.resetPose();
-        strip6.resetPose();
-        strip8.resetPose();
-        strip10.resetPose();
+        this.resetPoses();
 
         head.y += off;
         body.y += off;
@@ -162,6 +156,17 @@ public class ModelHierophantGreenIdle extends ModelStandBase {
 
         head.xRot = pHeadPitch * 0.017453292F;
         head.yRot = pNetHeadYaw * 0.017453292F;
+    }
+
+    private void resetPoses() {
+        head.resetPose();
+        body.resetPose();
+        strips.resetPose();
+        strip2.resetPose();
+        strip4.resetPose();
+        strip6.resetPose();
+        strip8.resetPose();
+        strip10.resetPose();
     }
 
     @Override

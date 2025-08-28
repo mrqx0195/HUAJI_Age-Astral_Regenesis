@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": {
+      "item": "huajiage:hope_flower"
+    },
+    "N": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "R": {
+      "item": "huajiage:redstone_druse"
+    },
+    "T": {
+      "item": "huajiage:tarot"
+    }
+  },
+  "pattern": [
+    "NNR",
+    "NT ",
+    "R H"
+  ],
+  "result": {
+    "item": "huajiage:arrow_stand"
+  },
+  "show_notification": true
+}

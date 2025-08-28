@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:clock"
+    },
+    "B": {
+      "item": "huajiage:ether_circumflux_board"
+    },
+    "C": {
+      "item": "minecraft:bread"
+    },
+    "O": {
+      "item": "huajiage:huaji_ingot"
+    }
+  },
+  "pattern": [
+    "OAO",
+    "ABA",
+    "OCO"
+  ],
+  "result": {
+    "item": "huajiage:dio_bread"
+  },
+  "show_notification": true
+}

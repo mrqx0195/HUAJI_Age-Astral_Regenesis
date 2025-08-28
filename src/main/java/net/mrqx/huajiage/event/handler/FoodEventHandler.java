@@ -67,6 +67,7 @@ public class FoodEventHandler {
             });
         } else if (event.getItem().is(HuaJiItems.REO_CHERRY.get())) {
             living.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> data.setEnergy(Math.min(data.getEnergy() + 20000, data.getMaxEnergy())));
+            HuajiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.REO_CHERRY.get(), living.getSoundSource());
             living.sendSystemMessage(Component.translatable("message.huajiage.reo_cherry").withStyle(ChatFormatting.GOLD));
         }
     }

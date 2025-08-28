@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:apple"
+    },
+    "J": {
+      "item": "huajiage:huaji"
+    },
+    "O": {
+      "tag": "forge:gems/emerald"
+    }
+  },
+  "pattern": [
+    "OJO",
+    "JBJ",
+    "OJO"
+  ],
+  "result": {
+    "item": "huajiage:reo_cherry"
+  },
+  "show_notification": true
+}

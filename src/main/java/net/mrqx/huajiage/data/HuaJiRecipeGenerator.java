@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.data;
 
+import com.doggystudio.chirencqr.ltc.server.registry.LTCItems;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -249,6 +250,111 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
                 .define('F', HuaJiItems.HOPE_FLOWER.get())
                 .unlockedBy("has_airspace_star", has(HuaJiItems.INFINITE_UNIVERSE_STAR.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.TAROT.get())
+                .pattern("OJO")
+                .pattern("JBJ")
+                .pattern("OJO")
+                .define('O', Tags.Items.STORAGE_BLOCKS_LAPIS)
+                .define('J', Items.OBSIDIAN)
+                .define('B', HuaJiItems.ETHER_POINT.get())
+                .unlockedBy("has_ether_point", has(HuaJiItems.ETHER_POINT.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HuaJiItems.REO_CHERRY.get())
+                .pattern("OJO")
+                .pattern("JBJ")
+                .pattern("OJO")
+                .define('O', Tags.Items.GEMS_EMERALD)
+                .define('J', HuaJiItems.HUAJI.get())
+                .define('B', Items.APPLE)
+                .unlockedBy("has_apple", has(Items.APPLE)).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.INFINITE_CHARM.get())
+                .pattern("OJO")
+                .pattern("JBJ")
+                .pattern("OJO")
+                .define('O', HuaJiItems.HOPE_FLOWER.get())
+                .define('J', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
+                .define('B', HuaJiItems.INFINITE_UNIVERSE_STAR.get())
+                .unlockedBy("has_infinite_universe_star", has(HuaJiItems.INFINITE_UNIVERSE_STAR.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.SINGULARITY.get())
+                .pattern("OAO")
+                .pattern("DBC")
+                .pattern("OEO")
+                .define('O', HuaJiItems.DISC.get())
+                .define('A', HuaJiItems.EXGLUTENBUR.get())
+                .define('B', HuaJiItems.INFINITE_UNIVERSE_STAR.get())
+                .define('C', HuaJiItems.ULTIMATE_EGG_RICE.get())
+                .define('D', HuaJiItems.HOPE_FLOWER.get())
+                .define('E', HuaJiItems.LORD_KEY.get())
+                .unlockedBy("has_infinite_universe_star", has(HuaJiItems.INFINITE_UNIVERSE_STAR.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HuaJiItems.HUAJI_POLYFURNACE.get())
+                .pattern("OOO")
+                .pattern("ABA")
+                .pattern("JJJ")
+                .define('O', HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get())
+                .define('J', HuaJiItems.HUAJI_STAR_BLOCK.get())
+                .define('B', HuaJiItems.HUAJI_BLENDER.get())
+                .define('A', HuaJiItems.HOPE_FLOWER.get())
+                .unlockedBy("has_huaji_blender", has(HuaJiItems.HUAJI_BLENDER.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HuaJiItems.DIO_BREAD.get())
+                .pattern("OAO")
+                .pattern("ABA")
+                .pattern("OCO")
+                .define('O', HuaJiItems.HUAJI_INGOT.get())
+                .define('A', Items.CLOCK)
+                .define('B', HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get())
+                .define('C', Items.BREAD)
+                .unlockedBy("has_ether_circumflux_board", has(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.HUAJI_SWORD.get())
+                .pattern(" H ")
+                .pattern(" H ")
+                .pattern(" D ")
+                .define('H', HuaJiItems.HUAJI_INGOT.get())
+                .define('D', Items.DIAMOND)
+                .unlockedBy("has_huaji_ingot", has(HuaJiItems.HUAJI_INGOT.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.HUAJI_STAR_SWORD.get())
+                .pattern(" N ")
+                .pattern("NHN")
+                .pattern(" D ")
+                .define('H', HuaJiItems.HUAJI_SWORD.get())
+                .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
+                .define('D', Items.DIAMOND)
+                .unlockedBy("has_huaji_sword", has(HuaJiItems.HUAJI_SWORD.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.HUAJI_LATIAO_SWORD.get())
+                .pattern(" N ")
+                .pattern("NHN")
+                .pattern(" D ")
+                .define('H', LTCItems.HOTAURUM_SWORD.get())
+                .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
+                .define('D', Items.DIAMOND)
+                .unlockedBy("has_huaji_sword", has(HuaJiItems.HUAJI_SWORD.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.ARROW_STAND.get())
+                .pattern("NNR")
+                .pattern("NT ")
+                .pattern("R H")
+                .define('T', HuaJiItems.TAROT.get())
+                .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
+                .define('H', HuaJiItems.HOPE_FLOWER.get())
+                .define('R', HuaJiItems.REDSTONE_DRUSE.get())
+                .unlockedBy("has_tarot", has(HuaJiItems.TAROT.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.ARROW_REQUIEM.get())
+                .pattern("NNR")
+                .pattern("NS ")
+                .pattern("R A")
+                .define('S', HuaJiItems.INFINITE_UNIVERSE_STAR.get())
+                .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
+                .define('R', HuaJiItems.DISC.get())
+                .define('A', HuaJiItems.ARROW_STAND.get())
+                .unlockedBy("has_arrow_stand", has(HuaJiItems.ARROW_STAND.get())).save(pWriter);
     }
 
 

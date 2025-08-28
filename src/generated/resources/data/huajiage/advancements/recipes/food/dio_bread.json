@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ether_circumflux_board": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:ether_circumflux_board"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "huajiage:dio_bread"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_ether_circumflux_board",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "huajiage:dio_bread"
+    ]
+  },
+  "sends_telemetry_event": false
+}

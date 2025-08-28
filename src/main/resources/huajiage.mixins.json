@@ -9,6 +9,7 @@
   "refmap": "huajiage.refmap.json",
   "required": true,
   "client": [
+    "AccessorLivingEntityRenderer",
     "AccessorModelPart",
     "MixinGameRenderer",
     "MixinSoundEngine"
