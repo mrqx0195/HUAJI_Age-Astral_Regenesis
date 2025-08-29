@@ -9,16 +9,19 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.stand.AbstractStand;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,10 +31,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @Mod.EventBusSubscriber
 public class ItemSingularity extends BaseItem {
-    public static final String SINGULARITY_COUNT = "huajiage.singularityCount";
+    public static final String SINGULARITY_COUNT = HuaJiAgeMod.MODID + "." + "singularityCount";
 
-    public ItemSingularity(Properties properties) {
-        super(properties);
+    public ItemSingularity() {
+        super(new Item.Properties().rarity(Rarity.EPIC));
     }
 
     private static int tick = 0;
@@ -74,9 +77,9 @@ public class ItemSingularity extends BaseItem {
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 9));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 5));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 9));
-                    HuajiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.CHARGE.get(), pPlayer.getSoundSource());
-                    HuajiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.ENERGY_HIT.get(), pPlayer.getSoundSource());
-                    HuajiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.NOISE_FURNACE.get(), pPlayer.getSoundSource());
+                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.CHARGE.get(), pPlayer.getSoundSource());
+                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.ENERGY_HIT.get(), pPlayer.getSoundSource());
+                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.NOISE_FURNACE.get(), pPlayer.getSoundSource());
                     pPlayer.sendSystemMessage(Component.translatable("message.huajiage.singularity").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
                     flag.set(true);
                 }

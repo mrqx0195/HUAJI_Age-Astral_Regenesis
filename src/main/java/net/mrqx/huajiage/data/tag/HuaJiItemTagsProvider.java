@@ -9,6 +9,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.block.blockentity.HuaJiBlenderBlockEntity;
 import net.mrqx.huajiage.block.blockentity.HuaJiPolyfurnaceBlockEntity;
+import net.mrqx.huajiage.compat.HuaJiCompat;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,5 +29,6 @@ public class HuaJiItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.SWORDS).add(HuaJiItems.HUAJI_STAR_SWORD.get());
         tag(ItemTags.SWORDS).add(HuaJiItems.HUAJI_LATIAO_SWORD.get());
         tag(ItemTags.SWORDS).add(HuaJiItems.EXGLUTENBUR.get());
+        tag(HuaJiCompat.CHARM_ITEM_TAG).add(HuaJiItems.INFINITE_CHARM.get());
     }
 }

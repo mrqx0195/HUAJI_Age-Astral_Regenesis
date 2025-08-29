@@ -70,7 +70,7 @@ public class ItemTagHelper {
 
     public static void setCompound(ItemStack stack, String tag, CompoundTag cmp) {
         // not override the enchantments
-        if (!"ench".equalsIgnoreCase(tag)) {
+        if (!ItemStack.TAG_ENCH.equalsIgnoreCase(tag)) {
             stack.getOrCreateTag().put(tag, cmp);
         }
     }
@@ -152,8 +152,8 @@ public class ItemTagHelper {
 
     @Nullable
     @Contract("_, _, _, false -> !null")
-    public static ListTag getList(ItemStack stack, String tag, int objtype, boolean nullifyOnFail) {
-        return verifyExistance(stack, tag) ? stack.getOrCreateTag().getList(tag, objtype) : nullifyOnFail ? null : new ListTag();
+    public static ListTag getList(ItemStack stack, String tag, int objType, boolean nullifyOnFail) {
+        return verifyExistance(stack, tag) ? stack.getOrCreateTag().getList(tag, objType) : nullifyOnFail ? null : new ListTag();
     }
 
     // OTHER ///////////////////////////////////////////////////////////////////

@@ -26,7 +26,9 @@ public class HuaJiDamageTypeTagGenerator extends TagsProvider<DamageType> {
                 .add(HuaJiDamageTypes.KE_DAI_JIN_LA)
                 .add(HuaJiDamageTypes.STELLA)
                 .add(HuaJiDamageTypes.FIVE)
-                .add(HuaJiDamageTypes.SINGULARITY);
+                .add(HuaJiDamageTypes.SINGULARITY)
+                .add(HuaJiDamageTypes.HOPE_FLOWER)
+                .add(HuaJiDamageTypes.REQUIEM);
 
         tag(DamageTypeTags.BYPASSES_COOLDOWN)
                 .add(HuaJiDamageTypes.ANTIMATTER)
@@ -35,36 +37,49 @@ public class HuaJiDamageTypeTagGenerator extends TagsProvider<DamageType> {
                 .add(HuaJiDamageTypes.FIVE)
                 .add(HuaJiDamageTypes.EMERALD_SPLASH)
                 .add(HuaJiDamageTypes.STAND_HIT)
-                .add(HuaJiDamageTypes.SINGULARITY);
+                .add(HuaJiDamageTypes.SINGULARITY)
+                .add(HuaJiDamageTypes.HOPE_FLOWER)
+                .add(HuaJiDamageTypes.ORGA_SHOT)
+                .add(HuaJiDamageTypes.REQUIEM);
 
         tag(DamageTypeTags.BYPASSES_EFFECTS)
                 .add(HuaJiDamageTypes.ANTIMATTER)
                 .add(HuaJiDamageTypes.STELLA)
                 .add(HuaJiDamageTypes.FIVE)
-                .add(HuaJiDamageTypes.SINGULARITY);
+                .add(HuaJiDamageTypes.SINGULARITY)
+                .add(HuaJiDamageTypes.HOPE_FLOWER)
+                .add(HuaJiDamageTypes.REQUIEM);
 
         tag(DamageTypeTags.BYPASSES_ENCHANTMENTS)
                 .add(HuaJiDamageTypes.ANTIMATTER)
                 .add(HuaJiDamageTypes.STELLA)
                 .add(HuaJiDamageTypes.FIVE)
-                .add(HuaJiDamageTypes.SINGULARITY);
+                .add(HuaJiDamageTypes.SINGULARITY)
+                .add(HuaJiDamageTypes.HOPE_FLOWER)
+                .add(HuaJiDamageTypes.REQUIEM);
 
         tag(DamageTypeTags.BYPASSES_INVULNERABILITY)
                 .add(HuaJiDamageTypes.ANTIMATTER)
                 .add(HuaJiDamageTypes.FIVE)
-                .add(HuaJiDamageTypes.SINGULARITY);
+                .add(HuaJiDamageTypes.SINGULARITY)
+                .add(HuaJiDamageTypes.HOPE_FLOWER)
+                .add(HuaJiDamageTypes.REQUIEM);
 
         tag(DamageTypeTags.BYPASSES_RESISTANCE)
                 .add(HuaJiDamageTypes.ANTIMATTER)
                 .add(HuaJiDamageTypes.STELLA)
                 .add(HuaJiDamageTypes.FIVE)
-                .add(HuaJiDamageTypes.SINGULARITY);
+                .add(HuaJiDamageTypes.SINGULARITY)
+                .add(HuaJiDamageTypes.HOPE_FLOWER)
+                .add(HuaJiDamageTypes.REQUIEM);
 
         tag(DamageTypeTags.BYPASSES_SHIELD)
                 .add(HuaJiDamageTypes.ANTIMATTER)
                 .add(HuaJiDamageTypes.KE_DAI_JIN_LA)
                 .add(HuaJiDamageTypes.STELLA)
                 .add(HuaJiDamageTypes.FIVE)
-                .add(HuaJiDamageTypes.SINGULARITY);
+                .add(HuaJiDamageTypes.SINGULARITY)
+                .add(HuaJiDamageTypes.HOPE_FLOWER)
+                .add(HuaJiDamageTypes.REQUIEM);
     }
 }

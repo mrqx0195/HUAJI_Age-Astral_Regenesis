@@ -26,11 +26,12 @@ import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
 import net.mrqx.huajiage.client.model.stand.ModelStarPlatinum;
 import net.mrqx.huajiage.client.model.stand.ModelStarPlatinumIdle;
+import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.entity.EntityRoadRoller;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiMathHelper;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.StandUtils;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class StandStarPlatinum extends AbstractStand {
                     return;
                 }
                 Vec3 back = HuaJiMathHelper.getVectorEntityEye(living, entity);
-                DamageSource damageSource = HuaJiDamageSources.standHit(living.level(), living, living, living.position());
+                DamageSource damageSource = HuaJiDamageSources.simple(living, HuaJiDamageTypes.STAND_HIT);
 
                 if (entity instanceof EnderDragonPart enderDragonPart) {
                     enderDragonPart.parentMob.hurt(enderDragonPart.parentMob.head, damageSource, stand.getDamage(living, data));
@@ -67,8 +68,8 @@ public class StandStarPlatinum extends AbstractStand {
                         starPlatinum.counter += isTimeStopping ? 1 : 5;
                         if (data.getLevel() > 0 && starPlatinum.counter > 4) {
                             starPlatinum.counter = 0;
-                            HuajiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, living.getSoundSource(), 0.25F);
-                            HuajiSoundPlayer.playMovingSoundToClient(living, isTimeStopping ? HuaJiSoundEvents.STAND_STAR_PLATINUM_REPEAT_1.get() : HuaJiSoundEvents.STAND_STAR_PLATINUM_5.get(), living.getSoundSource(), isTimeStopping ? 1 : 0.3F);
+                            HuaJiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, living.getSoundSource(), 0.25F);
+                            HuaJiSoundPlayer.playMovingSoundToClient(living, isTimeStopping ? HuaJiSoundEvents.STAND_STAR_PLATINUM_REPEAT_1.get() : HuaJiSoundEvents.STAND_STAR_PLATINUM_5.get(), living.getSoundSource(), isTimeStopping ? 1 : 0.3F);
                         }
                     }
                 } else if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
@@ -84,7 +85,7 @@ public class StandStarPlatinum extends AbstractStand {
 
     public static final BiConsumer<LivingEntity, IStandData> STAR_PLATINUM_DO_SKILL = (living, data) -> {
         int time = (data.getLevel() > 1 ? 5 : 2) * 20;
-        HuajiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAR_PLATINUM_THE_WORLD_1.get(), living.getSoundSource(), 5);
+        HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAR_PLATINUM_THE_WORLD_1.get(), living.getSoundSource(), 5);
         StandUtils.standTimeStop(true, living, data, true, time, 40);
         living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + 40, 1, false, false));
         living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + 40, 2, false, false));
@@ -111,7 +112,7 @@ public class StandStarPlatinum extends AbstractStand {
             case 3 -> HuaJiSoundEvents.STAND_STAR_PLATINUM_4.get();
             default -> HuaJiSoundEvents.STAND_STAR_PLATINUM_1.get();
         };
-        HuajiSoundPlayer.playMovingSoundToClient(livingEntity, soundEvent, livingEntity.getSoundSource());
+        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, soundEvent, livingEntity.getSoundSource());
     }
 
     @Override
@@ -219,7 +220,7 @@ public class StandStarPlatinum extends AbstractStand {
     public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
         return MODEL_FUNCTION_MAP;
     }
-    
+
     @Override
     public boolean shouldRenderHand(LivingEntity livingEntity, IStandData data) {
         return !(data.isTriggered() && data.getState().equals(STATE_DEFAULT));

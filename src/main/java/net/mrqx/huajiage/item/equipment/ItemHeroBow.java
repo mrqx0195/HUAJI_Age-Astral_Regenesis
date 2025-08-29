@@ -23,11 +23,12 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
+import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.entity.EntityHeroArrow;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -38,8 +39,8 @@ import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class ItemHeroBow extends BowItem {
-    public ItemHeroBow(Properties pProperties) {
-        super(pProperties);
+    public ItemHeroBow() {
+        super(new Item.Properties().rarity(Rarity.EPIC).fireResistant().durability(384));
     }
 
     @Override
@@ -143,12 +144,12 @@ public class ItemHeroBow extends BowItem {
                     pLevel.addFreshEntity(abstractarrow);
 
                     if (isOn) {
-                        player.hurt(HuaJiDamageSources.stella(pLevel, null, player, player.position()), player.getMaxHealth() * 5);
-                        HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.STELLA.get(), player.getSoundSource());
+                        player.hurt(HuaJiDamageSources.simpleNullSource(pLevel, HuaJiDamageTypes.STELLA), player.getMaxHealth() * 5);
+                        HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.STELLA.get(), player.getSoundSource());
                     }
                 }
 
-                HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARROW_SHOOT, player.getSoundSource(), 1, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARROW_SHOOT, player.getSoundSource(), 1, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
                 player.awardStat(Stats.ITEM_USED.get(this));
             }
@@ -169,7 +170,7 @@ public class ItemHeroBow extends BowItem {
             player.getCooldowns().addCooldown(HuaJiItems.HERO_BOW.get(), 10);
             if (Mode.getMode(player.getMainHandItem()).equals(Mode.ON)) {
                 player.sendSystemMessage(Component.translatable("message.huajiage.stella_warning").withStyle(ChatFormatting.YELLOW));
-                HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ENDER_DRAGON_GROWL, player.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ENDER_DRAGON_GROWL, player.getSoundSource());
             }
         }
     }

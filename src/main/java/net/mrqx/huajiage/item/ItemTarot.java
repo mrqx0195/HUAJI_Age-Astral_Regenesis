@@ -6,11 +6,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import net.mrqx.huajiage.stand.AbstractStand;
@@ -21,11 +23,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ItemTarot extends BaseItem {
-    public static final String TAROT_STAND_KEY = "huajiage.tarotStand";
-    public static final String TAROT_STAND_LEVEL_KEY = "huajiage.tarotStandLevel";
+    public static final String TAROT_STAND_KEY = HuaJiAgeMod.MODID + "." + "tarotStand";
+    public static final String TAROT_STAND_LEVEL_KEY = HuaJiAgeMod.MODID + "." + "tarotStandLevel";
 
-    public ItemTarot(Properties pProperties) {
-        super(pProperties);
+    public ItemTarot() {
+        super(new Item.Properties());
     }
 
     @Override
@@ -55,8 +57,8 @@ public class ItemTarot extends BaseItem {
                         data.setStand(stand);
                         data.setLevel(ItemTagHelper.getInt(itemStack, TAROT_STAND_LEVEL_KEY, 0));
                         data.setMaxEnergy(stand.getMaxEnergy(pPlayer, data));
-                        itemStack.getOrCreateTag().remove(TAROT_STAND_KEY);
-                        itemStack.getOrCreateTag().remove(TAROT_STAND_LEVEL_KEY);
+                        ItemTagHelper.removeEntry(itemStack, TAROT_STAND_KEY);
+                        ItemTagHelper.removeEntry(itemStack, TAROT_STAND_LEVEL_KEY);
                         pPlayer.swing(pUsedHand, true);
                     } else {
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.tarot.stand.failed").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
@@ -66,8 +68,8 @@ public class ItemTarot extends BaseItem {
                 pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                     AbstractStand stand1 = AbstractStand.getStand(data.getStand());
                     if (stand1 != null) {
-                        itemStack.getOrCreateTag().putString(TAROT_STAND_KEY, data.getStand().toString());
-                        itemStack.getOrCreateTag().putInt(TAROT_STAND_LEVEL_KEY, data.getLevel());
+                        ItemTagHelper.setString(itemStack, TAROT_STAND_KEY, data.getStand().toString());
+                        ItemTagHelper.setInt(itemStack, TAROT_STAND_LEVEL_KEY, data.getLevel());
                         data.setStand((ResourceLocation) null);
                         data.setLevel(0);
                         pPlayer.swing(pUsedHand, true);

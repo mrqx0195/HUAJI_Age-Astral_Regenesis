@@ -6,13 +6,15 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class ItemHuajiArmor extends ArmorItem {
-    public ItemHuajiArmor(Type pType, Properties pProperties) {
-        super(HuaJiArmorMaterials.HUAJI, pType, pProperties);
+    public ItemHuajiArmor(Type pType) {
+        super(HuaJiArmorMaterials.HUAJI, pType, new Item.Properties().rarity(Rarity.UNCOMMON));
     }
 
     @Override
@@ -21,14 +23,14 @@ public abstract class ItemHuajiArmor extends ArmorItem {
     }
 
     public static class ItemHuajiArmorHelmet extends ItemHuajiArmor {
-        public ItemHuajiArmorHelmet(Properties pProperties) {
-            super(Type.HELMET, pProperties);
+        public ItemHuajiArmorHelmet() {
+            super(Type.HELMET);
         }
     }
 
     public static class ItemHuajiArmorChestplate extends ItemHuajiArmor {
-        public ItemHuajiArmorChestplate(Properties pProperties) {
-            super(Type.CHESTPLATE, pProperties);
+        public ItemHuajiArmorChestplate() {
+            super(Type.CHESTPLATE);
         }
 
         @Override
@@ -40,8 +42,8 @@ public abstract class ItemHuajiArmor extends ArmorItem {
     }
 
     public static class ItemHuajiArmorLeggings extends ItemHuajiArmor {
-        public ItemHuajiArmorLeggings(Properties pProperties) {
-            super(Type.LEGGINGS, pProperties);
+        public ItemHuajiArmorLeggings() {
+            super(Type.LEGGINGS);
         }
 
         @Override
@@ -53,8 +55,8 @@ public abstract class ItemHuajiArmor extends ArmorItem {
     }
 
     public static class ItemHuajiArmorBoots extends ItemHuajiArmor {
-        public ItemHuajiArmorBoots(Properties pProperties) {
-            super(Type.BOOTS, pProperties);
+        public ItemHuajiArmorBoots() {
+            super(Type.BOOTS);
         }
 
         @Override

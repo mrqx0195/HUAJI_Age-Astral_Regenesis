@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.item.ItemDisc;
+import net.mrqx.huajiage.utils.ItemTagHelper;
 
 @SuppressWarnings("unused")
 public class HuaJiCreativeTabs {
@@ -25,8 +26,8 @@ public class HuaJiCreativeTabs {
                 HuaJiStands.REGISTRY.get().getEntries().forEach(resourceLocation -> {
                     for (int i = 0; i <= resourceLocation.getValue().getMaxLevel(); i++) {
                         ItemStack stack = HuaJiItems.DISC.get().getDefaultInstance();
-                        stack.getOrCreateTag().putString(ItemDisc.DISC_STAND_KEY, resourceLocation.getKey().location().toString());
-                        stack.getOrCreateTag().putInt(ItemDisc.DISC_STAND_LEVEL_KEY, i);
+                        ItemTagHelper.setString(stack, ItemDisc.DISC_STAND_KEY, resourceLocation.getKey().location().toString());
+                        ItemTagHelper.setInt(stack, ItemDisc.DISC_STAND_LEVEL_KEY, i);
                         output.accept(stack);
                     }
                 });

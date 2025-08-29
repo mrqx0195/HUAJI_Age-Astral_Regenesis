@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,6 +20,7 @@ import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
+import net.mrqx.huajiage.config.HuaJiCommonConfig;
 import net.mrqx.huajiage.registy.HuaJiEffects;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import org.jetbrains.annotations.Nullable;
@@ -30,11 +32,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public abstract class AbstractStand {
-    public static final ResourceKey<Registry<AbstractStand>> REGISTRY_KEY = ResourceKey
-            .createRegistryKey(HuaJiAgeMod.prefix("stands"));
-    public static final String STATE_DEFAULT = "huajiage.default";
-    public static final String STATE_IDLE = "huajiage.idle";
-    public static final String STATE_FLY = "huajiage.fly";
+    public static final ResourceKey<Registry<AbstractStand>> REGISTRY_KEY = ResourceKey.createRegistryKey(HuaJiAgeMod.prefix("stands"));
+    public static final String STATE_DEFAULT = HuaJiAgeMod.MODID + "." + "default";
+    public static final String STATE_IDLE = HuaJiAgeMod.MODID + "." + "idle";
+    public static final String STATE_FLY = HuaJiAgeMod.MODID + "." + "fly";
 
     protected final BiConsumer<LivingEntity, IStandData> tick;
     protected final BiConsumer<LivingEntity, IStandData> doSkill;
@@ -51,6 +52,9 @@ public abstract class AbstractStand {
     public void tick(LivingEntity livingEntity, IStandData data) {
         if (data.isTriggered()) {
             this.tick.accept(livingEntity, data);
+            if (!livingEntity.hasEffect(HuaJiEffects.STAND_POWER.get())) {
+                this.timeoutPenalty(livingEntity, data);
+            }
         }
         data.setEnergy(Math.min(data.getEnergy() + this.chargePerTick(livingEntity, data), data.getMaxEnergy()));
     }
@@ -72,6 +76,10 @@ public abstract class AbstractStand {
         livingEntity.sendSystemMessage(Component.translatable(this.getDescriptionId() + ".skill"));
     }
 
+    protected void timeoutPenalty(LivingEntity livingEntity, IStandData data) {
+        livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 20, 24, false, false));
+    }
+
     public int skillEnergyDemand(LivingEntity livingEntity, IStandData data) {
         return -1;
     }
@@ -83,11 +91,23 @@ public abstract class AbstractStand {
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         data.setState(AbstractStand.STATE_DEFAULT);
         livingEntity.sendSystemMessage(Component.translatable(this.getDescriptionId() + ".triggered"));
-        livingEntity.addEffect(new MobEffectInstance(HuaJiEffects.STAND_POWER.get(), this.getDuration(livingEntity, data), data.getLevel()));
+        float cost = (float) data.getEnergy() / HuaJiCommonConfig.STAND_TRIGGER_COST.get();
+        if (cost > 1) {
+            cost = 1;
+        }
+        data.setEnergy(data.getEnergy() - (long) (cost * HuaJiCommonConfig.STAND_TRIGGER_COST.get()));
+        livingEntity.addEffect(new MobEffectInstance(HuaJiEffects.STAND_POWER.get(), (int) (this.getDuration(livingEntity, data) * cost), data.getLevel()));
+    }
+
+    public void onCancelTriggered(LivingEntity livingEntity, IStandData data) {
+        MobEffectInstance mobEffectInstance = livingEntity.removeEffectNoUpdate(HuaJiEffects.STAND_POWER.get());
+        if (mobEffectInstance != null) {
+            data.setEnergy((long) (data.getEnergy() + (float) (mobEffectInstance.getDuration()) / this.getDuration(livingEntity, data) * HuaJiCommonConfig.STAND_TRIGGER_COST.get()));
+        }
     }
 
     public int getMaxLevel() {
-        return 0;
+        return -1;
     }
 
     public abstract float getDamage(LivingEntity livingEntity, IStandData data);

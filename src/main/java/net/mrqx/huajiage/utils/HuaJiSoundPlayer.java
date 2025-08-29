@@ -17,14 +17,14 @@ import net.mrqx.huajiage.network.NetworkManager;
 import net.mrqx.huajiage.sound.HuajiMovingSoundInstance;
 import org.jetbrains.annotations.Nullable;
 
-public class HuajiSoundPlayer {
+public class HuaJiSoundPlayer {
     @Nullable
     private static SoundInstance currentMusic;
 
     @OnlyIn(Dist.CLIENT)
     public static void playMusic(SoundEvent sound) {
         if (Minecraft.getInstance().player != null) {
-            HuajiSoundPlayer.currentMusic = SimpleSoundInstance.forRecord(sound, Minecraft.getInstance().player.position());
+            HuaJiSoundPlayer.currentMusic = SimpleSoundInstance.forRecord(sound, Minecraft.getInstance().player.position());
             Minecraft.getInstance().getSoundManager().play(currentMusic);
         }
     }
@@ -32,7 +32,7 @@ public class HuajiSoundPlayer {
     @OnlyIn(Dist.CLIENT)
     public static void stopMusic(SoundEvent sound) {
         if (Minecraft.getInstance().player != null) {
-            HuajiSoundPlayer.currentMusic = SimpleSoundInstance.forRecord(sound, Minecraft.getInstance().player.position());
+            HuaJiSoundPlayer.currentMusic = SimpleSoundInstance.forRecord(sound, Minecraft.getInstance().player.position());
             Minecraft.getInstance().getSoundManager().stop(currentMusic);
         }
     }
@@ -40,6 +40,14 @@ public class HuajiSoundPlayer {
     @OnlyIn(Dist.CLIENT)
     public static void playClient(SoundInstance sound) {
         Minecraft.getInstance().getSoundManager().play(sound);
+    }
+
+    public static void playMovingSoundToClient(Entity target, SoundEvent sound) {
+        playMovingSoundToClient(target, sound, target.getSoundSource(), 1, 1);
+    }
+
+    public static void playMovingSoundToClient(Entity target, SoundEvent sound, float volume) {
+        playMovingSoundToClient(target, sound, target.getSoundSource(), volume, 1);
     }
 
     public static void playMovingSoundToClient(Entity target, SoundEvent sound, SoundSource category) {

@@ -9,6 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrqx.huajiage.HuaJiAgeMod;
+import net.mrqx.huajiage.compat.HuaJiCompat;
 import net.mrqx.huajiage.item.*;
 import net.mrqx.huajiage.item.equipment.*;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
@@ -89,45 +90,50 @@ public class HuaJiItems {
     /**
      * Weapons
      */
-    public static final RegistryObject<Item> HUAJI_SWORD = ITEMS.register("huaji_sword", () -> new ItemHuaJiSword(new Item.Properties().rarity(Rarity.UNCOMMON)));
-    public static final RegistryObject<Item> HUAJI_STAR_SWORD = ITEMS.register("huaji_star_sword", () -> new ItemHuajiStarSword(new Item.Properties().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> HUAJI_LATIAO_SWORD = ITEMS.register("huaji_latiao_sword", () -> new ItemHuajiLaTiaoSword(new Item.Properties().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> EXGLUTENBUR = ITEMS.register("exglutenbur", () -> new ItemExglutenbur(new Item.Properties().rarity(Rarity.EPIC).fireResistant().durability(5400)));
-    public static final RegistryObject<Item> HERO_BOW = ITEMS.register("hero_bow", () -> new ItemHeroBow(new Item.Properties().rarity(Rarity.EPIC).fireResistant().durability(384)));
+    public static final RegistryObject<Item> HUAJI_SWORD = ITEMS.register("huaji_sword", ItemHuaJiSword::new);
+    public static final RegistryObject<Item> HUAJI_STAR_SWORD = ITEMS.register("huaji_star_sword", ItemHuajiStarSword::new);
+    public static final RegistryObject<Item> HUAJI_LATIAO_SWORD = ITEMS.register("huaji_latiao_sword", ItemHuajiLaTiaoSword::new);
+    public static final RegistryObject<Item> EXGLUTENBUR = ITEMS.register("exglutenbur", ItemExglutenbur::new);
+    public static final RegistryObject<Item> HERO_BOW = ITEMS.register("hero_bow", ItemHeroBow::new);
     // TODO
     public static final RegistryObject<Item> MULTI_KNIFE = ITEMS.register("multi_knife", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
     // TODO
     public static final RegistryObject<Item> MULTI_KNIFE_SHINY = ITEMS.register("multi_knife_shiny", () -> new BaseItem(new Item.Properties().rarity(Rarity.RARE)));
 
-    public static final RegistryObject<Item> HUAJI_HELMET = ITEMS.register("huaji_helmet", () -> new ItemHuajiArmor.ItemHuajiArmorHelmet(new Item.Properties().rarity(Rarity.UNCOMMON)));
-    public static final RegistryObject<Item> HUAJI_CHESTPLATE = ITEMS.register("huaji_chestplate", () -> new ItemHuajiArmor.ItemHuajiArmorChestplate(new Item.Properties().rarity(Rarity.UNCOMMON)));
-    public static final RegistryObject<Item> HUAJI_LEGGINGS = ITEMS.register("huaji_leggings", () -> new ItemHuajiArmor.ItemHuajiArmorLeggings(new Item.Properties().rarity(Rarity.UNCOMMON)));
-    public static final RegistryObject<Item> HUAJI_BOOTS = ITEMS.register("huaji_boots", () -> new ItemHuajiArmor.ItemHuajiArmorBoots(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> HUAJI_HELMET = ITEMS.register("huaji_helmet", ItemHuajiArmor.ItemHuajiArmorHelmet::new);
+    public static final RegistryObject<Item> HUAJI_CHESTPLATE = ITEMS.register("huaji_chestplate", ItemHuajiArmor.ItemHuajiArmorChestplate::new);
+    public static final RegistryObject<Item> HUAJI_LEGGINGS = ITEMS.register("huaji_leggings", ItemHuajiArmor.ItemHuajiArmorLeggings::new);
+    public static final RegistryObject<Item> HUAJI_BOOTS = ITEMS.register("huaji_boots", ItemHuajiArmor.ItemHuajiArmorBoots::new);
 
-    public static final RegistryObject<Item> ORGA_HELMET = ITEMS.register("orga_helmet", () -> new ItemOrgaArmor.ItemOrgaArmorHelmet(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
-    public static final RegistryObject<Item> ORGA_CHESTPLATE = ITEMS.register("orga_chestplate", () -> new ItemOrgaArmor.ItemOrgaArmorChestplate(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
-    public static final RegistryObject<Item> ORGA_LEGGINGS = ITEMS.register("orga_leggings", () -> new ItemOrgaArmor.ItemOrgaArmorLeggings(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
-    public static final RegistryObject<Item> ORGA_BOOTS = ITEMS.register("orga_boots", () -> new ItemOrgaArmor.ItemOrgaArmorBoots(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
+    public static final RegistryObject<Item> ORGA_HELMET = ITEMS.register("orga_helmet", ItemOrgaArmor.ItemOrgaArmorHelmet::new);
+    public static final RegistryObject<Item> ORGA_CHESTPLATE = ITEMS.register("orga_chestplate", ItemOrgaArmor.ItemOrgaArmorChestplate::new);
+    public static final RegistryObject<Item> ORGA_LEGGINGS = ITEMS.register("orga_leggings", ItemOrgaArmor.ItemOrgaArmorLeggings::new);
+    public static final RegistryObject<Item> ORGA_BOOTS = ITEMS.register("orga_boots", ItemOrgaArmor.ItemOrgaArmorBoots::new);
 
-    public static final RegistryObject<Item> FIFTY_FIFTY_HELMET = ITEMS.register("50_50_helmet", () -> new ItemFiftyFiftyHelmet(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
-    public static final RegistryObject<Item> LORD_CORE = ITEMS.register("lord_core", () -> new ItemLordCore(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
-    public static final RegistryObject<Item> LORD_KEY = ITEMS.register("lord_key", () -> new ItemLordKey(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> FIFTY_FIFTY_HELMET = ITEMS.register("50_50_helmet", ItemFiftyFiftyHelmet::new);
+    public static final RegistryObject<Item> LORD_CORE = ITEMS.register("lord_core", ItemLordCore::new);
+    public static final RegistryObject<Item> LORD_KEY = ITEMS.register("lord_key", ItemLordKey::new);
 
     // TODO
     public static final RegistryObject<Item> SECOND_FOIL = ITEMS.register("second_foil", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> ROAD_ROLLER = ITEMS.register("road_roller", ItemRoadRoller::new);
+    public static final RegistryObject<Item> BLACK_CAR = ITEMS.register("black_car", ItemRoadRoller::new);
+    // TODO
+    public static final RegistryObject<Item> ORGA_HAIR_KNIFE = ITEMS.register("orga_hair_knife", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    // TODO
+    public static final RegistryObject<Item> ORGA_REQUIEM = ITEMS.register("orga_requiem", ItemOrgaRequiem::new);
 
-    public static final RegistryObject<Item> INFINITE_CHARM = ITEMS.register("infinite_charm", () -> new ItemInfiniteCharm(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> INFINITE_CHARM = ITEMS.register("infinite_charm", HuaJiCompat::makeInfiniteCharmCurios);
 
     /**
      * Stands
      */
-    public static final RegistryObject<Item> DISC = ITEMS.register("disc", () -> new ItemDisc(new Item.Properties()));
-    public static final RegistryObject<Item> SINGULARITY = ITEMS.register("singularity", () -> new ItemSingularity(new Item.Properties().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> ROAD_ROLLER = ITEMS.register("road_roller", () -> new ItemRoadRoller(new Item.Properties().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> ARROW_STAND = ITEMS.register("arrow_stand", () -> new ItemArrowStand(new Item.Properties().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> DISC = ITEMS.register("disc", ItemDisc::new);
+    public static final RegistryObject<Item> SINGULARITY = ITEMS.register("singularity", ItemSingularity::new);
+    public static final RegistryObject<Item> ARROW_STAND = ITEMS.register("arrow_stand", ItemArrowStand::new);
     // TODO
     public static final RegistryObject<Item> ARROW_REQUIEM = ITEMS.register("arrow_requiem", () -> new BaseItem(new Item.Properties().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> TAROT = ITEMS.register("tarot", () -> new ItemTarot(new Item.Properties()));
+    public static final RegistryObject<Item> TAROT = ITEMS.register("tarot", ItemTarot::new);
 
     /**
      * Block Items

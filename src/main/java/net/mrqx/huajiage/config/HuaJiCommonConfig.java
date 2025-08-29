@@ -25,6 +25,7 @@ public class HuaJiCommonConfig {
 
     public static final ForgeConfigSpec.DoubleValue ARROW_STAND_CHANCE;
     public static final ForgeConfigSpec.ConfigValue<List<? extends List<?>>> ARROW_STAND_LIST;
+    public static final ForgeConfigSpec.IntValue STAND_TRIGGER_COST;
 
     static {
         ForgeConfigSpec.Builder commonBuilder = new ForgeConfigSpec.Builder();
@@ -33,24 +34,24 @@ public class HuaJiCommonConfig {
         commonBuilder.push("Machine settings");
         POLYFURNACE_TOTAL_POINT = commonBuilder
                 .comment("Set the total point requirement of HUAJI Ultimate Polyfurnace. (default: 2008)")
-                .defineInRange("polyfurnace_total_point", 2008, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                .defineInRange("polyfurnace_total_point", 2008, 1, Integer.MAX_VALUE);
         POLYFURNACE_MAX_ENERGY = commonBuilder
                 .comment("Set the max Golden Spirit of HUAJI Ultimate Polyfurnace. (default: 5000)")
-                .defineInRange("polyfurnace_max_energy", 5000, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                .defineInRange("polyfurnace_max_energy", 5000, 1, Integer.MAX_VALUE);
         POLYFURNACE_MAX_FE = commonBuilder
                 .comment("Set the max Energy (RF) of HUAJI Ultimate Polyfurnace. (default: 37000000)")
-                .defineInRange("polyfurnace_max_fe", 37000000, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                .defineInRange("polyfurnace_max_fe", 37000000, 1, Integer.MAX_VALUE);
         POLYFURNACE_FE_CONVERT = commonBuilder
                 .comment("How many FE to convert to 1 Golden Spirit in HUAJI Ultimate Polyfurnace. (default: 100)")
-                .defineInRange("polyfurnace_fe_convert", 100, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                .defineInRange("polyfurnace_fe_convert", 100, 1, Integer.MAX_VALUE);
         commonBuilder.pop();
 
         commonBuilder.push("Stand settings");
         ARROW_STAND_CHANCE = commonBuilder
-                .comment("Set the chance of gaining stand from (default: 0.7)")
+                .comment("Set the chance of gaining stand from Stand Arrow. (default: 0.7)")
                 .defineInRange("arrow_stand_chance", 0.7, 0, 1);
         ARROW_STAND_LIST = commonBuilder
-                .comment("Set the weight for Stands from.")
+                .comment("Set the weight for Stands from Stand Arrow.")
                 .defineListAllowEmpty(List.of("arrow_stand_weight_list"),
                         List.of(
                                 List.of("huajiage:hierophant_green", 1.0),
@@ -61,6 +62,9 @@ public class HuaJiCommonConfig {
                                 && list.get(0) instanceof String
                                 && list.get(1) instanceof Double
                                 && (Double) (list.get(1)) >= 0.0);
+        STAND_TRIGGER_COST = commonBuilder
+                .comment("Set the base cost of trigger Stands. (default: 1000)")
+                .defineInRange("stand_trigger_cost", 1000, 0, Integer.MAX_VALUE);
         commonBuilder.pop();
 
         COMMON_CONFIG = commonBuilder.build();

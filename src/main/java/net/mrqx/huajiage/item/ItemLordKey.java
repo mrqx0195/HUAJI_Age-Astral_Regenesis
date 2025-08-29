@@ -10,16 +10,18 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemLordKey extends BaseItem {
-    public ItemLordKey(Properties properties) {
-        super(properties);
+    public ItemLordKey() {
+        super(new Item.Properties().rarity(Rarity.EPIC).fireResistant());
     }
 
     @Override
@@ -38,8 +40,8 @@ public class ItemLordKey extends BaseItem {
         super.finishUsingItem(pStack, pLevel, pLivingEntity);
         if (pLivingEntity instanceof Player player && ItemFiftyFiftyHelmet.isFiftyFiftyActive(player)) {
             ItemFiftyFiftyHelmet.setFiftyFiftyLord(player, true);
-            HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARMOR_EQUIP_NETHERITE, player.getSoundSource());
-            HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.GLASS_BREAK, player.getSoundSource());
+            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARMOR_EQUIP_NETHERITE, player.getSoundSource());
+            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.GLASS_BREAK, player.getSoundSource());
             if (pLevel.isClientSide) {
                 Minecraft.getInstance().gameRenderer.displayItemActivation(pStack.copy());
             } else if (player.getServer() != null) {

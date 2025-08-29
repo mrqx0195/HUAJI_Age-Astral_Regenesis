@@ -7,7 +7,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
-import net.mrqx.huajiage.event.client.ShaderHandler;
+import net.mrqx.huajiage.event.handler.client.ShaderHandler;
 import net.mrqx.huajiage.utils.QuadConsumer;
 
 import java.util.function.Supplier;

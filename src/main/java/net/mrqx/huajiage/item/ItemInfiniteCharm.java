@@ -21,6 +21,10 @@ public class ItemInfiniteCharm extends BaseItem {
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         super.inventoryTick(stack, level, entity, slotId, isSelected);
+        tick(stack, entity);
+    }
+
+    protected static void tick(ItemStack stack, Entity entity) {
         if (entity instanceof LivingEntity living) {
             for (EquipmentSlot equipmentslot : EquipmentSlot.values()) {
                 ItemStack itemstack = living.getItemBySlot(equipmentslot);

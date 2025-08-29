@@ -6,12 +6,15 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.boss.EnderDragonPart;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
@@ -23,11 +26,14 @@ import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.stand.ModelOrgaRequiem;
 import net.mrqx.huajiage.client.model.stand.ModelOrgaRequiemFly;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
+import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.entity.EntityRoadRoller;
+import net.mrqx.huajiage.registy.HuaJiEffects;
+import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiMathHelper;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 import java.util.List;
 import java.util.Map;
@@ -44,7 +50,7 @@ public class StandOrgaRequiem extends AbstractStand {
                     return;
                 }
                 Vec3 back = HuaJiMathHelper.getVectorEntityEye(living, entity);
-                DamageSource damageSource = HuaJiDamageSources.standHit(living.level(), living, living, living.position());
+                DamageSource damageSource = HuaJiDamageSources.simple(living, HuaJiDamageTypes.STAND_HIT);
 
                 if (entity instanceof EnderDragonPart enderDragonPart) {
                     enderDragonPart.parentMob.hurt(enderDragonPart.parentMob.head, damageSource, stand.getDamage(living, data));
@@ -73,7 +79,19 @@ public class StandOrgaRequiem extends AbstractStand {
     };
 
     public static final BiConsumer<LivingEntity, IStandData> ORGA_REQUIEM_DO_SKILL = (living, data) -> {
-
+        AbstractStand stand = AbstractStand.getStand(data.getStand());
+        if (living instanceof Player player) {
+            ItemStack itemStack = HuaJiItems.ORGA_HAIR_KNIFE.get().getDefaultInstance();
+            itemStack.setCount(16);
+            player.addItem(itemStack);
+            if (player.level().random.nextDouble() < 0.3) {
+                player.addItem(HuaJiItems.BLACK_CAR.get().getDefaultInstance());
+            }
+        }
+        if (stand != null) {
+            living.addEffect(new MobEffectInstance(HuaJiEffects.REQUIEM.get(), stand.getDuration(living, data), data.getLevel()));
+            living.addEffect(new MobEffectInstance(HuaJiEffects.STAND_POWER.get(), stand.getDuration(living, data), data.getLevel()));
+        }
     };
 
     public StandOrgaRequiem() {
@@ -88,7 +106,7 @@ public class StandOrgaRequiem extends AbstractStand {
     @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
-        HuajiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.ORGA_REQUIEM_2.get() : HuaJiSoundEvents.ORGA_REQUIEM_3.get(), livingEntity.getSoundSource());
+        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.ORGA_REQUIEM_2.get() : HuaJiSoundEvents.ORGA_REQUIEM_3.get(), livingEntity.getSoundSource());
     }
 
     @Override
@@ -98,7 +116,7 @@ public class StandOrgaRequiem extends AbstractStand {
 
     @Override
     public int getMaxLevel() {
-        return 3;
+        return 0;
     }
 
     @Override

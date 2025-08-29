@@ -8,7 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.PentaConsumer;
 
 import java.util.function.Supplier;
@@ -45,7 +45,7 @@ public class HuaJiSoundMessage {
         if (ctx.get().getDirection() != NetworkDirection.PLAY_TO_CLIENT) {
             return;
         }
-        PentaConsumer<ResourceLocation, SoundSource, Integer, Float, Float> handler = DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> HuajiSoundPlayer::playMovingSoundClient);
+        PentaConsumer<ResourceLocation, SoundSource, Integer, Float, Float> handler = DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> HuaJiSoundPlayer::playMovingSoundClient);
 
         if (handler != null) {
             ctx.get().enqueueWork(() -> handler.accept(huaJiSoundMessage.soundEvent, huaJiSoundMessage.source, huaJiSoundMessage.entityId, huaJiSoundMessage.volume, huaJiSoundMessage.pitch));

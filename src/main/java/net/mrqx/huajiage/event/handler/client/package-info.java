@@ -2,7 +2,7 @@
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
 @OnlyIn(Dist.CLIENT)
-package net.mrqx.huajiage.event.client;
+package net.mrqx.huajiage.event.handler.client;
 
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;

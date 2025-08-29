@@ -65,6 +65,12 @@
     ],
     "subtitle": "subtitles.huajiage.orga_flower"
   },
+  "orga_requiem": {
+    "sounds": [
+      "huajiage:orga_requiem"
+    ],
+    "subtitle": "subtitles.huajiage.orga_requiem"
+  },
   "orga_requiem_1": {
     "sounds": [
       "huajiage:orga_requiem_1"

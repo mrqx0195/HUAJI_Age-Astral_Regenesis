@@ -18,9 +18,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -28,6 +26,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.client.HuaJiKeyMappings;
 import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.ModelFiftyFiftyHelmet;
@@ -46,32 +45,32 @@ import java.util.function.Consumer;
 
 @Mod.EventBusSubscriber
 public class ItemFiftyFiftyHelmet extends ArmorItem {
-    public static final String FIFTY_FIFTY_ACTIVE_KEY = "huajiage.fiftyFiftyActive";
-    public static final String FIFTY_FIFTY_LORD_KEY = "huajiage.fiftyFiftyLord";
-    public static final String FIFTY_FIFTY_LORD_FLY_KEY = "huajiage.fiftyFiftyLord.fly";
+    public static final String FIFTY_FIFTY_ACTIVE_KEY = HuaJiAgeMod.MODID + "." + "fiftyFiftyActive";
+    public static final String FIFTY_FIFTY_LORD_KEY = HuaJiAgeMod.MODID + "." + "fiftyFiftyLord";
+    public static final String FIFTY_FIFTY_LORD_FLY_KEY = HuaJiAgeMod.MODID + "." + "fiftyFiftyLord.fly";
 
     public static boolean isFiftyFiftyActive(LivingEntity livingEntity) {
-        return hasFiftyFiftyHelmet(livingEntity) && livingEntity.getItemBySlot(EquipmentSlot.HEAD).getOrCreateTag().getBoolean(ItemFiftyFiftyHelmet.FIFTY_FIFTY_ACTIVE_KEY);
+        return hasFiftyFiftyHelmet(livingEntity) && ItemTagHelper.getBoolean(livingEntity.getItemBySlot(EquipmentSlot.HEAD), ItemFiftyFiftyHelmet.FIFTY_FIFTY_ACTIVE_KEY, false);
     }
 
     public static void setFiftyFiftyActive(LivingEntity livingEntity, boolean isActive) {
-        livingEntity.getItemBySlot(EquipmentSlot.HEAD).getOrCreateTag().putBoolean(ItemFiftyFiftyHelmet.FIFTY_FIFTY_ACTIVE_KEY, isActive);
+        ItemTagHelper.setBoolean(livingEntity.getItemBySlot(EquipmentSlot.HEAD), ItemFiftyFiftyHelmet.FIFTY_FIFTY_ACTIVE_KEY, isActive);
     }
 
     public static boolean isFiftyFiftyLord(LivingEntity livingEntity) {
-        return hasFiftyFiftyHelmet(livingEntity) && livingEntity.getItemBySlot(EquipmentSlot.HEAD).getOrCreateTag().getBoolean(ItemFiftyFiftyHelmet.FIFTY_FIFTY_LORD_KEY);
+        return hasFiftyFiftyHelmet(livingEntity) && ItemTagHelper.getBoolean(livingEntity.getItemBySlot(EquipmentSlot.HEAD), ItemFiftyFiftyHelmet.FIFTY_FIFTY_LORD_KEY, false);
     }
 
     public static void setFiftyFiftyLord(LivingEntity livingEntity, boolean isLord) {
-        livingEntity.getItemBySlot(EquipmentSlot.HEAD).getOrCreateTag().putBoolean(ItemFiftyFiftyHelmet.FIFTY_FIFTY_LORD_KEY, isLord);
+        ItemTagHelper.setBoolean(livingEntity.getItemBySlot(EquipmentSlot.HEAD), ItemFiftyFiftyHelmet.FIFTY_FIFTY_LORD_KEY, isLord);
     }
 
     public static boolean hasFiftyFiftyHelmet(LivingEntity livingEntity) {
         return livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(HuaJiItems.FIFTY_FIFTY_HELMET.get());
     }
 
-    public ItemFiftyFiftyHelmet(Properties pProperties) {
-        super(HuaJiArmorMaterials.FIFTY_FIFTY, Type.HELMET, pProperties);
+    public ItemFiftyFiftyHelmet() {
+        super(HuaJiArmorMaterials.FIFTY_FIFTY, Type.HELMET, new Item.Properties().rarity(Rarity.EPIC).fireResistant());
     }
 
     @Override

@@ -9,18 +9,20 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.config.HuaJiCommonConfig;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import net.mrqx.huajiage.stand.AbstractStand;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemArrowStand extends BaseItem {
-    public ItemArrowStand(Properties pProperties) {
-        super(pProperties);
+    public ItemArrowStand() {
+        super(new Item.Properties().rarity(Rarity.RARE));
     }
 
     @Override
@@ -51,7 +53,7 @@ public class ItemArrowStand extends BaseItem {
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 500, 6));
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 500));
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.WITHER, 500, 2));
-                        HuajiSoundPlayer.playMovingSoundToClient(pPlayer, SoundEvents.WITHER_HURT, pPlayer.getSoundSource());
+                        HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, SoundEvents.WITHER_HURT, pPlayer.getSoundSource());
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.stand.fail").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
                     }
                     itemStack.shrink(1);

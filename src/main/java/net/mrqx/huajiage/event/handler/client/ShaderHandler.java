@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.event.client;
+package net.mrqx.huajiage.event.handler.client;
 
 import com.google.gson.JsonSyntaxException;
 import com.mega.endinglib.util.time.TimeContext;
@@ -28,7 +28,7 @@ import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.client.renderer.shader.HuaJiShaderManager;
 import net.mrqx.huajiage.compat.HuaJiCompat;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.QuadConsumer;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.jetbrains.annotations.Nullable;
@@ -76,7 +76,7 @@ public class ShaderHandler {
                         }
 
                         if (endTime - timePassed == 20) {
-                            HuajiSoundPlayer.playClient(HuajiSoundPlayer.getMovingSound(minecraft.player, HuaJiSoundEvents.THE_WORLD_RE.get(), SoundSource.PLAYERS, 1));
+                            HuaJiSoundPlayer.playClient(HuaJiSoundPlayer.getMovingSound(minecraft.player, HuaJiSoundEvents.THE_WORLD_RE.get(), SoundSource.PLAYERS, 1));
                         } else if (endTime - timePassed == 10) {
                             addShader(new ResourceLocation("shaders/post/pencil.json"));
                         } else if (endTime - timePassed <= 3) {

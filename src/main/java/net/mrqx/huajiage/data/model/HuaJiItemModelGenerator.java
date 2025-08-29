@@ -65,6 +65,7 @@ public class HuaJiItemModelGenerator extends ItemModelProvider {
         basicItem(HuaJiItems.LORD_KEY.get());
 
         basicItem(HuaJiItems.SECOND_FOIL.get());
+        basicItem(HuaJiItems.ORGA_HAIR_KNIFE.get());
 
         basicItem(HuaJiItems.DISC.get());
         basicItem(HuaJiItems.SINGULARITY.get());

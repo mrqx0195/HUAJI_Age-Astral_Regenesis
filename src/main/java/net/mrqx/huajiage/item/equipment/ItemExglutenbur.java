@@ -16,9 +16,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -30,12 +28,13 @@ import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.init.HuaJiTiers;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiMathHelper;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -44,8 +43,8 @@ import java.util.List;
 
 @Mod.EventBusSubscriber
 public class ItemExglutenbur extends SwordItem {
-    public ItemExglutenbur(Properties pProperties) {
-        super(HuaJiTiers.EXGLUTENBUR.get(), 6, -2.4F, pProperties);
+    public ItemExglutenbur() {
+        super(HuaJiTiers.EXGLUTENBUR.get(), 6, -2.4F, new Item.Properties().rarity(Rarity.EPIC).fireResistant().durability(5400));
     }
 
     @Override
@@ -107,8 +106,8 @@ public class ItemExglutenbur extends SwordItem {
             if (flag2 || pTarget.level().getRandom().nextDouble() < 0.3d) {
                 pAttacker.heal(10f);
                 pStack.hurtAndBreak(3 * 29, pAttacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
-                pTarget.hurt(HuaJiDamageSources.keDaiJinLa(pTarget.level(), pAttacker, null, pAttacker.position()), 50f);
-                HuajiSoundPlayer.playMovingSoundToClient(pTarget, HuaJiSoundEvents.EXGLUTENBUR_HIT.get(), pAttacker.getSoundSource());
+                pTarget.hurt(HuaJiDamageSources.simple(pAttacker, HuaJiDamageTypes.KE_DAI_JIN_LA), 50f);
+                HuaJiSoundPlayer.playMovingSoundToClient(pTarget, HuaJiSoundEvents.EXGLUTENBUR_HIT.get(), pAttacker.getSoundSource());
                 pAttacker.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.kdjl").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.BOLD));
                 pTarget.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.kdjl").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.BOLD));
                 List<LivingEntity> entities = pTarget.level().getEntitiesOfClass(LivingEntity.class, pTarget.getBoundingBox().inflate(5));
@@ -116,7 +115,7 @@ public class ItemExglutenbur extends SwordItem {
                     if (entity != pAttacker && entity != pTarget) {
                         Vec3 vec = HuaJiMathHelper.getVectorEntity(pTarget, entity);
                         if (vec.length() != 0) {
-                            entity.hurt(HuaJiDamageSources.keDaiJinLa(pTarget.level(), pAttacker, null, pAttacker.position()), (float) (20f / vec.length()));
+                            entity.hurt(HuaJiDamageSources.simple(pAttacker, HuaJiDamageTypes.KE_DAI_JIN_LA), (float) (20f / vec.length()));
                             entity.setDeltaMovement(entity.getDeltaMovement().add(-vec.x / vec.length(), -vec.y / vec.length(), -vec.z / vec.length()));
                         }
                     }
@@ -141,7 +140,7 @@ public class ItemExglutenbur extends SwordItem {
             }
             case SPICY -> {
                 pTarget.setSecondsOnFire(5);
-                HuajiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, pTarget.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, pTarget.getSoundSource());
                 List<LivingEntity> entities = pTarget.level().getEntitiesOfClass(LivingEntity.class, pTarget.getBoundingBox().inflate(2));
                 for (LivingEntity entity : entities) {
                     if (!entity.equals(pAttacker) && !entity.equals(pTarget)) {
@@ -153,8 +152,8 @@ public class ItemExglutenbur extends SwordItem {
                 pStack.hurtAndBreak(1, pAttacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
             }
             case LIME -> {
-                HuajiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.STONE_BREAK, pAttacker.getSoundSource());
-                HuajiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.FIRE_EXTINGUISH, pAttacker.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.STONE_BREAK, pAttacker.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.FIRE_EXTINGUISH, pAttacker.getSoundSource());
                 pTarget.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 2));
                 pTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 9));
                 pTarget.level().levelEvent(2001, pTarget.blockPosition(), Block.getId(Blocks.OBSIDIAN.defaultBlockState()));
@@ -203,15 +202,15 @@ public class ItemExglutenbur extends SwordItem {
             if (!player.level().isClientSide) {
                 switch (Flavor.getFlavor(event.getEntity().getMainHandItem())) {
                     case FRAGRANT -> {
-                        HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_1.get(), player.getSoundSource());
+                        HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_1.get(), player.getSoundSource());
                         player.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.flavor.1").withStyle(ChatFormatting.GOLD));
                     }
                     case SPICY -> {
-                        HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_2.get(), player.getSoundSource());
+                        HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_2.get(), player.getSoundSource());
                         player.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.flavor.2").withStyle(ChatFormatting.RED));
                     }
                     case LIME -> {
-                        HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_3.get(), player.getSoundSource());
+                        HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.EXGLUTENBUR_3.get(), player.getSoundSource());
                         player.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.flavor.3").withStyle(ChatFormatting.GRAY, ChatFormatting.BOLD));
                     }
                     default -> {

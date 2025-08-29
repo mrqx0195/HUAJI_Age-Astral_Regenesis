@@ -6,9 +6,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import net.mrqx.huajiage.stand.AbstractStand;
@@ -19,11 +21,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ItemDisc extends BaseItem {
-    public static final String DISC_STAND_KEY = "huajiage.discStand";
-    public static final String DISC_STAND_LEVEL_KEY = "huajiage.discStandLevel";
+    public static final String DISC_STAND_KEY = HuaJiAgeMod.MODID + "." + "discStand";
+    public static final String DISC_STAND_LEVEL_KEY = HuaJiAgeMod.MODID + "." + "discStandLevel";
 
-    public ItemDisc(Properties properties) {
-        super(properties);
+    public ItemDisc() {
+        super(new Item.Properties());
     }
 
     @Override

@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.StandUtils;
 
 @Mod.EventBusSubscriber
@@ -53,7 +53,7 @@ public class FoodEventHandler {
                         castTime = 20;
                     }
                 }
-                HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
+                HuaJiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
                 StandUtils.standTimeStop(true, living, data, true, time, castTime);
                 living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + 10, 4, false, false));
                 living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + 10, 4, false, false));
@@ -67,7 +67,7 @@ public class FoodEventHandler {
             });
         } else if (event.getItem().is(HuaJiItems.REO_CHERRY.get())) {
             living.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> data.setEnergy(Math.min(data.getEnergy() + 20000, data.getMaxEnergy())));
-            HuajiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.REO_CHERRY.get(), living.getSoundSource());
+            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.REO_CHERRY.get(), living.getSoundSource());
             living.sendSystemMessage(Component.translatable("message.huajiage.reo_cherry").withStyle(ChatFormatting.GOLD));
         }
     }

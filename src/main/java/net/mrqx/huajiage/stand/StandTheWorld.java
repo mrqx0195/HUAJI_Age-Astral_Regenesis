@@ -27,12 +27,13 @@ import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
 import net.mrqx.huajiage.client.model.stand.ModelTheWorld;
 import net.mrqx.huajiage.client.model.stand.ModelTheWorldIdle;
+import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.entity.EntityRoadRoller;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiMathHelper;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.StandUtils;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public class StandTheWorld extends AbstractStand {
                     return;
                 }
                 Vec3 back = HuaJiMathHelper.getVectorEntityEye(living, entity);
-                DamageSource damageSource = HuaJiDamageSources.standHit(living.level(), living, living, living.position());
+                DamageSource damageSource = HuaJiDamageSources.simple(living, HuaJiDamageTypes.STAND_HIT);
 
                 if (entity instanceof EnderDragonPart enderDragonPart) {
                     enderDragonPart.parentMob.hurt(enderDragonPart.parentMob.head, damageSource, stand.getDamage(living, data));
@@ -69,8 +70,8 @@ public class StandTheWorld extends AbstractStand {
                         theWorld.counter += isTimeStopping ? 1 : 5;
                         if (data.getLevel() > 0 && theWorld.counter > 4) {
                             theWorld.counter = 0;
-                            HuajiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, living.getSoundSource(), 0.25F);
-                            HuajiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.DIO_HIT.get(), living.getSoundSource(), 0.75F);
+                            HuaJiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, living.getSoundSource(), 0.25F);
+                            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.DIO_HIT.get(), living.getSoundSource(), 0.75F);
                         }
                     }
                 } else if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
@@ -106,7 +107,7 @@ public class StandTheWorld extends AbstractStand {
                 castTime = 20;
             }
         }
-        HuajiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
+        HuaJiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
         StandUtils.standTimeStop(true, living, data, true, time, castTime);
         living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + castTime, 4, false, false));
         living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + castTime, 4, false, false));
@@ -132,7 +133,7 @@ public class StandTheWorld extends AbstractStand {
     @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
-        HuajiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_THE_WORLD_HIT_1.get() : HuaJiSoundEvents.STAND_THE_WORLD_HIT_2.get(), livingEntity.getSoundSource());
+        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_THE_WORLD_HIT_1.get() : HuaJiSoundEvents.STAND_THE_WORLD_HIT_2.get(), livingEntity.getSoundSource());
     }
 
     @Override

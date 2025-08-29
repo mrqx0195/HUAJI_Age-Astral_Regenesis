@@ -5,6 +5,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 
 public class EffectStandPower extends MobEffect {
     public EffectStandPower() {
-        super(MobEffectCategory.BENEFICIAL, 0xFFFF55);
+        super(MobEffectCategory.BENEFICIAL, 0xFFFFFF);
     }
 }

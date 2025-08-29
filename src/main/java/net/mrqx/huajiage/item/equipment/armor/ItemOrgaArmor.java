@@ -10,9 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -27,8 +25,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public abstract class ItemOrgaArmor extends ArmorItem {
-    public ItemOrgaArmor(Type pType, Properties pProperties) {
-        super(HuaJiArmorMaterials.ORGA, pType, pProperties);
+    public ItemOrgaArmor(Type pType) {
+        super(HuaJiArmorMaterials.ORGA, pType, new Item.Properties().rarity(Rarity.RARE).fireResistant());
     }
 
     @Override
@@ -73,26 +71,26 @@ public abstract class ItemOrgaArmor extends ArmorItem {
     }
 
     public static class ItemOrgaArmorHelmet extends ItemOrgaArmor {
-        public ItemOrgaArmorHelmet(Properties pProperties) {
-            super(Type.HELMET, pProperties);
+        public ItemOrgaArmorHelmet() {
+            super(Type.HELMET);
         }
     }
 
     public static class ItemOrgaArmorChestplate extends ItemOrgaArmor {
-        public ItemOrgaArmorChestplate(Properties pProperties) {
-            super(Type.CHESTPLATE, pProperties);
+        public ItemOrgaArmorChestplate() {
+            super(Type.CHESTPLATE);
         }
     }
 
     public static class ItemOrgaArmorLeggings extends ItemOrgaArmor {
-        public ItemOrgaArmorLeggings(Properties pProperties) {
-            super(Type.LEGGINGS, pProperties);
+        public ItemOrgaArmorLeggings() {
+            super(Type.LEGGINGS);
         }
     }
 
     public static class ItemOrgaArmorBoots extends ItemOrgaArmor {
-        public ItemOrgaArmorBoots(Properties pProperties) {
-            super(Type.BOOTS, pProperties);
+        public ItemOrgaArmorBoots() {
+            super(Type.BOOTS);
         }
     }
 }

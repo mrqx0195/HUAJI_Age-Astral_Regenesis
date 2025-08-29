@@ -17,7 +17,9 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -26,13 +28,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.init.HuaJiTiers;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 
 @Mod.EventBusSubscriber
 public class ItemHuajiLaTiaoSword extends SwordItem {
-    public ItemHuajiLaTiaoSword(Properties properties) {
-        super(HuaJiTiers.HUAJI_LATIAO.get(), 12, -1, properties);
+    public ItemHuajiLaTiaoSword() {
+        super(HuaJiTiers.HUAJI_LATIAO.get(), 12, -1, new Item.Properties().rarity(Rarity.RARE).durability(3998));
     }
 
     @Override
@@ -65,7 +67,7 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
             if (player.getFoodData().getFoodLevel() > 0 && stack.isDamaged()) {
                 player.getFoodData().addExhaustion(4);
                 stack.setDamageValue(Math.max(stack.getDamageValue() - 1, 0));
-                HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.PARROT_EAT, player.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.PARROT_EAT, player.getSoundSource());
             }
         }
     }
@@ -75,8 +77,8 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
         if (Mode.getMode(stack).equals(Mode.ON)) {
             target.hurt(target.level().damageSources().lava(), 10);
             target.setSecondsOnFire(8);
-            HuajiSoundPlayer.playMovingSoundToClient(target, SoundEvents.BLAZE_SHOOT, target.getSoundSource());
-            HuajiSoundPlayer.playMovingSoundToClient(target, SoundEvents.GENERIC_BURN, target.getSoundSource(), 1, 0.1F);
+            HuaJiSoundPlayer.playMovingSoundToClient(target, SoundEvents.BLAZE_SHOOT, target.getSoundSource());
+            HuaJiSoundPlayer.playMovingSoundToClient(target, SoundEvents.GENERIC_BURN, target.getSoundSource(), 1, 0.1F);
         } else {
             target.addEffect(new MobEffectInstance(MobEffects.HUNGER, 600, 2));
             stack.hurtAndBreak(1, attacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
@@ -99,7 +101,7 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
                 Mode.changeMode(itemStack);
                 player.getCooldowns().addCooldown(HuaJiItems.HUAJI_LATIAO_SWORD.get(), 10);
                 if (Mode.getMode(itemStack).equals(Mode.ON)) {
-                    HuajiSoundPlayer.playMovingSoundToClient(player, SoundEvents.BLAZE_SHOOT, player.getSoundSource());
+                    HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.BLAZE_SHOOT, player.getSoundSource());
                 }
             } else if (Mode.getMode(itemStack).equals(Mode.ON) && player instanceof ServerPlayer serverPlayer) {
                 if (serverPlayer.getFoodData().getFoodLevel() < 20) {

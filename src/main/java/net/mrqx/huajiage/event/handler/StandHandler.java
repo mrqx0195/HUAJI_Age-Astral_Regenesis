@@ -20,6 +20,7 @@ public class StandHandler {
                     if (data.isTriggered()) {
                         data.setTriggered(false);
                         data.setState(AbstractStand.STATE_DEFAULT);
+                        stand.onCancelTriggered(event.getEntity(), data);
                     } else {
                         data.setTriggered(true);
                         stand.onTriggered(event.getEntity(), data);

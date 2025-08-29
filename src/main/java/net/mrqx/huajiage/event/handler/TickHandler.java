@@ -16,13 +16,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.item.ItemSingularity;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
 import net.mrqx.huajiage.network.NetworkManager;
 import net.mrqx.huajiage.network.StandSyncMessage;
 import net.mrqx.huajiage.stand.AbstractStand;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 @Mod.EventBusSubscriber
 public class TickHandler {
@@ -53,7 +54,7 @@ public class TickHandler {
                         AbstractStand stand = AbstractStand.getStand(data.getStand());
                         if (stand != null && stand.getMaxLevel() >= data.getLevel() + 1) {
                             data.setLevel(Math.min(stand.getMaxLevel(), data.getLevel() + 1));
-                            HuajiSoundPlayer.playMovingSoundToClient(serverPlayer, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, serverPlayer.getSoundSource(), 2);
+                            HuaJiSoundPlayer.playMovingSoundToClient(serverPlayer, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, serverPlayer.getSoundSource(), 2);
                             if (serverPlayer.level() instanceof ServerLevel level) {
                                 Vec3 targetCoordinates = serverPlayer.getEyePosition();
                                 for (int d = 0; d < 360; d += 15) {
@@ -67,8 +68,8 @@ public class TickHandler {
                 } else {
                     persistentData.putInt(ItemSingularity.SINGULARITY_COUNT, count - 1);
                     serverPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data ->
-                            serverPlayer.hurt(HuaJiDamageSources.singularity(serverPlayer.level(), serverPlayer), data.getLevel()));
-                    serverPlayer.hurt(HuaJiDamageSources.singularity(serverPlayer.level(), serverPlayer), 1);
+                            serverPlayer.hurt(HuaJiDamageSources.simpleNullSource(serverPlayer.level(), HuaJiDamageTypes.SINGULARITY), data.getLevel()));
+                    serverPlayer.hurt(HuaJiDamageSources.simpleNullSource(serverPlayer.level(), HuaJiDamageTypes.SINGULARITY), 1);
                     if (!serverPlayer.isAlive()) {
                         persistentData.remove(ItemSingularity.SINGULARITY_COUNT);
                     }

@@ -11,7 +11,9 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -20,13 +22,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.init.HuaJiTiers;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
-import net.mrqx.huajiage.utils.HuajiSoundPlayer;
+import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 
 @Mod.EventBusSubscriber
 public class ItemHuajiStarSword extends SwordItem {
-    public ItemHuajiStarSword(Properties properties) {
-        super(HuaJiTiers.HUAJI_STAR.get(), 14, -1.4F, properties);
+    public ItemHuajiStarSword() {
+        super(HuaJiTiers.HUAJI_STAR.get(), 14, -1.4F, new Item.Properties().rarity(Rarity.RARE).durability(5400));
     }
 
     @Override
@@ -63,8 +65,8 @@ public class ItemHuajiStarSword extends SwordItem {
         if (Mode.getMode(stack).equals(Mode.ON)) {
             target.hurt(target.level().damageSources().fellOutOfWorld(), 10);
             target.setSecondsOnFire(5);
-            HuajiSoundPlayer.playMovingSoundToClient(target, HuaJiSoundEvents.WAVE1.get(), target.getSoundSource());
-            HuajiSoundPlayer.playMovingSoundToClient(target, HuaJiSoundEvents.ENERGY_HIT.get(), target.getSoundSource(), 1, 0.1F);
+            HuaJiSoundPlayer.playMovingSoundToClient(target, HuaJiSoundEvents.WAVE1.get(), target.getSoundSource());
+            HuaJiSoundPlayer.playMovingSoundToClient(target, HuaJiSoundEvents.ENERGY_HIT.get(), target.getSoundSource(), 1, 0.1F);
         } else {
             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 2));
             target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 2));
@@ -86,7 +88,7 @@ public class ItemHuajiStarSword extends SwordItem {
             Mode.changeMode(player.getMainHandItem());
             player.getCooldowns().addCooldown(HuaJiItems.HUAJI_STAR_SWORD.get(), 10);
             if (Mode.getMode(player.getMainHandItem()).equals(Mode.ON)) {
-                HuajiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.CHARGE.get(), player.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.CHARGE.get(), player.getSoundSource());
             }
         }
     }

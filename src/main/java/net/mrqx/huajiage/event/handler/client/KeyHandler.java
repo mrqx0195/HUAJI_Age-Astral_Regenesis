@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.event.client;
+package net.mrqx.huajiage.event.handler.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
