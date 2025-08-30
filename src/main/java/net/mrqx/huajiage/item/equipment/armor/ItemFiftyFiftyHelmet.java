@@ -36,7 +36,6 @@ import net.mrqx.huajiage.registy.HuaJiEffects;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.ItemTagHelper;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -80,7 +79,7 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltips.1",
                 Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC)
         ).withStyle(ChatFormatting.GRAY));
@@ -113,7 +112,7 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
     }
 
     @Override
-    public void inventoryTick(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull Entity pEntity, int pSlotId, boolean pIsSelected) {
+    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
         if (!pLevel.isClientSide
                 && pEntity instanceof Player player
@@ -162,10 +161,10 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void initializeClient(@NotNull Consumer<IClientItemExtensions> consumer) {
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             @Override
-            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
                 EntityModelSet models = Minecraft.getInstance().getEntityModels();
                 ModelPart root = models.bakeLayer(HuaJiLayers.FIFTY_FIFTY_HELMET);
                 return new ModelFiftyFiftyHelmet(root, itemStack);

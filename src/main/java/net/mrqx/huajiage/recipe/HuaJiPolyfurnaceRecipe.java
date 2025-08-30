@@ -12,7 +12,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiRecipes;
-import org.jetbrains.annotations.NotNull;
 
 public class HuaJiPolyfurnaceRecipe implements Recipe<Container> {
     protected final RecipeType<?> type;
@@ -38,12 +37,12 @@ public class HuaJiPolyfurnaceRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container pInv, @NotNull Level pLevel) {
+    public boolean matches(Container pInv, Level pLevel) {
         return this.ingredient.test(pInv.getItem(0));
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull Container pContainer, @NotNull RegistryAccess pRegistryAccess) {
+    public ItemStack assemble(Container pContainer, RegistryAccess pRegistryAccess) {
         return HuaJiItems.INFINITE_UNIVERSE_STAR.get().getDefaultInstance();
     }
 
@@ -53,7 +52,7 @@ public class HuaJiPolyfurnaceRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull NonNullList<Ingredient> getIngredients() {
+    public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> nonnulllist = NonNullList.create();
         nonnulllist.add(this.ingredient);
         return nonnulllist;
@@ -68,16 +67,16 @@ public class HuaJiPolyfurnaceRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess pRegistryAccess) {
+    public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
         return HuaJiItems.INFINITE_UNIVERSE_STAR.get().getDefaultInstance();
     }
 
-    public @NotNull ItemStack getResultItem() {
+    public ItemStack getResultItem() {
         return HuaJiItems.INFINITE_UNIVERSE_STAR.get().getDefaultInstance();
     }
 
     @Override
-    public @NotNull String getGroup() {
+    public String getGroup() {
         return this.group;
     }
 
@@ -86,17 +85,17 @@ public class HuaJiPolyfurnaceRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ResourceLocation getId() {
+    public ResourceLocation getId() {
         return this.id;
     }
 
     @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return HuaJiRecipes.HUAJI_BLENDER_RECIPE_SERIALIZER.get();
     }
 
     @Override
-    public @NotNull RecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return this.type;
     }
 }

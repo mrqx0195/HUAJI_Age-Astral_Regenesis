@@ -18,7 +18,6 @@ import net.mrqx.huajiage.compat.jei.DrawableComponent;
 import net.mrqx.huajiage.compat.jei.HuajiAgeJeiPlugin;
 import net.mrqx.huajiage.recipe.HuaJiPolyfurnaceRecipe;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
-import org.jetbrains.annotations.NotNull;
 
 public class HuaJiPolyfurnaceCategory extends AbstractRecipeCategory<HuaJiPolyfurnaceRecipe> {
     private final IDrawableStatic background;
@@ -48,13 +47,13 @@ public class HuaJiPolyfurnaceCategory extends AbstractRecipeCategory<HuaJiPolyfu
     }
 
     @Override
-    public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull HuaJiPolyfurnaceRecipe recipe, @NotNull IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, HuaJiPolyfurnaceRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 18, 19).setSlotName("polyfurnace_input").addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 78, 19).setSlotName("polyfurnace_output").addItemStack(recipe.getResultItem());
     }
 
     @Override
-    public void draw(@NotNull HuaJiPolyfurnaceRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(HuaJiPolyfurnaceRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
         background.draw(guiGraphics, 0, 0);
         animatedFlame.draw(guiGraphics, 7, 8);

@@ -10,7 +10,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
 public class HuaJiBlenderRecipeSerializer implements RecipeSerializer<HuaJiBlenderRecipe> {
     private final int defaultProcessTime;
@@ -26,7 +25,7 @@ public class HuaJiBlenderRecipeSerializer implements RecipeSerializer<HuaJiBlend
     }
 
     @Override
-    public @NotNull HuaJiBlenderRecipe fromJson(@NotNull ResourceLocation pRecipeId, @NotNull JsonObject pJson) {
+    public HuaJiBlenderRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
         String s = GsonHelper.getAsString(pJson, "group", "");
         JsonElement jsonelement = GsonHelper.isArrayNode(pJson, "ingredient") ? GsonHelper.getAsJsonArray(pJson, "ingredient") : GsonHelper.getAsJsonObject(pJson, "ingredient");
         Ingredient ingredient = Ingredient.fromJson(jsonelement, false);
@@ -47,7 +46,7 @@ public class HuaJiBlenderRecipeSerializer implements RecipeSerializer<HuaJiBlend
     }
 
     @Override
-    public HuaJiBlenderRecipe fromNetwork(@NotNull ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
+    public HuaJiBlenderRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
         String s = pBuffer.readUtf();
         Ingredient ingredient = Ingredient.fromNetwork(pBuffer);
         ItemStack itemstack = pBuffer.readItem();

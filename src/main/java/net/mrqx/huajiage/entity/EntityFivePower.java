@@ -21,7 +21,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.network.PlayMessages;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -75,7 +74,7 @@ public class EntityFivePower extends Fireball {
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
+    public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putFloat("damage", this.getDamage());
         pCompound.putBoolean("is_de", this.isDe());
@@ -91,7 +90,7 @@ public class EntityFivePower extends Fireball {
     }
 
     @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
+    public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         this.setDamage(pCompound.getFloat("damage"));
         this.setIsDe(pCompound.getBoolean("is_de"));
@@ -125,12 +124,12 @@ public class EntityFivePower extends Fireball {
     }
 
     @Override
-    public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
+    public boolean hurt(DamageSource pSource, float pAmount) {
         return false;
     }
 
     @Override
-    protected void onHitBlock(@NotNull BlockHitResult pResult) {
+    protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
         if (!hasExploded && !this.level().isClientSide) {
             explode();
@@ -139,7 +138,7 @@ public class EntityFivePower extends Fireball {
     }
 
     @Override
-    protected void onHitEntity(@NotNull EntityHitResult pResult) {
+    protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
         if (!(pResult.getEntity() instanceof EntityFivePower) && !pResult.getEntity().equals(this.getOwner()) && !this.level().isClientSide) {
             if (!hasExploded) {

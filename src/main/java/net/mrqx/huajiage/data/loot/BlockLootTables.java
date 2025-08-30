@@ -7,7 +7,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -30,7 +29,7 @@ public class BlockLootTables extends BlockLootSubProvider {
     }
 
     @Override
-    protected @NotNull Iterable<Block> getKnownBlocks() {
+    protected Iterable<Block> getKnownBlocks() {
         return ForgeRegistries.BLOCKS.getValues().stream()
                 .filter(block -> HuaJiAgeMod.MODID.equals(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getNamespace()))
                 .collect(Collectors.toSet());

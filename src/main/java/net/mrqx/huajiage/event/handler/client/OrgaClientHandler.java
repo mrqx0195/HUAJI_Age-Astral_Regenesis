@@ -11,11 +11,11 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
-import net.mrqx.huajiage.item.ItemOrgaRequiem;
 import net.mrqx.huajiage.item.equipment.armor.ItemOrgaArmor;
+import net.mrqx.huajiage.item.stand.ItemOrgaRequiem;
 import net.mrqx.huajiage.registy.HuaJiEffects;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.stand.StandOrgaRequiem;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
@@ -37,8 +37,8 @@ public class OrgaClientHandler {
     @SubscribeEvent
     public static void onRenderPlayerEvent(RenderPlayerEvent.Pre event) {
         event.getEntity().getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
-            if (stand instanceof StandOrgaRequiem && data.isTriggered() && data.getState().equals(AbstractStand.STATE_FLY)) {
+            Stand stand = Stand.getStand(data.getStand());
+            if (stand instanceof StandOrgaRequiem && data.isTriggered() && data.getState().equals(Stand.STATE_FLY)) {
                 event.setCanceled(true);
             }
         });
@@ -63,7 +63,7 @@ public class OrgaClientHandler {
         if (target instanceof Player player) {
             boolean hasOrga = ItemOrgaArmor.hasAllOrgaArmor(player)
                     || player.getCapability(StandDataCapabilityProvider.STAND_DATA)
-                    .map(data -> AbstractStand.getStand(data.getStand()) instanceof StandOrgaRequiem).orElse(false);
+                    .map(data -> Stand.getStand(data.getStand()) instanceof StandOrgaRequiem).orElse(false);
 
             if (hasOrga && player.hasEffect(HuaJiEffects.REQUIEM.get())) {
                 boolean hasRequiemItem = ItemOrgaRequiem.hasOrgaRequiem(player);

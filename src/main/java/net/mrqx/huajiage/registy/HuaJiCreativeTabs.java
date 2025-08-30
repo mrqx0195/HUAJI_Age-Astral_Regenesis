@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrqx.huajiage.HuaJiAgeMod;
-import net.mrqx.huajiage.item.ItemDisc;
+import net.mrqx.huajiage.item.stand.ItemDisc;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 
 @SuppressWarnings("unused")

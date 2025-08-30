@@ -2,7 +2,7 @@ package net.mrqx.huajiage.capability.stand;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.Scheduler;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +29,7 @@ public interface IStandData {
         data.setMaxEnergy(nbt.getLong("maxEnergy"));
     }
 
-    void setStand(AbstractStand stand);
+    void setStand(Stand stand);
 
     void setStand(@Nullable ResourceLocation stand);
 

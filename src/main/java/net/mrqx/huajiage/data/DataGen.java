@@ -8,6 +8,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.data.loot.HuaJiLootTables;
 import net.mrqx.huajiage.data.model.HuaJiBlockStateGenerator;
 import net.mrqx.huajiage.data.model.HuaJiItemModelGenerator;
@@ -15,6 +16,7 @@ import net.mrqx.huajiage.data.sound.HuaJiSoundDefinitions;
 import net.mrqx.huajiage.data.tag.HuaJiBlockTagsProvider;
 import net.mrqx.huajiage.data.tag.HuaJiDamageTypeTagGenerator;
 import net.mrqx.huajiage.data.tag.HuaJiItemTagsProvider;
+import net.mrqx.huajiage.data.tag.stand.StandTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -36,6 +38,7 @@ public class DataGen {
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new HuaJiItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new HuaJiDamageTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new StandTagsProvider(packOutput, lookupProvider, HuaJiAgeMod.MODID, existingFileHelper));
         generator.addProvider(event.includeServer(), new HuaJiLootTables(packOutput));
         generator.addProvider(event.includeServer(), new HuaJiRecipeGenerator(packOutput));
 

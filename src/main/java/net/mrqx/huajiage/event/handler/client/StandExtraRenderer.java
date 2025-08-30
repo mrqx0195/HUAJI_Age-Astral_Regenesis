@@ -17,10 +17,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.client.layer.LayerStand;
 import net.mrqx.huajiage.config.HuaJiClientConfig;
-import net.mrqx.huajiage.item.ItemDisc;
+import net.mrqx.huajiage.item.stand.ItemDisc;
 import net.mrqx.huajiage.mixin.AccessorLivingEntityRenderer;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 
 @OnlyIn(Dist.CLIENT)
@@ -33,7 +33,7 @@ public class StandExtraRenderer {
         if (minecraft.player != null) {
             LocalPlayer player = minecraft.player;
             player.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-                AbstractStand stand = AbstractStand.getStand(data.getStand());
+                Stand stand = Stand.getStand(data.getStand());
                 if (stand != null) {
                     if (Minecraft.renderNames()) {
                         if (minecraft.screen == null) {
@@ -79,7 +79,7 @@ public class StandExtraRenderer {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             player.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-                AbstractStand stand = AbstractStand.getStand(data.getStand());
+                Stand stand = Stand.getStand(data.getStand());
                 if (stand != null) {
                     stand.getModelLocations().get(data.getState());
                     if (Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player) instanceof LivingEntityRenderer<?, ?> renderer) {

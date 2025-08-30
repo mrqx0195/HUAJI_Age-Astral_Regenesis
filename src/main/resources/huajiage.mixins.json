@@ -3,7 +3,8 @@
   "minVersion": "0.8",
   "mixins": [
     "MixinAbstractArrow",
-    "MixinOreFeature"
+    "MixinOreFeature",
+    "MixinTimeStopUtils"
   ],
   "package": "net.mrqx.huajiage.mixin",
   "refmap": "huajiage.refmap.json",

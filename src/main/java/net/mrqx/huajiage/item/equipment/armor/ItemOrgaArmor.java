@@ -18,7 +18,6 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.HuaJiArmorModel;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -35,10 +34,10 @@ public abstract class ItemOrgaArmor extends ArmorItem {
     }
 
     @Override
-    public void initializeClient(@NotNull Consumer<IClientItemExtensions> consumer) {
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             @Override
-            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
                 EntityModelSet models = Minecraft.getInstance().getEntityModels();
                 ModelPart root = models.bakeLayer(HuaJiLayers.ORGA_HAIR);
                 return new HuaJiArmorModel(root);
@@ -48,7 +47,7 @@ public abstract class ItemOrgaArmor extends ArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("item.huajiage.orga.tooltips.1").withStyle(ChatFormatting.AQUA, ChatFormatting.BOLD));
         Player player = Minecraft.getInstance().player;
         if (player != null) {

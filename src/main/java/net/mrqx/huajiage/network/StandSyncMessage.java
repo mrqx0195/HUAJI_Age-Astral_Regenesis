@@ -6,7 +6,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -37,7 +37,7 @@ public class StandSyncMessage {
         if (ctx.get().getDirection() != NetworkDirection.PLAY_TO_CLIENT) {
             return;
         }
-        BiConsumer<CompoundTag, Integer> handler = DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> AbstractStand::setClientTag);
+        BiConsumer<CompoundTag, Integer> handler = DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> Stand::setClientTag);
 
         if (handler != null) {
             ctx.get().enqueueWork(() -> handler.accept(standSyncMessage.data, standSyncMessage.entityId));

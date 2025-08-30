@@ -19,8 +19,8 @@ import net.mrqx.huajiage.network.NetworkManager;
 import net.mrqx.huajiage.network.TimeStopEffectMessage;
 
 public class StandUtils {
-    public static void standTimeStop(boolean isStop, LivingEntity source, IStandData data, boolean force, int time, int castTime) {
-        data.getScheduler().schedule("StandTimeStop", castTime, (living, manager, gameTime) -> {
+    public static void castStandTimeStop(boolean isStop, LivingEntity source, IStandData data, boolean force, int time, int castTime) {
+        if (castTime <= 0) {
             StandUtils.standTimeStop(isStop, source, force, time);
             MinecraftServer server = source.getServer();
             if (server != null) {
@@ -31,50 +31,60 @@ public class StandUtils {
                 message.entityId = source.getId();
                 server.getPlayerList().getPlayers().forEach(serverPlayer -> NetworkManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), message));
             }
-        });
+        } else {
+            data.getScheduler().schedule("StandTimeStop", castTime, (living, manager, gameTime) -> {
+                StandUtils.standTimeStop(isStop, source, force, time);
+                MinecraftServer server = source.getServer();
+                if (server != null) {
+                    TimeStopEffectMessage message = new TimeStopEffectMessage();
+                    message.level = source.level().dimension().location();
+                    message.effectStartTick = source.level().getGameTime();
+                    message.effectDuration = time;
+                    message.entityId = source.getId();
+                    server.getPlayerList().getPlayers().forEach(serverPlayer -> NetworkManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), message));
+                }
+            });
+        }
     }
 
     /**
      * @see TimeStopUtils#use(boolean, LivingEntity, boolean, int)
      */
-    public static void standTimeStop(boolean z, LivingEntity source, boolean force, int time) {
-        if (z && !CommonConfig.enableTS) {
+    public static void standTimeStop(boolean isTimeStop, LivingEntity source, boolean force, int time) {
+        if (isTimeStop && !CommonConfig.enableTS) {
             EndingLibrary.LOGGER.warn("Time Stop Settings is disabled in the common-config.");
         } else if (source.level().isClientSide) {
             throw new RuntimeException("time stop should be called on server side.");
-        } else {
-            if (!source.level().isClientSide) {
-                if (!z) {
-                    for (LivingEntity living : source.level().getEntitiesOfClass(LivingEntity.class, (new AABB(new BlockPos(0, 0, 0))).inflate(3.0E7F))) {
-                        if (living != source && TimeStopEntityData.getTimeStopCount(living) > 0 && living.isAlive()) {
-                            if (force) {
-                                TimeStopEntityData.setTimeStopCount(source, 0);
-                            }
-
-                            return;
+        } else if (source.level() instanceof ServerLevel serverLevel) {
+            if (!isTimeStop) {
+                for (LivingEntity living : source.level().getEntitiesOfClass(LivingEntity.class, (new AABB(new BlockPos(0, 0, 0))).inflate(3.0E7F))) {
+                    if (living != source && TimeStopEntityData.getTimeStopCount(living) > 0 && living.isAlive()) {
+                        if (force) {
+                            TimeStopEntityData.setTimeStopCount(source, 0);
                         }
+
+                        return;
                     }
-                }
-
-                TimeStopUtils.isTimeStop = z;
-                if (!TimeStopUtils.isTimeStop) {
-                    TimeStopSavedData.readOrCreate(((ServerLevel) source.level()).getServer()).removeTsDimension(source.level().dimension());
-                }
-
-                if (TimeStopUtils.isTimeStop) {
-                    PacketHandler.sendToAll(new TSDimensionSynchedPacket(new ResourceLocation(""), source.level().dimension().location()));
-                } else {
-                    PacketHandler.sendToAll(new TSDimensionSynchedPacket(source.level().dimension().location(), new ResourceLocation("")));
-                }
-
-                if (z) {
-                    TimeStopSavedData.readOrCreate(((ServerLevel) source.level()).getServer()).addTsDimension(source.level().dimension());
-                    TimeStopEntityData.setTimeStopCount(source, Math.max(TimeStopEntityData.getTimeStopCount(source), time));
-                } else if (force) {
-                    TimeStopEntityData.setTimeStopCount(source, 0);
                 }
             }
 
+            TimeStopUtils.isTimeStop = isTimeStop;
+            if (!TimeStopUtils.isTimeStop) {
+                TimeStopSavedData.readOrCreate(serverLevel.getServer()).removeTsDimension(source.level().dimension());
+            }
+
+            if (TimeStopUtils.isTimeStop) {
+                PacketHandler.sendToAll(new TSDimensionSynchedPacket(new ResourceLocation(""), source.level().dimension().location()));
+            } else {
+                PacketHandler.sendToAll(new TSDimensionSynchedPacket(source.level().dimension().location(), new ResourceLocation("")));
+            }
+
+            if (isTimeStop) {
+                TimeStopSavedData.readOrCreate(serverLevel.getServer()).addTsDimension(source.level().dimension());
+                TimeStopEntityData.setTimeStopCount(source, Math.max(TimeStopEntityData.getTimeStopCount(source), time));
+            } else if (force) {
+                TimeStopEntityData.setTimeStopCount(source, 0);
+            }
         }
     }
 }

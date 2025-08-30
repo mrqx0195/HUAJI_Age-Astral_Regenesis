@@ -16,7 +16,6 @@ import net.minecraftforge.network.PlayMessages;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.init.HuaJiTickets;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
-import org.jetbrains.annotations.NotNull;
 
 public class EntityHeroArrow extends AbstractArrow implements ItemSupplier {
     private boolean hasExploded = false;
@@ -39,17 +38,17 @@ public class EntityHeroArrow extends AbstractArrow implements ItemSupplier {
     }
 
     @Override
-    protected @NotNull ItemStack getPickupItem() {
+    protected ItemStack getPickupItem() {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public @NotNull ItemStack getItem() {
+    public ItemStack getItem() {
         return ItemStack.EMPTY;
     }
 
     @Override
-    protected void onHit(@NotNull HitResult pResult) {
+    protected void onHit(HitResult pResult) {
         super.onHit(pResult);
         if (!hasExploded && !this.level().isClientSide) {
             this.explode();

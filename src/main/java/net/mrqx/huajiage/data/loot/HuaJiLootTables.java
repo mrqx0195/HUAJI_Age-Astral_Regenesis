@@ -10,7 +10,6 @@ import net.minecraft.world.level.storage.loot.LootDataType;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,14 +21,14 @@ public class HuaJiLootTables extends LootTableProvider {
     }
 
     @Override
-    public @NotNull List<SubProviderEntry> getTables() {
+    public List<SubProviderEntry> getTables() {
         return ImmutableList.of(
                 new SubProviderEntry(BlockLootTables::new, LootContextParamSets.BLOCK)
         );
     }
 
     @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, @NotNull ValidationContext validationContext) {
+    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationContext) {
         map.forEach((name, loo) -> loo.validate(validationContext.setParams(loo.getParamSet()).enterElement("{" + name + "}", new LootDataId<>(LootDataType.TABLE, name))));
     }
 }

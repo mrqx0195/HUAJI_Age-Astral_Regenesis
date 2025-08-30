@@ -41,9 +41,9 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class StandOrgaRequiem extends AbstractStand {
+public class StandOrgaRequiem extends Stand {
     public static final BiConsumer<LivingEntity, IStandData> ORGA_REQUIEM_TICK = (living, data) -> {
-        AbstractStand stand = AbstractStand.getStand(data.getStand());
+        Stand stand = Stand.getStand(data.getStand());
         if (stand != null && !living.level().isClientSide && STATE_FLY.equals(data.getState())) {
             living.level().getEntitiesOfClass(Entity.class, living.getBoundingBox().inflate(stand.getDistance(living, data) / 25)).forEach(entity -> {
                 if (HuaJiMathHelper.getDegreeXZ(living.getLookAngle(), HuaJiMathHelper.getVectorEntityEye(living, entity)) > 45) {
@@ -79,7 +79,7 @@ public class StandOrgaRequiem extends AbstractStand {
     };
 
     public static final BiConsumer<LivingEntity, IStandData> ORGA_REQUIEM_DO_SKILL = (living, data) -> {
-        AbstractStand stand = AbstractStand.getStand(data.getStand());
+        Stand stand = Stand.getStand(data.getStand());
         if (living instanceof Player player) {
             ItemStack itemStack = HuaJiItems.ORGA_HAIR_KNIFE.get().getDefaultInstance();
             itemStack.setCount(16);

@@ -21,7 +21,7 @@ public class HuaJiSoundDefinitions extends SoundDefinitionsProvider {
     protected void addSoundWithSubTitle(SoundEvent soundEvent) {
         this.add(soundEvent, SoundDefinition.definition()
                 .subtitle("subtitles." + soundEvent.getLocation().toString().replace(':', '.'))
-                .with(SoundDefinition.Sound.sound(soundEvent.getLocation(), SoundDefinition.SoundType.SOUND))
+                .with(SoundDefinition.Sound.sound(soundEvent.getLocation(), SoundDefinition.SoundType.SOUND).preload(true))
         );
     }
 }

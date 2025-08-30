@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.event.handler;
 
+import com.mega.endinglib.util.time.TimeStopUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -34,27 +35,31 @@ public class FoodEventHandler {
             living.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                 int time = 100;
                 int castTime;
-                SoundEvent soundEvent;
-                switch (living.level().random.nextInt(4)) {
-                    case 1 -> {
-                        soundEvent = HuaJiSoundEvents.THE_WORLD_1.get();
-                        castTime = 40;
+                if (TimeStopUtils.isTimeStop && TimeStopUtils.andSameDimension(living.level())) {
+                    castTime = 0;
+                } else {
+                    SoundEvent soundEvent;
+                    switch (living.level().random.nextInt(4)) {
+                        case 1 -> {
+                            soundEvent = HuaJiSoundEvents.THE_WORLD_1.get();
+                            castTime = 40;
+                        }
+                        case 2 -> {
+                            soundEvent = HuaJiSoundEvents.THE_WORLD_2.get();
+                            castTime = 80;
+                        }
+                        case 3 -> {
+                            soundEvent = HuaJiSoundEvents.THE_WORLD_3.get();
+                            castTime = 40;
+                        }
+                        default -> {
+                            soundEvent = HuaJiSoundEvents.THE_WORLD.get();
+                            castTime = 20;
+                        }
                     }
-                    case 2 -> {
-                        soundEvent = HuaJiSoundEvents.THE_WORLD_2.get();
-                        castTime = 80;
-                    }
-                    case 3 -> {
-                        soundEvent = HuaJiSoundEvents.THE_WORLD_3.get();
-                        castTime = 40;
-                    }
-                    default -> {
-                        soundEvent = HuaJiSoundEvents.THE_WORLD.get();
-                        castTime = 20;
-                    }
+                    HuaJiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
                 }
-                HuaJiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
-                StandUtils.standTimeStop(true, living, data, true, time, castTime);
+                StandUtils.castStandTimeStop(true, living, data, true, time, castTime);
                 living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + 10, 4, false, false));
                 living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + 10, 4, false, false));
                 living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + 10, 4, false, false));

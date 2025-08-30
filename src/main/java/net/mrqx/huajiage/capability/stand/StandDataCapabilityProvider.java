@@ -8,7 +8,6 @@ import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class StandDataCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
@@ -18,7 +17,7 @@ public class StandDataCapabilityProvider implements ICapabilityProvider, INBTSer
     protected final LazyOptional<IStandData> state = LazyOptional.of(StandData::new);
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         return STAND_DATA.orEmpty(cap, state);
     }
 

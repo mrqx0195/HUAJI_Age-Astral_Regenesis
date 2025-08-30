@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.item;
+package net.mrqx.huajiage.item.stand;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -14,15 +14,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.item.BaseItem;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -42,7 +44,8 @@ public class ItemSingularity extends BaseItem {
     private static final String[] SINGULARITY_COLORS = {"§c", "§6", "§e", "§a", "§9", "§b",};
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         int index = 1;
         while (true) {
             String key = this.getDescriptionId() + ".tooltips." + index;
@@ -62,17 +65,18 @@ public class ItemSingularity extends BaseItem {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         pPlayer.startUsingItem(pUsedHand);
         AtomicBoolean flag = new AtomicBoolean(false);
         pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand != null && stand.getMaxLevel() >= data.getLevel() + 1) {
                 CompoundTag persistentData = pPlayer.getPersistentData();
                 if (!persistentData.contains(SINGULARITY_COUNT, Tag.TAG_INT) || persistentData.getInt(SINGULARITY_COUNT) <= 0) {
                     persistentData.putInt(SINGULARITY_COUNT, 200);
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 200));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 9));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 9));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 5));

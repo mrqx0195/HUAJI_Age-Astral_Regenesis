@@ -20,7 +20,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.network.PlayMessages;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -80,7 +79,7 @@ public class EntityItemBullet extends Fireball {
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
+    public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putFloat("damage", this.getDamage());
         pCompound.putBoolean("huge", this.isSplashHuge());
@@ -96,7 +95,7 @@ public class EntityItemBullet extends Fireball {
     }
 
     @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
+    public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         this.setDamage(pCompound.getFloat("damage"));
         this.setSplashHuge(pCompound.getBoolean("huge"));
@@ -147,17 +146,17 @@ public class EntityItemBullet extends Fireball {
     }
 
     @Override
-    protected @NotNull ParticleOptions getTrailParticle() {
+    protected ParticleOptions getTrailParticle() {
         return ParticleTypes.ELECTRIC_SPARK;
     }
 
     @Override
-    public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
+    public boolean hurt(DamageSource pSource, float pAmount) {
         return false;
     }
 
     @Override
-    protected void onHitBlock(@NotNull BlockHitResult pResult) {
+    protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
         if (!hasExploded) {
             explode();
@@ -166,7 +165,7 @@ public class EntityItemBullet extends Fireball {
     }
 
     @Override
-    protected void onHitEntity(@NotNull EntityHitResult pResult) {
+    protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
         if (!(pResult.getEntity() instanceof EntityItemBullet) && !pResult.getEntity().equals(this.getOwner())) {
             if (!hasExploded) {

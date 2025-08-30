@@ -15,8 +15,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.mrqx.huajiage.item.ItemDisc;
-import org.jetbrains.annotations.NotNull;
+import net.mrqx.huajiage.item.stand.ItemDisc;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -39,7 +38,7 @@ public class ModelDisc implements BakedModel {
         this.original = original;
         this.overrides = new ItemOverrides() {
             @Override
-            public BakedModel resolve(@NotNull BakedModel original, @NotNull ItemStack stack, @Nullable ClientLevel world, @Nullable LivingEntity entity, int seed) {
+            public BakedModel resolve(BakedModel original, ItemStack stack, @Nullable ClientLevel world, @Nullable LivingEntity entity, int seed) {
                 if (stack.hasTag()) {
                     ResourceLocation resourceLocation = getModelFromItemStack(stack);
                     ModelManager manager = Minecraft.getInstance().getModelManager();
@@ -70,12 +69,12 @@ public class ModelDisc implements BakedModel {
     }
 
     @Override
-    public @NotNull ItemOverrides getOverrides() {
+    public ItemOverrides getOverrides() {
         return this.overrides;
     }
 
     @Override
-    public @NotNull List<BakedQuad> getQuads(@Nullable BlockState pState, @Nullable Direction pDirection, @NotNull RandomSource pRandom) {
+    public List<BakedQuad> getQuads(@Nullable BlockState pState, @Nullable Direction pDirection, RandomSource pRandom) {
         return this.original.getQuads(pState, pDirection, pRandom);
     }
 
@@ -100,12 +99,12 @@ public class ModelDisc implements BakedModel {
     }
 
     @Override
-    public @NotNull TextureAtlasSprite getParticleIcon() {
+    public TextureAtlasSprite getParticleIcon() {
         return this.original.getParticleIcon();
     }
 
     @Override
-    public @NotNull ItemTransforms getTransforms() {
+    public ItemTransforms getTransforms() {
         return this.original.getTransforms();
     }
 }

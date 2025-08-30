@@ -7,7 +7,6 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -18,7 +17,7 @@ public class HuaJiBlockTagsProvider extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NotNull Provider pProvider) {
+    protected void addTags(HolderLookup.Provider pProvider) {
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(HuaJiBlocks.HUAJI_ORE.get())
                 .add(HuaJiBlocks.HUAJI_STAR_BLOCK.get())

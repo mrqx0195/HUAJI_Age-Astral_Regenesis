@@ -11,8 +11,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.mrqx.huajiage.capability.stand.IStandData;
-import net.mrqx.huajiage.stand.AbstractStand;
-import org.jetbrains.annotations.NotNull;
+import net.mrqx.huajiage.stand.Stand;
 
 /**
  * Made with Blockbench 4.12.6
@@ -140,7 +139,7 @@ public class ModelHierophantGreenIdle extends ModelStandBase {
     }
 
     @Override
-    public void setupAnim(@NotNull Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    public void setupAnim(Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         float off = (float) Math.cos(0.1 * pAgeInTicks);
 
         this.resetPoses();
@@ -170,13 +169,13 @@ public class ModelHierophantGreenIdle extends ModelStandBase {
     }
 
     @Override
-    public void renderToBuffer(@NotNull PoseStack pPoseStack, @NotNull VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
+    public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
         head.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
         body.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
     }
 
     @Override
-    public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, IStandData data, AbstractStand stand) {
+    public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, IStandData data, Stand stand) {
         strips.render(pPoseStack, pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState()))), 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1F);
     }
 }

@@ -14,7 +14,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
 import net.mrqx.huajiage.mixin.AccessorModelPart;
-import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class ModelFiftyFiftyHelmet extends HuaJiArmorModel {
@@ -26,7 +25,7 @@ public class ModelFiftyFiftyHelmet extends HuaJiArmorModel {
     }
 
     @Override
-    public void renderToBuffer(@NotNull PoseStack pPoseStack, @NotNull VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
+    public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
         pPoseStack.pushPose();
         if (this.young) {
             float f = 1.5F / 2.0F;

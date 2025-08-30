@@ -31,10 +31,10 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class StandHierophantGreen extends AbstractStand {
+public class StandHierophantGreen extends Stand {
     public static final BiConsumer<LivingEntity, IStandData> HIEROPHANT_GREEN_TICK = (living, data) -> {
         if (living.level().getGameTime() % 5 == 0 && !living.level().isClientSide && STATE_DEFAULT.equals(data.getState())) {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand != null) {
                 EntityItemBullet bullet = new EntityItemBullet(living, 0, 0, 0, living.level());
                 bullet.setDelay(0L);
@@ -50,7 +50,7 @@ public class StandHierophantGreen extends AbstractStand {
     };
 
     public static final BiConsumer<LivingEntity, IStandData> HIEROPHANT_GREEN_DO_SKILL = (living, data) -> {
-        AbstractStand stand = AbstractStand.getStand(data.getStand());
+        Stand stand = Stand.getStand(data.getStand());
         if (stand != null && !living.level().isClientSide) {
             Vec3 look = living.getLookAngle();
             List<LivingEntity> entities = living.level().getEntitiesOfClass(LivingEntity.class, living.getBoundingBox().inflate(30));

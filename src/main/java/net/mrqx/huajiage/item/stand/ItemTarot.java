@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.item;
+package net.mrqx.huajiage.item.stand;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -14,10 +14,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.item.BaseItem;
 import net.mrqx.huajiage.registy.HuaJiStands;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.ItemTagHelper;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class ItemTarot extends BaseItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
         ResourceLocation resourceLocation = getStandResourceLocation(stack);
         if (resourceLocation != null && !"huajiage:null".equals(resourceLocation.toString())) {
@@ -45,14 +45,14 @@ public class ItemTarot extends BaseItem {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         pPlayer.startUsingItem(pUsedHand);
         if (!pPlayer.level().isClientSide) {
-            AbstractStand stand = getStand(itemStack);
+            Stand stand = getStand(itemStack);
             if (stand != null) {
                 pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-                    AbstractStand stand1 = AbstractStand.getStand(data.getStand());
+                    Stand stand1 = Stand.getStand(data.getStand());
                     if (stand1 == null) {
                         data.setStand(stand);
                         data.setLevel(ItemTagHelper.getInt(itemStack, TAROT_STAND_LEVEL_KEY, 0));
@@ -66,7 +66,7 @@ public class ItemTarot extends BaseItem {
                 });
             } else {
                 pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-                    AbstractStand stand1 = AbstractStand.getStand(data.getStand());
+                    Stand stand1 = Stand.getStand(data.getStand());
                     if (stand1 != null) {
                         ItemTagHelper.setString(itemStack, TAROT_STAND_KEY, data.getStand().toString());
                         ItemTagHelper.setInt(itemStack, TAROT_STAND_LEVEL_KEY, data.getLevel());
@@ -82,7 +82,7 @@ public class ItemTarot extends BaseItem {
     }
 
     @Nullable
-    public static AbstractStand getStand(ItemStack stack) {
+    public static Stand getStand(ItemStack stack) {
         return HuaJiStands.REGISTRY.get().getValue(ResourceLocation.tryParse(ItemTagHelper.getString(stack, TAROT_STAND_KEY, "huajiage:null")));
     }
 

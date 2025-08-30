@@ -7,7 +7,6 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.TntBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -19,12 +18,12 @@ public class BlockHuaJiBomb extends TntBlock {
     }
 
     @Override
-    public void wasExploded(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Explosion pExplosion) {
+    public void wasExploded(Level pLevel, BlockPos pPos, Explosion pExplosion) {
         explode(pLevel, pPos, null, new ArrayList<>());
     }
 
     @Override
-    public void onCaughtFire(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
+    public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
         explode(world, pos, igniter, new ArrayList<>());
     }
 

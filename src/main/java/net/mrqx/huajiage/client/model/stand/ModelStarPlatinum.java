@@ -15,8 +15,7 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.registy.HuaJiEffects;
-import net.mrqx.huajiage.stand.AbstractStand;
-import org.jetbrains.annotations.NotNull;
+import net.mrqx.huajiage.stand.Stand;
 
 /**
  * Made with Blockbench 4.12.6
@@ -143,7 +142,7 @@ public class ModelStarPlatinum extends ModelStandBase {
     }
 
     @Override
-    public void setupAnim(@NotNull Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    public void setupAnim(Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         float off = (float) Math.cos(0.1 * pAgeInTicks);
 
         this.resetPoses();
@@ -157,7 +156,7 @@ public class ModelStarPlatinum extends ModelStandBase {
         head.yRot = pNetHeadYaw * 0.017453292F;
 
         pEntity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand != null && pEntity instanceof LivingEntity living) {
                 float speed = stand.getSpeed(living, data);
                 additionalAnim(pAgeInTicks, pNetHeadYaw, pHeadPitch, speed * 4 / 3);
@@ -223,7 +222,7 @@ public class ModelStarPlatinum extends ModelStandBase {
     }
 
     @Override
-    public void renderToBuffer(@NotNull PoseStack pPoseStack, @NotNull VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
+    public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
         head.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
         body.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
         left_hands.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
@@ -233,7 +232,7 @@ public class ModelStarPlatinum extends ModelStandBase {
     }
 
     @Override
-    public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, IStandData data, AbstractStand stand) {
+    public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, IStandData data, Stand stand) {
         pPoseStack.pushPose();
         pPoseStack.scale(1.3F, 1.3F, 1.3F);
         VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
@@ -243,7 +242,7 @@ public class ModelStarPlatinum extends ModelStandBase {
     }
 
     @Override
-    public void renderHand(RenderHandEvent event, LocalPlayer player, AbstractStand stand, IStandData data) {
+    public void renderHand(RenderHandEvent event, LocalPlayer player, Stand stand, IStandData data) {
         PoseStack poseStack = event.getPoseStack();
         VertexConsumer vertexConsumer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
         poseStack.translate(0, -1, -0.75);

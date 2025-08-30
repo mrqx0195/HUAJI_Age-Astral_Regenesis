@@ -15,7 +15,6 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
-import org.jetbrains.annotations.NotNull;
 
 public class ItemLordCore extends BaseItem {
     public ItemLordCore() {
@@ -23,7 +22,7 @@ public class ItemLordCore extends BaseItem {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         if (ItemFiftyFiftyHelmet.hasFiftyFiftyHelmet(pPlayer)) {
             pPlayer.startUsingItem(pUsedHand);
@@ -34,7 +33,7 @@ public class ItemLordCore extends BaseItem {
     }
 
     @Override
-    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull LivingEntity pLivingEntity) {
+    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
         super.finishUsingItem(pStack, pLevel, pLivingEntity);
         if (pLivingEntity instanceof Player player && ItemFiftyFiftyHelmet.hasFiftyFiftyHelmet(player)) {
             ItemFiftyFiftyHelmet.setFiftyFiftyActive(player, true);
@@ -54,12 +53,12 @@ public class ItemLordCore extends BaseItem {
     }
 
     @Override
-    public int getUseDuration(@NotNull ItemStack pStack) {
+    public int getUseDuration(ItemStack pStack) {
         return 29;
     }
 
     @Override
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack pStack) {
+    public UseAnim getUseAnimation(ItemStack pStack) {
         return UseAnim.BOW;
     }
 }

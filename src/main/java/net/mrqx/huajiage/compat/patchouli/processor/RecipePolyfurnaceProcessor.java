@@ -6,7 +6,6 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.recipe.HuaJiPolyfurnaceRecipe;
-import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.api.IVariableProvider;
@@ -28,7 +27,7 @@ public class RecipePolyfurnaceProcessor implements IComponentProcessor {
     }
 
     @Override
-    public @NotNull IVariable process(Level level, String key) {
+    public IVariable process(Level level, String key) {
         switch (key) {
             case "item_in" -> {
                 return IVariable.from(recipe.getIngredients().get(0).getItems()[0]);

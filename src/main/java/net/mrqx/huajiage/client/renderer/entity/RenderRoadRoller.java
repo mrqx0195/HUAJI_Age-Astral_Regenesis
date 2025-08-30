@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.mrqx.huajiage.entity.EntityRoadRoller;
-import org.jetbrains.annotations.NotNull;
 
 public class RenderRoadRoller extends EntityRenderer<EntityRoadRoller> {
     private final ItemRenderer itemRenderer;
@@ -23,12 +22,12 @@ public class RenderRoadRoller extends EntityRenderer<EntityRoadRoller> {
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull ResourceLocation getTextureLocation(@NotNull EntityRoadRoller pEntity) {
+    public ResourceLocation getTextureLocation(EntityRoadRoller pEntity) {
         return TextureAtlas.LOCATION_BLOCKS;
     }
 
     @Override
-    public void render(@NotNull EntityRoadRoller pEntity, float pEntityYaw, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(EntityRoadRoller pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         pPoseStack.pushPose();
         pPoseStack.mulPose(Axis.YP.rotationDegrees(pEntity.getYRot()));
         pPoseStack.mulPose(Axis.XP.rotationDegrees(180F));

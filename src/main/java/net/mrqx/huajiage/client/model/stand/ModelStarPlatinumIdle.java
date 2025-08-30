@@ -11,8 +11,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.mrqx.huajiage.capability.stand.IStandData;
-import net.mrqx.huajiage.stand.AbstractStand;
-import org.jetbrains.annotations.NotNull;
+import net.mrqx.huajiage.stand.Stand;
 
 /**
  * Made with Blockbench 4.12.6
@@ -103,7 +102,7 @@ public class ModelStarPlatinumIdle extends ModelStandBase {
     }
 
     @Override
-    public void setupAnim(@NotNull Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    public void setupAnim(Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         float off = (float) Math.cos(0.1 * pAgeInTicks);
 
         this.resetPoses();
@@ -136,7 +135,7 @@ public class ModelStarPlatinumIdle extends ModelStandBase {
     }
 
     @Override
-    public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, IStandData data, AbstractStand stand) {
+    public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, IStandData data, Stand stand) {
         float off = (float) (Math.cos(0.15 * pAgeInTicks)) + 1;
         pPoseStack.pushPose();
         pPoseStack.scale(6F / 5, 6F / 5, 6F / 5);

@@ -7,7 +7,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.mrqx.huajiage.block.blockentity.HuaJiBlenderBlockEntity;
 import net.mrqx.huajiage.block.blockentity.HuaJiPolyfurnaceBlockEntity;
-import org.jetbrains.annotations.NotNull;
 
 public class HuaJiResultSlot extends Slot {
     private final Player player;
@@ -19,12 +18,12 @@ public class HuaJiResultSlot extends Slot {
     }
 
     @Override
-    public boolean mayPlace(@NotNull ItemStack pStack) {
+    public boolean mayPlace(ItemStack pStack) {
         return false;
     }
 
     @Override
-    public @NotNull ItemStack remove(int pAmount) {
+    public ItemStack remove(int pAmount) {
         if (this.hasItem()) {
             this.removeCount += Math.min(pAmount, this.getItem().getCount());
         }
@@ -33,13 +32,13 @@ public class HuaJiResultSlot extends Slot {
     }
 
     @Override
-    public void onTake(@NotNull Player pPlayer, @NotNull ItemStack pStack) {
+    public void onTake(Player pPlayer, ItemStack pStack) {
         this.checkTakeAchievements(pStack);
         super.onTake(pPlayer, pStack);
     }
 
     @Override
-    protected void onQuickCraft(@NotNull ItemStack pStack, int pAmount) {
+    protected void onQuickCraft(ItemStack pStack, int pAmount) {
         this.removeCount += pAmount;
         this.checkTakeAchievements(pStack);
     }

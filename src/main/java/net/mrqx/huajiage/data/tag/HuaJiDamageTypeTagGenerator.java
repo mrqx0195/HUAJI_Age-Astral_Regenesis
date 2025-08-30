@@ -9,7 +9,6 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.data.HuaJiDamageTypes;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -20,7 +19,7 @@ public class HuaJiDamageTypeTagGenerator extends TagsProvider<DamageType> {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NotNull Provider pProvider) {
+    protected void addTags(HolderLookup.Provider pProvider) {
         tag(DamageTypeTags.BYPASSES_ARMOR)
                 .add(HuaJiDamageTypes.ANTIMATTER)
                 .add(HuaJiDamageTypes.KE_DAI_JIN_LA)

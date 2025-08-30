@@ -23,7 +23,6 @@ import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -62,11 +61,11 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
     @Override
     @Nullable
     public ItemStack getPickedResult(HitResult target) {
-        return HuaJiItems.ROAD_ROLLER.get().getDefaultInstance();
+        return this.getItem();
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
+    public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putFloat("damage", this.getDamage());
         pCompound.putLong("life", this.getLife());
@@ -75,12 +74,12 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DAMAGE, 5F);
+        this.entityData.define(DAMAGE, 10F);
         this.entityData.define(LIFE, 200L);
     }
 
     @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
+    public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         this.setDamage(pCompound.getFloat("damage"));
         this.setLife(pCompound.getLong("life"));
@@ -96,10 +95,10 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
     }
 
     @Override
-    public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
+    public boolean hurt(DamageSource pSource, float pAmount) {
         this.setDamage(this.getDamage() + pAmount);
         if (this.level() instanceof ServerLevel serverLevel) {
-            if (pSource.getEntity() != null) {
+            if (pSource.getEntity() != null && this.getItem().is(HuaJiItems.ROAD_ROLLER.get())) {
                 if (hitTime == 0) {
                     HuaJiSoundPlayer.playMovingSoundToClient(pSource.getEntity(), HuaJiSoundEvents.DIO_FLAG.get(), pSource.getEntity().getSoundSource(), 2F);
                 } else if (hitTime % 4 == 0) {
@@ -107,13 +106,13 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
                 }
             }
             hitTime++;
-            serverLevel.sendParticles(ParticleTypes.LAVA, getX(), getY(), getZ(), 5, 1, 1, 1, 1);
+            serverLevel.sendParticles(ParticleTypes.LAVA, getX(), getY(), getZ(), 1, 1, 1, 1, 1);
         }
         return false;
     }
 
     @Override
-    protected void onHitBlock(@NotNull BlockHitResult pResult) {
+    protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
         if (!hasExploded) {
             explode();
@@ -122,7 +121,7 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
     }
 
     @Override
-    protected void onHitEntity(@NotNull EntityHitResult pResult) {
+    protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
         if (!(pResult.getEntity() instanceof EntityItemBullet) && !pResult.getEntity().equals(this.getOwner())) {
             if (!hasExploded) {

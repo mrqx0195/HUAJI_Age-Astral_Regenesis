@@ -12,7 +12,6 @@ import net.mrqx.huajiage.block.blockentity.HuaJiPolyfurnaceBlockEntity;
 import net.mrqx.huajiage.registy.HuaJiMenus;
 import net.mrqx.huajiage.registy.HuaJiRecipes;
 import net.mrqx.huajiage.utils.HuaJiUtils;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class HuaJiPolyfurnaceMenu extends AbstractContainerMenu {
@@ -104,12 +103,12 @@ public class HuaJiPolyfurnaceMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean stillValid(@NotNull Player pPlayer) {
+    public boolean stillValid(Player pPlayer) {
         return this.container.stillValid(pPlayer);
     }
 
     @Override
-    public @NotNull ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(pIndex);
         if (slot.hasItem()) {

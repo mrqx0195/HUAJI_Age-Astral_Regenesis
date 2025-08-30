@@ -46,7 +46,6 @@ import net.mrqx.huajiage.registy.HuaJiBlocks;
 import net.mrqx.huajiage.registy.HuaJiMenus;
 import net.mrqx.huajiage.registy.HuaJiRecipes;
 import net.mrqx.huajiage.utils.HuaJiUtils;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -133,7 +132,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    public void load(@NotNull CompoundTag pTag) {
+    public void load(CompoundTag pTag) {
         super.load(pTag);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(pTag, this.items);
@@ -152,7 +151,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag pTag) {
+    protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.putInt("BurnTime", this.energy);
         pTag.putInt("ProcessTime", this.processingProgress);
@@ -167,12 +166,12 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    protected @NotNull Component getDefaultName() {
+    protected Component getDefaultName() {
         return Component.translatable("container.huaji_polyfurnace");
     }
 
     @Override
-    protected @NotNull AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory) {
+    protected AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory) {
         return new HuaJiPolyfurnaceMenu(HuaJiMenus.HUAJI_POLYFURNACE.get(), pContainerId, pInventory, this, this.dataAccess, Objects.requireNonNull(this.level), this.worldPosition);
     }
 
@@ -321,7 +320,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    public int @NotNull [] getSlotsForFace(@NotNull Direction pSide) {
+    public int[] getSlotsForFace(Direction pSide) {
         if (pSide == Direction.DOWN) {
             return SLOTS_FOR_DOWN;
         } else {
@@ -330,12 +329,12 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    public boolean canPlaceItemThroughFace(int pIndex, @NotNull ItemStack pItemStack, @Nullable Direction pDirection) {
+    public boolean canPlaceItemThroughFace(int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
         return this.canPlaceItem(pIndex, pItemStack);
     }
 
     @Override
-    public boolean canTakeItemThroughFace(int pIndex, @NotNull ItemStack pStack, @NotNull Direction pDirection) {
+    public boolean canTakeItemThroughFace(int pIndex, ItemStack pStack, Direction pDirection) {
         return true;
     }
 
@@ -356,17 +355,17 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    public @NotNull ItemStack getItem(int pIndex) {
+    public ItemStack getItem(int pIndex) {
         return this.items.get(pIndex);
     }
 
     @Override
-    public @NotNull ItemStack removeItem(int pIndex, int pCount) {
+    public ItemStack removeItem(int pIndex, int pCount) {
         return ContainerHelper.removeItem(this.items, pIndex, pCount);
     }
 
     @Override
-    public @NotNull ItemStack removeItemNoUpdate(int pIndex) {
+    public ItemStack removeItemNoUpdate(int pIndex) {
         return ContainerHelper.takeItem(this.items, pIndex);
     }
 
@@ -388,12 +387,12 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    public boolean stillValid(@NotNull Player pPlayer) {
+    public boolean stillValid(Player pPlayer) {
         return Container.stillValidBlockEntity(this, pPlayer);
     }
 
     @Override
-    public boolean canPlaceItem(int pIndex, @NotNull ItemStack pStack) {
+    public boolean canPlaceItem(int pIndex, ItemStack pStack) {
         if (pIndex == SLOT_RESULT) {
             return false;
         } else if (pIndex != SLOT_FUEL) {
@@ -424,7 +423,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    public void awardUsedRecipes(@NotNull Player pPlayer, @NotNull List<ItemStack> pItems) {
+    public void awardUsedRecipes(Player pPlayer, List<ItemStack> pItems) {
     }
 
     public void awardUsedRecipesAndPopExperience(ServerPlayer pPlayer) {
@@ -466,7 +465,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    public void fillStackedContents(@NotNull StackedContents pHelper) {
+    public void fillStackedContents(StackedContents pHelper) {
         for (ItemStack itemstack : this.items) {
             pHelper.accountStack(itemstack);
         }
@@ -490,7 +489,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     });
 
     @Override
-    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction facing) {
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
         if (capability == ForgeCapabilities.ITEM_HANDLER && facing != null && !this.remove) {
             return switch (facing) {
                 case UP -> handlers[0].cast();

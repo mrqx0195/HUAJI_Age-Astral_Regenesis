@@ -11,7 +11,6 @@ import net.mrqx.huajiage.block.blockentity.HuaJiBlenderBlockEntity;
 import net.mrqx.huajiage.registy.HuaJiMenus;
 import net.mrqx.huajiage.registy.HuaJiRecipes;
 import net.mrqx.huajiage.utils.HuaJiUtils;
-import org.jetbrains.annotations.NotNull;
 
 public class HuaJiBlenderMenu extends AbstractContainerMenu {
     protected final Level level;
@@ -87,12 +86,12 @@ public class HuaJiBlenderMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean stillValid(@NotNull Player pPlayer) {
+    public boolean stillValid(Player pPlayer) {
         return this.container.stillValid(pPlayer);
     }
 
     @Override
-    public @NotNull ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(pIndex);
         if (slot.hasItem()) {

@@ -2,7 +2,7 @@ package net.mrqx.huajiage.capability.stand;
 
 import net.minecraft.resources.ResourceLocation;
 import net.mrqx.huajiage.registy.HuaJiStands;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.Scheduler;
 import org.jetbrains.annotations.Nullable;
 
@@ -11,15 +11,15 @@ public class StandData implements IStandData {
     private ResourceLocation stand = null;
     private int level = 0;
     private boolean triggered = false;
-    private String state = AbstractStand.STATE_DEFAULT;
+    private String state = Stand.STATE_DEFAULT;
     private long energy = 0;
     private long maxEnergy = 0;
-    Scheduler scheduler = new Scheduler();
+    final Scheduler scheduler = new Scheduler();
 
     @Override
-    public void setStand(AbstractStand stand) {
+    public void setStand(Stand stand) {
         setStand(HuaJiStands.REGISTRY.get().getKey(stand));
-        setState(AbstractStand.STATE_DEFAULT);
+        setState(Stand.STATE_DEFAULT);
         setLevel(0);
         setTriggered(false);
     }

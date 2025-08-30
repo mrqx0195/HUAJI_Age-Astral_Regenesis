@@ -14,7 +14,6 @@ import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.recipe.HuaJiBlenderRecipeBuilder;
 import net.mrqx.huajiage.recipe.HuaJiPolyfurnaceRecipeBuilder;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -26,13 +25,13 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
+    protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
         vanillaRecipes(pWriter);
         blenderRecipes(pWriter);
         polyfurnaceRecipes(pWriter);
     }
 
-    private static void blenderRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
+    private static void blenderRecipes(Consumer<FinishedRecipe> pWriter) {
         HuaJiBlenderRecipeBuilder.create(HuaJiItems.HUAJI.get(), Ingredient.of(HuaJiItems.ANTI_HUAJI.get()), 1, 100).save(pWriter);
         HuaJiBlenderRecipeBuilder.create(HuaJiItems.ANTI_HUAJI.get(), Ingredient.of(HuaJiItems.HUAJI.get()), 1, 100).save(pWriter);
         HuaJiBlenderRecipeBuilder.create(HuaJiItems.HUAJI_INGOT.get(), Ingredient.of(Tags.Items.STORAGE_BLOCKS_GOLD), 1, 100).save(pWriter);
@@ -43,14 +42,14 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
         HuaJiBlenderRecipeBuilder.create(HuaJiItems.WAVE_CRYSTAL.get(), Ingredient.of(Items.SEA_LANTERN), 1, 100).save(pWriter);
     }
 
-    private static void polyfurnaceRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
+    private static void polyfurnaceRecipes(Consumer<FinishedRecipe> pWriter) {
         HuaJiPolyfurnaceRecipeBuilder.create(Ingredient.of(HuaJiItems.HUAJI_STAR.get()), 10, 200, 1).save(pWriter);
         HuaJiPolyfurnaceRecipeBuilder.create(Ingredient.of(HuaJiItems.HUAJI_STAR_BLOCK.get()), 90, 200, 9).save(pWriter);
         HuaJiPolyfurnaceRecipeBuilder.create(Ingredient.of(HuaJiItems.AIRSPACE_STAR.get()), 730, 200, 73).save(pWriter);
         HuaJiPolyfurnaceRecipeBuilder.create(Ingredient.of(HuaJiItems.AIRSPACE_STAR_BLOCK.get()), 6570, 200, 657).save(pWriter);
     }
 
-    private static void vanillaRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
+    private static void vanillaRecipes(Consumer<FinishedRecipe> pWriter) {
         oreSmelting(pWriter, ImmutableList.of(HuaJiItems.HUAJI_FRAGMENT.get()), RecipeCategory.MISC, HuaJiItems.HUAJI.get(), 1.0F, 200, "huaji");
         oreBlasting(pWriter, ImmutableList.of(HuaJiItems.HUAJI_FRAGMENT.get()), RecipeCategory.MISC, HuaJiItems.HUAJI.get(), 1.0F, 200, "huaji");
         oreSmelting(pWriter, ImmutableList.of(HuaJiItems.HUAJI_ORE.get()), RecipeCategory.MISC, HuaJiItems.HUAJI.get(), 1.0F, 200, "huaji");

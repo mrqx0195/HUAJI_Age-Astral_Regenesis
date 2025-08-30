@@ -30,7 +30,6 @@ import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -44,7 +43,7 @@ public class ItemHeroBow extends BowItem {
     }
 
     @Override
-    public @NotNull String getDescriptionId(@NotNull ItemStack pStack) {
+    public String getDescriptionId(ItemStack pStack) {
         if (Mode.getMode(pStack).equals(Mode.ON)) {
             return super.getDescriptionId(pStack) + ".on";
         }
@@ -53,7 +52,7 @@ public class ItemHeroBow extends BowItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         int index = 1;
         while (true) {
             String key = this.getDescriptionId() + ".tooltips." + index;
@@ -81,14 +80,14 @@ public class ItemHeroBow extends BowItem {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, Player pPlayer, @NotNull InteractionHand pHand) {
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         pPlayer.startUsingItem(pHand);
         return InteractionResultHolder.consume(itemstack);
     }
 
     @Override
-    public void releaseUsing(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull LivingEntity pEntityLiving, int pTimeLeft) {
+    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
         if (pEntityLiving instanceof Player player) {
             ItemStack itemstack = player.getProjectile(pStack);
 

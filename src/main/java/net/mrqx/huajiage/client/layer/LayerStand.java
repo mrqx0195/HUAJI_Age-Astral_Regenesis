@@ -21,8 +21,7 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
 import net.mrqx.huajiage.registy.HuaJiStands;
-import net.mrqx.huajiage.stand.AbstractStand;
-import org.jetbrains.annotations.NotNull;
+import net.mrqx.huajiage.stand.Stand;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,13 +40,13 @@ public class LayerStand<T extends LivingEntity, M extends EntityModel<T>> extend
     }
 
     @Override
-    public void render(@NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, @NotNull T pLivingEntity, float pLimbSwing,
+    public void render(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, T pLivingEntity, float pLimbSwing,
                        float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         if (Minecraft.getInstance().player != null) {
             Minecraft.getInstance().player.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(playerData -> {
-                if (AbstractStand.getStand(playerData.getStand()) != null) {
+                if (Stand.getStand(playerData.getStand()) != null) {
                     pLivingEntity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-                        AbstractStand stand = AbstractStand.getStand(data.getStand());
+                        Stand stand = Stand.getStand(data.getStand());
                         if (stand != null && data.isTriggered()) {
                             VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
                             ModelStandBase model = modelMap.get(stand.getModelLocations().get(data.getState()));
@@ -74,7 +73,7 @@ public class LayerStand<T extends LivingEntity, M extends EntityModel<T>> extend
 
     public void renderHand(RenderHandEvent event, LocalPlayer player) {
         player.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand != null && data.isTriggered()) {
                 PoseStack poseStack = event.getPoseStack();
                 ModelStandBase model = modelMap.get(stand.getModelLocations().get(data.getState()));

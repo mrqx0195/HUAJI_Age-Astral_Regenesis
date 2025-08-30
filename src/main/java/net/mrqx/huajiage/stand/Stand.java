@@ -31,8 +31,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public abstract class AbstractStand {
-    public static final ResourceKey<Registry<AbstractStand>> REGISTRY_KEY = ResourceKey.createRegistryKey(HuaJiAgeMod.prefix("stands"));
+public abstract class Stand {
+    public static final ResourceKey<Registry<Stand>> REGISTRY_KEY = ResourceKey.createRegistryKey(HuaJiAgeMod.prefix("stands"));
     public static final String STATE_DEFAULT = HuaJiAgeMod.MODID + "." + "default";
     public static final String STATE_IDLE = HuaJiAgeMod.MODID + "." + "idle";
     public static final String STATE_FLY = HuaJiAgeMod.MODID + "." + "fly";
@@ -40,7 +40,7 @@ public abstract class AbstractStand {
     protected final BiConsumer<LivingEntity, IStandData> tick;
     protected final BiConsumer<LivingEntity, IStandData> doSkill;
 
-    protected AbstractStand(BiConsumer<LivingEntity, IStandData> tick, BiConsumer<LivingEntity, IStandData> doSkill) {
+    protected Stand(BiConsumer<LivingEntity, IStandData> tick, BiConsumer<LivingEntity, IStandData> doSkill) {
         this.tick = tick;
         this.doSkill = doSkill;
     }
@@ -89,7 +89,7 @@ public abstract class AbstractStand {
     }
 
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
-        data.setState(AbstractStand.STATE_DEFAULT);
+        data.setState(Stand.STATE_DEFAULT);
         livingEntity.sendSystemMessage(Component.translatable(this.getDescriptionId() + ".triggered"));
         float cost = (float) data.getEnergy() / HuaJiCommonConfig.STAND_TRIGGER_COST.get();
         if (cost > 1) {
@@ -148,7 +148,7 @@ public abstract class AbstractStand {
     }
 
     @Nullable
-    public static AbstractStand getStand(@Nullable ResourceLocation resourceLocation) {
+    public static Stand getStand(@Nullable ResourceLocation resourceLocation) {
         return resourceLocation == null ? null : HuaJiStands.REGISTRY.get().getValue(resourceLocation);
     }
 

@@ -17,12 +17,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.data.HuaJiDamageTypes;
-import net.mrqx.huajiage.item.ItemOrgaRequiem;
 import net.mrqx.huajiage.item.equipment.armor.ItemOrgaArmor;
+import net.mrqx.huajiage.item.stand.ItemOrgaRequiem;
 import net.mrqx.huajiage.registy.HuaJiEffects;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.stand.StandOrgaRequiem;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
@@ -40,7 +40,6 @@ import java.util.UUID;
 public class OrgaEventHandler {
     private static final String PLAYER_UUID = HuaJiAgeMod.MODID + "." + "orgaPlayerUuid";
     private static final String REQUIEM = HuaJiAgeMod.MODID + "." + "orgaRequiem";
-    private static final String ORGA_SING = HuaJiAgeMod.MODID + "." + "orgaSing";
     public static final int HOPE_FLOWER_TIME = 136 * 20;
 
     @SubscribeEvent
@@ -91,7 +90,7 @@ public class OrgaEventHandler {
         }
         if (entity instanceof LivingEntity living && living.hasEffect(HuaJiEffects.REQUIEM.get()) && target instanceof LivingEntity) {
             HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.ORGA_REQUIEM_HIT.get());
-            target.hurt(HuaJiDamageSources.simple(living, HuaJiDamageTypes.REQUIEM), 5);
+            target.hurt(HuaJiDamageSources.simpleNullSource(living.level(), HuaJiDamageTypes.REQUIEM), 5);
             target.getPersistentData().putInt(REQUIEM, 60);
             target.getPersistentData().putString(PLAYER_UUID, living.getStringUUID());
         }
@@ -116,6 +115,7 @@ public class OrgaEventHandler {
                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 844, 9));
                 player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 844, 9));
                 player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 844));
+                player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 844));
             }
             if (hopeDuration < 20) {
                 player.hurt(HuaJiDamageSources.simpleNullSource(player.level(), HuaJiDamageTypes.HOPE_FLOWER), Integer.MAX_VALUE);
@@ -125,7 +125,7 @@ public class OrgaEventHandler {
         if (effectRequiem != null) {
             boolean hasOrga = ItemOrgaArmor.hasAllOrgaArmor(player)
                     || player.getCapability(StandDataCapabilityProvider.STAND_DATA)
-                    .map(data -> AbstractStand.getStand(data.getStand()) instanceof StandOrgaRequiem).orElse(false);
+                    .map(data -> Stand.getStand(data.getStand()) instanceof StandOrgaRequiem).orElse(false);
             if (hasOrga) {
                 boolean hasRequiemItem = ItemOrgaRequiem.hasOrgaRequiem(player);
                 boolean hasStandPotion = player.hasEffect(HuaJiEffects.STAND_POWER.get());
@@ -201,7 +201,7 @@ public class OrgaEventHandler {
 
     private static void handleStandOrgaUpdate(LivingEntity entity) {
         entity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand instanceof StandOrgaRequiem) {
                 if (entity.hasEffect(HuaJiEffects.HOPE_FLOWER.get()) && data.isTriggered()) {
                     entity.removeEffect(HuaJiEffects.HOPE_FLOWER.get());
@@ -231,7 +231,7 @@ public class OrgaEventHandler {
 
     private static void handleStandOrgaDeath(LivingDeathEvent event, LivingEntity entity) {
         entity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand instanceof StandOrgaRequiem && data.isTriggered()) {
                 event.setCanceled(true);
                 entity.setHealth(1f);
@@ -260,7 +260,7 @@ public class OrgaEventHandler {
 
     private static void handleStandOrgaHurt(LivingHurtEvent event, LivingEntity entity, @Nullable Entity attacker) {
         entity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand instanceof StandOrgaRequiem && data.isTriggered()) {
                 if (attacker instanceof LivingEntity living && attacker != entity) {
                     attacker.hurt(HuaJiDamageSources.simple(entity, HuaJiDamageTypes.REQUIEM), event.getAmount() * 2);
@@ -291,7 +291,6 @@ public class OrgaEventHandler {
             }
             if (duration >= 1876 && duration <= 1876 + 17) {
                 living.sendSystemMessage(Component.translatable("message.huajiage.orga.sing.p" + String.format("%02d", duration - 1876)));
-                HuaJiAgeMod.LOGGER.debug("{}", duration);
             }
         }
     }

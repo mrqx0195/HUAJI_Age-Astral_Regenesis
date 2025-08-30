@@ -3,7 +3,6 @@ package net.mrqx.huajiage.block.inventory;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 public class HuaJiBlenderFuelSlot extends Slot {
     private final HuaJiBlenderMenu menu;
@@ -14,7 +13,7 @@ public class HuaJiBlenderFuelSlot extends Slot {
     }
 
     @Override
-    public boolean mayPlace(@NotNull ItemStack pStack) {
+    public boolean mayPlace(ItemStack pStack) {
         return this.menu.isFuel(pStack);
     }
 }

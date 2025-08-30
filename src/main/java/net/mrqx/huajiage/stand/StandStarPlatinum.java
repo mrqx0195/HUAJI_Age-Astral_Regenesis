@@ -40,9 +40,9 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class StandStarPlatinum extends AbstractStand {
+public class StandStarPlatinum extends Stand {
     public static final BiConsumer<LivingEntity, IStandData> STAR_PLATINUM_TICK = (living, data) -> {
-        AbstractStand stand = AbstractStand.getStand(data.getStand());
+        Stand stand = Stand.getStand(data.getStand());
         if (stand instanceof StandStarPlatinum starPlatinum && !living.level().isClientSide && STATE_DEFAULT.equals(data.getState())) {
             living.level().getEntitiesOfClass(Entity.class, living.getBoundingBox().inflate(stand.getDistance(living, data))).forEach(entity -> {
                 if (HuaJiMathHelper.getDegreeXZ(living.getLookAngle(), HuaJiMathHelper.getVectorEntityEye(living, entity)) > 120) {
@@ -85,11 +85,17 @@ public class StandStarPlatinum extends AbstractStand {
 
     public static final BiConsumer<LivingEntity, IStandData> STAR_PLATINUM_DO_SKILL = (living, data) -> {
         int time = (data.getLevel() > 1 ? 5 : 2) * 20;
-        HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAR_PLATINUM_THE_WORLD_1.get(), living.getSoundSource(), 5);
-        StandUtils.standTimeStop(true, living, data, true, time, 40);
-        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + 40, 1, false, false));
-        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + 40, 2, false, false));
-        living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + 40, 1, false, false));
+        int castTime;
+        if (TimeStopUtils.isTimeStop && TimeStopUtils.andSameDimension(living.level())) {
+            castTime = 0;
+        } else {
+            castTime = 40;
+            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAR_PLATINUM_THE_WORLD_1.get(), living.getSoundSource(), 5);
+        }
+        StandUtils.castStandTimeStop(true, living, data, true, time, castTime);
+        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + castTime, 1, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + castTime, 2, false, false));
+        living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + castTime, 1, false, false));
     };
 
     public int counter = 0;

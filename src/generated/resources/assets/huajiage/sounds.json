@@ -1,391 +1,586 @@
 {
   "bike_ring_ear0": {
     "sounds": [
-      "huajiage:bike_ring_ear0"
+      {
+        "name": "huajiage:bike_ring_ear0",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.bike_ring_ear0"
   },
   "charge": {
     "sounds": [
-      "huajiage:charge"
+      {
+        "name": "huajiage:charge",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.charge"
   },
   "dio_flag": {
     "sounds": [
-      "huajiage:dio_flag"
+      {
+        "name": "huajiage:dio_flag",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.dio_flag"
   },
   "dio_hit": {
     "sounds": [
-      "huajiage:dio_hit"
+      {
+        "name": "huajiage:dio_hit",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.dio_hit"
   },
   "energyhit": {
     "sounds": [
-      "huajiage:energyhit"
+      {
+        "name": "huajiage:energyhit",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.energyhit"
   },
   "exglutenbur_flavor1": {
     "sounds": [
-      "huajiage:exglutenbur_flavor1"
+      {
+        "name": "huajiage:exglutenbur_flavor1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.exglutenbur_flavor1"
   },
   "exglutenbur_flavor2": {
     "sounds": [
-      "huajiage:exglutenbur_flavor2"
+      {
+        "name": "huajiage:exglutenbur_flavor2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.exglutenbur_flavor2"
   },
   "exglutenbur_flavor3": {
     "sounds": [
-      "huajiage:exglutenbur_flavor3"
+      {
+        "name": "huajiage:exglutenbur_flavor3",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.exglutenbur_flavor3"
   },
   "exglutenbur_hit": {
     "sounds": [
-      "huajiage:exglutenbur_hit"
+      {
+        "name": "huajiage:exglutenbur_hit",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.exglutenbur_hit"
   },
   "noise_furnace": {
     "sounds": [
-      "huajiage:noise_furnace"
+      {
+        "name": "huajiage:noise_furnace",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.noise_furnace"
   },
   "orga_flower": {
     "sounds": [
-      "huajiage:orga_flower"
+      {
+        "name": "huajiage:orga_flower",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_flower"
   },
   "orga_requiem": {
     "sounds": [
-      "huajiage:orga_requiem"
+      {
+        "name": "huajiage:orga_requiem",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_requiem"
   },
   "orga_requiem_1": {
     "sounds": [
-      "huajiage:orga_requiem_1"
+      {
+        "name": "huajiage:orga_requiem_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_requiem_1"
   },
   "orga_requiem_2": {
     "sounds": [
-      "huajiage:orga_requiem_2"
+      {
+        "name": "huajiage:orga_requiem_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_requiem_2"
   },
   "orga_requiem_3": {
     "sounds": [
-      "huajiage:orga_requiem_3"
+      {
+        "name": "huajiage:orga_requiem_3",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_requiem_3"
   },
   "orga_requiem_gold": {
     "sounds": [
-      "huajiage:orga_requiem_gold"
+      {
+        "name": "huajiage:orga_requiem_gold",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_requiem_gold"
   },
   "orga_requiem_hit": {
     "sounds": [
-      "huajiage:orga_requiem_hit"
+      {
+        "name": "huajiage:orga_requiem_hit",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_requiem_hit"
   },
   "orga_requiem_protect": {
     "sounds": [
-      "huajiage:orga_requiem_protect"
+      {
+        "name": "huajiage:orga_requiem_protect",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_requiem_protect"
   },
   "orga_rider": {
     "sounds": [
-      "huajiage:orga_rider"
+      {
+        "name": "huajiage:orga_rider",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_rider"
   },
   "orga_shot": {
     "sounds": [
-      "huajiage:orga_shot"
+      {
+        "name": "huajiage:orga_shot",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.orga_shot"
   },
   "reo_cherry": {
     "sounds": [
-      "huajiage:reo_cherry"
+      {
+        "name": "huajiage:reo_cherry",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.reo_cherry"
   },
   "road_roller": {
     "sounds": [
-      "huajiage:road_roller"
+      {
+        "name": "huajiage:road_roller",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.road_roller"
   },
   "sheer_heart_attack_target": {
     "sounds": [
-      "huajiage:sheer_heart_attack_target"
+      {
+        "name": "huajiage:sheer_heart_attack_target",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.sheer_heart_attack_target"
   },
   "stand_crazy_diamond_1": {
     "sounds": [
-      "huajiage:stand_crazy_diamond_1"
+      {
+        "name": "huajiage:stand_crazy_diamond_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_crazy_diamond_1"
   },
   "stand_crazy_diamond_2": {
     "sounds": [
-      "huajiage:stand_crazy_diamond_2"
+      {
+        "name": "huajiage:stand_crazy_diamond_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_crazy_diamond_2"
   },
   "stand_crazy_diamond_3": {
     "sounds": [
-      "huajiage:stand_crazy_diamond_3"
+      {
+        "name": "huajiage:stand_crazy_diamond_3",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_crazy_diamond_3"
   },
   "stand_crazy_diamond_4": {
     "sounds": [
-      "huajiage:stand_crazy_diamond_4"
+      {
+        "name": "huajiage:stand_crazy_diamond_4",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_crazy_diamond_4"
   },
   "stand_crazy_diamond_repair_1": {
     "sounds": [
-      "huajiage:stand_crazy_diamond_repair_1"
+      {
+        "name": "huajiage:stand_crazy_diamond_repair_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_crazy_diamond_repair_1"
   },
   "stand_crazy_diamond_repair_2": {
     "sounds": [
-      "huajiage:stand_crazy_diamond_repair_2"
+      {
+        "name": "huajiage:stand_crazy_diamond_repair_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_crazy_diamond_repair_2"
   },
   "stand_hermit_purple_1": {
     "sounds": [
-      "huajiage:stand_hermit_purple_1"
+      {
+        "name": "huajiage:stand_hermit_purple_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_hermit_purple_1"
   },
   "stand_hermit_purple_2": {
     "sounds": [
-      "huajiage:stand_hermit_purple_2"
+      {
+        "name": "huajiage:stand_hermit_purple_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_hermit_purple_2"
   },
   "stand_hermit_purple_camera_broken": {
     "sounds": [
-      "huajiage:stand_hermit_purple_camera_broken"
+      {
+        "name": "huajiage:stand_hermit_purple_camera_broken",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_hermit_purple_camera_broken"
   },
   "stand_hermit_purple_wave": {
     "sounds": [
-      "huajiage:stand_hermit_purple_wave"
+      {
+        "name": "huajiage:stand_hermit_purple_wave",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_hermit_purple_wave"
   },
   "stand_hierophant_green_emerald_splash": {
     "sounds": [
-      "huajiage:stand_hierophant_green_emerald_splash"
+      {
+        "name": "huajiage:stand_hierophant_green_emerald_splash",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_hierophant_green_emerald_splash"
   },
   "stand_hierophant_green_shoot_1": {
     "sounds": [
-      "huajiage:stand_hierophant_green_shoot_1"
+      {
+        "name": "huajiage:stand_hierophant_green_shoot_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_hierophant_green_shoot_1"
   },
   "stand_hierophant_green_shoot_2": {
     "sounds": [
-      "huajiage:stand_hierophant_green_shoot_2"
+      {
+        "name": "huajiage:stand_hierophant_green_shoot_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_hierophant_green_shoot_2"
   },
   "stand_killer_queen_show_1": {
     "sounds": [
-      "huajiage:stand_killer_queen_show_1"
+      {
+        "name": "huajiage:stand_killer_queen_show_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_killer_queen_show_1"
   },
   "stand_killer_queen_show_2": {
     "sounds": [
-      "huajiage:stand_killer_queen_show_2"
+      {
+        "name": "huajiage:stand_killer_queen_show_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_killer_queen_show_2"
   },
   "stand_killer_queen_trigger": {
     "sounds": [
-      "huajiage:stand_killer_queen_trigger"
+      {
+        "name": "huajiage:stand_killer_queen_trigger",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_killer_queen_trigger"
   },
   "stand_star_platinum_hit_1": {
     "sounds": [
-      "huajiage:stand_star_platinum_hit_1"
+      {
+        "name": "huajiage:stand_star_platinum_hit_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_star_platinum_hit_1"
   },
   "stand_star_platinum_hit_2": {
     "sounds": [
-      "huajiage:stand_star_platinum_hit_2"
+      {
+        "name": "huajiage:stand_star_platinum_hit_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_star_platinum_hit_2"
   },
   "stand_star_platinum_hit_3": {
     "sounds": [
-      "huajiage:stand_star_platinum_hit_3"
+      {
+        "name": "huajiage:stand_star_platinum_hit_3",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_star_platinum_hit_3"
   },
   "stand_star_platinum_hit_4": {
     "sounds": [
-      "huajiage:stand_star_platinum_hit_4"
+      {
+        "name": "huajiage:stand_star_platinum_hit_4",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_star_platinum_hit_4"
   },
   "stand_star_platinum_hit_5": {
     "sounds": [
-      "huajiage:stand_star_platinum_hit_5"
+      {
+        "name": "huajiage:stand_star_platinum_hit_5",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_star_platinum_hit_5"
   },
   "stand_star_platinum_repeat_1": {
     "sounds": [
-      "huajiage:stand_star_platinum_repeat_1"
+      {
+        "name": "huajiage:stand_star_platinum_repeat_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_star_platinum_repeat_1"
   },
   "stand_the_world_hit_1": {
     "sounds": [
-      "huajiage:stand_the_world_hit_1"
+      {
+        "name": "huajiage:stand_the_world_hit_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_the_world_hit_1"
   },
   "stand_the_world_hit_2": {
     "sounds": [
-      "huajiage:stand_the_world_hit_2"
+      {
+        "name": "huajiage:stand_the_world_hit_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_the_world_hit_2"
   },
   "stand_white_snake_1": {
     "sounds": [
-      "huajiage:stand_white_snake_1"
+      {
+        "name": "huajiage:stand_white_snake_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_white_snake_1"
   },
   "stand_white_snake_2": {
     "sounds": [
-      "huajiage:stand_white_snake_2"
+      {
+        "name": "huajiage:stand_white_snake_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_white_snake_2"
   },
   "stand_white_snake_3": {
     "sounds": [
-      "huajiage:stand_white_snake_3"
+      {
+        "name": "huajiage:stand_white_snake_3",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_white_snake_3"
   },
   "stand_white_snake_hit_1": {
     "sounds": [
-      "huajiage:stand_white_snake_hit_1"
+      {
+        "name": "huajiage:stand_white_snake_hit_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_white_snake_hit_1"
   },
   "stand_white_snake_hit_2": {
     "sounds": [
-      "huajiage:stand_white_snake_hit_2"
+      {
+        "name": "huajiage:stand_white_snake_hit_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_white_snake_hit_2"
   },
   "stand_white_snake_hit_3": {
     "sounds": [
-      "huajiage:stand_white_snake_hit_3"
+      {
+        "name": "huajiage:stand_white_snake_hit_3",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_white_snake_hit_3"
   },
   "stand_white_snake_make_disc_1": {
     "sounds": [
-      "huajiage:stand_white_snake_make_disc_1"
+      {
+        "name": "huajiage:stand_white_snake_make_disc_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_white_snake_make_disc_1"
   },
   "stand_white_snake_make_disc_2": {
     "sounds": [
-      "huajiage:stand_white_snake_make_disc_2"
+      {
+        "name": "huajiage:stand_white_snake_make_disc_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stand_white_snake_make_disc_2"
   },
   "star_platinum_the_world_1": {
     "sounds": [
-      "huajiage:star_platinum_the_world_1"
+      {
+        "name": "huajiage:star_platinum_the_world_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.star_platinum_the_world_1"
   },
   "stella": {
     "sounds": [
-      "huajiage:stella"
+      {
+        "name": "huajiage:stella",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.stella"
   },
   "the_world": {
     "sounds": [
-      "huajiage:the_world"
+      {
+        "name": "huajiage:the_world",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.the_world"
   },
   "the_world_1": {
     "sounds": [
-      "huajiage:the_world_1"
+      {
+        "name": "huajiage:the_world_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.the_world_1"
   },
   "the_world_2": {
     "sounds": [
-      "huajiage:the_world_2"
+      {
+        "name": "huajiage:the_world_2",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.the_world_2"
   },
   "the_world_3": {
     "sounds": [
-      "huajiage:the_world_3"
+      {
+        "name": "huajiage:the_world_3",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.the_world_3"
   },
   "the_world_re": {
     "sounds": [
-      "huajiage:the_world_re"
+      {
+        "name": "huajiage:the_world_re",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.the_world_re"
   },
   "wave_01": {
     "sounds": [
-      "huajiage:wave_01"
+      {
+        "name": "huajiage:wave_01",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.wave_01"
   },
   "wave_overdrive_1": {
     "sounds": [
-      "huajiage:wave_overdrive_1"
+      {
+        "name": "huajiage:wave_overdrive_1",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.wave_overdrive_1"
   },
   "wave_overdrive_run": {
     "sounds": [
-      "huajiage:wave_overdrive_run"
+      {
+        "name": "huajiage:wave_overdrive_run",
+        "preload": true
+      }
     ],
     "subtitle": "subtitles.huajiage.wave_overdrive_run"
   }

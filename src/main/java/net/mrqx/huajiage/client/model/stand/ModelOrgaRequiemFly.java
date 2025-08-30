@@ -14,8 +14,7 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.registy.HuaJiEffects;
-import net.mrqx.huajiage.stand.AbstractStand;
-import org.jetbrains.annotations.NotNull;
+import net.mrqx.huajiage.stand.Stand;
 
 /**
  * Made with Blockbench 4.12.6
@@ -118,7 +117,7 @@ public class ModelOrgaRequiemFly extends ModelStandBase {
 
         extra.zRot = pAgeInTicks / 2;
         pEntity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand != null && pEntity instanceof LivingEntity living) {
                 extra.zRot = pAgeInTicks * stand.getSpeed(living, data) / 0.02F;
             }
@@ -139,7 +138,7 @@ public class ModelOrgaRequiemFly extends ModelStandBase {
     }
 
     @Override
-    public void renderHand(RenderHandEvent event, LocalPlayer player, @NotNull AbstractStand stand, @NotNull IStandData data) {
+    public void renderHand(RenderHandEvent event, LocalPlayer player, Stand stand, IStandData data) {
         PoseStack poseStack = event.getPoseStack();
         VertexConsumer vertexConsumer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
         float alpha = player.hasEffect(HuaJiEffects.STAND_POWER.get()) ? 0.6F : 0.3F;

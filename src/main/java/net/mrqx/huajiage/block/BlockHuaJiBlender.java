@@ -30,7 +30,6 @@ import net.mrqx.huajiage.block.blockentity.HuaJiBlenderBlockEntity;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -45,7 +44,7 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (pLevel.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
@@ -70,7 +69,7 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
     }
 
     @Override
-    public void setPlacedBy(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
+    public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
         if (pStack.hasCustomHoverName()) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
             if (blockentity instanceof HuaJiBlenderBlockEntity huajiBlenderBlockEntity) {
@@ -82,7 +81,7 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void onRemove(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
             if (blockentity instanceof HuaJiBlenderBlockEntity huajiBlenderBlockEntity) {
@@ -100,31 +99,31 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public boolean hasAnalogOutputSignal(@NotNull BlockState pState) {
+    public boolean hasAnalogOutputSignal(BlockState pState) {
         return true;
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public int getAnalogOutputSignal(@NotNull BlockState pBlockState, Level pLevel, @NotNull BlockPos pPos) {
+    public int getAnalogOutputSignal(BlockState pBlockState, Level pLevel, BlockPos pPos) {
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(pLevel.getBlockEntity(pPos));
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
+    public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull BlockState rotate(BlockState pState, Rotation pRotation) {
+    public BlockState rotate(BlockState pState, Rotation pRotation) {
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull BlockState mirror(BlockState pState, Mirror pMirror) {
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
@@ -136,7 +135,7 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
     @Override
     @Nullable
     @SuppressWarnings("unchecked")
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         return createFurnaceTicker(pLevel, pBlockEntityType, (BlockEntityType<? extends HuaJiBlenderBlockEntity>) HuaJiBlocks.HUAJI_BLENDER_BLOCK_ENTITY.get());
     }
 
@@ -146,7 +145,7 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
     }
 
     @Override
-    public @org.jetbrains.annotations.Nullable BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
+    public @org.jetbrains.annotations.Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new HuaJiBlenderBlockEntity(pPos, pState);
     }
 }

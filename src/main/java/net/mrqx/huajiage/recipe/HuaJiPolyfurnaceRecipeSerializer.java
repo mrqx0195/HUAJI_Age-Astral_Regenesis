@@ -7,7 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import org.jetbrains.annotations.NotNull;
 
 public class HuaJiPolyfurnaceRecipeSerializer implements RecipeSerializer<HuaJiPolyfurnaceRecipe> {
     private final int defaultProcessTime;
@@ -25,7 +24,7 @@ public class HuaJiPolyfurnaceRecipeSerializer implements RecipeSerializer<HuaJiP
     }
 
     @Override
-    public @NotNull HuaJiPolyfurnaceRecipe fromJson(@NotNull ResourceLocation pRecipeId, @NotNull JsonObject pJson) {
+    public HuaJiPolyfurnaceRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
         String s = GsonHelper.getAsString(pJson, "group", "");
         JsonElement jsonelement = GsonHelper.isArrayNode(pJson, "ingredient") ? GsonHelper.getAsJsonArray(pJson, "ingredient") : GsonHelper.getAsJsonObject(pJson, "ingredient");
         Ingredient ingredient = Ingredient.fromJson(jsonelement, false);
@@ -36,7 +35,7 @@ public class HuaJiPolyfurnaceRecipeSerializer implements RecipeSerializer<HuaJiP
     }
 
     @Override
-    public HuaJiPolyfurnaceRecipe fromNetwork(@NotNull ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
+    public HuaJiPolyfurnaceRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
         String s = pBuffer.readUtf();
         Ingredient ingredient = Ingredient.fromNetwork(pBuffer);
         float f = pBuffer.readFloat();

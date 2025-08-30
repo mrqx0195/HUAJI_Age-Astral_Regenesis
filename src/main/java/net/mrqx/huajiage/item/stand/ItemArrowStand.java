@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.item;
+package net.mrqx.huajiage.item.stand;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -15,10 +15,10 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.config.HuaJiCommonConfig;
+import net.mrqx.huajiage.item.BaseItem;
 import net.mrqx.huajiage.registy.HuaJiStands;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
-import org.jetbrains.annotations.NotNull;
 
 public class ItemArrowStand extends BaseItem {
     public ItemArrowStand() {
@@ -26,17 +26,17 @@ public class ItemArrowStand extends BaseItem {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         pPlayer.startUsingItem(pUsedHand);
         if (!pPlayer.level().isClientSide) {
             pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-                AbstractStand stand = AbstractStand.getStand(data.getStand());
+                Stand stand = Stand.getStand(data.getStand());
                 if (stand == null) {
                     if (pLevel.random.nextDouble() < HuaJiCommonConfig.ARROW_STAND_CHANCE.get()) {
                         String stand1 = HuaJiCommonConfig.ARROW_STAND_RANGE_MAP.get(pLevel.random.nextDouble() * HuaJiCommonConfig.arrowStandTotalRange);
                         if (stand1 != null) {
-                            AbstractStand stand2 = HuaJiStands.REGISTRY.get().getValue(new ResourceLocation(stand1));
+                            Stand stand2 = HuaJiStands.REGISTRY.get().getValue(new ResourceLocation(stand1));
                             if (stand2 != null) {
                                 data.setStand(stand2);
                                 data.setLevel(0);
@@ -49,6 +49,7 @@ public class ItemArrowStand extends BaseItem {
                     } else {
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.POISON, 500, 6));
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 500));
+                        pPlayer.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 500));
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500, 3));
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 500, 6));
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 500));

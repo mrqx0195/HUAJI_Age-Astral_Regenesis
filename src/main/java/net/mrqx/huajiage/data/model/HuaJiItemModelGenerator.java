@@ -71,6 +71,7 @@ public class HuaJiItemModelGenerator extends ItemModelProvider {
         basicItem(HuaJiItems.SINGULARITY.get());
         basicItem(HuaJiItems.ARROW_STAND.get());
         basicItem(HuaJiItems.ARROW_REQUIEM.get());
+        basicItem(HuaJiItems.ORGA_REQUIEM.get());
         basicItem(HuaJiItems.TAROT.get());
     }
 

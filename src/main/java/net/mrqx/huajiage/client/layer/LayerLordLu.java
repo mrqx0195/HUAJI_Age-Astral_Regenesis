@@ -23,7 +23,6 @@ import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class LayerLordLu<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
@@ -36,7 +35,7 @@ public class LayerLordLu<T extends LivingEntity, M extends EntityModel<T>> exten
     }
 
     @Override
-    public void render(@NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, @NotNull T pLivingEntity, float pLimbSwing,
+    public void render(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, T pLivingEntity, float pLimbSwing,
                        float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         if (ItemFiftyFiftyHelmet.isFiftyFiftyActive(pLivingEntity)) {
             pPoseStack.pushPose();

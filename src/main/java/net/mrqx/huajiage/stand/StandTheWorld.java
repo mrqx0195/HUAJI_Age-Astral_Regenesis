@@ -42,9 +42,9 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class StandTheWorld extends AbstractStand {
+public class StandTheWorld extends Stand {
     public static final BiConsumer<LivingEntity, IStandData> THE_WORLD_TICK = (living, data) -> {
-        AbstractStand stand = AbstractStand.getStand(data.getStand());
+        Stand stand = Stand.getStand(data.getStand());
         if (stand instanceof StandTheWorld theWorld && !living.level().isClientSide && STATE_DEFAULT.equals(data.getState())) {
             living.level().getEntitiesOfClass(Entity.class, living.getBoundingBox().inflate(stand.getDistance(living, data))).forEach(entity -> {
                 if (HuaJiMathHelper.getDegreeXZ(living.getLookAngle(), HuaJiMathHelper.getVectorEntityEye(living, entity)) > 90) {
@@ -88,27 +88,31 @@ public class StandTheWorld extends AbstractStand {
     public static final BiConsumer<LivingEntity, IStandData> THE_WORLD_DO_SKILL = (living, data) -> {
         int time = (data.getLevel() > 1 ? 9 : 5) * 20;
         int castTime;
-        SoundEvent soundEvent;
-        switch (living.level().random.nextInt(4)) {
-            case 1 -> {
-                soundEvent = HuaJiSoundEvents.THE_WORLD_1.get();
-                castTime = 40;
+        if (TimeStopUtils.isTimeStop && TimeStopUtils.andSameDimension(living.level())) {
+            castTime = 0;
+        } else {
+            SoundEvent soundEvent;
+            switch (living.level().random.nextInt(4)) {
+                case 1 -> {
+                    soundEvent = HuaJiSoundEvents.THE_WORLD_1.get();
+                    castTime = 40;
+                }
+                case 2 -> {
+                    soundEvent = HuaJiSoundEvents.THE_WORLD_2.get();
+                    castTime = 80;
+                }
+                case 3 -> {
+                    soundEvent = HuaJiSoundEvents.THE_WORLD_3.get();
+                    castTime = 40;
+                }
+                default -> {
+                    soundEvent = HuaJiSoundEvents.THE_WORLD.get();
+                    castTime = 20;
+                }
             }
-            case 2 -> {
-                soundEvent = HuaJiSoundEvents.THE_WORLD_2.get();
-                castTime = 80;
-            }
-            case 3 -> {
-                soundEvent = HuaJiSoundEvents.THE_WORLD_3.get();
-                castTime = 40;
-            }
-            default -> {
-                soundEvent = HuaJiSoundEvents.THE_WORLD.get();
-                castTime = 20;
-            }
+            HuaJiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
         }
-        HuaJiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
-        StandUtils.standTimeStop(true, living, data, true, time, castTime);
+        StandUtils.castStandTimeStop(true, living, data, true, time, castTime);
         living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + castTime, 4, false, false));
         living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, time + castTime, 4, false, false));
         living.addEffect(new MobEffectInstance(MobEffects.JUMP, time + castTime, 4, false, false));

@@ -11,7 +11,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.mrqx.huajiage.registy.HuaJiRecipes;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -23,7 +22,7 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
     private final int processTime;
     @Nullable
     private String group;
-    private final @NotNull HuaJiBlenderRecipeSerializer serializer;
+    private final HuaJiBlenderRecipeSerializer serializer;
 
     public HuaJiBlenderRecipeBuilder(ItemLike itemLike, Ingredient ingredient, float experience, int processTime) {
         this.result = itemLike.asItem();
@@ -38,28 +37,28 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public @NotNull HuaJiBlenderRecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
+    public HuaJiBlenderRecipeBuilder unlockedBy(String pCriterionName, CriterionTriggerInstance pCriterionTrigger) {
         return this;
     }
 
     @Override
-    public @NotNull HuaJiBlenderRecipeBuilder group(@Nullable String pGroupName) {
+    public HuaJiBlenderRecipeBuilder group(@Nullable String pGroupName) {
         this.group = pGroupName;
         return this;
     }
 
     @Override
-    public @NotNull Item getResult() {
+    public Item getResult() {
         return this.result;
     }
 
     @Override
-    public void save(@NotNull Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
         this.save(pFinishedRecipeConsumer, getDefaultRecipeId(this.getResult()));
     }
 
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
+    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
         pFinishedRecipeConsumer.accept(new HuaJiBlenderRecipeBuilder.Result(pRecipeId, this.group == null ? "" : this.group, this.ingredient, this.result, this.experience, this.processTime, this.serializer));
     }
 
@@ -77,7 +76,7 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
         private final int processTime;
         private final HuaJiBlenderRecipeSerializer serializer;
 
-        public Result(ResourceLocation resourceLocation, String group, Ingredient ingredient, Item result, float experience, int processTime, @NotNull HuaJiBlenderRecipeSerializer serializer) {
+        public Result(ResourceLocation resourceLocation, String group, Ingredient ingredient, Item result, float experience, int processTime, HuaJiBlenderRecipeSerializer serializer) {
             this.id = resourceLocation;
             this.group = group;
             this.ingredient = ingredient;
@@ -89,7 +88,7 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
 
         @Override
         @SuppressWarnings("deprecation")
-        public void serializeRecipeData(@NotNull JsonObject pJson) {
+        public void serializeRecipeData(JsonObject pJson) {
             if (!this.group.isEmpty()) {
                 pJson.addProperty("group", this.group);
             }
@@ -100,12 +99,12 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
         }
 
         @Override
-        public @NotNull RecipeSerializer<?> getType() {
+        public RecipeSerializer<?> getType() {
             return this.serializer;
         }
 
         @Override
-        public @NotNull ResourceLocation getId() {
+        public ResourceLocation getId() {
             return this.id;
         }
 

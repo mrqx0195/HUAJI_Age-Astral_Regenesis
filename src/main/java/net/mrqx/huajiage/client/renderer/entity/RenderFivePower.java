@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.entity.EntityFivePower;
-import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
 
@@ -27,12 +26,12 @@ public class RenderFivePower extends EntityRenderer<EntityFivePower> {
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull ResourceLocation getTextureLocation(@NotNull EntityFivePower pEntity) {
+    public ResourceLocation getTextureLocation(EntityFivePower pEntity) {
         return TextureAtlas.LOCATION_BLOCKS;
     }
 
     @Override
-    public void render(@NotNull EntityFivePower pEntity, float pEntityYaw, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(EntityFivePower pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         if (pEntity.tickCount >= 2 || this.entityRenderDispatcher.camera.getEntity().distanceToSqr(pEntity) >= 12.25) {
             pPoseStack.pushPose();
             pPoseStack.translate(0, pEntity.getBbHeight() / 2, 0);

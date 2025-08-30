@@ -8,8 +8,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
-import net.mrqx.huajiage.stand.AbstractStand;
-import org.jetbrains.annotations.NotNull;
+import net.mrqx.huajiage.stand.Stand;
 
 /**
  * Made with Blockbench 4.12.6
@@ -120,7 +119,7 @@ public class ModelOrgaRequiem extends ModelStandBase {
     }
 
     @Override
-    public void setupAnim(@NotNull Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    public void setupAnim(Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         float off = (float) Math.cos(0.1 * pAgeInTicks);
 
         this.resetPoses();
@@ -145,7 +144,7 @@ public class ModelOrgaRequiem extends ModelStandBase {
         head.yRot = pNetHeadYaw * 0.017453292F;
 
         pEntity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            AbstractStand stand = AbstractStand.getStand(data.getStand());
+            Stand stand = Stand.getStand(data.getStand());
             if (stand != null && pEntity instanceof LivingEntity living) {
                 extra.yRot = pAgeInTicks * stand.getSpeed(living, data) / 0.02F;
             }

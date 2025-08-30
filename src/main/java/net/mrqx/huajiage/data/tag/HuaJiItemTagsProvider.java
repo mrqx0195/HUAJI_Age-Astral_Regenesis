@@ -11,7 +11,6 @@ import net.mrqx.huajiage.block.blockentity.HuaJiBlenderBlockEntity;
 import net.mrqx.huajiage.block.blockentity.HuaJiPolyfurnaceBlockEntity;
 import net.mrqx.huajiage.compat.HuaJiCompat;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -22,7 +21,7 @@ public class HuaJiItemTagsProvider extends ItemTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NotNull Provider pProvider) {
+    protected void addTags(HolderLookup.Provider pProvider) {
         tag(ItemTags.create(HuaJiAgeMod.prefix(HuaJiBlenderBlockEntity.HUAJI_BLENDER_TIME_PREFIX + "100"))).add(HuaJiItems.HUAJI.get());
         tag(ItemTags.create(HuaJiAgeMod.prefix(HuaJiPolyfurnaceBlockEntity.HUAJI_POLYFURNACE_TIME_PREFIX + "100"))).add(HuaJiItems.HUAJI.get());
         tag(ItemTags.SWORDS).add(HuaJiItems.HUAJI_SWORD.get());

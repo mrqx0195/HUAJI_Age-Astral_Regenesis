@@ -15,6 +15,7 @@ import net.mrqx.huajiage.item.equipment.*;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
 import net.mrqx.huajiage.item.equipment.armor.ItemHuajiArmor;
 import net.mrqx.huajiage.item.equipment.armor.ItemOrgaArmor;
+import net.mrqx.huajiage.item.stand.*;
 
 public class HuaJiItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HuaJiAgeMod.MODID);
@@ -120,8 +121,6 @@ public class HuaJiItems {
     public static final RegistryObject<Item> BLACK_CAR = ITEMS.register("black_car", ItemRoadRoller::new);
     // TODO
     public static final RegistryObject<Item> ORGA_HAIR_KNIFE = ITEMS.register("orga_hair_knife", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
-    // TODO
-    public static final RegistryObject<Item> ORGA_REQUIEM = ITEMS.register("orga_requiem", ItemOrgaRequiem::new);
 
     public static final RegistryObject<Item> INFINITE_CHARM = ITEMS.register("infinite_charm", HuaJiCompat::makeInfiniteCharmCurios);
 
@@ -131,8 +130,8 @@ public class HuaJiItems {
     public static final RegistryObject<Item> DISC = ITEMS.register("disc", ItemDisc::new);
     public static final RegistryObject<Item> SINGULARITY = ITEMS.register("singularity", ItemSingularity::new);
     public static final RegistryObject<Item> ARROW_STAND = ITEMS.register("arrow_stand", ItemArrowStand::new);
-    // TODO
-    public static final RegistryObject<Item> ARROW_REQUIEM = ITEMS.register("arrow_requiem", () -> new BaseItem(new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ARROW_REQUIEM = ITEMS.register("arrow_requiem", ItemArrowRequiem::new);
+    public static final RegistryObject<Item> ORGA_REQUIEM = ITEMS.register("orga_requiem", ItemOrgaRequiem::new);
     public static final RegistryObject<Item> TAROT = ITEMS.register("tarot", ItemTarot::new);
 
     /**

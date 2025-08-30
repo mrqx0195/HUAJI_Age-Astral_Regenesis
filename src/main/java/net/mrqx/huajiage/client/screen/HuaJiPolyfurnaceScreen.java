@@ -13,7 +13,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrqx.huajiage.block.blockentity.HuaJiPolyfurnaceBlockEntity;
 import net.mrqx.huajiage.block.inventory.HuaJiPolyfurnaceMenu;
 import net.mrqx.huajiage.utils.HuaJiUtils;
-import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -60,14 +59,14 @@ public class HuaJiPolyfurnaceScreen extends AbstractContainerScreen<HuaJiPolyfur
     }
 
     @Override
-    protected void renderLabels(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY) {
+    protected void renderLabels(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY) {
         Font fontRenderer = Minecraft.getInstance().font;
         pGuiGraphics.drawString(this.font, this.title, (imageWidth - fontRenderer.width(this.title)) / 2, this.titleLabelY, 4210752, false);
         pGuiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
     }
 
     @Override
-    public void render(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         this.renderBackground(pGuiGraphics);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
@@ -96,7 +95,7 @@ public class HuaJiPolyfurnaceScreen extends AbstractContainerScreen<HuaJiPolyfur
     }
 
     @Override
-    protected void renderBg(@NotNull GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         pGuiGraphics.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
         double cookProgress = this.menu.getProgress();
         pGuiGraphics.blit(TEXTURE,

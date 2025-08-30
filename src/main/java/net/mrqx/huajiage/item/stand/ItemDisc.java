@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.item;
+package net.mrqx.huajiage.item.stand;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -10,12 +10,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.item.BaseItem;
 import net.mrqx.huajiage.registy.HuaJiStands;
-import net.mrqx.huajiage.stand.AbstractStand;
+import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.ItemTagHelper;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class ItemDisc extends BaseItem {
     }
 
     @Override
-    public @NotNull Component getName(@NotNull ItemStack pStack) {
+    public Component getName(ItemStack pStack) {
         ResourceLocation resourceLocation = getStandResourceLocation(pStack);
         if (resourceLocation != null) {
             return Component.translatable("item.huajiage.disc", Component.translatable("stand." + resourceLocation.getNamespace() + "." + resourceLocation.getPath()));
@@ -38,14 +40,18 @@ public class ItemDisc extends BaseItem {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
         ResourceLocation resourceLocation = getStandResourceLocation(stack);
-        if (resourceLocation != null) {
+        Stand stand = getStand(stack);
+        if (resourceLocation != null && stand != null) {
             tooltip.add(Component.translatable("item.huajiage.tooltips.stand",
                             Component.translatable("stand." + resourceLocation.getNamespace() + "." + resourceLocation.getPath()))
                     .withStyle(ChatFormatting.GRAY));
-            tooltip.add(Component.translatable("stand.huajiage.level", ItemTagHelper.getInt(stack, DISC_STAND_LEVEL_KEY, 0))
+            int standLevel = ItemTagHelper.getInt(stack, DISC_STAND_LEVEL_KEY, 0);
+            tooltip.add(Component.translatable("stand.huajiage.level",
+                            standLevel >= stand.getMaxLevel() ? Component.translatable("stand.huajiage.level.max") : standLevel)
                     .withStyle(ChatFormatting.GRAY));
         } else {
             tooltip.add(Component.translatable("item.huajiage.disc.tooltips.craft").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
@@ -53,10 +59,10 @@ public class ItemDisc extends BaseItem {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         pPlayer.startUsingItem(pUsedHand);
-        AbstractStand stand = getStand(itemStack);
+        Stand stand = getStand(itemStack);
         if (stand != null) {
             pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                 data.setStand(stand);
@@ -73,7 +79,7 @@ public class ItemDisc extends BaseItem {
     }
 
     @Nullable
-    public static AbstractStand getStand(ItemStack stack) {
+    public static Stand getStand(ItemStack stack) {
         return HuaJiStands.REGISTRY.get().getValue(ResourceLocation.tryParse(ItemTagHelper.getString(stack, DISC_STAND_KEY, "huajiage:null")));
     }
 

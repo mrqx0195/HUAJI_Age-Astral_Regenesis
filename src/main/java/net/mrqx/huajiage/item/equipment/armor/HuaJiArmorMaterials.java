@@ -7,7 +7,6 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
 import java.util.function.Supplier;
@@ -30,7 +29,7 @@ public enum HuaJiArmorMaterials implements ArmorMaterial {
         map.put(ArmorItem.Type.LEGGINGS, 10);
         map.put(ArmorItem.Type.CHESTPLATE, 10);
         map.put(ArmorItem.Type.HELMET, 10);
-    }), 16, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.5F, 1.0F, () -> Ingredient.of(HuaJiItems.NEUTRON_STAR_FRAGMENT.get()));
+    }), 16, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.5F, 1.0F, () -> Ingredient.of(HuaJiItems.NEUTRON_STAR_FRAGMENT.get()));
 
     private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 13);
@@ -62,12 +61,12 @@ public enum HuaJiArmorMaterials implements ArmorMaterial {
     }
 
     @Override
-    public int getDurabilityForType(ArmorItem.@NotNull Type pType) {
+    public int getDurabilityForType(ArmorItem.Type pType) {
         return (int) (HEALTH_FUNCTION_FOR_TYPE.get(pType) * this.durabilityMultiplier);
     }
 
     @Override
-    public int getDefenseForType(ArmorItem.@NotNull Type pType) {
+    public int getDefenseForType(ArmorItem.Type pType) {
         return this.protectionFunctionForType.get(pType);
     }
 
@@ -77,17 +76,17 @@ public enum HuaJiArmorMaterials implements ArmorMaterial {
     }
 
     @Override
-    public @NotNull SoundEvent getEquipSound() {
+    public SoundEvent getEquipSound() {
         return this.sound;
     }
 
     @Override
-    public @NotNull Ingredient getRepairIngredient() {
+    public Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
     }
 
     @Override
-    public @NotNull String getName() {
+    public String getName() {
         return this.name;
     }
 

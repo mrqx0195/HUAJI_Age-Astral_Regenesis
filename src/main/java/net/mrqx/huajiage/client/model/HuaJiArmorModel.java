@@ -6,7 +6,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class HuaJiArmorModel extends HumanoidModel<LivingEntity> {
@@ -15,7 +14,7 @@ public class HuaJiArmorModel extends HumanoidModel<LivingEntity> {
     }
 
     @Override
-    public void setupAnim(@NotNull LivingEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(LivingEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         if (entityIn instanceof ArmorStand entityarmorstand) {
             this.head.xRot = (float) (Math.PI / 180F) * entityarmorstand.getHeadPose().getX();
             this.head.yRot = (float) (Math.PI / 180F) * entityarmorstand.getHeadPose().getY();

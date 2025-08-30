@@ -13,7 +13,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrqx.huajiage.entity.EntityItemBullet;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -28,12 +27,12 @@ public class RenderItemBullet extends EntityRenderer<EntityItemBullet> {
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull ResourceLocation getTextureLocation(@NotNull EntityItemBullet pEntity) {
+    public ResourceLocation getTextureLocation(EntityItemBullet pEntity) {
         return TextureAtlas.LOCATION_BLOCKS;
     }
 
     @Override
-    public void render(@NotNull EntityItemBullet pEntity, float pEntityYaw, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(EntityItemBullet pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         if (pEntity.tickCount >= 2 || this.entityRenderDispatcher.camera.getEntity().distanceToSqr(pEntity) >= 12.25) {
             pPoseStack.pushPose();
             Random random = new Random(pEntity.randomSeed);
