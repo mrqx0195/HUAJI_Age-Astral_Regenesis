@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.item;
 
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +16,7 @@ import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 public class ItemRoadRoller extends BaseItem {
     public ItemRoadRoller() {
-        super(new Item.Properties().rarity(Rarity.RARE));
+        super(new Item.Properties().rarity(Rarity.RARE).stacksTo(1));
     }
 
     @Override
@@ -33,13 +34,14 @@ public class ItemRoadRoller extends BaseItem {
             road.setDamage(itemStack.is(HuaJiItems.ROAD_ROLLER.get()) ? 10 : 50);
             road.setLife(512);
             road.setItem(itemStack);
-            if (!pPlayer.isCreative()) {
+            pPlayer.awardStat(Stats.ITEM_USED.get(this));
+            if (!pPlayer.getAbilities().instabuild) {
                 itemStack.shrink(1);
             }
-            HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, itemStack.is(HuaJiItems.ROAD_ROLLER.get()) ? HuaJiSoundEvents.ROAD_ROLLER.get() : HuaJiSoundEvents.ORGA_RIDER.get(), pPlayer.getSoundSource(), 2F);
+            HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, itemStack.is(HuaJiItems.ROAD_ROLLER.get()) ? HuaJiSoundEvents.ROAD_ROLLER.get() : HuaJiSoundEvents.ORGA_RIDER.get(), 2F);
             pLevel.addFreshEntity(road);
         }
         pPlayer.swing(pUsedHand, true);
-        return InteractionResultHolder.success(itemStack);
+        return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide);
     }
 }

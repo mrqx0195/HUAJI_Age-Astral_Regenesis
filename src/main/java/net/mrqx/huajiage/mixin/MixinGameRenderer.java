@@ -17,6 +17,6 @@ public abstract class MixinGameRenderer {
 
     @Inject(method = "resize", at = @At("HEAD"))
     public void injectResize(int width, int height, CallbackInfo callbackInfo) {
-        HuaJiShaderManager.postChains.values().forEach(postChain -> postChain.resize(width, height));
+        HuaJiShaderManager.POST_CHAINS.values().forEach(postChain -> postChain.resize(width, height));
     }
 }

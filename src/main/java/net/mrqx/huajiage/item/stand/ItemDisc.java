@@ -3,6 +3,7 @@ package net.mrqx.huajiage.item.stand;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +28,7 @@ public class ItemDisc extends BaseItem {
     public static final String DISC_STAND_LEVEL_KEY = HuaJiAgeMod.MODID + "." + "discStandLevel";
 
     public ItemDisc() {
-        super(new Item.Properties());
+        super(new Item.Properties().stacksTo(1));
     }
 
     @Override
@@ -69,7 +70,8 @@ public class ItemDisc extends BaseItem {
                 data.setMaxEnergy(stand.getMaxEnergy(pPlayer, data));
                 data.setLevel(ItemTagHelper.getInt(itemStack, DISC_STAND_LEVEL_KEY, 0));
             });
-            if (!pPlayer.isCreative()) {
+            pPlayer.awardStat(Stats.ITEM_USED.get(this));
+            if (!pPlayer.getAbilities().instabuild) {
                 itemStack.shrink(1);
             }
             pPlayer.swing(pUsedHand, true);

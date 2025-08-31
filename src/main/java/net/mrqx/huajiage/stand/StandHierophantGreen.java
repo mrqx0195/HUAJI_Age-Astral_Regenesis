@@ -43,6 +43,8 @@ public class StandHierophantGreen extends Stand {
                 bullet.setDamage(stand.getDamage(living, data));
                 bullet.setPos(living.position().add(vec3.x, 2.2F, vec3.z));
                 bullet.shootFromRotation(living, living.getXRot(), living.getYRot(), 0, 1.5F, 0.2F);
+                bullet.setXRot(living.getXRot());
+                bullet.setYRot(living.getYRot());
                 bullet.setPos(bullet.position().add(0, -0.4, 0));
                 living.level().addFreshEntity(bullet);
             }
@@ -127,7 +129,7 @@ public class StandHierophantGreen extends Stand {
                 bullet.setYRot(360 * ry / 20);
                 living.level().addFreshEntity(bullet);
             }
-            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH.get(), living.getSoundSource());
+            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH.get());
         }
     };
 
@@ -143,7 +145,7 @@ public class StandHierophantGreen extends Stand {
     @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
-        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_1.get() : HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_2.get(), livingEntity.getSoundSource());
+        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_1.get() : HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_2.get());
     }
 
     @Override
@@ -158,7 +160,7 @@ public class StandHierophantGreen extends Stand {
 
     @Override
     public float getDamage(LivingEntity livingEntity, IStandData data) {
-        return data.getLevel() > 0 ? 7 : 5;
+        return 5 + data.getLevel() * 2;
     }
 
     @Override
@@ -178,7 +180,7 @@ public class StandHierophantGreen extends Stand {
 
     @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return data.getState().equals(STATE_IDLE) ? 160 : 80;
+        return data.isTriggered() && data.getState().equals(STATE_IDLE) ? 160 : 80;
     }
 
     @Override

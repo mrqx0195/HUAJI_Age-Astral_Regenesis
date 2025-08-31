@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntityType;
@@ -20,7 +21,7 @@ import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 public class ItemLordKey extends BaseItem {
     public ItemLordKey() {
-        super(new Item.Properties().rarity(Rarity.EPIC).fireResistant());
+        super(new Item.Properties().rarity(Rarity.EPIC).fireResistant().stacksTo(1));
     }
 
     @Override
@@ -39,8 +40,8 @@ public class ItemLordKey extends BaseItem {
         super.finishUsingItem(pStack, pLevel, pLivingEntity);
         if (pLivingEntity instanceof Player player && ItemFiftyFiftyHelmet.isFiftyFiftyActive(player)) {
             ItemFiftyFiftyHelmet.setFiftyFiftyLord(player, true);
-            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARMOR_EQUIP_NETHERITE, player.getSoundSource());
-            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.GLASS_BREAK, player.getSoundSource());
+            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARMOR_EQUIP_NETHERITE);
+            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.GLASS_BREAK);
             if (pLevel.isClientSide) {
                 Minecraft.getInstance().gameRenderer.displayItemActivation(pStack.copy());
             } else if (player.getServer() != null) {
@@ -51,7 +52,8 @@ public class ItemLordKey extends BaseItem {
                 }
                 player.getServer().getPlayerList().broadcastSystemMessage(Component.translatable("message.huajiage.50_50_helmet.lord", player.getDisplayName())
                         .withStyle(ChatFormatting.GRAY, ChatFormatting.BOLD), false);
-                if (!player.isCreative()) {
+                player.awardStat(Stats.ITEM_USED.get(this));
+                if (!player.getAbilities().instabuild) {
                     pStack.shrink(1);
                 }
             }

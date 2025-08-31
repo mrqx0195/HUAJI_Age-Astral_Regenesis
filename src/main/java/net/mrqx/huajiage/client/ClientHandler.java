@@ -26,6 +26,7 @@ import net.mrqx.huajiage.client.model.ModelDisc;
 import net.mrqx.huajiage.client.model.ModelFiftyFiftyHelmet;
 import net.mrqx.huajiage.client.model.ModelLordLu;
 import net.mrqx.huajiage.client.model.ModelOrgaArmor;
+import net.mrqx.huajiage.client.model.entity.ModelSheerHeartAttack;
 import net.mrqx.huajiage.client.screen.HuaJiBlenderScreen;
 import net.mrqx.huajiage.client.screen.HuaJiPolyfurnaceScreen;
 import net.mrqx.huajiage.item.equipment.ItemExglutenbur;
@@ -83,6 +84,7 @@ public class ClientHandler {
         event.registerLayerDefinition(HuaJiLayers.ORGA_HAIR, () -> LayerDefinition.create(ModelOrgaArmor.createBodyLayer(LayerDefinitions.OUTER_ARMOR_DEFORMATION), 64, 64));
         event.registerLayerDefinition(HuaJiLayers.FIFTY_FIFTY_HELMET, () -> LayerDefinition.create(ModelFiftyFiftyHelmet.createBodyLayer(LayerDefinitions.OUTER_ARMOR_DEFORMATION), 64, 64));
         event.registerLayerDefinition(HuaJiLayers.LORD_LU, ModelLordLu::createBodyLayer);
+        event.registerLayerDefinition(HuaJiLayers.SHEER_HEART_ATTACK, ModelSheerHeartAttack::createBodyLayer);
         HuaJiStands.REGISTRY.get().forEach(stand -> stand.getModels().forEach(event::registerLayerDefinition));
     }
 

@@ -6,34 +6,27 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.boss.EnderDragonPart;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.IStandData;
-import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.stand.ModelOrgaRequiem;
 import net.mrqx.huajiage.client.model.stand.ModelOrgaRequiemFly;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
 import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.entity.EntityRoadRoller;
-import net.mrqx.huajiage.event.HuaJiCanFlyEvent;
-import net.mrqx.huajiage.registy.HuaJiEffects;
-import net.mrqx.huajiage.registy.HuaJiItems;
+import net.mrqx.huajiage.entity.EntitySheerHeartAttack;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiMathHelper;
@@ -45,12 +38,11 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber
-public class StandOrgaRequiem extends Stand {
-    public static final BiConsumer<LivingEntity, IStandData> ORGA_REQUIEM_TICK = (living, data) -> {
+public class StandKillerQueen extends Stand {
+    public static final BiConsumer<LivingEntity, IStandData> KILLER_QUEEN_TICK = (living, data) -> {
         Stand stand = Stand.getStand(data.getStand());
-        if (stand != null && !living.level().isClientSide && STATE_FLY.equals(data.getState())) {
-            living.level().getEntitiesOfClass(Entity.class, living.getBoundingBox().inflate(stand.getDistance(living, data) / 25)).forEach(entity -> {
+        if (stand != null && !living.level().isClientSide && STATE_PUNCH.equals(data.getState())) {
+            living.level().getEntitiesOfClass(Entity.class, living.getBoundingBox().inflate(stand.getDistance(living, data) / 50)).forEach(entity -> {
                 if (HuaJiMathHelper.getDegreeXZ(living.getLookAngle(), HuaJiMathHelper.getVectorEntityEye(living, entity)) > 45) {
                     return;
                 }
@@ -83,120 +75,113 @@ public class StandOrgaRequiem extends Stand {
         }
     };
 
-    public static final BiConsumer<LivingEntity, IStandData> ORGA_REQUIEM_DO_SKILL = (living, data) -> {
-        Stand stand = Stand.getStand(data.getStand());
+    public static final BiConsumer<LivingEntity, IStandData> KILLER_QUEEN_DO_SKILL = (living, data) -> {
         if (living instanceof Player player) {
-            ItemStack itemStack = HuaJiItems.ORGA_HAIR_KNIFE.get().getDefaultInstance();
-            itemStack.setCount(16);
-            player.addItem(itemStack);
-            if (player.level().random.nextDouble() < 0.3) {
-                player.addItem(HuaJiItems.BLACK_CAR.get().getDefaultInstance());
-            }
-        }
-        if (stand != null) {
-            living.addEffect(new MobEffectInstance(HuaJiEffects.REQUIEM.get(), stand.getDuration(living, data), data.getLevel()));
-            living.addEffect(new MobEffectInstance(HuaJiEffects.STAND_POWER.get(), stand.getDuration(living, data), data.getLevel()));
+            EntitySheerHeartAttack sheerHeartAttack = new EntitySheerHeartAttack(living.level());
+            sheerHeartAttack.tame(player);
+            sheerHeartAttack.setPos(living.getEyePosition());
+            sheerHeartAttack.setDeltaMovement(living.getLookAngle().scale(0.5));
+            living.level().addFreshEntity(sheerHeartAttack);
+            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAND_KILLER_QUEEN_TRIGGER.get(), 2);
+        } else if (living instanceof OwnableEntity ownable && ownable.getOwner() instanceof Player player) {
+            EntitySheerHeartAttack sheerHeartAttack = new EntitySheerHeartAttack(living.level());
+            sheerHeartAttack.tame(player);
+            sheerHeartAttack.setPos(living.getEyePosition());
+            sheerHeartAttack.setDeltaMovement(living.getLookAngle().scale(0.5));
+            living.level().addFreshEntity(sheerHeartAttack);
+            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAND_KILLER_QUEEN_TRIGGER.get(), 2);
         }
     };
 
-    public StandOrgaRequiem() {
-        super(ORGA_REQUIEM_TICK, ORGA_REQUIEM_DO_SKILL);
+    public StandKillerQueen() {
+        super(KILLER_QUEEN_TICK, KILLER_QUEEN_DO_SKILL);
     }
 
     @Override
     public String getDescriptionId() {
-        return "stand.huajiage.orga_requiem";
+        return "stand.huajiage.killer_queen";
     }
 
     @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
-        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.ORGA_REQUIEM_2.get() : HuaJiSoundEvents.ORGA_REQUIEM_3.get());
+        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_KILLER_QUEEN_SHOW_1.get() : HuaJiSoundEvents.STAND_KILLER_QUEEN_SHOW_2.get());
     }
 
     @Override
     public int skillEnergyDemand(LivingEntity livingEntity, IStandData data) {
-        return 80000;
+        return data.getLevel() > 0 ? 60000 : -1;
     }
 
     @Override
     public int getMaxLevel() {
-        return 0;
+        return 1;
     }
 
     @Override
     public float getDamage(LivingEntity livingEntity, IStandData data) {
-        return livingEntity.getMaxHealth() / 2;
+        return 8 * (1 + (float) data.getLevel() / 2);
     }
 
     @Override
     public float getSpeed(LivingEntity livingEntity, IStandData data) {
-        return (float) (livingEntity.getAttributeValue(Attributes.MOVEMENT_SPEED) / 2.5);
+        return 0.6F;
     }
 
     @Override
     public int getDuration(LivingEntity livingEntity, IStandData data) {
-        return 650;
+        return 300;
     }
 
     @Override
     public float getDistance(LivingEntity livingEntity, IStandData data) {
-        return 50;
+        return 100;
     }
 
     @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return data.isTriggered() && data.getState().equals(STATE_DEFAULT) ? 90 : 70;
+        return data.isTriggered() && data.getState().equals(STATE_DEFAULT) ? 104 : 80;
     }
 
     @Override
     public List<String> getStates() {
-        return List.of(STATE_DEFAULT, STATE_FLY);
-    }
-
-    @SubscribeEvent
-    public static void onHuaJiCanFlyEvent(HuaJiCanFlyEvent event) {
-        event.getEntity().getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-            if (Stand.getStand(data.getStand()) instanceof StandOrgaRequiem && data.isTriggered() && data.getState().equals(STATE_FLY)) {
-                event.setCanFly(true);
-            }
-        });
+        return List.of(STATE_DEFAULT, STATE_PUNCH);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("orga_requiem", STATE_DEFAULT);
+    public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("killer_queen", STATE_DEFAULT);
 
     @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation FLY_LAYER = HuaJiLayers.create("orga_requiem", STATE_FLY);
+    public static final ModelLayerLocation PUNCH_LAYER = HuaJiLayers.create("killer_queen", STATE_PUNCH);
 
     @OnlyIn(Dist.CLIENT)
     public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
             STATE_DEFAULT, DEFAULT_LAYER,
-            STATE_FLY, FLY_LAYER
+            STATE_PUNCH, PUNCH_LAYER
     );
 
     @OnlyIn(Dist.CLIENT)
     public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
-            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/entity_orga_requiem_default.png"),
-            STATE_FLY, HuaJiAgeMod.prefix("textures/entity/entity_orga_requiem_fly.png")
+            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/entity_killer_queen_default.png"),
+            STATE_PUNCH, HuaJiAgeMod.prefix("textures/entity/entity_killer_queen_punch.png")
     );
 
     @OnlyIn(Dist.CLIENT)
     public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
-            STATE_DEFAULT, List.of(-0.5, -0.7, 0.75),
-            STATE_FLY, List.of(0.0, -0.9, 0.0)
+            STATE_DEFAULT, List.of(0.9, -0.1, -0.8),
+            STATE_PUNCH, List.of(0.0, 0.0, -0.9)
     );
 
     @OnlyIn(Dist.CLIENT)
     public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
             DEFAULT_LAYER, ModelOrgaRequiem::createBodyLayer,
-            FLY_LAYER, ModelOrgaRequiemFly::createBodyLayer
+            PUNCH_LAYER, ModelOrgaRequiemFly::createBodyLayer
     );
 
     @OnlyIn(Dist.CLIENT)
     public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
             DEFAULT_LAYER, ModelOrgaRequiem::new,
-            FLY_LAYER, ModelOrgaRequiemFly::new
+            PUNCH_LAYER, ModelOrgaRequiemFly::new
     );
 
     @Override
@@ -231,6 +216,6 @@ public class StandOrgaRequiem extends Stand {
 
     @Override
     public boolean shouldRenderHand(LivingEntity livingEntity, IStandData data) {
-        return !(data.isTriggered() && data.getState().equals(STATE_FLY));
+        return !(data.isTriggered() && data.getState().equals(STATE_PUNCH));
     }
 }

@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.event.handler.client;
+package net.mrqx.huajiage.client.event;
 
 import net.minecraft.client.RecipeBookCategories;
 import net.minecraftforge.api.distmarker.Dist;

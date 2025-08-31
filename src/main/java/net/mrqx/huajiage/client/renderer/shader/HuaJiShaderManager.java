@@ -10,12 +10,12 @@ import java.util.HashMap;
 
 @OnlyIn(Dist.CLIENT)
 public class HuaJiShaderManager {
-    public static HashMap<ResourceLocation, PostChain> postChains = new HashMap<>();
+    public static final HashMap<ResourceLocation, PostChain> POST_CHAINS = new HashMap<>();
 
     public static void renderShaders(float partialTicks) {
         Minecraft minecraft = Minecraft.getInstance();
         minecraft.getProfiler().push("huaji_shaders");
-        postChains.values().forEach(postChain -> {
+        POST_CHAINS.values().forEach(postChain -> {
             postChain.resize(minecraft.getWindow().getWidth(), minecraft.getWindow().getHeight());
             postChain.process(partialTicks);
             minecraft.getMainRenderTarget().bindWrite(false);
@@ -24,8 +24,8 @@ public class HuaJiShaderManager {
     }
 
     public static void removeShader(ResourceLocation resourceLocation) {
-        if (postChains.containsKey(resourceLocation)) {
-            PostChain remove = postChains.remove(resourceLocation);
+        if (POST_CHAINS.containsKey(resourceLocation)) {
+            PostChain remove = POST_CHAINS.remove(resourceLocation);
             remove.close();
         }
     }

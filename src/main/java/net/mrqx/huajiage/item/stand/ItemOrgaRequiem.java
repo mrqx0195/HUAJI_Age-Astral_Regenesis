@@ -31,18 +31,24 @@ import java.util.UUID;
 public class ItemOrgaRequiem extends BaseItem {
     public static final String ORGA_REQUIEM_OWNER_KEY = HuaJiAgeMod.MODID + "." + "orgaRequiemOwner";
 
-    public static boolean hasValidOrgaRequiem(Player player) {
-        return player.getInventory().hasAnyMatching(itemStack ->
-                itemStack.is(HuaJiItems.ORGA_REQUIEM.get())
-                        && ItemTagHelper.getString(itemStack, ORGA_REQUIEM_OWNER_KEY, "").equals(player.getStringUUID()));
-    }
-
-    public static boolean hasOrgaRequiem(Player player) {
-        return player.getInventory().hasAnyMatching(itemStack -> itemStack.is(HuaJiItems.ORGA_REQUIEM.get()));
+    public static boolean hasValidOrgaRequiem(LivingEntity living) {
+        if (living instanceof Player player) {
+            return player.getInventory().hasAnyMatching(itemStack ->
+                    itemStack.is(HuaJiItems.ORGA_REQUIEM.get())
+                            && ItemTagHelper.getString(itemStack, ORGA_REQUIEM_OWNER_KEY, "").equals(player.getStringUUID()));
+        } else {
+            for (ItemStack itemStack : living.getAllSlots()) {
+                if (itemStack.is(HuaJiItems.ORGA_REQUIEM.get())
+                        && ItemTagHelper.getString(itemStack, ORGA_REQUIEM_OWNER_KEY, "").equals(living.getStringUUID())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public ItemOrgaRequiem() {
-        super(new Item.Properties().rarity(Rarity.EPIC));
+        super(new Item.Properties().rarity(Rarity.EPIC).fireResistant().stacksTo(1));
     }
 
     @Override

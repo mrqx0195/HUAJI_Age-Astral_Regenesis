@@ -15,9 +15,12 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.HuaJiArmorModel;
 import net.mrqx.huajiage.registy.HuaJiItems;
+import net.mrqx.huajiage.stand.Stand;
+import net.mrqx.huajiage.stand.StandOrgaRequiem;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -63,10 +66,12 @@ public abstract class ItemOrgaArmor extends ArmorItem {
     }
 
     public static boolean hasAllOrgaArmor(LivingEntity livingEntity) {
-        return livingEntity.getItemBySlot(EquipmentSlot.FEET).is(HuaJiItems.ORGA_BOOTS.get())
+        return livingEntity.getCapability(StandDataCapabilityProvider.STAND_DATA)
+                .map(data -> Stand.getStand(data.getStand()) instanceof StandOrgaRequiem).orElse(false)
+                || (livingEntity.getItemBySlot(EquipmentSlot.FEET).is(HuaJiItems.ORGA_BOOTS.get())
                 && livingEntity.getItemBySlot(EquipmentSlot.LEGS).is(HuaJiItems.ORGA_LEGGINGS.get())
                 && livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(HuaJiItems.ORGA_CHESTPLATE.get())
-                && livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(HuaJiItems.ORGA_HELMET.get());
+                && livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(HuaJiItems.ORGA_HELMET.get()));
     }
 
     public static class ItemOrgaArmorHelmet extends ItemOrgaArmor {

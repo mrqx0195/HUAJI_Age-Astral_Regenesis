@@ -68,8 +68,8 @@ public class StandStarPlatinum extends Stand {
                         starPlatinum.counter += isTimeStopping ? 1 : 5;
                         if (data.getLevel() > 0 && starPlatinum.counter > 4) {
                             starPlatinum.counter = 0;
-                            HuaJiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, living.getSoundSource(), 0.25F);
-                            HuaJiSoundPlayer.playMovingSoundToClient(living, isTimeStopping ? HuaJiSoundEvents.STAND_STAR_PLATINUM_REPEAT_1.get() : HuaJiSoundEvents.STAND_STAR_PLATINUM_5.get(), living.getSoundSource(), isTimeStopping ? 1 : 0.3F);
+                            HuaJiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, 0.25F);
+                            HuaJiSoundPlayer.playMovingSoundToClient(living, isTimeStopping ? HuaJiSoundEvents.STAND_STAR_PLATINUM_REPEAT_1.get() : HuaJiSoundEvents.STAND_STAR_PLATINUM_5.get(), isTimeStopping ? 1 : 0.3F);
                         }
                     }
                 } else if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
@@ -90,7 +90,7 @@ public class StandStarPlatinum extends Stand {
             castTime = 0;
         } else {
             castTime = 40;
-            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAR_PLATINUM_THE_WORLD_1.get(), living.getSoundSource(), 5);
+            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.STAR_PLATINUM_THE_WORLD_1.get(), 5);
         }
         StandUtils.castStandTimeStop(true, living, data, true, time, castTime);
         living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + castTime, 1, false, false));
@@ -118,7 +118,7 @@ public class StandStarPlatinum extends Stand {
             case 3 -> HuaJiSoundEvents.STAND_STAR_PLATINUM_4.get();
             default -> HuaJiSoundEvents.STAND_STAR_PLATINUM_1.get();
         };
-        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, soundEvent, livingEntity.getSoundSource());
+        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, soundEvent);
     }
 
     @Override
@@ -138,12 +138,12 @@ public class StandStarPlatinum extends Stand {
 
     @Override
     public float getDistance(LivingEntity livingEntity, IStandData data) {
-        return data.getLevel() > 0 ? 3 : 2;
+        return 2 + data.getLevel();
     }
 
     @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return data.getState().equals(STATE_IDLE) ? 190 : 95;
+        return data.isTriggered() && data.getState().equals(STATE_IDLE) ? 190 : 95;
     }
 
     @Override

@@ -3,14 +3,16 @@ package net.mrqx.huajiage.item;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.item.equipment.armor.ItemOrgaArmor;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 
 public class ItemInfiniteCharm extends BaseItem {
-    public ItemInfiniteCharm(Properties properties) {
-        super(properties);
+    public ItemInfiniteCharm() {
+        super(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant().stacksTo(1));
     }
 
     @Override

@@ -30,6 +30,7 @@ import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.client.HuaJiKeyMappings;
 import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.ModelFiftyFiftyHelmet;
+import net.mrqx.huajiage.event.HuaJiCanFlyEvent;
 import net.mrqx.huajiage.event.KeyInputEvent;
 import net.mrqx.huajiage.network.HuaJiKeyMessage;
 import net.mrqx.huajiage.registy.HuaJiEffects;
@@ -46,7 +47,6 @@ import java.util.function.Consumer;
 public class ItemFiftyFiftyHelmet extends ArmorItem {
     public static final String FIFTY_FIFTY_ACTIVE_KEY = HuaJiAgeMod.MODID + "." + "fiftyFiftyActive";
     public static final String FIFTY_FIFTY_LORD_KEY = HuaJiAgeMod.MODID + "." + "fiftyFiftyLord";
-    public static final String FIFTY_FIFTY_LORD_FLY_KEY = HuaJiAgeMod.MODID + "." + "fiftyFiftyLord.fly";
 
     public static boolean isFiftyFiftyActive(LivingEntity livingEntity) {
         return hasFiftyFiftyHelmet(livingEntity) && ItemTagHelper.getBoolean(livingEntity.getItemBySlot(EquipmentSlot.HEAD), ItemFiftyFiftyHelmet.FIFTY_FIFTY_ACTIVE_KEY, false);
@@ -196,6 +196,13 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
                 event.getSource().getEntity().hurt(HuaJiDamageSources.five(event.getSource().getEntity().level(), event.getSource()), event.getAmount() * 0.5F);
             }
             event.setAmount(event.getAmount() * 0.5F);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onHuaJiCanFlyEvent(HuaJiCanFlyEvent event) {
+        if (ItemFiftyFiftyHelmet.isFiftyFiftyLord(event.getEntity())) {
+            event.setCanFly(true);
         }
     }
 

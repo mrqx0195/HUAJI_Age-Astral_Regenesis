@@ -28,11 +28,11 @@ import java.util.List;
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
-public class LayerStand<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
-    public static final Map<String, LayerStand<?, ?>> PLAYER_LAYERS_MAP = new HashMap<>();
+public class LayerStand extends RenderLayer<LivingEntity, EntityModel<LivingEntity>> {
+    public static final Map<String, LayerStand> PLAYER_LAYERS_MAP = new HashMap<>();
     public final Map<ModelLayerLocation, ModelStandBase> modelMap;
 
-    public LayerStand(RenderLayerParent<T, M> pRenderer, EntityModelSet pModelSet) {
+    public LayerStand(RenderLayerParent<LivingEntity, EntityModel<LivingEntity>> pRenderer, EntityModelSet pModelSet) {
         super(pRenderer);
         Map<ModelLayerLocation, ModelStandBase> map = new HashMap<>();
         HuaJiStands.REGISTRY.get().forEach(stand -> stand.getModelFunction().forEach((modelLayerLocation, modelSupplier) -> map.put(modelLayerLocation, modelSupplier.apply(pModelSet.bakeLayer(modelLayerLocation)))));
@@ -40,7 +40,7 @@ public class LayerStand<T extends LivingEntity, M extends EntityModel<T>> extend
     }
 
     @Override
-    public void render(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, T pLivingEntity, float pLimbSwing,
+    public void render(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing,
                        float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         if (Minecraft.getInstance().player != null) {
             Minecraft.getInstance().player.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(playerData -> {

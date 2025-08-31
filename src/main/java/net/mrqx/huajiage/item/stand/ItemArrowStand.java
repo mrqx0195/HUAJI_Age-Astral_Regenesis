@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,7 +23,7 @@ import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 public class ItemArrowStand extends BaseItem {
     public ItemArrowStand() {
-        super(new Item.Properties().rarity(Rarity.RARE));
+        super(new Item.Properties().rarity(Rarity.RARE).stacksTo(1));
     }
 
     @Override
@@ -54,10 +55,13 @@ public class ItemArrowStand extends BaseItem {
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 500, 6));
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 500));
                         pPlayer.addEffect(new MobEffectInstance(MobEffects.WITHER, 500, 2));
-                        HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, SoundEvents.WITHER_HURT, pPlayer.getSoundSource());
+                        HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, SoundEvents.WITHER_HURT);
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.stand.fail").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
                     }
-                    itemStack.shrink(1);
+                    pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                    if (!pPlayer.getAbilities().instabuild) {
+                        itemStack.shrink(1);
+                    }
                 } else {
                     pPlayer.sendSystemMessage(Component.translatable("message.huajiage.tarot.stand.failed").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
                 }

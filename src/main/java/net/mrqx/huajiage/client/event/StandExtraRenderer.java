@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.event.handler.client;
+package net.mrqx.huajiage.client.event;
 
 import com.mojang.blaze3d.platform.Window;
 import net.minecraft.ChatFormatting;
@@ -85,7 +85,7 @@ public class StandExtraRenderer {
                     if (Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player) instanceof LivingEntityRenderer<?, ?> renderer) {
                         AccessorLivingEntityRenderer accessorLivingEntityRenderer = (AccessorLivingEntityRenderer) renderer;
                         accessorLivingEntityRenderer.getLayers().forEach(layer -> {
-                            if (layer instanceof LayerStand<?, ?> layerStand) {
+                            if (layer instanceof LayerStand layerStand) {
                                 // 我TM在写啥
                                 layerStand.renderHand(event, player);
                             }

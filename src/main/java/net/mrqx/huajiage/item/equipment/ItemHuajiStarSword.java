@@ -65,8 +65,8 @@ public class ItemHuajiStarSword extends SwordItem {
         if (Mode.getMode(stack).equals(Mode.ON)) {
             target.hurt(target.level().damageSources().fellOutOfWorld(), 10);
             target.setSecondsOnFire(5);
-            HuaJiSoundPlayer.playMovingSoundToClient(target, HuaJiSoundEvents.WAVE1.get(), target.getSoundSource());
-            HuaJiSoundPlayer.playMovingSoundToClient(target, HuaJiSoundEvents.ENERGY_HIT.get(), target.getSoundSource(), 1, 0.1F);
+            HuaJiSoundPlayer.playMovingSoundToClient(target, HuaJiSoundEvents.WAVE1.get());
+            HuaJiSoundPlayer.playMovingSoundToClient(target, HuaJiSoundEvents.ENERGY_HIT.get(), 1, 0.1F);
         } else {
             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 2));
             target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 2));
@@ -88,7 +88,7 @@ public class ItemHuajiStarSword extends SwordItem {
             Mode.changeMode(player.getMainHandItem());
             player.getCooldowns().addCooldown(HuaJiItems.HUAJI_STAR_SWORD.get(), 10);
             if (Mode.getMode(player.getMainHandItem()).equals(Mode.ON)) {
-                HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.CHARGE.get(), player.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.CHARGE.get());
             }
         }
     }

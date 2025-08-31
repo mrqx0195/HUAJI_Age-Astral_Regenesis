@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,7 +19,7 @@ import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 public class ItemLordCore extends BaseItem {
     public ItemLordCore() {
-        super(new Item.Properties().rarity(Rarity.RARE).fireResistant());
+        super(new Item.Properties().rarity(Rarity.RARE).fireResistant().stacksTo(1));
     }
 
     @Override
@@ -37,14 +38,15 @@ public class ItemLordCore extends BaseItem {
         super.finishUsingItem(pStack, pLevel, pLivingEntity);
         if (pLivingEntity instanceof Player player && ItemFiftyFiftyHelmet.hasFiftyFiftyHelmet(player)) {
             ItemFiftyFiftyHelmet.setFiftyFiftyActive(player, true);
-            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ANVIL_LAND, player.getSoundSource());
-            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, player.getSoundSource());
+            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ANVIL_LAND);
+            HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE);
             if (pLevel.isClientSide) {
                 Minecraft.getInstance().gameRenderer.displayItemActivation(pStack.copy());
             } else if (player.getServer() != null) {
                 player.getServer().getPlayerList().broadcastSystemMessage(Component.translatable("message.huajiage.50_50_helmet.active", player.getDisplayName())
                         .withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD), false);
-                if (!player.isCreative()) {
+                player.awardStat(Stats.ITEM_USED.get(this));
+                if (!player.getAbilities().instabuild) {
                     pStack.shrink(1);
                 }
             }

@@ -106,7 +106,7 @@ public class ItemExglutenbur extends SwordItem {
                 pAttacker.heal(10f);
                 pStack.hurtAndBreak(3 * 29, pAttacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
                 pTarget.hurt(HuaJiDamageSources.simple(pAttacker, HuaJiDamageTypes.KE_DAI_JIN_LA), 50f);
-                HuaJiSoundPlayer.playMovingSoundToClient(pTarget, HuaJiSoundEvents.EXGLUTENBUR_HIT.get(), pAttacker.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(pTarget, HuaJiSoundEvents.EXGLUTENBUR_HIT.get());
                 pAttacker.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.kdjl").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.BOLD));
                 pTarget.sendSystemMessage(Component.translatable("message.huajiage.exglutenbur.kdjl").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.BOLD));
                 List<LivingEntity> entities = pTarget.level().getEntitiesOfClass(LivingEntity.class, pTarget.getBoundingBox().inflate(5));
@@ -139,7 +139,7 @@ public class ItemExglutenbur extends SwordItem {
             }
             case SPICY -> {
                 pTarget.setSecondsOnFire(5);
-                HuaJiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, pTarget.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(pTarget, SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, pAttacker.getSoundSource());
                 List<LivingEntity> entities = pTarget.level().getEntitiesOfClass(LivingEntity.class, pTarget.getBoundingBox().inflate(2));
                 for (LivingEntity entity : entities) {
                     if (!entity.equals(pAttacker) && !entity.equals(pTarget)) {

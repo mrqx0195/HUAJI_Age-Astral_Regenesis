@@ -18,9 +18,11 @@ public abstract class MixinTimeStopUtils {
     private static void injectCanMove(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         entity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
             Stand stand = Stand.getStand(data.getStand());
-            ITagManager<Stand> tags = HuaJiStands.REGISTRY.get().tags();
-            if (tags != null && tags.getTag(StandTags.TIME_STOP).contains(stand)) {
-                cir.setReturnValue(true);
+            if (stand != null && data.getLevel() == stand.getMaxLevel()) {
+                ITagManager<Stand> tags = HuaJiStands.REGISTRY.get().tags();
+                if (tags != null && tags.getTag(StandTags.TIME_STOP).contains(stand)) {
+                    cir.setReturnValue(true);
+                }
             }
         });
     }

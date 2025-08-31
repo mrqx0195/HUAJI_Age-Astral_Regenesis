@@ -1,4 +1,4 @@
-package net.mrqx.huajiage.event.handler.client;
+package net.mrqx.huajiage.client.event;
 
 import com.google.gson.JsonSyntaxException;
 import com.mega.endinglib.util.time.TimeContext;
@@ -142,7 +142,7 @@ public class ShaderHandler {
         PostChain postChain = loadEffect(resourceLocation);
         if (postChain != null) {
             HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
-            HuaJiShaderManager.postChains.put(TIME_STOP_SHADER, postChain);
+            HuaJiShaderManager.POST_CHAINS.put(TIME_STOP_SHADER, postChain);
         }
     }
 

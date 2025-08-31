@@ -143,8 +143,8 @@ public class ExplosionHuaJi extends Explosion {
                     d9 /= d13;
 
                     if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
-                        double d10 = 1.0D - d12;
-                        entity.hurt(this.getDamageSource(), damageDecrease ? (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f2 + 1.0D) * baseDamage) : (float) baseDamage);
+                        double d10 = Math.min(1 - d12 + 0.2, 1);
+                        entity.hurt(this.getDamageSource(), damageDecrease ? (float) ((d10 * d10 + d10) / 2 * baseDamage) : (float) baseDamage);
                     }
 
                     double d11;

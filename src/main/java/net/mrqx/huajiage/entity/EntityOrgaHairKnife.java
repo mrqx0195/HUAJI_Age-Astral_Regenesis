@@ -5,7 +5,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,42 +19,44 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.network.PlayMessages;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.registy.HuaJiItems;
-import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
-import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 import javax.annotation.Nullable;
 
-public class EntityRoadRoller extends ThrowableItemProjectile {
+public class EntityOrgaHairKnife extends ThrowableItemProjectile {
     private static final EntityDataAccessor<Float> DAMAGE = SynchedEntityData
-            .defineId(EntityRoadRoller.class, EntityDataSerializers.FLOAT);
+            .defineId(EntityOrgaHairKnife.class, EntityDataSerializers.FLOAT);
 
     private static final EntityDataAccessor<Long> LIFE = SynchedEntityData
-            .defineId(EntityRoadRoller.class, EntityDataSerializers.LONG);
+            .defineId(EntityOrgaHairKnife.class, EntityDataSerializers.LONG);
+
+    private static final EntityDataAccessor<Float> ROTATION_RANDOM = SynchedEntityData
+            .defineId(EntityOrgaHairKnife.class, EntityDataSerializers.FLOAT);
 
     private boolean hasExploded = false;
-    private int hitTime = 0;
 
-    public EntityRoadRoller(EntityType<? extends ThrowableItemProjectile> entityType, Level level) {
+    public EntityOrgaHairKnife(EntityType<? extends ThrowableItemProjectile> entityType, Level level) {
         super(entityType, level);
+        this.setRotationRandom(level.random.nextFloat());
     }
 
-    public EntityRoadRoller(LivingEntity shooter, Level level) {
-        super(HuaJiAgeMod.RegistryEvents.roadRollerEntityType, shooter, level);
+    public EntityOrgaHairKnife(LivingEntity shooter, Level level) {
+        super(HuaJiAgeMod.RegistryEvents.orgaHairKnifeEntityType, shooter, level);
+        this.setRotationRandom(level.random.nextFloat());
     }
 
     @SuppressWarnings("unused")
-    public static EntityRoadRoller createInstance(PlayMessages.SpawnEntity packet, Level worldIn) {
-        return new EntityRoadRoller(HuaJiAgeMod.RegistryEvents.roadRollerEntityType, worldIn);
+    public static EntityOrgaHairKnife createInstance(PlayMessages.SpawnEntity packet, Level worldIn) {
+        return new EntityOrgaHairKnife(HuaJiAgeMod.RegistryEvents.orgaHairKnifeEntityType, worldIn);
     }
 
-    public static EntityRoadRoller create(EntityType<? extends ThrowableItemProjectile> pEntityType, Level pLevel) {
-        return new EntityRoadRoller(pEntityType, pLevel);
+    public static EntityOrgaHairKnife create(EntityType<? extends ThrowableItemProjectile> pEntityType, Level pLevel) {
+        return new EntityOrgaHairKnife(pEntityType, pLevel);
     }
 
     @Override
     protected Item getDefaultItem() {
-        return HuaJiItems.ROAD_ROLLER.get();
+        return HuaJiItems.ORGA_HAIR_KNIFE.get();
     }
 
     @Override
@@ -69,13 +70,15 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
         super.addAdditionalSaveData(pCompound);
         pCompound.putFloat("damage", this.getDamage());
         pCompound.putLong("life", this.getLife());
+        pCompound.putFloat("rotation_random", this.getRotationRandom());
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DAMAGE, 10F);
+        this.entityData.define(DAMAGE, 5F);
         this.entityData.define(LIFE, 200L);
+        this.entityData.define(ROTATION_RANDOM, 0F);
     }
 
     @Override
@@ -83,12 +86,19 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
         super.readAdditionalSaveData(pCompound);
         this.setDamage(pCompound.getFloat("damage"));
         this.setLife(pCompound.getLong("life"));
+        this.setRotationRandom(pCompound.getFloat("rotation_random"));
     }
 
     @Override
     public void tick() {
         this.setLife(this.getLife() - 1);
         super.tick();
+        double r1 = (this.level().random.nextDouble() - 0.5) * 0.2;
+        double r2 = (this.level().random.nextDouble() - 0.5) * 0.2;
+        double r3 = (this.level().random.nextDouble() - 0.5) * 0.2;
+        if (r1 > 0.05) {
+            this.level().addParticle(ParticleTypes.FIREWORK, this.getX() + r1, this.getEyeY() + r2, this.getZ() + r3, r1, r2, r3);
+        }
         if (this.getLife() < 0) {
             this.discard();
         }
@@ -96,18 +106,6 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        this.setDamage(this.getDamage() + pAmount);
-        if (this.level() instanceof ServerLevel serverLevel) {
-            if (pSource.getEntity() != null && this.getItem().is(HuaJiItems.ROAD_ROLLER.get())) {
-                if (hitTime == 0) {
-                    HuaJiSoundPlayer.playMovingSoundToClient(pSource.getEntity(), HuaJiSoundEvents.DIO_FLAG.get(), 2F);
-                } else if (hitTime % 4 == 0) {
-                    HuaJiSoundPlayer.playMovingSoundToClient(pSource.getEntity(), HuaJiSoundEvents.DIO_HIT.get(), 0.75F);
-                }
-            }
-            hitTime++;
-            serverLevel.sendParticles(ParticleTypes.LAVA, getX(), getY(), getZ(), 1, 1, 1, 1, 1);
-        }
         return false;
     }
 
@@ -133,8 +131,8 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
 
     protected void explode() {
         this.hasExploded = true;
-        Explosion explosion = new ExplosionHuaJi(this.level(), this.getOwner(), HuaJiDamageSources.standHit(this.level(), this, this.getOwner(), this.position()),
-                null, getX(), getY(), getZ(), 4F, Explosion.BlockInteraction.KEEP, this.getDamage(), 0, false);
+        Explosion explosion = new ExplosionHuaJi(this.level(), this.getOwner(), HuaJiDamageSources.hopeFlower(this.level(), this, this.getOwner(), this.position()),
+                null, getX(), getY(), getZ(), 1.5F, Explosion.BlockInteraction.KEEP, this.getDamage(), 0, false);
 
         explosion.explode();
         explosion.finalizeExplosion(true);
@@ -154,5 +152,13 @@ public class EntityRoadRoller extends ThrowableItemProjectile {
 
     public void setLife(long life) {
         this.entityData.set(LIFE, life);
+    }
+
+    public float getRotationRandom() {
+        return this.entityData.get(ROTATION_RANDOM);
+    }
+
+    public void setRotationRandom(float rot) {
+        this.entityData.set(ROTATION_RANDOM, rot);
     }
 }

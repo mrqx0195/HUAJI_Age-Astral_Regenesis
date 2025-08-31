@@ -12,6 +12,7 @@ public final class StandTags {
     public static final TagKey<Stand> LONG_DISTANCE_OPERATION = bind("long_distance_operation");
     public static final TagKey<Stand> AUTOMATIC = bind("automatic");
     public static final TagKey<Stand> RANGE_IRRELEVANT = bind("range_irrelevant");
+    public static final TagKey<Stand> REQUIEM = bind("requiem");
 
     private static TagKey<Stand> bind(String name) {
         return create(HuaJiAgeMod.prefix(name));

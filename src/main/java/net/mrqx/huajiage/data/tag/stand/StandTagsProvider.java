@@ -19,8 +19,10 @@ public class StandTagsProvider extends IntrinsicHolderTagsProvider<Stand> {
     @SuppressWarnings("DataFlowIssue")
     protected void addTags(HolderLookup.Provider provider) {
         tag(StandTags.TIME_STOP).add(HuaJiStands.THE_WORLD.getKey(), HuaJiStands.STAR_PLATINUM.getKey());
-        tag(StandTags.CLOSE_RANGE_POWER).add(HuaJiStands.STAR_PLATINUM.getKey(), HuaJiStands.ORGA_REQUIEM.getKey());
+        tag(StandTags.CLOSE_RANGE_POWER).add(HuaJiStands.STAR_PLATINUM.getKey(), HuaJiStands.ORGA_REQUIEM.getKey(), HuaJiStands.KILLER_QUEEN.getKey());
         tag(StandTags.LONG_DISTANCE_OPERATION).add(HuaJiStands.HIEROPHANT_GREEN.getKey());
         tag(StandTags.RANGE_IRRELEVANT).add(HuaJiStands.THE_WORLD.getKey(), HuaJiStands.STAR_PLATINUM.getKey());
+        tag(StandTags.AUTOMATIC).add(HuaJiStands.KILLER_QUEEN.getKey());
+        tag(StandTags.REQUIEM).add(HuaJiStands.ORGA_REQUIEM.getKey());
     }
 }

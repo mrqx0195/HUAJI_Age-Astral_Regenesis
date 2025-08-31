@@ -67,7 +67,7 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
             if (player.getFoodData().getFoodLevel() > 0 && stack.isDamaged()) {
                 player.getFoodData().addExhaustion(4);
                 stack.setDamageValue(Math.max(stack.getDamageValue() - 1, 0));
-                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.PARROT_EAT, player.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.PARROT_EAT);
             }
         }
     }
@@ -77,8 +77,8 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
         if (Mode.getMode(stack).equals(Mode.ON)) {
             target.hurt(target.level().damageSources().lava(), 10);
             target.setSecondsOnFire(8);
-            HuaJiSoundPlayer.playMovingSoundToClient(target, SoundEvents.BLAZE_SHOOT, target.getSoundSource());
-            HuaJiSoundPlayer.playMovingSoundToClient(target, SoundEvents.GENERIC_BURN, target.getSoundSource(), 1, 0.1F);
+            HuaJiSoundPlayer.playMovingSoundToClient(target, SoundEvents.BLAZE_SHOOT);
+            HuaJiSoundPlayer.playMovingSoundToClient(target, SoundEvents.GENERIC_BURN, 1, 0.1F);
         } else {
             target.addEffect(new MobEffectInstance(MobEffects.HUNGER, 600, 2));
             stack.hurtAndBreak(1, attacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
@@ -101,7 +101,7 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
                 Mode.changeMode(itemStack);
                 player.getCooldowns().addCooldown(HuaJiItems.HUAJI_LATIAO_SWORD.get(), 10);
                 if (Mode.getMode(itemStack).equals(Mode.ON)) {
-                    HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.BLAZE_SHOOT, player.getSoundSource());
+                    HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.BLAZE_SHOOT);
                 }
             } else if (Mode.getMode(itemStack).equals(Mode.ON) && player instanceof ServerPlayer serverPlayer) {
                 if (serverPlayer.getFoodData().getFoodLevel() < 20) {

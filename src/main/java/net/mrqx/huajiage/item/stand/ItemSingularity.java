@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -36,7 +37,7 @@ public class ItemSingularity extends BaseItem {
     public static final String SINGULARITY_COUNT = HuaJiAgeMod.MODID + "." + "singularityCount";
 
     public ItemSingularity() {
-        super(new Item.Properties().rarity(Rarity.EPIC));
+        super(new Item.Properties().rarity(Rarity.EPIC).fireResistant().stacksTo(1));
     }
 
     private static int tick = 0;
@@ -81,16 +82,19 @@ public class ItemSingularity extends BaseItem {
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 9));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 5));
                     pPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 9));
-                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.CHARGE.get(), pPlayer.getSoundSource());
-                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.ENERGY_HIT.get(), pPlayer.getSoundSource());
-                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.NOISE_FURNACE.get(), pPlayer.getSoundSource());
+                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.CHARGE.get());
+                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.ENERGY_HIT.get());
+                    HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.NOISE_FURNACE.get());
                     pPlayer.sendSystemMessage(Component.translatable("message.huajiage.singularity").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
                     flag.set(true);
                 }
             }
         });
         if (flag.get()) {
-            itemStack.shrink(1);
+            pPlayer.awardStat(Stats.ITEM_USED.get(this));
+            if (!pPlayer.getAbilities().instabuild) {
+                itemStack.shrink(1);
+            }
         }
         pPlayer.swing(pUsedHand, true);
         return InteractionResultHolder.success(itemStack);

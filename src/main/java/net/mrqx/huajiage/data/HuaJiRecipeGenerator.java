@@ -19,6 +19,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
+@SuppressWarnings("SameParameterValue")
 public class HuaJiRecipeGenerator extends RecipeProvider {
     public HuaJiRecipeGenerator(PackOutput output) {
         super(output);

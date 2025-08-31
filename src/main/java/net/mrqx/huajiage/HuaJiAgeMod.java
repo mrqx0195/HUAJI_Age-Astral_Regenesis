@@ -7,6 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -15,16 +16,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
-import net.mrqx.huajiage.client.renderer.entity.RenderFivePower;
-import net.mrqx.huajiage.client.renderer.entity.RenderHeroArrow;
-import net.mrqx.huajiage.client.renderer.entity.RenderItemBullet;
-import net.mrqx.huajiage.client.renderer.entity.RenderRoadRoller;
+import net.mrqx.huajiage.client.renderer.entity.*;
 import net.mrqx.huajiage.config.HuaJiClientConfig;
 import net.mrqx.huajiage.config.HuaJiCommonConfig;
-import net.mrqx.huajiage.entity.EntityFivePower;
-import net.mrqx.huajiage.entity.EntityHeroArrow;
-import net.mrqx.huajiage.entity.EntityItemBullet;
-import net.mrqx.huajiage.entity.EntityRoadRoller;
+import net.mrqx.huajiage.entity.*;
 import net.mrqx.huajiage.network.NetworkManager;
 import net.mrqx.huajiage.registy.*;
 import org.slf4j.Logger;
@@ -59,19 +54,20 @@ public class HuaJiAgeMod {
     @Mod.EventBusSubscriber(
             bus = Mod.EventBusSubscriber.Bus.MOD
     )
+    @SuppressWarnings("NotNullFieldNotInitialized")
     public static class RegistryEvents {
         public static final ResourceLocation ENTITY_HERO_ARROW_RESOURCE_LOCATION = prefix(classToString(EntityHeroArrow.class));
         public static final ResourceLocation ENTITY_ITEM_BULLET_RESOURCE_LOCATION = prefix(classToString(EntityItemBullet.class));
         public static final ResourceLocation ENTITY_ROAD_ROLLER_RESOURCE_LOCATION = prefix(classToString(EntityRoadRoller.class));
-        public static final ResourceLocation ENTITY_ENTITY_FIVE_POWER_RESOURCE_LOCATION = prefix(classToString(EntityFivePower.class));
-        @SuppressWarnings("NotNullFieldNotInitialized")
+        public static final ResourceLocation ENTITY_FIVE_POWER_RESOURCE_LOCATION = prefix(classToString(EntityFivePower.class));
+        public static final ResourceLocation ENTITY_ORGA_HAIR_KNIFE_RESOURCE_LOCATION = prefix(classToString(EntityOrgaHairKnife.class));
+        public static final ResourceLocation ENTITY_SHEER_HEART_ATTACK_KNIFE_RESOURCE_LOCATION = prefix(classToString(EntitySheerHeartAttack.class));
         public static EntityType<EntityHeroArrow> heroArrowEntityType;
-        @SuppressWarnings("NotNullFieldNotInitialized")
         public static EntityType<EntityItemBullet> itemBulletEntityType;
-        @SuppressWarnings("NotNullFieldNotInitialized")
         public static EntityType<EntityRoadRoller> roadRollerEntityType;
-        @SuppressWarnings("NotNullFieldNotInitialized")
         public static EntityType<EntityFivePower> fivePowerEntityType;
+        public static EntityType<EntityOrgaHairKnife> orgaHairKnifeEntityType;
+        public static EntityType<EntitySheerHeartAttack> sheerHeartAttackEntityType;
 
         @SubscribeEvent
         public static void register(RegisterEvent event) {
@@ -101,9 +97,28 @@ public class HuaJiAgeMod {
                         .of(EntityFivePower::create, MobCategory.MISC).sized(0.7F, 0.7F)
                         .setTrackingRange(8).setUpdateInterval(3)
                         .setCustomClientFactory(EntityFivePower::createInstance)
-                        .build(ENTITY_ENTITY_FIVE_POWER_RESOURCE_LOCATION.toString());
-                entityTypeRegisterHelper.register(ENTITY_ENTITY_FIVE_POWER_RESOURCE_LOCATION, fivePowerEntityType);
+                        .build(ENTITY_FIVE_POWER_RESOURCE_LOCATION.toString());
+                entityTypeRegisterHelper.register(ENTITY_FIVE_POWER_RESOURCE_LOCATION, fivePowerEntityType);
+
+                orgaHairKnifeEntityType = EntityType.Builder
+                        .of(EntityOrgaHairKnife::create, MobCategory.MISC).sized(0.7F, 0.7F)
+                        .setTrackingRange(8).setUpdateInterval(3)
+                        .setCustomClientFactory(EntityOrgaHairKnife::createInstance)
+                        .build(ENTITY_ORGA_HAIR_KNIFE_RESOURCE_LOCATION.toString());
+                entityTypeRegisterHelper.register(ENTITY_ORGA_HAIR_KNIFE_RESOURCE_LOCATION, orgaHairKnifeEntityType);
+
+                sheerHeartAttackEntityType = EntityType.Builder
+                        .of(EntitySheerHeartAttack::create, MobCategory.MISC).sized(0.6F, 0.8F)
+                        .setTrackingRange(8).setUpdateInterval(3)
+                        .setCustomClientFactory(EntitySheerHeartAttack::createInstance)
+                        .build(ENTITY_SHEER_HEART_ATTACK_KNIFE_RESOURCE_LOCATION.toString());
+                entityTypeRegisterHelper.register(ENTITY_SHEER_HEART_ATTACK_KNIFE_RESOURCE_LOCATION, sheerHeartAttackEntityType);
             });
+        }
+
+        @SubscribeEvent
+        public static void onEntityAttributeCreationEvent(EntityAttributeCreationEvent event) {
+            event.put(sheerHeartAttackEntityType, EntitySheerHeartAttack.createAttributes().build());
         }
 
         @SubscribeEvent
@@ -112,6 +127,8 @@ public class HuaJiAgeMod {
             event.registerEntityRenderer(itemBulletEntityType, RenderItemBullet::new);
             event.registerEntityRenderer(roadRollerEntityType, RenderRoadRoller::new);
             event.registerEntityRenderer(fivePowerEntityType, RenderFivePower::new);
+            event.registerEntityRenderer(orgaHairKnifeEntityType, RenderOrgaHairKnife::new);
+            event.registerEntityRenderer(sheerHeartAttackEntityType, RenderSheerHeartAttack::new);
         }
 
         private static String classToString(Class<? extends Entity> entityClass) {

@@ -70,8 +70,8 @@ public class StandTheWorld extends Stand {
                         theWorld.counter += isTimeStopping ? 1 : 5;
                         if (data.getLevel() > 0 && theWorld.counter > 4) {
                             theWorld.counter = 0;
-                            HuaJiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, living.getSoundSource(), 0.25F);
-                            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.DIO_HIT.get(), living.getSoundSource(), 0.75F);
+                            HuaJiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, 0.25F);
+                            HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.DIO_HIT.get(), 0.75F);
                         }
                     }
                 } else if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
@@ -110,7 +110,7 @@ public class StandTheWorld extends Stand {
                     castTime = 20;
                 }
             }
-            HuaJiSoundPlayer.playMovingSoundToClient(living, soundEvent, living.getSoundSource(), 2);
+            HuaJiSoundPlayer.playMovingSoundToClient(living, soundEvent, 2);
         }
         StandUtils.castStandTimeStop(true, living, data, true, time, castTime);
         living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, time + castTime, 4, false, false));
@@ -137,7 +137,7 @@ public class StandTheWorld extends Stand {
     @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
-        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_THE_WORLD_HIT_1.get() : HuaJiSoundEvents.STAND_THE_WORLD_HIT_2.get(), livingEntity.getSoundSource());
+        HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_THE_WORLD_HIT_1.get() : HuaJiSoundEvents.STAND_THE_WORLD_HIT_2.get());
     }
 
     @Override
@@ -157,12 +157,12 @@ public class StandTheWorld extends Stand {
 
     @Override
     public float getDistance(LivingEntity livingEntity, IStandData data) {
-        return data.getLevel() > 0 ? 3 : 2;
+        return 2 + data.getLevel();
     }
 
     @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return data.getState().equals(STATE_IDLE) ? 150 : 75;
+        return data.isTriggered() && data.getState().equals(STATE_IDLE) ? 150 : 75;
     }
 
     @Override

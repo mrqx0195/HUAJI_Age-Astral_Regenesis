@@ -1,6 +1,7 @@
 package net.mrqx.huajiage.item.stand;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -18,7 +19,7 @@ import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 public class ItemArrowRequiem extends BaseItem {
     public ItemArrowRequiem() {
-        super(new Item.Properties().rarity(Rarity.EPIC));
+        super(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1));
     }
 
     @Override
@@ -29,16 +30,19 @@ public class ItemArrowRequiem extends BaseItem {
             pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                 HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.ORGA_REQUIEM_1.get());
                 pPlayer.sendSystemMessage(Component.translatable("message.huajiage.orga.awake.1"));
-                pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 6));
-                pPlayer.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 120));
-                pPlayer.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 120));
-                pPlayer.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120));
-                pPlayer.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120, 7));
-                pPlayer.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 120, 6));
-                pPlayer.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 120));
-                pPlayer.addEffect(new MobEffectInstance(MobEffects.WITHER, 120, 2));
-                data.getScheduler().schedule("orgaRequiem", 120, (living, manager, gameTime) -> pPlayer.getInventory().add(HuaJiItems.ORGA_REQUIEM.get().getDefaultInstance()));
-                itemStack.shrink(1);
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 6));
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 100));
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 100));
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.GLOWING, 100));
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100, 7));
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 6));
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100));
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 2));
+                data.getScheduler().schedule("orgaRequiem", 100, (living, manager, gameTime) -> pPlayer.getInventory().add(HuaJiItems.ORGA_REQUIEM.get().getDefaultInstance()));
+                pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                if (!pPlayer.getAbilities().instabuild) {
+                    itemStack.shrink(1);
+                }
             });
         }
         return InteractionResultHolder.consume(itemStack);

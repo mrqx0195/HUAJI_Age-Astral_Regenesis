@@ -115,12 +115,9 @@ public class HuaJiItems {
     public static final RegistryObject<Item> LORD_CORE = ITEMS.register("lord_core", ItemLordCore::new);
     public static final RegistryObject<Item> LORD_KEY = ITEMS.register("lord_key", ItemLordKey::new);
 
-    // TODO
-    public static final RegistryObject<Item> SECOND_FOIL = ITEMS.register("second_foil", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> ROAD_ROLLER = ITEMS.register("road_roller", ItemRoadRoller::new);
     public static final RegistryObject<Item> BLACK_CAR = ITEMS.register("black_car", ItemRoadRoller::new);
-    // TODO
-    public static final RegistryObject<Item> ORGA_HAIR_KNIFE = ITEMS.register("orga_hair_knife", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> ORGA_HAIR_KNIFE = ITEMS.register("orga_hair_knife", ItemOrgaHairKnife::new);
 
     public static final RegistryObject<Item> INFINITE_CHARM = ITEMS.register("infinite_charm", HuaJiCompat::makeInfiniteCharmCurios);
 

@@ -2,6 +2,7 @@ package net.mrqx.huajiage.client.model.stand;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -119,15 +120,15 @@ public class ModelOrgaRequiemFly extends ModelStandBase {
         pEntity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
             Stand stand = Stand.getStand(data.getStand());
             if (stand != null && pEntity instanceof LivingEntity living) {
-                extra.zRot = pAgeInTicks * stand.getSpeed(living, data) / 0.02F;
+                extra.zRot = pAgeInTicks * stand.getSpeed(living, data) / 0.08F;
             }
         });
     }
 
     private void resetPoses() {
         head.resetPose();
+        body.resetPose();
         extra.resetPose();
-        head.resetPose();
     }
 
     @Override
@@ -142,9 +143,11 @@ public class ModelOrgaRequiemFly extends ModelStandBase {
         PoseStack poseStack = event.getPoseStack();
         VertexConsumer vertexConsumer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
         float alpha = player.hasEffect(HuaJiEffects.STAND_POWER.get()) ? 0.6F : 0.3F;
-        poseStack.translate(0, -10, -50);
+        poseStack.mulPose(Axis.ZP.rotation(179.1F));
+        poseStack.translate(0, 0.2, -2);
+        poseStack.mulPose(Axis.XP.rotation(81.6F));
         this.resetPoses();
-        extra.zRot = player.tickCount * stand.getSpeed(player, data) / 0.02F;
+        extra.zRot = player.tickCount * stand.getSpeed(player, data) / 0.08F;
         head.render(poseStack, vertexConsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, alpha);
         body.render(poseStack, vertexConsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, alpha);
         extra.render(poseStack, vertexConsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, alpha);

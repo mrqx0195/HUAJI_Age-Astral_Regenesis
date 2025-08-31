@@ -14,8 +14,7 @@
         "name": "huajiage:charge",
         "preload": true
       }
-    ],
-    "subtitle": "subtitles.huajiage.charge"
+    ]
   },
   "dio_flag": {
     "sounds": [
@@ -41,8 +40,7 @@
         "name": "huajiage:energyhit",
         "preload": true
       }
-    ],
-    "subtitle": "subtitles.huajiage.energyhit"
+    ]
   },
   "exglutenbur_flavor1": {
     "sounds": [
@@ -86,8 +84,7 @@
         "name": "huajiage:noise_furnace",
         "preload": true
       }
-    ],
-    "subtitle": "subtitles.huajiage.noise_furnace"
+    ]
   },
   "orga_flower": {
     "sounds": [
@@ -563,8 +560,7 @@
         "name": "huajiage:wave_01",
         "preload": true
       }
-    ],
-    "subtitle": "subtitles.huajiage.wave_01"
+    ]
   },
   "wave_overdrive_1": {
     "sounds": [

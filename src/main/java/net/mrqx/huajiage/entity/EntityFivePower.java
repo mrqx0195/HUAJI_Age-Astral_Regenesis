@@ -1,5 +1,7 @@
 package net.mrqx.huajiage.entity;
 
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -35,7 +37,6 @@ public class EntityFivePower extends Fireball {
             .defineId(EntityFivePower.class, EntityDataSerializers.LONG);
 
     public final long randomSeed;
-    private boolean hasExploded = false;
     public boolean timeStopFix = false;
 
     public EntityFivePower(EntityType<? extends Fireball> pEntityType, Level pLevel) {
@@ -113,6 +114,11 @@ public class EntityFivePower extends Fireball {
     }
 
     @Override
+    protected ParticleOptions getTrailParticle() {
+        return this.isDe() ? ParticleTypes.FLAME : ParticleTypes.SMOKE;
+    }
+
+    @Override
     public void tick() {
         this.setDelay(this.getDelay() - 1);
         if (this.getDelay() <= 0) {
@@ -131,9 +137,8 @@ public class EntityFivePower extends Fireball {
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
-        if (!hasExploded && !this.level().isClientSide) {
+        if (!this.level().isClientSide) {
             explode();
-            this.setDelay(-300);
         }
     }
 
@@ -141,15 +146,11 @@ public class EntityFivePower extends Fireball {
     protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
         if (!(pResult.getEntity() instanceof EntityFivePower) && !pResult.getEntity().equals(this.getOwner()) && !this.level().isClientSide) {
-            if (!hasExploded) {
-                explode();
-                this.setDelay(-300);
-            }
+            explode();
         }
     }
 
     protected void explode() {
-        this.hasExploded = true;
         Explosion explosion = new ExplosionHuaJi(this.level(), this.getOwner(), HuaJiDamageSources.five(this.level(), this, this.getOwner(), this.position()),
                 null, getX(), getY(), getZ(), 1.9F, Explosion.BlockInteraction.KEEP, this.getDamage(), 0, false, entity -> {
             if (this.isDe() && entity instanceof LivingEntity living) {
@@ -167,6 +168,7 @@ public class EntityFivePower extends Fireball {
                         bolt.setVisualOnly(true);
                         entity.level().addFreshEntity(bolt);
                     }
+                    timeStopFix = true;
                 }
                 if (this.getOwner() instanceof LivingEntity living) {
                     living.heal(2);

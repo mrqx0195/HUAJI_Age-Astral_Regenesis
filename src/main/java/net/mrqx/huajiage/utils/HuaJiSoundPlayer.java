@@ -50,6 +50,10 @@ public class HuaJiSoundPlayer {
         playMovingSoundToClient(target, sound, target.getSoundSource(), volume, 1);
     }
 
+    public static void playMovingSoundToClient(Entity target, SoundEvent sound, float volume, float pitch) {
+        playMovingSoundToClient(target, sound, target.getSoundSource(), volume, pitch);
+    }
+
     public static void playMovingSoundToClient(Entity target, SoundEvent sound, SoundSource category) {
         playMovingSoundToClient(target, sound, category, 1, 1);
     }

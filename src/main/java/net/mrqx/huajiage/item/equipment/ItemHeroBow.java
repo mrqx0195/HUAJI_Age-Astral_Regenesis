@@ -144,11 +144,11 @@ public class ItemHeroBow extends BowItem {
 
                     if (isOn) {
                         player.hurt(HuaJiDamageSources.simpleNullSource(pLevel, HuaJiDamageTypes.STELLA), player.getMaxHealth() * 5);
-                        HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.STELLA.get(), player.getSoundSource());
+                        HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.STELLA.get());
                     }
                 }
 
-                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARROW_SHOOT, player.getSoundSource(), 1, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARROW_SHOOT, 1, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
                 player.awardStat(Stats.ITEM_USED.get(this));
             }
@@ -169,7 +169,7 @@ public class ItemHeroBow extends BowItem {
             player.getCooldowns().addCooldown(HuaJiItems.HERO_BOW.get(), 10);
             if (Mode.getMode(player.getMainHandItem()).equals(Mode.ON)) {
                 player.sendSystemMessage(Component.translatable("message.huajiage.stella_warning").withStyle(ChatFormatting.YELLOW));
-                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ENDER_DRAGON_GROWL, player.getSoundSource());
+                HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ENDER_DRAGON_GROWL);
             }
         }
     }

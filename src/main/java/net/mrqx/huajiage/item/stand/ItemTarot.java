@@ -3,6 +3,7 @@ package net.mrqx.huajiage.item.stand;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +28,7 @@ public class ItemTarot extends BaseItem {
     public static final String TAROT_STAND_LEVEL_KEY = HuaJiAgeMod.MODID + "." + "tarotStandLevel";
 
     public ItemTarot() {
-        super(new Item.Properties());
+        super(new Item.Properties().stacksTo(1));
     }
 
     @Override
@@ -60,6 +61,7 @@ public class ItemTarot extends BaseItem {
                         ItemTagHelper.removeEntry(itemStack, TAROT_STAND_KEY);
                         ItemTagHelper.removeEntry(itemStack, TAROT_STAND_LEVEL_KEY);
                         pPlayer.swing(pUsedHand, true);
+                        pPlayer.awardStat(Stats.ITEM_USED.get(this));
                     } else {
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.tarot.stand.failed").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
                     }
@@ -73,6 +75,7 @@ public class ItemTarot extends BaseItem {
                         data.setStand((ResourceLocation) null);
                         data.setLevel(0);
                         pPlayer.swing(pUsedHand, true);
+                        pPlayer.awardStat(Stats.ITEM_USED.get(this));
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.tarot.stand.store").withStyle(ChatFormatting.GOLD, ChatFormatting.ITALIC));
                     }
                 });

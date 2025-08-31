@@ -6,8 +6,8 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class CuriosInfiniteCharm extends ItemInfiniteCharm implements ICurioItem {
-    public CuriosInfiniteCharm(Properties properties) {
-        super(properties);
+    public CuriosInfiniteCharm() {
+        super();
     }
 
     @Override

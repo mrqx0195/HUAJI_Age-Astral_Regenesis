@@ -36,6 +36,7 @@ public abstract class Stand {
     public static final String STATE_DEFAULT = HuaJiAgeMod.MODID + "." + "default";
     public static final String STATE_IDLE = HuaJiAgeMod.MODID + "." + "idle";
     public static final String STATE_FLY = HuaJiAgeMod.MODID + "." + "fly";
+    public static final String STATE_PUNCH = HuaJiAgeMod.MODID + "." + "punch";
 
     protected final BiConsumer<LivingEntity, IStandData> tick;
     protected final BiConsumer<LivingEntity, IStandData> doSkill;
@@ -77,7 +78,9 @@ public abstract class Stand {
     }
 
     protected void timeoutPenalty(LivingEntity livingEntity, IStandData data) {
-        livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 20, 24, false, false));
+        if (!livingEntity.level().isClientSide) {
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 20, 24, false, false));
+        }
     }
 
     public int skillEnergyDemand(LivingEntity livingEntity, IStandData data) {
@@ -100,9 +103,10 @@ public abstract class Stand {
     }
 
     public void onCancelTriggered(LivingEntity livingEntity, IStandData data) {
-        MobEffectInstance mobEffectInstance = livingEntity.removeEffectNoUpdate(HuaJiEffects.STAND_POWER.get());
+        MobEffectInstance mobEffectInstance = livingEntity.getEffect(HuaJiEffects.STAND_POWER.get());
         if (mobEffectInstance != null) {
             data.setEnergy((long) (data.getEnergy() + (float) (mobEffectInstance.getDuration()) / this.getDuration(livingEntity, data) * HuaJiCommonConfig.STAND_TRIGGER_COST.get()));
+            livingEntity.removeEffect(HuaJiEffects.STAND_POWER.get());
         }
     }
 
