@@ -45,7 +45,7 @@ public class ItemLordCore extends BaseItem {
             } else if (player.getServer() != null) {
                 player.getServer().getPlayerList().broadcastSystemMessage(Component.translatable("message.huajiage.50_50_helmet.active", player.getDisplayName())
                         .withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD), false);
-                player.awardStat(Stats.ITEM_USED.get(this));
+                player.awardStat(Stats.ITEM_USED.get(pStack.getItem()));
                 if (!player.getAbilities().instabuild) {
                     pStack.shrink(1);
                 }

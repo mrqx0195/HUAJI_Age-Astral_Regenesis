@@ -70,7 +70,7 @@ public class ItemDisc extends BaseItem {
                 data.setMaxEnergy(stand.getMaxEnergy(pPlayer, data));
                 data.setLevel(ItemTagHelper.getInt(itemStack, DISC_STAND_LEVEL_KEY, 0));
             });
-            pPlayer.awardStat(Stats.ITEM_USED.get(this));
+            pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
             if (!pPlayer.getAbilities().instabuild) {
                 itemStack.shrink(1);
             }

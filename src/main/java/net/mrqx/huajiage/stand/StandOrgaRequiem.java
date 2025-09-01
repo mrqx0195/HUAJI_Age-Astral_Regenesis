@@ -177,8 +177,8 @@ public class StandOrgaRequiem extends Stand {
 
     @OnlyIn(Dist.CLIENT)
     public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
-            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/entity_orga_requiem_default.png"),
-            STATE_FLY, HuaJiAgeMod.prefix("textures/entity/entity_orga_requiem_fly.png")
+            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/orga_requiem_default.png"),
+            STATE_FLY, HuaJiAgeMod.prefix("textures/entity/stand/orga_requiem_fly.png")
     );
 
     @OnlyIn(Dist.CLIENT)

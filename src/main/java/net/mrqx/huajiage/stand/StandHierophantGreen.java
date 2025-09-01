@@ -202,8 +202,8 @@ public class StandHierophantGreen extends Stand {
 
     @OnlyIn(Dist.CLIENT)
     public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
-            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/entity_hierophant_green_default.png"),
-            STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/entity_hierophant_green_idle.png")
+            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/hierophant_green_default.png"),
+            STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/stand/hierophant_green_idle.png")
     );
 
     @OnlyIn(Dist.CLIENT)

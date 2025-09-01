@@ -61,13 +61,15 @@ public class HuaJiAgeMod {
         public static final ResourceLocation ENTITY_ROAD_ROLLER_RESOURCE_LOCATION = prefix(classToString(EntityRoadRoller.class));
         public static final ResourceLocation ENTITY_FIVE_POWER_RESOURCE_LOCATION = prefix(classToString(EntityFivePower.class));
         public static final ResourceLocation ENTITY_ORGA_HAIR_KNIFE_RESOURCE_LOCATION = prefix(classToString(EntityOrgaHairKnife.class));
-        public static final ResourceLocation ENTITY_SHEER_HEART_ATTACK_KNIFE_RESOURCE_LOCATION = prefix(classToString(EntitySheerHeartAttack.class));
+        public static final ResourceLocation ENTITY_SHEER_HEART_ATTACK_RESOURCE_LOCATION = prefix(classToString(EntitySheerHeartAttack.class));
+        public static final ResourceLocation ENTITY_MULTI_KNIFE_RESOURCE_LOCATION = prefix(classToString(EntityMultiKnife.class));
         public static EntityType<EntityHeroArrow> heroArrowEntityType;
         public static EntityType<EntityItemBullet> itemBulletEntityType;
         public static EntityType<EntityRoadRoller> roadRollerEntityType;
         public static EntityType<EntityFivePower> fivePowerEntityType;
         public static EntityType<EntityOrgaHairKnife> orgaHairKnifeEntityType;
         public static EntityType<EntitySheerHeartAttack> sheerHeartAttackEntityType;
+        public static EntityType<EntityMultiKnife> multiKnifeEntityType;
 
         @SubscribeEvent
         public static void register(RegisterEvent event) {
@@ -111,8 +113,15 @@ public class HuaJiAgeMod {
                         .of(EntitySheerHeartAttack::create, MobCategory.MISC).sized(0.6F, 0.8F)
                         .setTrackingRange(8).setUpdateInterval(3)
                         .setCustomClientFactory(EntitySheerHeartAttack::createInstance)
-                        .build(ENTITY_SHEER_HEART_ATTACK_KNIFE_RESOURCE_LOCATION.toString());
-                entityTypeRegisterHelper.register(ENTITY_SHEER_HEART_ATTACK_KNIFE_RESOURCE_LOCATION, sheerHeartAttackEntityType);
+                        .build(ENTITY_SHEER_HEART_ATTACK_RESOURCE_LOCATION.toString());
+                entityTypeRegisterHelper.register(ENTITY_SHEER_HEART_ATTACK_RESOURCE_LOCATION, sheerHeartAttackEntityType);
+
+                multiKnifeEntityType = EntityType.Builder
+                        .of(EntityMultiKnife::create, MobCategory.MISC).sized(0.5F, 0.5F)
+                        .setTrackingRange(8).setUpdateInterval(3)
+                        .setCustomClientFactory(EntityMultiKnife::createInstance)
+                        .build(ENTITY_MULTI_KNIFE_RESOURCE_LOCATION.toString());
+                entityTypeRegisterHelper.register(ENTITY_MULTI_KNIFE_RESOURCE_LOCATION, multiKnifeEntityType);
             });
         }
 
@@ -129,10 +138,13 @@ public class HuaJiAgeMod {
             event.registerEntityRenderer(fivePowerEntityType, RenderFivePower::new);
             event.registerEntityRenderer(orgaHairKnifeEntityType, RenderOrgaHairKnife::new);
             event.registerEntityRenderer(sheerHeartAttackEntityType, RenderSheerHeartAttack::new);
+            event.registerEntityRenderer(multiKnifeEntityType, RenderMultiKnife::new);
         }
 
         private static String classToString(Class<? extends Entity> entityClass) {
-            return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, entityClass.getSimpleName()).replace("entity_", "");
+            String entity = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, entityClass.getSimpleName()).replace("entity_", "");
+            HuaJiAgeMod.LOGGER.debug(entity);
+            return entity;
         }
 
     }

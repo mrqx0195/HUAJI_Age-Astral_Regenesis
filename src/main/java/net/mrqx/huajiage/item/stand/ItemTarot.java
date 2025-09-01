@@ -61,7 +61,7 @@ public class ItemTarot extends BaseItem {
                         ItemTagHelper.removeEntry(itemStack, TAROT_STAND_KEY);
                         ItemTagHelper.removeEntry(itemStack, TAROT_STAND_LEVEL_KEY);
                         pPlayer.swing(pUsedHand, true);
-                        pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                        pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
                     } else {
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.tarot.stand.failed").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
                     }
@@ -75,7 +75,7 @@ public class ItemTarot extends BaseItem {
                         data.setStand((ResourceLocation) null);
                         data.setLevel(0);
                         pPlayer.swing(pUsedHand, true);
-                        pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                        pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.tarot.stand.store").withStyle(ChatFormatting.GOLD, ChatFormatting.ITALIC));
                     }
                 });

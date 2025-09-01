@@ -28,7 +28,7 @@ public class ItemOrgaHairKnife extends BaseItem {
             hair.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 1.5F, 0);
             pLevel.addFreshEntity(hair);
         }
-        pPlayer.awardStat(Stats.ITEM_USED.get(this));
+        pPlayer.awardStat(Stats.ITEM_USED.get(itemstack.getItem()));
         if (!pPlayer.getAbilities().instabuild) {
             itemstack.shrink(1);
         }

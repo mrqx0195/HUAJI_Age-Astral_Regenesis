@@ -58,7 +58,7 @@ public class ItemArrowStand extends BaseItem {
                         HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, SoundEvents.WITHER_HURT);
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.stand.fail").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
                     }
-                    pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                    pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
                     if (!pPlayer.getAbilities().instabuild) {
                         itemStack.shrink(1);
                     }

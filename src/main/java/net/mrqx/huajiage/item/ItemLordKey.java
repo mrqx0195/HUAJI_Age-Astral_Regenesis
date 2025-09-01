@@ -52,7 +52,7 @@ public class ItemLordKey extends BaseItem {
                 }
                 player.getServer().getPlayerList().broadcastSystemMessage(Component.translatable("message.huajiage.50_50_helmet.lord", player.getDisplayName())
                         .withStyle(ChatFormatting.GRAY, ChatFormatting.BOLD), false);
-                player.awardStat(Stats.ITEM_USED.get(this));
+                player.awardStat(Stats.ITEM_USED.get(pStack.getItem()));
                 if (!player.getAbilities().instabuild) {
                     pStack.shrink(1);
                 }

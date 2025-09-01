@@ -43,6 +43,7 @@ import net.mrqx.huajiage.block.inventory.HuaJiPolyfurnaceMenu;
 import net.mrqx.huajiage.config.HuaJiCommonConfig;
 import net.mrqx.huajiage.recipe.HuaJiPolyfurnaceRecipe;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
+import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiMenus;
 import net.mrqx.huajiage.registy.HuaJiRecipes;
 import net.mrqx.huajiage.utils.HuaJiUtils;
@@ -249,6 +250,18 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
             }
         }
 
+
+        while (pBlockEntity.polyfurnacePool > TOTAL_POINT) {
+            ItemStack result = HuaJiItems.INFINITE_UNIVERSE_STAR.get().getDefaultInstance();
+            ItemStack output = pBlockEntity.getItem(SLOT_RESULT);
+            if (output.isEmpty()) {
+                pBlockEntity.setItem(SLOT_RESULT, result.copy());
+            } else if (output.is(result.getItem())) {
+                output.grow(result.getCount());
+            }
+            pBlockEntity.polyfurnacePool -= TOTAL_POINT;
+        }
+
         if (flag != (pBlockEntity.processingProgress > 0) || hasChanged) {
             hasChanged = true;
             pState = pState.setValue(BlockHuaJiPolyfurnace.LIT, pBlockEntity.processingProgress > 0);
@@ -287,7 +300,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
             ItemStack input = pInventory.get(SLOT_INPUT);
             input.shrink(1);
             this.polyfurnacePool += pRecipe.getPoint();
-            if (this.polyfurnacePool > TOTAL_POINT) {
+            while (this.polyfurnacePool > TOTAL_POINT) {
                 ItemStack result = pRecipe.assemble(this, pRegistryAccess);
                 ItemStack output = pInventory.get(SLOT_RESULT);
                 if (output.isEmpty()) {

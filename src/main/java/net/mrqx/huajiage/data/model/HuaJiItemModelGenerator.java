@@ -72,6 +72,7 @@ public class HuaJiItemModelGenerator extends ItemModelProvider {
         basicItem(HuaJiItems.ARROW_REQUIEM.get());
         basicItem(HuaJiItems.ORGA_REQUIEM.get());
         basicItem(HuaJiItems.TAROT.get());
+        basicItem(HuaJiItems.KILLER_QUEEN_TRIGGER.get());
     }
 
     public ItemModelBuilder swordItem(Item item) {

@@ -34,7 +34,7 @@ public class ItemRoadRoller extends BaseItem {
             road.setDamage(itemStack.is(HuaJiItems.ROAD_ROLLER.get()) ? 10 : 50);
             road.setLife(512);
             road.setItem(itemStack);
-            pPlayer.awardStat(Stats.ITEM_USED.get(this));
+            pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
             if (!pPlayer.getAbilities().instabuild) {
                 itemStack.shrink(1);
             }

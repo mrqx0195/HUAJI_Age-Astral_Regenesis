@@ -150,7 +150,7 @@ public class ItemHeroBow extends BowItem {
 
                 HuaJiSoundPlayer.playMovingSoundToClient(player, SoundEvents.ARROW_SHOOT, 1, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
-                player.awardStat(Stats.ITEM_USED.get(this));
+                player.awardStat(Stats.ITEM_USED.get(itemstack.getItem()));
             }
         }
     }

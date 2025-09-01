@@ -9,7 +9,7 @@ import net.mrqx.huajiage.client.model.entity.ModelSheerHeartAttack;
 import net.mrqx.huajiage.entity.EntitySheerHeartAttack;
 
 public class RenderSheerHeartAttack extends MobRenderer<EntitySheerHeartAttack, ModelSheerHeartAttack<EntitySheerHeartAttack>> {
-    private static final ResourceLocation TEXTURE = HuaJiAgeMod.prefix("textures/entity/entity_sheer_heart_attack.png");
+    private static final ResourceLocation TEXTURE = HuaJiAgeMod.prefix("textures/entity/sheer_heart_attack.png");
 
     public RenderSheerHeartAttack(EntityRendererProvider.Context context) {
         super(context, new ModelSheerHeartAttack<>(context.bakeLayer(HuaJiLayers.SHEER_HEART_ATTACK)), 0.6F);

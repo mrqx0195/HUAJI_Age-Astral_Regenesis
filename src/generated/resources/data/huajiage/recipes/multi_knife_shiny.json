@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "huajiage:baked_gluten"
+    },
+    "D": {
+      "item": "huajiage:huaji_ingot"
+    },
+    "H": {
+      "item": "huajiage:multi_knife"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "pattern": [
+    "ADA",
+    "LHL",
+    "ADA"
+  ],
+  "result": {
+    "item": "huajiage:multi_knife_shiny"
+  },
+  "show_notification": true
+}

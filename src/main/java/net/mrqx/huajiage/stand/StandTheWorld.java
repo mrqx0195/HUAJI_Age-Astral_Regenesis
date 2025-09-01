@@ -194,8 +194,8 @@ public class StandTheWorld extends Stand {
 
     @OnlyIn(Dist.CLIENT)
     public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
-            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/entity_the_world_default.png"),
-            STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/entity_the_world_idle.png")
+            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/the_world_default.png"),
+            STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/stand/the_world_idle.png")
     );
 
     @OnlyIn(Dist.CLIENT)

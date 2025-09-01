@@ -90,14 +90,15 @@ public class ItemSingularity extends BaseItem {
                 }
             }
         });
+        pPlayer.swing(pUsedHand, true);
         if (flag.get()) {
-            pPlayer.awardStat(Stats.ITEM_USED.get(this));
+            pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
             if (!pPlayer.getAbilities().instabuild) {
                 itemStack.shrink(1);
             }
+            return InteractionResultHolder.success(itemStack);
         }
-        pPlayer.swing(pUsedHand, true);
-        return InteractionResultHolder.success(itemStack);
+        return InteractionResultHolder.consume(itemStack);
     }
 
     @SubscribeEvent

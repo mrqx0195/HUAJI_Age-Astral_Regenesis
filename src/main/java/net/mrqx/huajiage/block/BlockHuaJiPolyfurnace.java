@@ -8,6 +8,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
@@ -25,7 +26,10 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.mrqx.huajiage.block.blockentity.HuaJiPolyfurnaceBlockEntity;
+import net.mrqx.huajiage.item.ItemPolyStar;
 import net.mrqx.huajiage.registy.HuaJiBlocks;
+import net.mrqx.huajiage.registy.HuaJiItems;
+import net.mrqx.huajiage.utils.ItemTagHelper;
 
 import javax.annotation.Nullable;
 
@@ -83,11 +87,15 @@ public class BlockHuaJiPolyfurnace extends BaseEntityBlock {
                 if (pLevel instanceof ServerLevel) {
                     Containers.dropContents(pLevel, pPos, huaJiPolyfurnaceBlockEntity);
                     huaJiPolyfurnaceBlockEntity.getRecipesToAwardAndPopExperience((ServerLevel) pLevel, Vec3.atCenterOf(pPos));
+                    if (huaJiPolyfurnaceBlockEntity.polyfurnacePool > 0) {
+                        ItemStack itemStack = HuaJiItems.HUAJI_STAR_POLY.get().getDefaultInstance();
+                        ItemTagHelper.setInt(itemStack, ItemPolyStar.POLY_POINT_KEY, huaJiPolyfurnaceBlockEntity.polyfurnacePool);
+                        ItemEntity itemEntity = new ItemEntity(pLevel, pPos.getCenter().x, pPos.getCenter().y, pPos.getCenter().z, itemStack);
+                        pLevel.addFreshEntity(itemEntity);
+                    }
                 }
-
                 pLevel.updateNeighbourForOutputSignal(pPos, this);
             }
-
             super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
         }
     }

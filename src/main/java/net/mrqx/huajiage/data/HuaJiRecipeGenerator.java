@@ -355,6 +355,25 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .define('R', HuaJiItems.DISC.get())
                 .define('A', HuaJiItems.ARROW_STAND.get())
                 .unlockedBy("has_arrow_stand", has(HuaJiItems.ARROW_STAND.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.MULTI_KNIFE.get())
+                .pattern(" N ")
+                .pattern(" H ")
+                .pattern(" D ")
+                .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
+                .define('H', HuaJiItems.HOPE_FLOWER.get())
+                .define('D', HuaJiItems.HUAJI_INGOT.get())
+                .unlockedBy("has_huaji_ingot", has(HuaJiItems.HUAJI_INGOT.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.MULTI_KNIFE_SHINY.get())
+                .pattern("ADA")
+                .pattern("LHL")
+                .pattern("ADA")
+                .define('A', HuaJiItems.BAKED_GLUTEN.get())
+                .define('H', HuaJiItems.MULTI_KNIFE.get())
+                .define('D', HuaJiItems.HUAJI_INGOT.get())
+                .define('L', Items.LAVA_BUCKET)
+                .unlockedBy("has_huaji_ingot", has(HuaJiItems.HUAJI_INGOT.get())).save(pWriter);
     }
 
 

@@ -42,7 +42,7 @@ public class HuaJiItems {
     public static final RegistryObject<Item> HUAJI_STAR = ITEMS.register("huaji_star", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final RegistryObject<Item> AIRSPACE_STAR = ITEMS.register("airspace_star", () -> new BaseItem(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
     public static final RegistryObject<Item> INFINITE_UNIVERSE_STAR = ITEMS.register("infinite_universe_star", () -> new BaseItem(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
-    public static final RegistryObject<Item> HUAJI_STAR_POLY = ITEMS.register("huaji_star_poly", () -> new BaseItem(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> HUAJI_STAR_POLY = ITEMS.register("huaji_star_poly", ItemPolyStar::new);
 
     /**
      * Foods
@@ -96,10 +96,8 @@ public class HuaJiItems {
     public static final RegistryObject<Item> HUAJI_LATIAO_SWORD = ITEMS.register("huaji_latiao_sword", ItemHuajiLaTiaoSword::new);
     public static final RegistryObject<Item> EXGLUTENBUR = ITEMS.register("exglutenbur", ItemExglutenbur::new);
     public static final RegistryObject<Item> HERO_BOW = ITEMS.register("hero_bow", ItemHeroBow::new);
-    // TODO
-    public static final RegistryObject<Item> MULTI_KNIFE = ITEMS.register("multi_knife", () -> new BaseItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
-    // TODO
-    public static final RegistryObject<Item> MULTI_KNIFE_SHINY = ITEMS.register("multi_knife_shiny", () -> new BaseItem(new Item.Properties().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> MULTI_KNIFE = ITEMS.register("multi_knife", () -> new ItemMultiKnife(new Item.Properties().rarity(Rarity.UNCOMMON).durability(1000)));
+    public static final RegistryObject<Item> MULTI_KNIFE_SHINY = ITEMS.register("multi_knife_shiny", () -> new ItemMultiKnife(new Item.Properties().rarity(Rarity.RARE).durability(8848)));
 
     public static final RegistryObject<Item> HUAJI_HELMET = ITEMS.register("huaji_helmet", ItemHuajiArmor.ItemHuajiArmorHelmet::new);
     public static final RegistryObject<Item> HUAJI_CHESTPLATE = ITEMS.register("huaji_chestplate", ItemHuajiArmor.ItemHuajiArmorChestplate::new);
@@ -130,6 +128,7 @@ public class HuaJiItems {
     public static final RegistryObject<Item> ARROW_REQUIEM = ITEMS.register("arrow_requiem", ItemArrowRequiem::new);
     public static final RegistryObject<Item> ORGA_REQUIEM = ITEMS.register("orga_requiem", ItemOrgaRequiem::new);
     public static final RegistryObject<Item> TAROT = ITEMS.register("tarot", ItemTarot::new);
+    public static final RegistryObject<Item> KILLER_QUEEN_TRIGGER = ITEMS.register("killer_queen_trigger", ItemKillerQueenTrigger::new);
 
     /**
      * Block Items

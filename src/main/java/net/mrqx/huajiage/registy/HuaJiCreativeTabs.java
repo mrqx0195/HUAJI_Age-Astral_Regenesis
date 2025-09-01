@@ -16,20 +16,17 @@ public class HuaJiCreativeTabs {
 
     public static final RegistryObject<CreativeModeTab> HUAJI_GROUP = CREATIVE_MODE_TABS.register("huaji", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.huajiage")).icon(() -> HuaJiItems.HUAJI.get().getDefaultInstance())
-            .displayItems((features, output) -> {
-                HuaJiItems.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
-            }).build());
+            .displayItems((features, output) -> HuaJiItems.ITEMS.getEntries().forEach(item -> output.accept(item.get()))).build());
 
     public static final RegistryObject<CreativeModeTab> STAND_GROUP = CREATIVE_MODE_TABS.register("stand", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.stand")).icon(() -> HuaJiItems.SINGULARITY.get().getDefaultInstance())
-            .displayItems((features, output) -> {
-                HuaJiStands.REGISTRY.get().getEntries().forEach(resourceLocation -> {
-                    for (int i = 0; i <= resourceLocation.getValue().getMaxLevel(); i++) {
-                        ItemStack stack = HuaJiItems.DISC.get().getDefaultInstance();
-                        ItemTagHelper.setString(stack, ItemDisc.DISC_STAND_KEY, resourceLocation.getKey().location().toString());
-                        ItemTagHelper.setInt(stack, ItemDisc.DISC_STAND_LEVEL_KEY, i);
-                        output.accept(stack);
-                    }
-                });
-            }).build());
+            .displayItems((features, output) ->
+                    HuaJiStands.REGISTRY.get().getEntries().forEach(resourceLocation -> {
+                        for (int i = 0; i <= resourceLocation.getValue().getMaxLevel(); i++) {
+                            ItemStack stack = HuaJiItems.DISC.get().getDefaultInstance();
+                            ItemTagHelper.setString(stack, ItemDisc.DISC_STAND_KEY, resourceLocation.getKey().location().toString());
+                            ItemTagHelper.setInt(stack, ItemDisc.DISC_STAND_LEVEL_KEY, i);
+                            output.accept(stack);
+                        }
+                    })).build());
 }
