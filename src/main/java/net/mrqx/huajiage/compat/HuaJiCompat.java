@@ -4,7 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.mrqx.huajiage.compat.curios.CuriosInfiniteCharm;
+import net.mrqx.huajiage.compat.curios.CuriosItemFactory;
 import net.mrqx.huajiage.item.ItemInfiniteCharm;
 import org.apache.logging.log4j.util.LoaderUtil;
 
@@ -31,7 +31,7 @@ public class HuaJiCompat {
 
     public static Item makeInfiniteCharmCurios() {
         if (HuaJiCompat.getInstance().hasCurios) {
-            return new CuriosInfiniteCharm();
+            return CuriosItemFactory.makeInfiniteCharm();
         }
         return new ItemInfiniteCharm();
     }

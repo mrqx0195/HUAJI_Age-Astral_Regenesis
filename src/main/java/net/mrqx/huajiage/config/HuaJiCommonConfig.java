@@ -77,9 +77,9 @@ public class HuaJiCommonConfig {
     @SubscribeEvent
     public static void onServerStartingEvent(ServerStartingEvent event) {
         ARROW_STAND_RANGE_MAP.clear();
-        Map<String, Double> unawakenedSoulMap = new HashMap<>(16);
-        ARROW_STAND_LIST.get().forEach(chance -> unawakenedSoulMap.put((String) (chance.get(0)), (Double) (chance.get(1))));
-        List<Map.Entry<String, Double>> sortedList = new ArrayList<>(unawakenedSoulMap.entrySet());
+        Map<String, Double> map = new HashMap<>(16);
+        ARROW_STAND_LIST.get().forEach(chance -> map.put((String) (chance.get(0)), (Double) (chance.get(1))));
+        List<Map.Entry<String, Double>> sortedList = new ArrayList<>(map.entrySet());
         sortedList.sort(Map.Entry.comparingByValue());
         AtomicDouble total = new AtomicDouble(0);
         sortedList.forEach(entry -> ARROW_STAND_RANGE_MAP.put(Range.closedOpen(total.getAndAdd(entry.getValue()), total.get() + entry.getValue()), entry.getKey()));

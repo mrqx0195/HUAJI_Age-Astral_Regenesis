@@ -216,7 +216,7 @@
   "message.huajiage.stella_warning": "警告：真名解放状态下可能会造成不可挽回的后果，请不要轻易将此状态下的弓弦拉满！！！",
   "message.huajiage.tarot.stand.failed": "你已经拥有了一个替身，如果您想更换替身，请找一张空的塔罗牌卸载",
   "message.huajiage.tarot.stand.store": "替身数据已储存",
-  "patchouli.huajiage.book.landing": "在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物。据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力",
+  "patchouli.huajiage.book.landing": "$(br)$(c)$(l)警告：该手册直接移植自前代，部分介绍内容已过时！$()",
   "patchouli.huajiage.book.name": "§e§lJO§6级宝典§r",
   "stand.huajiage.hierophant_green": "§a§lHierophant Green - 绿之法皇§r",
   "stand.huajiage.hierophant_green.skill": "§a§l接招吧！半径20米的绿宝石水花！！！§r",

@@ -18,15 +18,21 @@ public class HuaJiBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(HuaJiBlocks.HUAJI_ORE.get())
-                .add(HuaJiBlocks.HUAJI_STAR_BLOCK.get())
-                .add(HuaJiBlocks.AIRSPACE_STAR_BLOCK.get())
-                .add(HuaJiBlocks.HUAJI_BLENDER.get());
-        tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(HuaJiBlocks.HUAJI_ORE.get())
-                .add(HuaJiBlocks.HUAJI_STAR_BLOCK.get())
-                .add(HuaJiBlocks.AIRSPACE_STAR_BLOCK.get())
-                .add(HuaJiBlocks.HUAJI_BLENDER.get());
+        tag(BlockTags.NEEDS_DIAMOND_TOOL).add(
+                HuaJiBlocks.HUAJI_ORE.get(),
+                HuaJiBlocks.HUAJI_STAR_BLOCK.get(),
+                HuaJiBlocks.AIRSPACE_STAR_BLOCK.get(),
+                HuaJiBlocks.HUAJI_BLENDER.get(),
+                HuaJiBlocks.HUAJI_POLYFURNACE.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                HuaJiBlocks.HUAJI_ORE.get(),
+                HuaJiBlocks.HUAJI_STAR_BLOCK.get(),
+                HuaJiBlocks.AIRSPACE_STAR_BLOCK.get(),
+                HuaJiBlocks.HUAJI_BLENDER.get(),
+                HuaJiBlocks.HUAJI_POLYFURNACE.get());
+        tag(BlockTags.BEACON_BASE_BLOCKS).add(
+                HuaJiBlocks.HUAJI_ORE.get(),
+                HuaJiBlocks.HUAJI_STAR_BLOCK.get(),
+                HuaJiBlocks.AIRSPACE_STAR_BLOCK.get());
     }
 }
