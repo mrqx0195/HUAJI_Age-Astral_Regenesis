@@ -1,0 +1,39 @@
+{
+  "parent": "huajiage:baked_gluten",
+  "criteria": {
+    "get_exglutenbur": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:exglutenbur"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.exglutenbur.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:exglutenbur",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.exglutenbur.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_exglutenbur"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

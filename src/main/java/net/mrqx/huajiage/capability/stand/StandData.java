@@ -14,7 +14,7 @@ public class StandData implements IStandData {
     private String state = Stand.STATE_DEFAULT;
     private long energy = 0;
     private long maxEnergy = 0;
-    final Scheduler scheduler = new Scheduler();
+    private final Scheduler scheduler = new Scheduler();
 
     @Override
     public void setStand(Stand stand) {

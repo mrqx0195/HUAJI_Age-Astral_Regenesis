@@ -1,0 +1,51 @@
+{
+  "parent": "huajiage:root",
+  "criteria": {
+    "get_huaji_fragment": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_fragment"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_ore_huaji": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:ore_huaji"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.ore.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:huaji_fragment"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.ore.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_huaji_fragment",
+      "get_ore_huaji"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

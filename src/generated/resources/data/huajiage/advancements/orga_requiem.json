@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:arrow_requiem",
+  "criteria": {
+    "get_orga_requiem": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:orga_requiem"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.orga_requiem.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "huajiage:orga_requiem"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.orga_requiem.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_orga_requiem"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

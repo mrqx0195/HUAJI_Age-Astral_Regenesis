@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:huaji_blender",
+  "criteria": {
+    "get_baked_gluten": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:baked_gluten"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.baked_gluten.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:baked_gluten"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.baked_gluten.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_baked_gluten"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

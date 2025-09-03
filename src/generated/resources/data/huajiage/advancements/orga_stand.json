@@ -1,0 +1,30 @@
+{
+  "parent": "huajiage:orga_requiem",
+  "criteria": {
+    "custom": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.orga_stand.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "huajiage:disc",
+      "nbt": "{huajiage.discStand:\"huajiage:orga_requiem\",huajiage.discStandLevel:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.orga_stand.title"
+    }
+  },
+  "requirements": [
+    [
+      "custom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

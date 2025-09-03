@@ -62,8 +62,9 @@ public class HuaJiItems {
                     .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 12000, 5), 1)
                     .effect(() -> new MobEffectInstance(MobEffects.JUMP, 12000, 3), 1)
                     .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 12000, 3), 1)
-                    .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 12000, 3), 1)
-                    .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 12000, 3), 1)
+                    .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 12000, 5), 1)
+                    .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 12000, 5), 1)
+                    .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 12000, 5), 1)
                     .nutrition(22).saturationMod(1).build()).fireResistant()));
 
     public static final RegistryObject<Item> RAW_GLUTEN = ITEMS.register("raw_gluten", () -> new BaseItem(new Item.Properties()
@@ -89,7 +90,7 @@ public class HuaJiItems {
                     .nutrition(2).saturationMod(1).build())));
 
     /**
-     * Weapons
+     * Equipments
      */
     public static final RegistryObject<Item> HUAJI_SWORD = ITEMS.register("huaji_sword", ItemHuaJiSword::new);
     public static final RegistryObject<Item> HUAJI_STAR_SWORD = ITEMS.register("huaji_star_sword", ItemHuajiStarSword::new);

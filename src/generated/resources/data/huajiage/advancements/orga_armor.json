@@ -1,0 +1,84 @@
+{
+  "parent": "huajiage:huaji_armor",
+  "criteria": {
+    "get_orga_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:orga_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_orga_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:orga_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_orga_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:orga_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_orga_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:orga_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.orga_armor.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:orga_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.orga_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_orga_helmet"
+    ],
+    [
+      "get_orga_chestplate"
+    ],
+    [
+      "get_orga_leggings"
+    ],
+    [
+      "get_orga_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

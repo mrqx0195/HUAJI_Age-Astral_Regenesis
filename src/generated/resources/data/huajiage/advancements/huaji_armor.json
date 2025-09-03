@@ -1,0 +1,84 @@
+{
+  "parent": "huajiage:huaji_blender",
+  "criteria": {
+    "get_huaji_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_huaji_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_huaji_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_huaji_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.huaji_armor.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:huaji_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.huaji_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_huaji_helmet"
+    ],
+    [
+      "get_huaji_chestplate"
+    ],
+    [
+      "get_huaji_leggings"
+    ],
+    [
+      "get_huaji_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

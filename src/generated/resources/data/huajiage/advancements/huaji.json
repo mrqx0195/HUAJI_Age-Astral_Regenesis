@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:ore",
+  "criteria": {
+    "get_huaji": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.huaji.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:huaji"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.huaji.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_huaji"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

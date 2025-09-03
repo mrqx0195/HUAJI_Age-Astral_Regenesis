@@ -59,6 +59,7 @@ public class HuaJiDamageTypeTagGenerator extends TagsProvider<DamageType> {
 
         tag(DamageTypeTags.BYPASSES_INVULNERABILITY).add(
                 HuaJiDamageTypes.ANTIMATTER,
+                HuaJiDamageTypes.STELLA,
                 HuaJiDamageTypes.FIVE,
                 HuaJiDamageTypes.SINGULARITY,
                 HuaJiDamageTypes.HOPE_FLOWER,

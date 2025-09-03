@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:huaji",
+  "criteria": {
+    "get_dio_bread": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:dio_bread"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.dio_bread.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:dio_bread"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.dio_bread.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_dio_bread"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

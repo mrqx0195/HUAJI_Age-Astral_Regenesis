@@ -19,6 +19,7 @@ import net.mrqx.huajiage.config.HuaJiCommonConfig;
 import net.mrqx.huajiage.item.BaseItem;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import net.mrqx.huajiage.stand.Stand;
+import net.mrqx.huajiage.utils.AdvancementHelper;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 public class ItemArrowStand extends BaseItem {
@@ -42,6 +43,7 @@ public class ItemArrowStand extends BaseItem {
                                 data.setStand(stand2);
                                 data.setLevel(0);
                                 data.setMaxEnergy(stand2.getMaxEnergy(pPlayer, data));
+                                AdvancementHelper.grantCriterion(pPlayer, AdvancementHelper.STAND);
                                 pPlayer.sendSystemMessage(Component.translatable("message.huajiage.stand.gain", Component.translatable(stand2.getDescriptionId())).withStyle(ChatFormatting.AQUA, ChatFormatting.BOLD));
                             } else {
                                 throw new IllegalArgumentException("Unknown registry key of stand: " + stand1);
@@ -59,6 +61,7 @@ public class ItemArrowStand extends BaseItem {
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.stand.fail").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
                     }
                     pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
+                    pPlayer.swing(pUsedHand);
                     if (!pPlayer.getAbilities().instabuild) {
                         itemStack.shrink(1);
                     }

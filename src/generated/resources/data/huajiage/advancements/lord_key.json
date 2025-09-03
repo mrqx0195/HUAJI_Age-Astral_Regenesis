@@ -1,0 +1,29 @@
+{
+  "parent": "huajiage:lord_core",
+  "criteria": {
+    "custom": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.lord_key.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "huajiage:lord_key"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.lord_key.title"
+    }
+  },
+  "requirements": [
+    [
+      "custom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

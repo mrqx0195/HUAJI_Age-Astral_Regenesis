@@ -1,0 +1,29 @@
+{
+  "parent": "huajiage:hope_flower",
+  "criteria": {
+    "custom": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.arrow_requiem.desc"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "item": "huajiage:arrow_requiem"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.arrow_requiem.title"
+    }
+  },
+  "requirements": [
+    [
+      "custom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

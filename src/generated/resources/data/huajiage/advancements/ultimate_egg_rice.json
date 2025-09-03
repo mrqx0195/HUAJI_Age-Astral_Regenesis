@@ -1,0 +1,36 @@
+{
+  "parent": "huajiage:egg_rice",
+  "criteria": {
+    "get_ultimate_egg_rice": {
+      "conditions": {
+        "item": {
+          "items": [
+            "huajiage:ultimate_egg_rice"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.ultimate_egg_rice.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:ultimate_egg_rice"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.ultimate_egg_rice.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_ultimate_egg_rice"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

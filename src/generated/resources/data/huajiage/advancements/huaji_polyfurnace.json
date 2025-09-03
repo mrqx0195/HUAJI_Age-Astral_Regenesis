@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:huaji_blender",
+  "criteria": {
+    "get_huaji_polyfurnace": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_polyfurnace"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.huaji_polyfurnace.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:huaji_polyfurnace"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.huaji_polyfurnace.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_huaji_polyfurnace"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

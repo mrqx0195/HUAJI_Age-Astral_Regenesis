@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:huaji",
+  "criteria": {
+    "get_huaji_star": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_star"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.huaji_star.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:huaji_star"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.huaji_star.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_huaji_star"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,29 @@
+{
+  "parent": "huajiage:50_50_helmet",
+  "criteria": {
+    "custom": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.lord_core.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "huajiage:lord_core"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.lord_core.title"
+    }
+  },
+  "requirements": [
+    [
+      "custom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

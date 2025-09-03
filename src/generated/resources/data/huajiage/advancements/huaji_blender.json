@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:huaji",
+  "criteria": {
+    "get_huaji_blender": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_blender"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.huaji_blender.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:huaji_blender"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.huaji_blender.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_huaji_blender"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

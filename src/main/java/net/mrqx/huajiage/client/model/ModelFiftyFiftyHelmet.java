@@ -43,7 +43,7 @@ public class ModelFiftyFiftyHelmet extends HuaJiArmorModel {
                 pPoseStack.pushPose();
                 this.head.translateAndRotate(pPoseStack);
                 if (!this.head.skipDraw) {
-                    accessorModelPart.invokeCompile(pPoseStack.last(), pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+                    accessorModelPart.huaJiAgeInvokeCompile(pPoseStack.last(), pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
                 }
                 accessorModelPart.getChildren().forEach(((s, modelPart) -> {
                     if ("eyes".equals(s) || "tubes_b".equals(s)) {

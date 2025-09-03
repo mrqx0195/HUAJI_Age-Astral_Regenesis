@@ -13,12 +13,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import net.mrqx.huajiage.client.renderer.entity.*;
 import net.mrqx.huajiage.config.HuaJiClientConfig;
 import net.mrqx.huajiage.config.HuaJiCommonConfig;
+import net.mrqx.huajiage.data.loot.RandomNbtFunction;
 import net.mrqx.huajiage.entity.*;
 import net.mrqx.huajiage.network.NetworkManager;
 import net.mrqx.huajiage.registy.*;
@@ -139,6 +141,11 @@ public class HuaJiAgeMod {
             event.registerEntityRenderer(orgaHairKnifeEntityType, RenderOrgaHairKnife::new);
             event.registerEntityRenderer(sheerHeartAttackEntityType, RenderSheerHeartAttack::new);
             event.registerEntityRenderer(multiKnifeEntityType, RenderMultiKnife::new);
+        }
+
+        @SubscribeEvent
+        public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
+            event.enqueueWork(RandomNbtFunction::register);
         }
 
         private static String classToString(Class<? extends Entity> entityClass) {

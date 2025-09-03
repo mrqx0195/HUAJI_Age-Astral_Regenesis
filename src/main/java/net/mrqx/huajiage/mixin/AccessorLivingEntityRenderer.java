@@ -17,8 +17,8 @@ public interface AccessorLivingEntityRenderer<T extends LivingEntity, M extends 
     List<RenderLayer<T, M>> getLayers();
 
     @Invoker("setupRotations")
-    void invokeSetupRotations(T entityLiving, PoseStack poseStack, float ageInTicks, float rotationYaw, float partialTicks);
+    void huaJiAgeInvokeSetupRotations(T entityLiving, PoseStack poseStack, float ageInTicks, float rotationYaw, float partialTicks);
 
     @Invoker("scale")
-    void invokeScale(T livingEntity, PoseStack poseStack, float partialTickTime);
+    void huaJiAgeInvokeScale(T livingEntity, PoseStack poseStack, float partialTickTime);
 }

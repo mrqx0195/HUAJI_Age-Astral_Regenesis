@@ -9,6 +9,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
+import net.mrqx.huajiage.data.advancement.HuaJiAdvancementProvider;
 import net.mrqx.huajiage.data.loot.HuaJiLootTables;
 import net.mrqx.huajiage.data.model.HuaJiBlockStateGenerator;
 import net.mrqx.huajiage.data.model.HuaJiItemModelGenerator;
@@ -39,6 +40,7 @@ public class DataGen {
         generator.addProvider(event.includeServer(), new HuaJiItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new HuaJiDamageTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new StandTagsProvider(packOutput, lookupProvider, HuaJiAgeMod.MODID, existingFileHelper));
+        generator.addProvider(event.includeServer(), new HuaJiAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new HuaJiLootTables(packOutput));
         generator.addProvider(event.includeServer(), new HuaJiRecipeGenerator(packOutput));
 

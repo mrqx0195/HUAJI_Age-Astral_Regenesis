@@ -1,0 +1,39 @@
+{
+  "parent": "huajiage:huaji_blender",
+  "criteria": {
+    "get_hero_bow": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:hero_bow"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.hero_bow.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:hero_bow",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.hero_bow.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_hero_bow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

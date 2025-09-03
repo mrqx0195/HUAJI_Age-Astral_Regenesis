@@ -24,6 +24,7 @@ import net.mrqx.huajiage.item.stand.ItemSingularity;
 import net.mrqx.huajiage.network.NetworkManager;
 import net.mrqx.huajiage.network.StandSyncMessage;
 import net.mrqx.huajiage.stand.Stand;
+import net.mrqx.huajiage.utils.AdvancementHelper;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
@@ -62,6 +63,7 @@ public class TickHandler {
                         if (stand != null && stand.getMaxLevel() >= data.getLevel() + 1) {
                             data.setLevel(Math.min(stand.getMaxLevel(), data.getLevel() + 1));
                             HuaJiSoundPlayer.playMovingSoundToClient(serverPlayer, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 2);
+                            AdvancementHelper.grantCriterion(serverPlayer, AdvancementHelper.SINGULARITY);
                             if (serverPlayer.level() instanceof ServerLevel level) {
                                 Vec3 targetCoordinates = serverPlayer.getEyePosition();
                                 for (int d = 0; d < 360; d += 15) {

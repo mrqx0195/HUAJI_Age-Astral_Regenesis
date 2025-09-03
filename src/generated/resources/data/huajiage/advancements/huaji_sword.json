@@ -1,0 +1,39 @@
+{
+  "parent": "huajiage:huaji_blender",
+  "criteria": {
+    "get_huaji_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.huaji_sword.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:huaji_sword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.huaji_sword.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_huaji_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

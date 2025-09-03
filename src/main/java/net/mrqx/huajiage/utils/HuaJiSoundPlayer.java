@@ -6,6 +6,7 @@ import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -81,14 +82,18 @@ public class HuaJiSoundPlayer {
     @OnlyIn(Dist.CLIENT)
     public static PentaConsumer<ResourceLocation, SoundSource, Integer, Float, Float> playMovingSoundClient() {
         return (sound, category, target, volume, pitch) -> {
-            if (Minecraft.getInstance().level != null) {
-                Entity entity = Minecraft.getInstance().level.getEntity(target);
-                if (entity != null) {
-                    SoundEvent soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(sound);
-                    if (soundEvent != null) {
-                        playClient(getMovingSound(entity, soundEvent, category, volume, pitch));
+            if (!sound.equals(SoundEvents.EMPTY.getLocation())) {
+                if (Minecraft.getInstance().level != null) {
+                    Entity entity = Minecraft.getInstance().level.getEntity(target);
+                    if (entity != null) {
+                        SoundEvent soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(sound);
+                        if (soundEvent != null) {
+                            playClient(getMovingSound(entity, soundEvent, category, volume, pitch));
+                        }
                     }
                 }
+            } else {
+                Minecraft.getInstance().getSoundManager().stop();
             }
         };
     }

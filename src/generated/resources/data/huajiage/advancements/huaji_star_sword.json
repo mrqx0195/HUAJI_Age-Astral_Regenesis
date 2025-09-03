@@ -1,0 +1,39 @@
+{
+  "parent": "huajiage:huaji_sword",
+  "criteria": {
+    "get_huaji_star_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:huaji_star_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.huaji_star_sword.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:huaji_star_sword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.huaji_star_sword.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_huaji_star_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

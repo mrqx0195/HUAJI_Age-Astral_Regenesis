@@ -94,9 +94,9 @@ public class OrgaClientHandler {
                             }
                         }
                         float f7 = entity.tickCount + partialTicks;
-                        accessorLivingEntityRenderer.invokeSetupRotations(entity, poseStack, f7, f, partialTicks);
+                        accessorLivingEntityRenderer.huaJiAgeInvokeSetupRotations(entity, poseStack, f7, f, partialTicks);
                         poseStack.scale(-1.0F, -1.0F, 1.0F);
-                        accessorLivingEntityRenderer.invokeScale(entity, poseStack, partialTicks);
+                        accessorLivingEntityRenderer.huaJiAgeInvokeScale(entity, poseStack, partialTicks);
                         poseStack.translate(0.0F, -1.501F, 0.0F);
                         layerStand.render(poseStack, event.getMultiBufferSource(), event.getPackedLight(), entity, f5, f8, partialTicks, f7, f2, f6);
                         poseStack.popPose();

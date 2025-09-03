@@ -15,6 +15,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
+import net.mrqx.huajiage.utils.AdvancementHelper;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 
 public class ItemLordCore extends BaseItem {
@@ -46,6 +47,7 @@ public class ItemLordCore extends BaseItem {
                 player.getServer().getPlayerList().broadcastSystemMessage(Component.translatable("message.huajiage.50_50_helmet.active", player.getDisplayName())
                         .withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD), false);
                 player.awardStat(Stats.ITEM_USED.get(pStack.getItem()));
+                AdvancementHelper.grantCriterion(player, AdvancementHelper.LORD_CORE);
                 if (!player.getAbilities().instabuild) {
                     pStack.shrink(1);
                 }

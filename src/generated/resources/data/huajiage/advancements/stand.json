@@ -1,0 +1,29 @@
+{
+  "parent": "huajiage:huaji_polyfurnace",
+  "criteria": {
+    "custom": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.stand.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:disc"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.stand.title"
+    }
+  },
+  "requirements": [
+    [
+      "custom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

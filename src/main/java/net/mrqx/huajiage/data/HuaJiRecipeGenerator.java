@@ -93,8 +93,11 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_huaji", has(HuaJiItems.HUAJI.get())).save(pWriter);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HuaJiItems.ULTIMATE_EGG_RICE.get())
-                .requires(HuaJiItems.HUAJI_STAR.get())
                 .requires(HuaJiItems.EGG_RICE.get())
+                .requires(HuaJiItems.HUAJI_STAR.get())
+                .requires(HuaJiItems.BAKED_GLUTEN.get())
+                .requires(HuaJiItems.WAVE_CRYSTAL.get())
+                .requires(HuaJiItems.HOPE_FLOWER.get())
                 .requires(Items.DIAMOND_BLOCK)
                 .unlockedBy("has_huaji", has(HuaJiItems.HUAJI.get())).save(pWriter);
 
@@ -286,8 +289,8 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .define('A', HuaJiItems.EXGLUTENBUR.get())
                 .define('B', HuaJiItems.INFINITE_UNIVERSE_STAR.get())
                 .define('C', HuaJiItems.ULTIMATE_EGG_RICE.get())
-                .define('D', HuaJiItems.HOPE_FLOWER.get())
-                .define('E', HuaJiItems.LORD_KEY.get())
+                .define('D', HuaJiItems.LORD_KEY.get())
+                .define('E', HuaJiItems.WAVE_CRYSTAL.get())
                 .unlockedBy("has_infinite_universe_star", has(HuaJiItems.INFINITE_UNIVERSE_STAR.get())).save(pWriter);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HuaJiItems.HUAJI_POLYFURNACE.get())
@@ -350,8 +353,8 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .pattern("NNR")
                 .pattern("NS ")
                 .pattern("R A")
-                .define('S', HuaJiItems.INFINITE_UNIVERSE_STAR.get())
-                .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
+                .define('S', HuaJiItems.SINGULARITY.get())
+                .define('N', HuaJiItems.HOPE_FLOWER.get())
                 .define('R', HuaJiItems.DISC.get())
                 .define('A', HuaJiItems.ARROW_STAND.get())
                 .unlockedBy("has_arrow_stand", has(HuaJiItems.ARROW_STAND.get())).save(pWriter);

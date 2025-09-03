@@ -1,0 +1,39 @@
+{
+  "parent": "huajiage:multi_knife",
+  "criteria": {
+    "get_multi_knife_shiny": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:multi_knife_shiny"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.multi_knife_shiny.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:multi_knife_shiny",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.multi_knife_shiny.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_multi_knife_shiny"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

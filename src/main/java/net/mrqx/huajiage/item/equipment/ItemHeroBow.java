@@ -25,8 +25,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.entity.EntityHeroArrow;
+import net.mrqx.huajiage.mixin.AccessorLivingEntity;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
+import net.mrqx.huajiage.utils.AdvancementHelper;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
@@ -143,7 +145,10 @@ public class ItemHeroBow extends BowItem {
                     pLevel.addFreshEntity(abstractarrow);
 
                     if (isOn) {
-                        player.hurt(HuaJiDamageSources.simpleNullSource(pLevel, HuaJiDamageTypes.STELLA), player.getMaxHealth() * 5);
+                        if (player instanceof AccessorLivingEntity accessor && !accessor.huaJiAgeInvokeCheckTotemDeathProtection(pLevel.damageSources().playerAttack(player))) {
+                            player.hurt(HuaJiDamageSources.simpleNullSource(pLevel, HuaJiDamageTypes.STELLA), player.getMaxHealth() * 5);
+                        }
+                        AdvancementHelper.grantCriterion(player, AdvancementHelper.STELLA);
                         HuaJiSoundPlayer.playMovingSoundToClient(player, HuaJiSoundEvents.STELLA.get());
                     }
                 }
@@ -177,7 +182,7 @@ public class ItemHeroBow extends BowItem {
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         super.inventoryTick(stack, level, entity, slotId, isSelected);
-        if (entity instanceof LivingEntity living && living.getMainHandItem().equals(stack) && Mode.getMode(stack) == Mode.ON) {
+        if (entity instanceof LivingEntity living && living.getMainHandItem().equals(stack)) {
             living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 260, 2));
             living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 260, 2));
             living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 260, 3));

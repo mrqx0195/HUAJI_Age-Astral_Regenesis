@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:airspace_star",
+  "criteria": {
+    "get_infinite_universe_star": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:infinite_universe_star"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.infinite_universe_star.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "huajiage:infinite_universe_star"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.infinite_universe_star.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_infinite_universe_star"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

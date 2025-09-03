@@ -19,5 +19,5 @@ public interface AccessorModelPart {
     List<ModelPart.Cube> getCubes();
 
     @Invoker("compile")
-    void invokeCompile(PoseStack.Pose pPose, VertexConsumer pVertexConsumer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha);
+    void huaJiAgeInvokeCompile(PoseStack.Pose pPose, VertexConsumer pVertexConsumer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha);
 }

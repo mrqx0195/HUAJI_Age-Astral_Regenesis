@@ -102,6 +102,7 @@ public class ItemSingularity extends BaseItem {
     }
 
     @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
     public static void onClientTickEvent(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END) {
             return;

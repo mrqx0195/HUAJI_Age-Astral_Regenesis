@@ -18,6 +18,7 @@ import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.item.BaseItem;
 import net.mrqx.huajiage.registy.HuaJiStands;
 import net.mrqx.huajiage.stand.Stand;
+import net.mrqx.huajiage.utils.AdvancementHelper;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -71,6 +72,7 @@ public class ItemDisc extends BaseItem {
                 data.setLevel(ItemTagHelper.getInt(itemStack, DISC_STAND_LEVEL_KEY, 0));
             });
             pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
+            AdvancementHelper.grantCriterion(pPlayer, AdvancementHelper.STAND);
             if (!pPlayer.getAbilities().instabuild) {
                 itemStack.shrink(1);
             }

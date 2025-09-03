@@ -1,0 +1,39 @@
+{
+  "parent": "huajiage:huaji_armor",
+  "criteria": {
+    "get_50_50_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:50_50_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.50_50_helmet.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:50_50_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.50_50_helmet.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_50_50_helmet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

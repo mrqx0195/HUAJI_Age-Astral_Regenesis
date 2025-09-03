@@ -1,0 +1,34 @@
+{
+  "parent": "huajiage:root",
+  "criteria": {
+    "has_effect": {
+      "conditions": {
+        "effects": {
+          "huajiage:hope_flower": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.hope_flower.desc"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "item": "huajiage:hope_flower"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.hope_flower.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_effect"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

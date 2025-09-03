@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:huaji",
+  "criteria": {
+    "get_egg_rice": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:egg_rice"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.egg_rice.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:egg_rice"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.egg_rice.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_egg_rice"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

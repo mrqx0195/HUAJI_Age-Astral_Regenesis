@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:stand",
+  "criteria": {
+    "get_tarot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:tarot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.tarot.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:tarot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.tarot.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_tarot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

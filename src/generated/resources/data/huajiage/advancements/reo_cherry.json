@@ -1,0 +1,38 @@
+{
+  "parent": "huajiage:huaji",
+  "criteria": {
+    "get_reo_cherry": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:reo_cherry"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.huajiage.reo_cherry.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "huajiage:reo_cherry"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.huajiage.reo_cherry.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_reo_cherry"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
