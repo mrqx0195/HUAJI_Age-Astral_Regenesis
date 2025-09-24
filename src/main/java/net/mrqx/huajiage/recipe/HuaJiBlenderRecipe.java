@@ -12,24 +12,8 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.mrqx.huajiage.registy.HuaJiRecipes;
 
-public class HuaJiBlenderRecipe implements Recipe<Container> {
-    protected final RecipeType<?> type;
-    protected final ResourceLocation id;
-    protected final String group;
-    protected final Ingredient ingredient;
-    protected final ItemStack result;
-    protected final float experience;
-    protected final int processTime;
-
-    public HuaJiBlenderRecipe(RecipeType<?> pType, ResourceLocation pId, String pGroup, Ingredient pIngredient, ItemStack pResult, float pExperience, int processTime) {
-        this.type = pType;
-        this.id = pId;
-        this.group = pGroup;
-        this.ingredient = pIngredient;
-        this.result = pResult;
-        this.experience = pExperience;
-        this.processTime = processTime;
-    }
+public record HuaJiBlenderRecipe(RecipeType<?> type, ResourceLocation id, String group, Ingredient ingredient,
+                                 ItemStack result, float experience, int processTime) implements Recipe<Container> {
 
     public HuaJiBlenderRecipe(ResourceLocation pId, String pGroup, Ingredient pIngredient, ItemStack pResult, float pExperience, int processTime) {
         this(HuaJiRecipes.HUAJI_BLENDER_RECIPE_TYPE.get(), pId, pGroup, pIngredient, pResult, pExperience, processTime);
@@ -57,10 +41,6 @@ public class HuaJiBlenderRecipe implements Recipe<Container> {
         return nonnulllist;
     }
 
-    public float getExperience() {
-        return this.experience;
-    }
-
     @Override
     public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
         return this.result;
@@ -73,10 +53,6 @@ public class HuaJiBlenderRecipe implements Recipe<Container> {
     @Override
     public String getGroup() {
         return this.group;
-    }
-
-    public int getProcessTime() {
-        return this.processTime;
     }
 
     @Override

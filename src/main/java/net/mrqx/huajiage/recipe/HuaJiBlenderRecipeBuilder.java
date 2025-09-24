@@ -67,57 +67,41 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
         return BuiltInRegistries.ITEM.getKey(pItemLike.asItem()).withPrefix("huaji_blender/");
     }
 
-    static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
-        private final String group;
-        private final Ingredient ingredient;
-        private final Item result;
-        private final float experience;
-        private final int processTime;
-        private final HuaJiBlenderRecipeSerializer serializer;
-
-        public Result(ResourceLocation resourceLocation, String group, Ingredient ingredient, Item result, float experience, int processTime, HuaJiBlenderRecipeSerializer serializer) {
-            this.id = resourceLocation;
-            this.group = group;
-            this.ingredient = ingredient;
-            this.result = result;
-            this.experience = experience;
-            this.processTime = processTime;
-            this.serializer = serializer;
-        }
+    record Result(ResourceLocation id, String group, Ingredient ingredient, Item result, float experience,
+                  int processTime, HuaJiBlenderRecipeSerializer serializer) implements FinishedRecipe {
 
         @Override
-        @SuppressWarnings("deprecation")
-        public void serializeRecipeData(JsonObject pJson) {
-            if (!this.group.isEmpty()) {
-                pJson.addProperty("group", this.group);
+            @SuppressWarnings("deprecation")
+            public void serializeRecipeData(JsonObject pJson) {
+                if (!this.group.isEmpty()) {
+                    pJson.addProperty("group", this.group);
+                }
+                pJson.add("ingredient", this.ingredient.toJson());
+                pJson.addProperty("result", BuiltInRegistries.ITEM.getKey(this.result).toString());
+                pJson.addProperty("experience", this.experience);
+                pJson.addProperty("processTime", this.processTime);
             }
-            pJson.add("ingredient", this.ingredient.toJson());
-            pJson.addProperty("result", BuiltInRegistries.ITEM.getKey(this.result).toString());
-            pJson.addProperty("experience", this.experience);
-            pJson.addProperty("processTime", this.processTime);
-        }
 
-        @Override
-        public RecipeSerializer<?> getType() {
-            return this.serializer;
-        }
+            @Override
+            public RecipeSerializer<?> getType() {
+                return this.serializer;
+            }
 
-        @Override
-        public ResourceLocation getId() {
-            return this.id;
-        }
+            @Override
+            public ResourceLocation getId() {
+                return this.id;
+            }
 
-        @Override
-        @Nullable
-        public JsonObject serializeAdvancement() {
-            return null;
-        }
+            @Override
+            @Nullable
+            public JsonObject serializeAdvancement() {
+                return null;
+            }
 
-        @Override
-        @Nullable
-        public ResourceLocation getAdvancementId() {
-            return null;
+            @Override
+            @Nullable
+            public ResourceLocation getAdvancementId() {
+                return null;
+            }
         }
-    }
 }

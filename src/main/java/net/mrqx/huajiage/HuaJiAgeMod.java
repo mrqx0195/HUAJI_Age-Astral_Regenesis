@@ -18,6 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import net.mrqx.huajiage.client.renderer.entity.*;
+import net.mrqx.huajiage.compat.HuaJiCompat;
 import net.mrqx.huajiage.config.HuaJiClientConfig;
 import net.mrqx.huajiage.config.HuaJiCommonConfig;
 import net.mrqx.huajiage.data.loot.RandomNbtFunction;
@@ -48,6 +49,8 @@ public class HuaJiAgeMod {
         HuaJiSoundEvents.SOUND_EVENTS.register(modEventBus);
         HuaJiStands.STANDS.register(modEventBus);
         NetworkManager.register();
+
+        HuaJiCompat.register(modEventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, HuaJiCommonConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, HuaJiClientConfig.CLIENT_CONFIG);

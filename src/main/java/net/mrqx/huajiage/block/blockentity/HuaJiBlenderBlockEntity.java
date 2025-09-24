@@ -266,7 +266,7 @@ public class HuaJiBlenderBlockEntity extends BaseContainerBlockEntity implements
     }
 
     private static int getTotalProcessTime(Level pLevel, HuaJiBlenderBlockEntity pBlockEntity) {
-        return pBlockEntity.quickCheck.getRecipeFor(pBlockEntity, pLevel).map(HuaJiBlenderRecipe::getProcessTime).orElse(BURN_TIME_STANDARD);
+        return pBlockEntity.quickCheck.getRecipeFor(pBlockEntity, pLevel).map(HuaJiBlenderRecipe::processTime).orElse(BURN_TIME_STANDARD);
     }
 
     public static boolean isFuel(ItemStack pStack) {
@@ -402,7 +402,7 @@ public class HuaJiBlenderBlockEntity extends BaseContainerBlockEntity implements
             pLevel.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 if (recipe instanceof HuaJiBlenderRecipe huaJiBlenderRecipe) {
                     list.add(huaJiBlenderRecipe);
-                    createExperience(pLevel, pPopVec, entry.getIntValue(), huaJiBlenderRecipe.getExperience());
+                    createExperience(pLevel, pPopVec, entry.getIntValue(), huaJiBlenderRecipe.experience());
                 }
             });
         }

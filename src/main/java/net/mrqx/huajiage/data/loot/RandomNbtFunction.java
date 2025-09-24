@@ -18,8 +18,6 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.mrqx.huajiage.HuaJiAgeMod;
 
-import javax.annotation.Nonnull;
-
 public class RandomNbtFunction extends LootItemConditionalFunction {
     @SuppressWarnings("DataFlowIssue")
     public static LootItemFunctionType TYPE = null;
@@ -55,7 +53,6 @@ public class RandomNbtFunction extends LootItemConditionalFunction {
     }
 
     @Override
-    @Nonnull
     public LootItemFunctionType getType() {
         return TYPE;
     }

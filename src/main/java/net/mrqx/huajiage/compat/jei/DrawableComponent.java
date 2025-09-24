@@ -7,21 +7,9 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
-public class DrawableComponent implements IDrawable {
-    private final Component text;
-    private final int width;
-    private final int height;
-    private final int color;
-
+public record DrawableComponent(Component text, int width, int height, int color) implements IDrawable {
     public DrawableComponent(Component text, int color) {
         this(text, Minecraft.getInstance().font.width(text), Minecraft.getInstance().font.wordWrapHeight(text, Minecraft.getInstance().font.width(text)), color);
-    }
-
-    public DrawableComponent(Component text, int width, int height, int color) {
-        this.text = text;
-        this.width = width;
-        this.height = height;
-        this.color = color;
     }
 
     @Override

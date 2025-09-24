@@ -2,6 +2,7 @@ package net.mrqx.huajiage.item.equipment;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -239,6 +240,7 @@ public class ItemExglutenbur extends SwordItem {
             }
         }
 
+        @CanIgnoreReturnValue
         public static Flavor nextFlavor(ItemStack itemStack) {
             switch (getFlavor(itemStack)) {
                 case FRAGRANT -> {

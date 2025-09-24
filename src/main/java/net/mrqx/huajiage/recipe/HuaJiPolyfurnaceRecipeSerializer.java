@@ -46,11 +46,11 @@ public class HuaJiPolyfurnaceRecipeSerializer implements RecipeSerializer<HuaJiP
 
     @Override
     public void toNetwork(FriendlyByteBuf pBuffer, HuaJiPolyfurnaceRecipe pRecipe) {
-        pBuffer.writeUtf(pRecipe.group);
-        pRecipe.ingredient.toNetwork(pBuffer);
-        pBuffer.writeFloat(pRecipe.experience);
-        pBuffer.writeVarInt(pRecipe.processTime);
-        pBuffer.writeVarInt(pRecipe.processTime);
+        pBuffer.writeUtf(pRecipe.group());
+        pRecipe.ingredient().toNetwork(pBuffer);
+        pBuffer.writeFloat(pRecipe.experience());
+        pBuffer.writeVarInt(pRecipe.processTime());
+        pBuffer.writeVarInt(pRecipe.processTime());
     }
 
     public interface CookieBaker<T extends HuaJiPolyfurnaceRecipe> {

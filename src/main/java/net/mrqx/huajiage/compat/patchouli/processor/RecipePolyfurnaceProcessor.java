@@ -39,7 +39,7 @@ public class RecipePolyfurnaceProcessor implements IComponentProcessor {
                 return IVariable.wrap(recipe.getResultItem(level.registryAccess()).getCount());
             }
             case "ipool" -> {
-                return IVariable.wrap(Component.translatable("gui.jei.category.huajiage.polyfurnace.pool", recipe.getPoint()).getString());
+                return IVariable.wrap(Component.translatable("gui.jei.category.huajiage.polyfurnace.pool", recipe.point()).getString());
             }
         }
         HuaJiAgeMod.LOGGER.error("Error while processing HuaJiPolyfurnaceRecipe:", new IllegalArgumentException("Invalid recipe key:" + key));

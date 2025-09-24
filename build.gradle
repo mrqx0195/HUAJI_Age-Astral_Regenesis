@@ -125,6 +125,9 @@ dependencies {
 
     modImplementation "maven.modrinth:latiao-craft-2:${latiao_craft_version}"
 
+    modImplementation "maven.modrinth:slashblade-resharped:${slash_blade_version}"
+    modImplementation "maven.modrinth:sjap:${sjap_version}"
+
     modLocalRuntime "maven.modrinth:moonlight:1.20-2.16.1-forge"
     modLocalRuntime "maven.modrinth:mmmmmmmmmmmm:1.20-2.0.9"
 

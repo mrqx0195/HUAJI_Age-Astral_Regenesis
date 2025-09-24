@@ -299,7 +299,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
         if (pRecipe != null && this.canBurn(pRegistryAccess, pRecipe, pInventory, pMaxStackSize)) {
             ItemStack input = pInventory.get(SLOT_INPUT);
             input.shrink(1);
-            this.polyfurnacePool += pRecipe.getPoint();
+            this.polyfurnacePool += pRecipe.point();
             while (this.polyfurnacePool > TOTAL_POINT) {
                 ItemStack result = pRecipe.assemble(this, pRegistryAccess);
                 ItemStack output = pInventory.get(SLOT_RESULT);
@@ -325,7 +325,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
     }
 
     public static int getTotalProcessTime(Level pLevel, HuaJiPolyfurnaceBlockEntity pBlockEntity) {
-        return pBlockEntity.quickCheck.getRecipeFor(pBlockEntity, pLevel).map(HuaJiPolyfurnaceRecipe::getProcessTime).orElse(BURN_TIME_STANDARD);
+        return pBlockEntity.quickCheck.getRecipeFor(pBlockEntity, pLevel).map(HuaJiPolyfurnaceRecipe::processTime).orElse(BURN_TIME_STANDARD);
     }
 
     public static boolean isFuel(ItemStack pStack) {
@@ -459,7 +459,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
             pLevel.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 if (recipe instanceof HuaJiPolyfurnaceRecipe huaJiPolyfurnaceRecipe) {
                     list.add(huaJiPolyfurnaceRecipe);
-                    createExperience(pLevel, pPopVec, entry.getIntValue(), huaJiPolyfurnaceRecipe.getExperience());
+                    createExperience(pLevel, pPopVec, entry.getIntValue(), huaJiPolyfurnaceRecipe.experience());
                 }
             });
         }

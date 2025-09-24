@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "huajiage:slashblade/wave_yamato"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wave_crystal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "huajiage:wave_crystal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wave_crystal",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "huajiage:slashblade/wave_yamato"
+    ]
+  },
+  "sends_telemetry_event": false
+}

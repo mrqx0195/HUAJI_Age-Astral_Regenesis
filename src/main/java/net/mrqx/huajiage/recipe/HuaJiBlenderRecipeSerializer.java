@@ -57,11 +57,11 @@ public class HuaJiBlenderRecipeSerializer implements RecipeSerializer<HuaJiBlend
 
     @Override
     public void toNetwork(FriendlyByteBuf pBuffer, HuaJiBlenderRecipe pRecipe) {
-        pBuffer.writeUtf(pRecipe.group);
-        pRecipe.ingredient.toNetwork(pBuffer);
-        pBuffer.writeItem(pRecipe.result);
-        pBuffer.writeFloat(pRecipe.experience);
-        pBuffer.writeVarInt(pRecipe.processTime);
+        pBuffer.writeUtf(pRecipe.group());
+        pRecipe.ingredient().toNetwork(pBuffer);
+        pBuffer.writeItem(pRecipe.result());
+        pBuffer.writeFloat(pRecipe.experience());
+        pBuffer.writeVarInt(pRecipe.processTime());
     }
 
     public interface CookieBaker<T extends HuaJiBlenderRecipe> {

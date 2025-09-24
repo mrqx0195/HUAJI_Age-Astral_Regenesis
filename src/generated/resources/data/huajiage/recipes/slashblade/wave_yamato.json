@@ -1,0 +1,38 @@
+{
+  "type": "slashblade:shaped_blade",
+  "blade": "huajiage:wave",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "type": "slashblade:blade",
+      "item": "slashblade:slashblade",
+      "request": {
+        "kill": 1072,
+        "name": "slashblade:yamato",
+        "proud_soul": 9179,
+        "refine": 200
+      }
+    },
+    "G": {
+      "item": "huajiage:baked_gluten"
+    },
+    "S": {
+      "item": "huajiage:airspace_star"
+    },
+    "T": {
+      "item": "slashblade:proudsoul_trapezohedron"
+    },
+    "W": {
+      "item": "huajiage:wave_crystal"
+    }
+  },
+  "pattern": [
+    "WTS",
+    "GBT",
+    "SGW"
+  ],
+  "result": {
+    "item": "slashblade:slashblade"
+  },
+  "show_notification": true
+}

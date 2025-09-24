@@ -59,7 +59,7 @@ public class HuaJiPolyfurnaceCategory extends AbstractRecipeCategory<HuaJiPolyfu
         animatedFlame.draw(guiGraphics, 7, 8);
         arrow.draw(guiGraphics, 39, 27);
         pool.draw(guiGraphics, 77, 13);
-        poolText.draw(guiGraphics, (109 - poolText.getWidth()) / 2, 41, Component.translatable("gui.jei.category.huajiage.polyfurnace.pool", recipe.getPoint()));
+        poolText.draw(guiGraphics, (109 - poolText.getWidth()) / 2, 41, Component.translatable("gui.jei.category.huajiage.polyfurnace.pool", recipe.point()));
         pointText.draw(guiGraphics, 101 - pointText.getWidth(), 3, Component.translatable("gui.jei.category.huajiage.polyfurnace.full", HuaJiPolyfurnaceBlockEntity.TOTAL_POINT));
     }
 }

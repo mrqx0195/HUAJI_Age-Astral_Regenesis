@@ -19,6 +19,7 @@ public class FivePowerMessage {
         return new FivePowerMessage();
     }
 
+    @SuppressWarnings("EmptyMethod")
     public static void encode(FivePowerMessage msg, FriendlyByteBuf buf) {
     }
 
