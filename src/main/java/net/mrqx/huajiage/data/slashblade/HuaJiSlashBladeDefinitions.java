@@ -15,6 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.compat.slashblade.registy.HuaJiSlashArts;
 import net.mrqx.huajiage.compat.slashblade.registy.HuaJiSpecialEffects;
+import net.mrqx.huajiage.registy.HuaJiCreativeTabs;
 
 import java.util.List;
 import java.util.Objects;
@@ -30,7 +31,7 @@ public class HuaJiSlashBladeDefinitions {
                         .modelName(HuaJiAgeMod.prefix("model/slashblade/wave/wave.obj"))
                         .standbyRenderType(CarryType.NINJA).build(),
                 PropertiesDefinition.Builder.newInstance()
-                        .baseAttackModifier(14.0F)
+                        .baseAttackModifier(14)
                         .maxDamage(92)
                         .defaultSwordType(List.of(SwordType.BEWITCHED))
                         .slashArtsType(HuaJiSlashArts.WAVE_SLASH.getId())
@@ -43,7 +44,7 @@ public class HuaJiSlashBladeDefinitions {
                         new EnchantmentDefinition(getEnchantmentId(Enchantments.POWER_ARROWS), 2),
                         new EnchantmentDefinition(getEnchantmentId(Enchantments.SWEEPING_EDGE), 2),
                         new EnchantmentDefinition(getEnchantmentId(Enchantments.FIRE_PROTECTION), 1)
-                )
+                ), HuaJiCreativeTabs.HUAJI_GROUP.getId()
         ));
     }
 

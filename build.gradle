@@ -37,6 +37,7 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
+
     maven {
         name = "ModMaven"
         url = "https://modmaven.dev"

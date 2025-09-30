@@ -26,7 +26,7 @@ public class HuaJiComboStates {
             HuaJiAgeMod.MODID);
 
     public static final RegistryObject<ComboState> WAVE_SLASH_PRE = COMBO_STATE.register("wave_slash_pre",
-            ComboState.Builder.newInstance().startAndEnd(1900, 1923).priority(80)
+            ComboState.Builder.newInstance().startAndEnd(1900, 1923).priority(65)
                     .next(entity -> HuaJiAgeMod.prefix("wave_slash_pre"))
                     .nextOfTimeout(entity -> HuaJiAgeMod.prefix("wave_slash"))
                     .addTickAction((e) -> {
@@ -95,7 +95,7 @@ public class HuaJiComboStates {
                     .addTickAction(UserPoseOverrider::resetRot)::build);
 
     public static final RegistryObject<ComboState> WAVE_SLASH = COMBO_STATE.register("wave_slash",
-            ComboState.Builder.newInstance().startAndEnd(2000, 2019).priority(90)
+            ComboState.Builder.newInstance().startAndEnd(2000, 2019).priority(60)
                     .next(living -> AttackManager.isPowered(living)
                             && SwornKinship.isEffective(living)
                             ? HuaJiAgeMod.prefix("wave_slash_quick")
