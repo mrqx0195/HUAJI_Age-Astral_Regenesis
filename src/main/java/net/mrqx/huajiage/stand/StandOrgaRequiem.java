@@ -104,11 +104,6 @@ public class StandOrgaRequiem extends Stand {
     }
 
     @Override
-    public String getDescriptionId() {
-        return "stand.huajiage.orga_requiem";
-    }
-
-    @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
         HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.ORGA_REQUIEM_2.get() : HuaJiSoundEvents.ORGA_REQUIEM_3.get());

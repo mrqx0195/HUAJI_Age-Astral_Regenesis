@@ -138,11 +138,6 @@ public class StandHierophantGreen extends Stand {
     }
 
     @Override
-    public String getDescriptionId() {
-        return "stand.huajiage.hierophant_green";
-    }
-
-    @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
         HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_1.get() : HuaJiSoundEvents.STAND_HIEROPHANT_GREEN_SHOOT_2.get());

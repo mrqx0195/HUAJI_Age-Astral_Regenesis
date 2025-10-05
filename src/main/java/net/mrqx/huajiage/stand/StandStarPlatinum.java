@@ -105,11 +105,6 @@ public class StandStarPlatinum extends Stand {
     }
 
     @Override
-    public String getDescriptionId() {
-        return "stand.huajiage.star_platinum";
-    }
-
-    @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
         SoundEvent soundEvent = switch (livingEntity.level().getRandom().nextInt(5)) {

@@ -8,6 +8,10 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,9 +19,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.forgespi.language.IModFileInfo;
+import net.minecraftforge.forgespi.locating.IModFile;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.client.layer.LayerLordLu;
@@ -42,6 +50,8 @@ import net.mrqx.huajiage.registy.HuaJiStands;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 @OnlyIn(Dist.CLIENT)
 public class ClientHandler {
+    public static final String NEW_AGE_PACK_NAME = "new_age_textures";
+
     @SubscribeEvent
     public static void screenRegistry(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
@@ -111,6 +121,27 @@ public class ClientHandler {
     public static void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
         event.getModels().computeIfPresent(new ModelResourceLocation(HuaJiAgeMod.prefix("disc"), "inventory"),
                 (resourceLocation, bakedModel) -> new ModelDisc(bakedModel));
+    }
+
+    @SubscribeEvent
+    public static void addPackFinders(AddPackFindersEvent event) {
+        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+            IModFileInfo modFileInfo = ModList.get().getModFileById(HuaJiAgeMod.MODID);
+            if (modFileInfo == null) {
+                HuaJiAgeMod.LOGGER.error("Could not find HUAJI Age: Astral Regenesis mod file info; built-in resource packs will be missing!");
+                return;
+            }
+            IModFile modFile = modFileInfo.getFile();
+            event.addRepositorySource(consumer -> {
+                Pack pack = Pack.readMetaAndCreate(HuaJiAgeMod.prefix(NEW_AGE_PACK_NAME).toString(),
+                        Component.translatable("message.huajiage.resourcepacks." + NEW_AGE_PACK_NAME), false,
+                        id -> new ModFilePackResources(id, modFile, "resourcepacks/" + NEW_AGE_PACK_NAME),
+                        PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
+                if (pack != null) {
+                    consumer.accept(pack);
+                }
+            });
+        }
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})

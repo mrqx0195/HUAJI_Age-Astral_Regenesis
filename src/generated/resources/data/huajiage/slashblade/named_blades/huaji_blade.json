@@ -1,0 +1,43 @@
+{
+  "creativeGroup": "huajiage:huaji",
+  "enchantments": [
+    {
+      "id": "minecraft:knockback",
+      "lvl": 2
+    },
+    {
+      "id": "minecraft:bane_of_arthropods",
+      "lvl": 2
+    },
+    {
+      "id": "minecraft:unbreaking",
+      "lvl": 3
+    },
+    {
+      "id": "minecraft:fire_aspect",
+      "lvl": 2
+    },
+    {
+      "id": "minecraft:looting",
+      "lvl": 3
+    },
+    {
+      "id": "minecraft:smite",
+      "lvl": 4
+    }
+  ],
+  "name": "huajiage:huaji_blade",
+  "properties": {
+    "attack_base": 10.0,
+    "max_damage": 60,
+    "slash_art": "slashblade:wave_edge",
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "carry_type": "ninja",
+    "model": "huajiage:model/slashblade/huaji_blade/huaji_blade.obj",
+    "texture": "huajiage:model/slashblade/huaji_blade/huaji_blade.png"
+  }
+}

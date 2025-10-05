@@ -136,11 +136,11 @@ public class BlockHuaJiBlender extends BaseEntityBlock {
     @Nullable
     @SuppressWarnings("unchecked")
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createFurnaceTicker(pLevel, pBlockEntityType, (BlockEntityType<? extends HuaJiBlenderBlockEntity>) HuaJiBlocks.HUAJI_BLENDER_BLOCK_ENTITY.get());
+        return createBlenderTicker(pLevel, pBlockEntityType, (BlockEntityType<? extends HuaJiBlenderBlockEntity>) HuaJiBlocks.HUAJI_BLENDER_BLOCK_ENTITY.get());
     }
 
     @Nullable
-    protected static <T extends BlockEntity> BlockEntityTicker<T> createFurnaceTicker(Level pLevel, BlockEntityType<T> pServerType, BlockEntityType<? extends HuaJiBlenderBlockEntity> pClientType) {
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createBlenderTicker(Level pLevel, BlockEntityType<T> pServerType, BlockEntityType<? extends HuaJiBlenderBlockEntity> pClientType) {
         return pLevel.isClientSide ? null : createTickerHelper(pServerType, pClientType, HuaJiBlenderBlockEntity::serverTick);
     }
 

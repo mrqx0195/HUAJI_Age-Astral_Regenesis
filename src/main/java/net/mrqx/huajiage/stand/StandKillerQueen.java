@@ -108,11 +108,6 @@ public class StandKillerQueen extends Stand {
     }
 
     @Override
-    public String getDescriptionId() {
-        return "stand.huajiage.killer_queen";
-    }
-
-    @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
         HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_KILLER_QUEEN_SHOW_1.get() : HuaJiSoundEvents.STAND_KILLER_QUEEN_SHOW_2.get());

@@ -130,11 +130,6 @@ public class StandTheWorld extends Stand {
     }
 
     @Override
-    public String getDescriptionId() {
-        return "stand.huajiage.the_world";
-    }
-
-    @Override
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         super.onTriggered(livingEntity, data);
         HuaJiSoundPlayer.playMovingSoundToClient(livingEntity, livingEntity.level().getRandom().nextBoolean() ? HuaJiSoundEvents.STAND_THE_WORLD_HIT_1.get() : HuaJiSoundEvents.STAND_THE_WORLD_HIT_2.get());

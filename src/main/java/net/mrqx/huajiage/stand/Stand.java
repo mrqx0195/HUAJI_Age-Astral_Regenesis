@@ -1,6 +1,7 @@
 package net.mrqx.huajiage.stand;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -27,6 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -40,14 +42,33 @@ public abstract class Stand {
 
     protected final BiConsumer<LivingEntity, IStandData> tick;
     protected final BiConsumer<LivingEntity, IStandData> doSkill;
+    @Nullable
+    private String descriptionId;
 
     protected Stand(BiConsumer<LivingEntity, IStandData> tick, BiConsumer<LivingEntity, IStandData> doSkill) {
         this.tick = tick;
         this.doSkill = doSkill;
     }
 
+    public Component getDescription() {
+        return Component.translatable(this.getDescriptionId());
+    }
+
+    @Override
+    public String toString() {
+        return Objects.requireNonNull(HuaJiStands.REGISTRY.get().getKey(this)).getPath();
+    }
+
+    protected String getOrCreateDescriptionId() {
+        if (this.descriptionId == null) {
+            this.descriptionId = Util.makeDescriptionId("stand", HuaJiStands.REGISTRY.get().getKey(this));
+        }
+
+        return this.descriptionId;
+    }
+
     public String getDescriptionId() {
-        return "stand.huajiage.null";
+        return this.getOrCreateDescriptionId();
     }
 
     public void tick(LivingEntity livingEntity, IStandData data) {

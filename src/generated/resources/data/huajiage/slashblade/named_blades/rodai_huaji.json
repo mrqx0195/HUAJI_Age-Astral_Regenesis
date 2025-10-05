@@ -1,0 +1,12 @@
+{
+  "creativeGroup": "huajiage:huaji",
+  "name": "huajiage:rodai_huaji",
+  "properties": {
+    "attack_base": 8.0,
+    "max_damage": 1200
+  },
+  "render": {
+    "carry_type": "default",
+    "texture": "huajiage:model/slashblade/rodai_huaji.png"
+  }
+}

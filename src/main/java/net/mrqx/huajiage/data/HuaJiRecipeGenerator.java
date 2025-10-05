@@ -5,15 +5,19 @@ import com.doggystudio.chirencqr.ltc.server.registry.LTCItems;
 import com.google.common.collect.ImmutableList;
 import mods.flammpfeil.slashblade.data.builtin.SlashBladeBuiltInRegistry;
 import mods.flammpfeil.slashblade.init.SBItems;
+import mods.flammpfeil.slashblade.item.SwordType;
 import mods.flammpfeil.slashblade.recipe.RequestDefinition;
 import mods.flammpfeil.slashblade.recipe.SlashBladeIngredient;
 import mods.flammpfeil.slashblade.recipe.SlashBladeShapedRecipeBuilder;
+import mods.flammpfeil.slashblade.registry.slashblade.EnchantmentDefinition;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
 import net.mrqx.huajiage.HuaJiAgeMod;
@@ -41,6 +45,39 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
     }
 
     private static void slashbladeRecipes(Consumer<FinishedRecipe> pWriter) {
+        SlashBladeShapedRecipeBuilder.shaped(HuaJiSlashBladeDefinitions.RODAI_HUAJI.location())
+                .pattern("  P")
+                .pattern(" B ")
+                .pattern("WS ")
+                .define('B', SlashBladeIngredient.of(SBItems.slashblade_silverbamboo, RequestDefinition.Builder.newInstance()
+                        .killCount(100)
+                        .addSwordType(SwordType.BROKEN)
+                        .build()))
+                .define('W', Ingredient.of(HuaJiItems.HUAJI_SWORD.get()))
+                .define('S', Ingredient.of(Tags.Items.STRING))
+                .define('P', Ingredient.of(SBItems.proudsoul_trapezohedron))
+                .unlockedBy(getHasName(SBItems.slashblade_silverbamboo), has(SBItems.slashblade_silverbamboo))
+                .save(pWriter);
+
+        SlashBladeShapedRecipeBuilder.shaped(HuaJiSlashBladeDefinitions.HUAJI_BLADE.location())
+                .pattern(" EF")
+                .pattern("BCS")
+                .pattern("WQ ")
+                .define('W', Tags.Items.CROPS_WHEAT)
+                .define('Q', Tags.Items.STORAGE_BLOCKS_QUARTZ)
+                .define('B', Items.BLAZE_POWDER)
+                .define('S', SBItems.proudsoul_crystal)
+                .define('E', Tags.Items.OBSIDIAN)
+                .define('F', Tags.Items.FEATHERS)
+                .define('C', SlashBladeIngredient.of(RequestDefinition.Builder.newInstance()
+                        .name(HuaJiSlashBladeDefinitions.RODAI_HUAJI.location())
+                        .addEnchantment(new EnchantmentDefinition(EnchantmentHelper.getEnchantmentId(Enchantments.MOB_LOOTING), 1))
+                        .addEnchantment(new EnchantmentDefinition(EnchantmentHelper.getEnchantmentId(Enchantments.SMITE), 1))
+                        .build()))
+
+                .unlockedBy(getHasName(SBItems.slashblade_silverbamboo), has(SBItems.slashblade_silverbamboo))
+                .save(pWriter);
+
         SlashBladeShapedRecipeBuilder.shaped(HuaJiSlashBladeDefinitions.WAVE.location())
                 .pattern("WTS")
                 .pattern("GBT")

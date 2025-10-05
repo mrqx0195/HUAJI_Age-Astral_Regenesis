@@ -1,0 +1,49 @@
+{
+  "type": "slashblade:shaped_blade",
+  "blade": "huajiage:huaji_blade",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_powder"
+    },
+    "C": {
+      "type": "slashblade:blade",
+      "item": "slashblade:slashblade",
+      "request": {
+        "enchantments": [
+          {
+            "id": "minecraft:looting"
+          },
+          {
+            "id": "minecraft:smite"
+          }
+        ],
+        "name": "huajiage:rodai_huaji"
+      }
+    },
+    "E": {
+      "tag": "forge:obsidian"
+    },
+    "F": {
+      "tag": "forge:feathers"
+    },
+    "Q": {
+      "tag": "forge:storage_blocks/quartz"
+    },
+    "S": {
+      "item": "slashblade:proudsoul_crystal"
+    },
+    "W": {
+      "tag": "forge:crops/wheat"
+    }
+  },
+  "pattern": [
+    " EF",
+    "BCS",
+    "WQ "
+  ],
+  "result": {
+    "item": "slashblade:slashblade"
+  },
+  "show_notification": true
+}

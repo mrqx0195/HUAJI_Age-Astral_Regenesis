@@ -139,11 +139,11 @@ public class BlockHuaJiPolyfurnace extends BaseEntityBlock {
     @Nullable
     @SuppressWarnings("unchecked")
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createFurnaceTicker(pLevel, pBlockEntityType, (BlockEntityType<? extends HuaJiPolyfurnaceBlockEntity>) HuaJiBlocks.HUAJI_POLYFURNACE_BLOCK_ENTITY.get());
+        return createPolyfurnaceTicker(pLevel, pBlockEntityType, (BlockEntityType<? extends HuaJiPolyfurnaceBlockEntity>) HuaJiBlocks.HUAJI_POLYFURNACE_BLOCK_ENTITY.get());
     }
 
     @Nullable
-    protected static <T extends BlockEntity> BlockEntityTicker<T> createFurnaceTicker(Level pLevel, BlockEntityType<T> pServerType, BlockEntityType<? extends HuaJiPolyfurnaceBlockEntity> pClientType) {
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createPolyfurnaceTicker(Level pLevel, BlockEntityType<T> pServerType, BlockEntityType<? extends HuaJiPolyfurnaceBlockEntity> pClientType) {
         return pLevel.isClientSide ? null : createTickerHelper(pServerType, pClientType, HuaJiPolyfurnaceBlockEntity::serverTick);
     }
 
