@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.recipe;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -10,9 +11,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.ICondition;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.mrqx.huajiage.registy.HuaJiRecipes;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
@@ -22,6 +29,7 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
     private final int processTime;
     @Nullable
     private String group;
+    private final List<ICondition> recipeConditions;
     private final HuaJiBlenderRecipeSerializer serializer;
 
     public HuaJiBlenderRecipeBuilder(ItemLike itemLike, Ingredient ingredient, float experience, int processTime) {
@@ -29,6 +37,7 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
         this.ingredient = ingredient;
         this.experience = experience;
         this.processTime = processTime;
+        this.recipeConditions = new ArrayList<>();
         this.serializer = HuaJiRecipes.HUAJI_BLENDER_RECIPE_SERIALIZER.get();
     }
 
@@ -59,7 +68,20 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
-        pFinishedRecipeConsumer.accept(new HuaJiBlenderRecipeBuilder.Result(pRecipeId, this.group == null ? "" : this.group, this.ingredient, this.result, this.experience, this.processTime, this.serializer));
+        pFinishedRecipeConsumer.accept(new HuaJiBlenderRecipeBuilder.Result(pRecipeId, this.group == null ? "" : this.group, this.ingredient, this.result, this.experience, this.processTime, this.recipeConditions, this.serializer));
+    }
+
+    public HuaJiBlenderRecipeBuilder whenModLoaded(String modid) {
+        return withCondition(new ModLoadedCondition(modid));
+    }
+
+    public HuaJiBlenderRecipeBuilder whenModMissing(String modid) {
+        return withCondition(new NotCondition(new ModLoadedCondition(modid)));
+    }
+
+    public HuaJiBlenderRecipeBuilder withCondition(ICondition condition) {
+        recipeConditions.add(condition);
+        return this;
     }
 
     @SuppressWarnings("deprecation")
@@ -68,40 +90,47 @@ public class HuaJiBlenderRecipeBuilder implements RecipeBuilder {
     }
 
     record Result(ResourceLocation id, String group, Ingredient ingredient, Item result, float experience,
-                  int processTime, HuaJiBlenderRecipeSerializer serializer) implements FinishedRecipe {
+                  int processTime, List<ICondition> recipeConditions,
+                  HuaJiBlenderRecipeSerializer serializer) implements FinishedRecipe {
 
         @Override
-            @SuppressWarnings("deprecation")
-            public void serializeRecipeData(JsonObject pJson) {
-                if (!this.group.isEmpty()) {
-                    pJson.addProperty("group", this.group);
-                }
-                pJson.add("ingredient", this.ingredient.toJson());
-                pJson.addProperty("result", BuiltInRegistries.ITEM.getKey(this.result).toString());
-                pJson.addProperty("experience", this.experience);
-                pJson.addProperty("processTime", this.processTime);
+        @SuppressWarnings("deprecation")
+        public void serializeRecipeData(JsonObject pJson) {
+            if (!this.group.isEmpty()) {
+                pJson.addProperty("group", this.group);
             }
-
-            @Override
-            public RecipeSerializer<?> getType() {
-                return this.serializer;
+            pJson.add("ingredient", this.ingredient.toJson());
+            pJson.addProperty("result", BuiltInRegistries.ITEM.getKey(this.result).toString());
+            pJson.addProperty("experience", this.experience);
+            pJson.addProperty("processTime", this.processTime);
+            if (recipeConditions.isEmpty()) {
+                return;
             }
-
-            @Override
-            public ResourceLocation getId() {
-                return this.id;
-            }
-
-            @Override
-            @Nullable
-            public JsonObject serializeAdvancement() {
-                return null;
-            }
-
-            @Override
-            @Nullable
-            public ResourceLocation getAdvancementId() {
-                return null;
-            }
+            JsonArray conditions = new JsonArray();
+            recipeConditions.forEach(c -> conditions.add(CraftingHelper.serialize(c)));
+            pJson.add("conditions", conditions);
         }
+
+        @Override
+        public RecipeSerializer<?> getType() {
+            return this.serializer;
+        }
+
+        @Override
+        public ResourceLocation getId() {
+            return this.id;
+        }
+
+        @Override
+        @Nullable
+        public JsonObject serializeAdvancement() {
+            return null;
+        }
+
+        @Override
+        @Nullable
+        public ResourceLocation getAdvancementId() {
+            return null;
+        }
+    }
 }

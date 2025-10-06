@@ -1,0 +1,29 @@
+{
+  "type": "farmersdelight:cooking",
+  "container": {
+    "item": "huajiage:egg_rice"
+  },
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "huajiage:huaji_star"
+    },
+    {
+      "item": "huajiage:baked_gluten"
+    },
+    {
+      "item": "huajiage:wave_crystal"
+    },
+    {
+      "item": "huajiage:hope_flower"
+    },
+    {
+      "item": "minecraft:diamond_block"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "huajiage:ultimate_egg_rice"
+  }
+}

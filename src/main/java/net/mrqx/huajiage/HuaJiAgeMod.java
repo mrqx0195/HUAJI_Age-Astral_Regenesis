@@ -149,6 +149,7 @@ public class HuaJiAgeMod {
         @SubscribeEvent
         public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
             event.enqueueWork(RandomNbtFunction::register);
+            HuaJiCompat.commonSetup();
         }
 
         private static String classToString(Class<? extends Entity> entityClass) {
@@ -156,6 +157,5 @@ public class HuaJiAgeMod {
             HuaJiAgeMod.LOGGER.debug(entity);
             return entity;
         }
-
     }
 }

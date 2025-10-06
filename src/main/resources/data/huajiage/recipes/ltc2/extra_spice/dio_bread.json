@@ -1,0 +1,7 @@
+{
+  "type": "ltc2:extra_spice_custom",
+  "item": "huajiage:dio_bread",
+  "events": [
+    "event.huajiage.time_stop"
+  ]
+}

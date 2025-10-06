@@ -194,11 +194,11 @@ public class OrgaEventHandler {
                     living.addEffect(new MobEffectInstance(HuaJiEffects.HOPE_FLOWER.get(), hopeDuration));
                 }
             }
-            MobEffectInstance effect = living.getEffect(HuaJiEffects.HOPE_FLOWER.get());
-            if (effect == null || effect.getDuration() >= 20) {
-                event.setCanceled(true);
-                living.setHealth(1);
-            }
+        }
+        MobEffectInstance effect = living.getEffect(HuaJiEffects.HOPE_FLOWER.get());
+        if (effect == null || effect.getDuration() >= 20) {
+            event.setCanceled(true);
+            living.setHealth(1);
         }
     }
 
@@ -216,16 +216,16 @@ public class OrgaEventHandler {
     }
 
     private static void handleOrgaEntityHurt(LivingHurtEvent event, LivingEntity living, @Nullable Entity attacker) {
-        if (ItemOrgaArmor.hasAllOrgaArmor(living) && attacker instanceof LivingEntity livingEntity && attacker != living) {
+        if (living.hasEffect(HuaJiEffects.HOPE_FLOWER.get()) && attacker instanceof LivingEntity livingAttacker && attacker != living) {
             if (ItemOrgaRequiem.hasValidOrgaRequiem(living)) {
                 attacker.hurt(HuaJiDamageSources.simple(living, HuaJiDamageTypes.REQUIEM), event.getAmount() * 2);
             }
             if (living.getHealth() < 2) {
-                if (!livingEntity.hasEffect(HuaJiEffects.ORGA_TARGET.get())) {
+                if (!livingAttacker.hasEffect(HuaJiEffects.ORGA_TARGET.get())) {
                     if (!ItemOrgaRequiem.hasValidOrgaRequiem(living)) {
                         HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.ORGA_SHOT.get());
                     }
-                    livingEntity.addEffect(new MobEffectInstance(HuaJiEffects.ORGA_TARGET.get(), 100));
+                    livingAttacker.addEffect(new MobEffectInstance(HuaJiEffects.ORGA_TARGET.get(), 100));
                 }
             }
         }

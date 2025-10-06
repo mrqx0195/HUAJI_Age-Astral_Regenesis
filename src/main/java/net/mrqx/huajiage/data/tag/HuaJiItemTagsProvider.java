@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.data.tag;
 
+import com.doggystudio.chirencqr.ltc.server.registry.LTCTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -26,6 +27,7 @@ public class HuaJiItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.create(HuaJiAgeMod.prefix(HuaJiPolyfurnaceBlockEntity.HUAJI_POLYFURNACE_TIME_PREFIX + "100"))).add(HuaJiItems.HUAJI.get());
         tag(ItemTags.SWORDS).add(HuaJiItems.HUAJI_SWORD.get(), HuaJiItems.HUAJI_STAR_SWORD.get(), HuaJiItems.HUAJI_LATIAO_SWORD.get(), HuaJiItems.EXGLUTENBUR.get());
         tag(HuaJiCompat.CHARM_ITEM_TAG).add(HuaJiItems.INFINITE_CHARM.get());
+        tag(LTCTags.EXTRA_SPICE).add(HuaJiItems.DIO_BREAD.get()).add(HuaJiItems.HOPE_FLOWER.get());
         tag(ItemTags.BEACON_PAYMENT_ITEMS).add(HuaJiItems.HUAJI_INGOT.get());
     }
 }

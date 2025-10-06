@@ -114,21 +114,38 @@ obfuscation {
 }
 
 dependencies {
+    // JEI Compat
     modCompileOnlyApi "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     modCompileOnlyApi "mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"
     modLocalRuntime "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
 
+    // Patchouli Compat
     modCompileOnlyApi "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     modLocalRuntime "vazkii.patchouli:Patchouli:${patchouli_version}"
 
+    // Curios Compat
     modLocalRuntime "top.theillusivec4.curios:curios-forge:${curios_version}"
     modCompileOnlyApi "top.theillusivec4.curios:curios-forge:${curios_version}:api"
 
+    // LTC2 Compat
     modImplementation "maven.modrinth:latiao-craft-2:${latiao_craft_version}"
 
+    // Slashblade Compat
     modImplementation "maven.modrinth:slashblade-resharped:${slash_blade_version}"
     modImplementation "maven.modrinth:sjap:${sjap_version}"
 
+    // (WIP) Tetra Compat
+//    modImplementation "maven.modrinth:mutil:6.2.0"
+//    modImplementation "maven.modrinth:tetra:${tetra_version}"
+
+    // Farmers Delight Compat
+    modImplementation "maven.modrinth:farmers-delight:${farmers_delight_version}"
+
+    // Re:Avaritia Compat
+    modImplementation "maven.modrinth:re-avaritia:${re_avaritia_version}"
+
+
+    // Test
     modLocalRuntime "maven.modrinth:moonlight:1.20-2.16.1-forge"
     modLocalRuntime "maven.modrinth:mmmmmmmmmmmm:1.20-2.0.9"
 
@@ -157,6 +174,8 @@ dependencies {
 mixin {
     add sourceSets.main, "${mod_id}.refmap.json"
     config "${mod_id}.mixins.json"
+    add sourceSets.main, "${mod_id}.avaritia.refmap.json"
+    config "${mod_id}.avaritia.mixins.json"
 }
 
 dependencies {
@@ -165,7 +184,10 @@ dependencies {
 
 jar {
     manifest.attributes([
-            "MixinConfigs": "${mod_id}.mixins.json"
+            "MixinConfigs": [
+                    "${mod_id}.mixins.json",
+                    "${mod_id}.avaritia.mixins.json"
+            ]
     ])
 }
 

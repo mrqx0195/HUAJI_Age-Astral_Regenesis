@@ -1,0 +1,12 @@
+{
+  "type": "ltc2:extra_spice_custom",
+  "item": "huajiage:hope_flower",
+  "effects": [
+    {
+      "id": "huajiage:hope_flower",
+      "amplifier": 0,
+      "seconds": 141,
+      "duration_based_on_latiao_grade": "ALWAYS"
+    }
+  ]
+}

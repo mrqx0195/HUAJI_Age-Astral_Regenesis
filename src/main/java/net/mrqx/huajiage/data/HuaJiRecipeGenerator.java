@@ -3,6 +3,7 @@ package net.mrqx.huajiage.data;
 import cn.mmf.slashblade_addon.data.SlashBladeAddonBuiltInRegistry;
 import com.doggystudio.chirencqr.ltc.server.registry.LTCItems;
 import com.google.common.collect.ImmutableList;
+import committee.nova.mods.avaritia.init.registry.ModItems;
 import mods.flammpfeil.slashblade.data.builtin.SlashBladeBuiltInRegistry;
 import mods.flammpfeil.slashblade.init.SBItems;
 import mods.flammpfeil.slashblade.item.SwordType;
@@ -25,6 +26,10 @@ import net.mrqx.huajiage.data.slashblade.HuaJiSlashBladeDefinitions;
 import net.mrqx.huajiage.recipe.HuaJiBlenderRecipeBuilder;
 import net.mrqx.huajiage.recipe.HuaJiPolyfurnaceRecipeBuilder;
 import net.mrqx.huajiage.registy.HuaJiItems;
+import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
+import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
+import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -42,6 +47,31 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
         blenderRecipes(pWriter);
         polyfurnaceRecipes(pWriter);
         slashbladeRecipes(pWriter);
+        farmersDelightRecipes(pWriter);
+    }
+
+    private static void farmersDelightRecipes(Consumer<FinishedRecipe> pWriter) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HuaJiItems.FLASH_FLOUR.get()), Ingredient.of(ForgeTags.TOOLS_KNIVES), HuaJiItems.RAW_GLUTEN.get(), 2).build(pWriter);
+
+        CookingPotRecipeBuilder.cookingPotRecipe(HuaJiItems.EGG_RICE.get(), 1, 200, 1.0F, Items.BOWL)
+                .addIngredient(Items.COOKED_CHICKEN)
+                .addIngredient(Items.COOKED_BEEF)
+                .addIngredient(Items.COOKED_MUTTON)
+                .addIngredient(Items.COOKED_RABBIT)
+                .addIngredient(HuaJiItems.HUAJI.get())
+                .addIngredient(Items.EGG)
+                .unlockedBy(getHasName(HuaJiItems.HUAJI.get()), has(HuaJiItems.HUAJI.get()))
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(pWriter);
+        CookingPotRecipeBuilder.cookingPotRecipe(HuaJiItems.ULTIMATE_EGG_RICE.get(), 1, 200, 1.0F, HuaJiItems.EGG_RICE.get())
+                .addIngredient(HuaJiItems.HUAJI_STAR.get())
+                .addIngredient(HuaJiItems.BAKED_GLUTEN.get())
+                .addIngredient(HuaJiItems.WAVE_CRYSTAL.get())
+                .addIngredient(HuaJiItems.HOPE_FLOWER.get())
+                .addIngredient(Items.DIAMOND_BLOCK)
+                .unlockedBy(getHasName(HuaJiItems.HUAJI.get()), has(HuaJiItems.HUAJI.get()))
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(pWriter);
     }
 
     private static void slashbladeRecipes(Consumer<FinishedRecipe> pWriter) {
@@ -122,6 +152,9 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
         HuaJiBlenderRecipeBuilder.create(HuaJiItems.FLASH_FLOUR.get(), Ingredient.of(Items.HAY_BLOCK), 1, 100).save(pWriter);
         HuaJiBlenderRecipeBuilder.create(HuaJiItems.HOPE_ELEMENT.get(), Ingredient.of(Items.CHORUS_FLOWER), 1, 100).save(pWriter);
         HuaJiBlenderRecipeBuilder.create(HuaJiItems.WAVE_CRYSTAL.get(), Ingredient.of(Items.SEA_LANTERN), 1, 100).save(pWriter);
+
+        HuaJiBlenderRecipeBuilder.create(ModItems.infinity_catalyst.get(), Ingredient.of(HuaJiItems.INFINITE_UNIVERSE_STAR.get()), 1000, 1000)
+                .whenModLoaded("avaritia").save(pWriter);
     }
 
     private static void polyfurnaceRecipes(Consumer<FinishedRecipe> pWriter) {

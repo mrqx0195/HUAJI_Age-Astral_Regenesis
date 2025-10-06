@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.data.tag;
 
+import committee.nova.mods.avaritia.init.registry.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -34,5 +35,8 @@ public class HuaJiBlockTagsProvider extends BlockTagsProvider {
                 HuaJiBlocks.HUAJI_ORE.get(),
                 HuaJiBlocks.HUAJI_STAR_BLOCK.get(),
                 HuaJiBlocks.AIRSPACE_STAR_BLOCK.get());
+        tag(ModTags.EXTREME_ANVIL_UNBREAK).add(
+                HuaJiBlocks.AIRSPACE_STAR_BLOCK.get(),
+                HuaJiBlocks.HUAJI_POLYFURNACE.get());
     }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "huajiage:flash_flour"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "huajiage:raw_gluten"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  }
+}

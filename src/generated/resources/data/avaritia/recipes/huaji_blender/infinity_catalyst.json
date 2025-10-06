@@ -1,0 +1,15 @@
+{
+  "type": "huajiage:huaji_blender",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "avaritia"
+    }
+  ],
+  "experience": 1000.0,
+  "ingredient": {
+    "item": "huajiage:infinite_universe_star"
+  },
+  "processTime": 1000,
+  "result": "avaritia:infinity_catalyst"
+}
