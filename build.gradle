@@ -174,7 +174,6 @@ dependencies {
 mixin {
     add sourceSets.main, "${mod_id}.refmap.json"
     config "${mod_id}.mixins.json"
-    add sourceSets.main, "${mod_id}.avaritia.refmap.json"
     config "${mod_id}.avaritia.mixins.json"
 }
 
@@ -184,10 +183,7 @@ dependencies {
 
 jar {
     manifest.attributes([
-            "MixinConfigs": [
-                    "${mod_id}.mixins.json",
-                    "${mod_id}.avaritia.mixins.json"
-            ]
+            "MixinConfigs": "${mod_id}.mixins.json, ${mod_id}.avaritia.mixins.json"
     ])
 }
 

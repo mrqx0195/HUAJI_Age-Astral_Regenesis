@@ -166,7 +166,7 @@ public class ItemExglutenbur extends SwordItem {
 
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        if (pEntity instanceof LivingEntity living && living.getMainHandItem().equals(pStack)) {
+        if (pEntity instanceof LivingEntity living) {
             switch (Flavor.getFlavor(pStack)) {
                 case FRAGRANT -> {
                     if (!pLevel.isClientSide) {
@@ -178,6 +178,7 @@ public class ItemExglutenbur extends SwordItem {
                 case LIME -> {
                     if (!pLevel.isClientSide) {
                         living.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 1, false, false));
+                        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1, false, false));
                         living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 4, false, false));
                     }
                 }

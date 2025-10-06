@@ -1,14 +1,14 @@
 {
   "compatibilityLevel": "JAVA_17",
-  "minVersion": "0.8",
-  "package": "net.mrqx.huajiage.mixin.avaritia",
-  "plugin": "net.mrqx.huajiage.mixin.avaritia.AvaritiaMixinPlugin",
-  "refmap": "huajiage.avaritia.refmap.json",
-  "required": true,
   "injectors": {
     "defaultRequire": 1
   },
+  "minVersion": "0.8",
   "mixins": [
     "MixinModSingularities"
-  ]
+  ],
+  "package": "net.mrqx.huajiage.mixin.avaritia",
+  "plugin": "net.mrqx.huajiage.mixin.avaritia.AvaritiaMixinPlugin",
+  "refmap": "huajiage.refmap.json",
+  "required": true
 }

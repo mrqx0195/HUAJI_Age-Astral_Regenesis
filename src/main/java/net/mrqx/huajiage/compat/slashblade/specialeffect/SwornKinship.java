@@ -20,38 +20,32 @@ public class SwornKinship extends SpecialEffect {
 
     @SubscribeEvent
     public static void onUpdateEvent(SlashBladeEvent.UpdateEvent event) {
-        ISlashBladeState state = event.getSlashBladeState();
-        if (state.hasSpecialEffect(HuaJiSpecialEffects.SWORN_KINSHIP.getId())) {
-            if (!(event.getEntity() instanceof Player player)) {
-                return;
-            }
+        if (!(event.getEntity() instanceof Player player)) {
+            return;
+        }
 
-            if (!event.isSelected()) {
-                return;
-            }
-            if (isEffective(player)) {
-                ItemStack offhandItem = player.getOffhandItem();
-                if (offhandItem.is(HuaJiItems.EXGLUTENBUR.get())) {
-                    offhandItem.inventoryTick(player.level(), player, EquipmentSlot.OFFHAND.getIndex(), true);
-                }
+        if (!event.isSelected()) {
+            return;
+        }
+        if (isEffective(player)) {
+            ItemStack offhandItem = player.getOffhandItem();
+            if (offhandItem.is(HuaJiItems.EXGLUTENBUR.get())) {
+                offhandItem.inventoryTick(player.level(), player, EquipmentSlot.OFFHAND.getIndex(), true);
             }
         }
     }
 
     @SubscribeEvent
     public static void onHitEvent(SlashBladeEvent.HitEvent event) {
-        ISlashBladeState state = event.getSlashBladeState();
-        if (state.hasSpecialEffect(HuaJiSpecialEffects.SWORN_KINSHIP.getId())) {
-            if (!(event.getUser() instanceof Player player)) {
-                return;
-            }
-            if (isEffective(player)) {
-                ItemStack offhandItem = player.getOffhandItem();
-                if (offhandItem.is(HuaJiItems.EXGLUTENBUR.get())) {
-                    LivingEntity target = event.getTarget();
-                    offhandItem.hurtEnemy(target, player);
-                    offhandItem.getItem().onLeftClickEntity(offhandItem, player, target);
-                }
+        if (!(event.getUser() instanceof Player player)) {
+            return;
+        }
+        if (isEffective(player)) {
+            ItemStack offhandItem = player.getOffhandItem();
+            if (offhandItem.is(HuaJiItems.EXGLUTENBUR.get())) {
+                LivingEntity target = event.getTarget();
+                offhandItem.hurtEnemy(target, player);
+                offhandItem.getItem().onLeftClickEntity(offhandItem, player, target);
             }
         }
     }
