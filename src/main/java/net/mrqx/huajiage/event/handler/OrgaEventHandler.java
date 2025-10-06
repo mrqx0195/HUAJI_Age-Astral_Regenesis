@@ -194,11 +194,17 @@ public class OrgaEventHandler {
                     living.addEffect(new MobEffectInstance(HuaJiEffects.HOPE_FLOWER.get(), hopeDuration));
                 }
             }
-        }
-        MobEffectInstance effect = living.getEffect(HuaJiEffects.HOPE_FLOWER.get());
-        if (effect == null || effect.getDuration() >= 20) {
-            event.setCanceled(true);
-            living.setHealth(1);
+            MobEffectInstance effect = living.getEffect(HuaJiEffects.HOPE_FLOWER.get());
+            if (effect == null || effect.getDuration() >= 20) {
+                event.setCanceled(true);
+                living.setHealth(1);
+            }
+        } else {
+            MobEffectInstance effect = living.getEffect(HuaJiEffects.HOPE_FLOWER.get());
+            if (effect != null && effect.getDuration() >= 20) {
+                event.setCanceled(true);
+                living.setHealth(1);
+            }
         }
     }
 
