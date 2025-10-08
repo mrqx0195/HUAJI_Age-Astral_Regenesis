@@ -167,19 +167,21 @@ public class ItemExglutenbur extends SwordItem {
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         if (pEntity instanceof LivingEntity living) {
-            switch (Flavor.getFlavor(pStack)) {
-                case FRAGRANT -> {
-                    if (!pLevel.isClientSide) {
-                        living.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false));
-                        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 2, false, false));
-                        living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 2, false, false));
+            if (living.getMainHandItem().equals(pStack) || living.getOffhandItem().equals(pStack)) {
+                switch (Flavor.getFlavor(pStack)) {
+                    case FRAGRANT -> {
+                        if (!pLevel.isClientSide) {
+                            living.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false));
+                            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 2, false, false));
+                            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 2, false, false));
+                        }
                     }
-                }
-                case LIME -> {
-                    if (!pLevel.isClientSide) {
-                        living.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 1, false, false));
-                        living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1, false, false));
-                        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 4, false, false));
+                    case LIME -> {
+                        if (!pLevel.isClientSide) {
+                            living.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 1, false, false));
+                            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1, false, false));
+                            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 4, false, false));
+                        }
                     }
                 }
             }

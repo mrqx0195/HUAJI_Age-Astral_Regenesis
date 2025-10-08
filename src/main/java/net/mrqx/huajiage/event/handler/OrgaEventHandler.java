@@ -12,6 +12,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
@@ -43,7 +44,7 @@ public class OrgaEventHandler {
     private static final String REQUIEM = HuaJiAgeMod.MODID + "." + "orgaRequiem";
     public static final int HOPE_FLOWER_TIME = 136 * 20;
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onLivingTickEvent(LivingEvent.LivingTickEvent event) {
         LivingEntity entity = event.getEntity();
         if (entity.level().isClientSide) {
@@ -54,7 +55,7 @@ public class OrgaEventHandler {
         handleRequiemStateUpdate(entity);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onLivingDeathEvent(LivingDeathEvent event) {
         LivingEntity entity = event.getEntity();
         if (entity.level().isClientSide) {
@@ -64,7 +65,7 @@ public class OrgaEventHandler {
         handleStandOrgaDeath(event, entity);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onLivingHurtEvent(LivingHurtEvent event) {
         LivingEntity entity = event.getEntity();
         if (entity.level().isClientSide) {
@@ -75,7 +76,7 @@ public class OrgaEventHandler {
         handleStandOrgaHurt(event, entity, attacker);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onLivingAttackEvent(LivingAttackEvent event) {
         Entity entity = event.getSource().getEntity();
         LivingEntity target = event.getEntity();

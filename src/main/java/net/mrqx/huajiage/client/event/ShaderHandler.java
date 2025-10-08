@@ -12,6 +12,7 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.PostChain;
 import net.minecraft.resources.ResourceLocation;
@@ -116,25 +117,27 @@ public class ShaderHandler {
     @SubscribeEvent
     public static void onRenderGuiOverlayEvent(RenderGuiOverlayEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (event.getOverlay().id().equals(VanillaGuiOverlay.VIGNETTE.id()) && minecraft.level != null && minecraft.player != null && Minecraft.renderNames() && minecraft.screen == null) {
-            List<ResourceLocation> removeList = new ArrayList<>();
-            TIME_STOP_EFFECT_TICK.forEach((level, startTick) -> {
-                if (minecraft.level.dimension().location().equals(level)) {
-                    if (TimeStopUtils.isTimeStop && TimeStopUtils.canMove(minecraft.player) && TimeStopUtils.andSameDimension(minecraft.level)) {
-                        if (TIME_STOPER.get(level).equals(minecraft.player.getId())) {
-                            GuiGraphics guiGraphics = event.getGuiGraphics();
-                            Window window = minecraft.getWindow();
-                            renderView(guiGraphics, HuaJiAgeMod.prefix("textures/misc/time_stop_view.png"));
-                            renderElement(HuaJiAgeMod.prefix("textures/misc/gear_1.png"), 0, 0, 512, 512, 0.25f, 0.25f, false);
-                            renderElement(HuaJiAgeMod.prefix("textures/misc/gear_2.png"), window.getGuiScaledWidth(), window.getGuiScaledHeight(), 512, 512, 0.25f, 0.25f, true);
+        if (event.getOverlay().id().equals(VanillaGuiOverlay.VIGNETTE.id()) && minecraft.level != null && minecraft.player != null) {
+            if (minecraft.screen == null || minecraft.screen instanceof ChatScreen) {
+                List<ResourceLocation> removeList = new ArrayList<>();
+                TIME_STOP_EFFECT_TICK.forEach((level, startTick) -> {
+                    if (minecraft.level.dimension().location().equals(level)) {
+                        if (TimeStopUtils.isTimeStop && TimeStopUtils.canMove(minecraft.player) && TimeStopUtils.andSameDimension(minecraft.level)) {
+                            if (TIME_STOPER.get(level).equals(minecraft.player.getId())) {
+                                GuiGraphics guiGraphics = event.getGuiGraphics();
+                                Window window = minecraft.getWindow();
+                                renderView(guiGraphics, HuaJiAgeMod.prefix("textures/misc/time_stop_view.png"));
+                                renderElement(HuaJiAgeMod.prefix("textures/misc/gear_1.png"), 0, 0, 512, 512, 0.25f, 0.25f, false);
+                                renderElement(HuaJiAgeMod.prefix("textures/misc/gear_2.png"), window.getGuiScaledWidth(), window.getGuiScaledHeight(), 512, 512, 0.25f, 0.25f, true);
+                            }
+                        } else {
+                            removeList.add(level);
+                            HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
                         }
-                    } else {
-                        removeList.add(level);
-                        HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
                     }
-                }
-            });
-            removeList.forEach(TIME_STOP_EFFECT_TICK::remove);
+                });
+                removeList.forEach(TIME_STOP_EFFECT_TICK::remove);
+            }
         }
     }
 
@@ -162,7 +165,8 @@ public class ShaderHandler {
     }
 
     public static void renderView(GuiGraphics guiGraphics, ResourceLocation texture) {
-        RenderSystem.disableDepthTest();
+        RenderSystem.enableDepthTest();
+        RenderSystem.enableBlend();
         RenderSystem.depthMask(false);
         RenderSystem.blendFuncSeparate(
                 GlStateManager.SourceFactor.ZERO,
@@ -190,13 +194,14 @@ public class ShaderHandler {
         tesselator.end();
 
         RenderSystem.depthMask(true);
+        RenderSystem.disableBlend();
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.defaultBlendFunc();
-        RenderSystem.enableDepthTest();
     }
 
     public static void renderElement(ResourceLocation texture, int x, int y, float width, float heigh, float xScale, float yScale, boolean reverse) {
         RenderSystem.disableDepthTest();
+        RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(
                 GlStateManager.SourceFactor.ZERO,
                 GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR,
@@ -224,6 +229,7 @@ public class ShaderHandler {
         tesselator.end();
 
         RenderSystem.enableDepthTest();
+        RenderSystem.disableBlend();
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.defaultBlendFunc();
     }
