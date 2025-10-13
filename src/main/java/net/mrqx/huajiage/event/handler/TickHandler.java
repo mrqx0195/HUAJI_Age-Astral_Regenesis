@@ -18,6 +18,8 @@ import net.minecraftforge.network.PacketDistributor;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
+import net.mrqx.huajiage.compat.HuaJiCompat;
+import net.mrqx.huajiage.compat.apotheosis.attribute.ApothicAttributesFactory;
 import net.mrqx.huajiage.data.HuaJiDamageTypes;
 import net.mrqx.huajiage.event.HuaJiCanFlyEvent;
 import net.mrqx.huajiage.item.stand.ItemSingularity;
@@ -45,6 +47,9 @@ public class TickHandler {
                 persistentData.putBoolean(HUAJI_FLY_KEY, true);
             } else if (persistentData.getBoolean(HUAJI_FLY_KEY)) {
                 Abilities abilities = new Abilities();
+                if (HuaJiCompat.getInstance().hasApothicAttributes) {
+                    ApothicAttributesFactory.setAbilitiesOwner(abilities, serverPlayer);
+                }
                 serverPlayer.gameMode.getGameModeForPlayer().updatePlayerAbilities(abilities);
                 if (!abilities.mayfly) {
                     serverPlayer.getAbilities().mayfly = false;

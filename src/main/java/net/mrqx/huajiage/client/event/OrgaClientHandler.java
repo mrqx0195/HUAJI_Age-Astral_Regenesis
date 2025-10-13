@@ -29,7 +29,7 @@ import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
  * @see net.mrqx.huajiage.event.handler.OrgaEventHandler
  */
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Dist.CLIENT)
 public class OrgaClientHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent

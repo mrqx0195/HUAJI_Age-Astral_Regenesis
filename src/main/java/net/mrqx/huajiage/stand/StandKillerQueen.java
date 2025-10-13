@@ -216,74 +216,86 @@ public class StandKillerQueen extends Stand {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("killer_queen", STATE_DEFAULT);
-
-    @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation PUNCH_LAYER = HuaJiLayers.create("killer_queen", STATE_PUNCH);
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
-            STATE_DEFAULT, DEFAULT_LAYER,
-            STATE_PUNCH, PUNCH_LAYER
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
-            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/killer_queen_default.png"),
-            STATE_PUNCH, HuaJiAgeMod.prefix("textures/entity/stand/killer_queen_punch.png")
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
-            STATE_DEFAULT, List.of(0.9, -0.1, -0.8),
-            STATE_PUNCH, List.of(0.0, 0.0, -0.9)
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
-            DEFAULT_LAYER, ModelKillerQueen::createBodyLayer,
-            PUNCH_LAYER, ModelKillerQueenPunch::createBodyLayer
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
-            DEFAULT_LAYER, ModelKillerQueen::new,
-            PUNCH_LAYER, ModelKillerQueenPunch::new
-    );
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, ModelLayerLocation> getModelLocations() {
-        return MODEL_LAYER_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, ResourceLocation> getModelTextures() {
-        return TEXTURE_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, List<Double>> getModelTranslations() {
-        return TRANSLATION_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
-        return MODEL_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
-        return MODEL_FUNCTION_MAP;
-    }
-
     @Override
     public boolean shouldRenderHand(LivingEntity livingEntity, IStandData data) {
         return !(data.isTriggered() && data.getState().equals(STATE_PUNCH));
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public AbstractStandResource getStandResource() {
+        return StandResource.INSTANCE;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static class StandResource extends AbstractStandResource {
+        @OnlyIn(Dist.CLIENT)
+        public static final StandResource INSTANCE = new StandResource();
+
+        @OnlyIn(Dist.CLIENT)
+        public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("killer_queen", STATE_DEFAULT);
+
+        @OnlyIn(Dist.CLIENT)
+        public static final ModelLayerLocation PUNCH_LAYER = HuaJiLayers.create("killer_queen", STATE_PUNCH);
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
+                STATE_DEFAULT, DEFAULT_LAYER,
+                STATE_PUNCH, PUNCH_LAYER
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
+                STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/killer_queen_default.png"),
+                STATE_PUNCH, HuaJiAgeMod.prefix("textures/entity/stand/killer_queen_punch.png")
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
+                STATE_DEFAULT, List.of(0.9, -0.1, -0.8),
+                STATE_PUNCH, List.of(0.0, 0.0, -0.9)
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
+                DEFAULT_LAYER, ModelKillerQueen::createBodyLayer,
+                PUNCH_LAYER, ModelKillerQueenPunch::createBodyLayer
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
+                DEFAULT_LAYER, ModelKillerQueen::new,
+                PUNCH_LAYER, ModelKillerQueenPunch::new
+        );
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, ModelLayerLocation> getModelLocations() {
+            return MODEL_LAYER_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, ResourceLocation> getModelTextures() {
+            return TEXTURE_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, List<Double>> getModelTranslations() {
+            return TRANSLATION_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
+            return MODEL_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
+            return MODEL_FUNCTION_MAP;
+        }
     }
 }

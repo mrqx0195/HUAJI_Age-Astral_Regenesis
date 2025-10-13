@@ -183,74 +183,86 @@ public class StandHierophantGreen extends Stand {
         return List.of(STATE_DEFAULT, STATE_IDLE);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("hierophant_green", STATE_DEFAULT);
-
-    @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation IDLE_LAYER = HuaJiLayers.create("hierophant_green", STATE_IDLE);
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
-            STATE_DEFAULT, DEFAULT_LAYER,
-            STATE_IDLE, IDLE_LAYER
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
-            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/hierophant_green_default.png"),
-            STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/stand/hierophant_green_idle.png")
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
-            STATE_DEFAULT, List.of(0.5, -1.0, 0.75),
-            STATE_IDLE, List.of(0.8, -0.75, -0.7)
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
-            DEFAULT_LAYER, ModelHierophantGreen::createBodyLayer,
-            IDLE_LAYER, ModelHierophantGreenIdle::createBodyLayer
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
-            DEFAULT_LAYER, ModelHierophantGreen::new,
-            IDLE_LAYER, ModelHierophantGreenIdle::new
-    );
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, ModelLayerLocation> getModelLocations() {
-        return MODEL_LAYER_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, ResourceLocation> getModelTextures() {
-        return TEXTURE_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, List<Double>> getModelTranslations() {
-        return TRANSLATION_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
-        return MODEL_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
-        return MODEL_FUNCTION_MAP;
-    }
-
     @Override
     public boolean shouldRenderExtra(LivingEntity livingEntity, IStandData data) {
         return data.getLevel() >= 1;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public AbstractStandResource getStandResource() {
+        return StandResource.INSTANCE;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static class StandResource extends AbstractStandResource {
+        @OnlyIn(Dist.CLIENT)
+        public static final StandResource INSTANCE = new StandResource();
+
+        @OnlyIn(Dist.CLIENT)
+        public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("hierophant_green", STATE_DEFAULT);
+
+        @OnlyIn(Dist.CLIENT)
+        public static final ModelLayerLocation IDLE_LAYER = HuaJiLayers.create("hierophant_green", STATE_IDLE);
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
+                STATE_DEFAULT, DEFAULT_LAYER,
+                STATE_IDLE, IDLE_LAYER
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
+                STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/hierophant_green_default.png"),
+                STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/stand/hierophant_green_idle.png")
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
+                STATE_DEFAULT, List.of(0.5, -1.0, 0.75),
+                STATE_IDLE, List.of(0.8, -0.75, -0.7)
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
+                DEFAULT_LAYER, ModelHierophantGreen::createBodyLayer,
+                IDLE_LAYER, ModelHierophantGreenIdle::createBodyLayer
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
+                DEFAULT_LAYER, ModelHierophantGreen::new,
+                IDLE_LAYER, ModelHierophantGreenIdle::new
+        );
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, ModelLayerLocation> getModelLocations() {
+            return MODEL_LAYER_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, ResourceLocation> getModelTextures() {
+            return TEXTURE_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, List<Double>> getModelTranslations() {
+            return TRANSLATION_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
+            return MODEL_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
+            return MODEL_FUNCTION_MAP;
+        }
     }
 }

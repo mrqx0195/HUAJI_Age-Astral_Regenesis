@@ -37,7 +37,7 @@ public class StandSyncMessage {
         if (ctx.get().getDirection() != NetworkDirection.PLAY_TO_CLIENT) {
             return;
         }
-        BiConsumer<CompoundTag, Integer> handler = DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> Stand::setClientTag);
+        BiConsumer<CompoundTag, Integer> handler = DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> Stand.AbstractStandResource::setClientTag);
 
         if (handler != null) {
             ctx.get().enqueueWork(() -> handler.accept(standSyncMessage.data, standSyncMessage.entityId));

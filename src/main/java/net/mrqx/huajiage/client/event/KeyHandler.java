@@ -17,7 +17,7 @@ import net.mrqx.huajiage.registy.HuaJiItems;
 
 import java.util.EnumSet;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Dist.CLIENT)
 @OnlyIn(Dist.CLIENT)
 public class KeyHandler {
     private static final EnumSet<HuaJiKeyMessage.Keys> KEY_SET = EnumSet.noneOf(HuaJiKeyMessage.Keys.class);

@@ -24,7 +24,7 @@ import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Dist.CLIENT)
 public class StandExtraRenderer {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
@@ -81,7 +81,7 @@ public class StandExtraRenderer {
             player.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                 Stand stand = Stand.getStand(data.getStand());
                 if (stand != null) {
-                    stand.getModelLocations().get(data.getState());
+                    stand.getStandResource().getModelLocations().get(data.getState());
                     if (Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player) instanceof LivingEntityRenderer<?, ?> renderer) {
                         AccessorLivingEntityRenderer accessorLivingEntityRenderer = (AccessorLivingEntityRenderer) renderer;
                         accessorLivingEntityRenderer.getLayers().forEach(layer -> {

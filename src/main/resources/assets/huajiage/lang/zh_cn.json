@@ -99,6 +99,7 @@
   "entity.huajiage.road_roller": "压路机",
   "entity.huajiage.sheer_heart_attack": "枯萎穿心攻击",
   "event.huajiage.time_stop": "时间停止",
+  "event.huajiage.time_stop.desc": "停止整个维度的时间，持续数秒",
   "gui.huajiage.polyfurnace.energy": "能源（RF）",
   "gui.huajiage.polyfurnace.fuel": "黄金精神",
   "gui.huajiage.polyfurnace.pool": "聚合池",

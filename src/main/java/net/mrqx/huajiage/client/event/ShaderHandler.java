@@ -41,7 +41,7 @@ import java.util.List;
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Dist.CLIENT)
 public class ShaderHandler {
     public static final HashMap<ResourceLocation, Map.Entry<Long, Long>> TIME_STOP_EFFECT_TICK = new HashMap<>();
     public static final HashMap<ResourceLocation, Integer> TIME_STOPER = new HashMap<>();

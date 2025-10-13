@@ -176,6 +176,6 @@ public class ModelHierophantGreenIdle extends ModelStandBase {
 
     @Override
     public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, IStandData data, Stand stand) {
-        strips.render(pPoseStack, pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState()))), 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1F);
+        strips.render(pPoseStack, pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getStandResource().getModelTextures().get(data.getState()))), 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1F);
     }
 }

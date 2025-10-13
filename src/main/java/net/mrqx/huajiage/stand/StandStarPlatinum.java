@@ -156,72 +156,6 @@ public class StandStarPlatinum extends Stand {
         return List.of(STATE_DEFAULT, STATE_IDLE);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("star_platinum", STATE_DEFAULT);
-
-    @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation IDLE_LAYER = HuaJiLayers.create("star_platinum", STATE_IDLE);
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
-            STATE_DEFAULT, DEFAULT_LAYER,
-            STATE_IDLE, IDLE_LAYER
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
-            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/star_platinum_default.png"),
-            STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/stand/star_platinum_idle.png")
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
-            STATE_DEFAULT, List.of(0.0, -0.2, -0.75),
-            STATE_IDLE, List.of(0.0, -0.7, 0.5)
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
-            DEFAULT_LAYER, ModelStarPlatinum::createBodyLayer,
-            IDLE_LAYER, ModelStarPlatinumIdle::createBodyLayer
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
-            DEFAULT_LAYER, ModelStarPlatinum::new,
-            IDLE_LAYER, ModelStarPlatinumIdle::new
-    );
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, ModelLayerLocation> getModelLocations() {
-        return MODEL_LAYER_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, ResourceLocation> getModelTextures() {
-        return TEXTURE_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, List<Double>> getModelTranslations() {
-        return TRANSLATION_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
-        return MODEL_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
-        return MODEL_FUNCTION_MAP;
-    }
-
     @Override
     public boolean shouldRenderHand(LivingEntity livingEntity, IStandData data) {
         return !(data.isTriggered() && data.getState().equals(STATE_DEFAULT));
@@ -230,5 +164,83 @@ public class StandStarPlatinum extends Stand {
     @Override
     public boolean shouldRenderExtra(LivingEntity livingEntity, IStandData data) {
         return data.getLevel() >= 1;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public AbstractStandResource getStandResource() {
+        return StandResource.INSTANCE;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static class StandResource extends AbstractStandResource {
+        @OnlyIn(Dist.CLIENT)
+        public static final StandResource INSTANCE = new StandResource();
+
+        @OnlyIn(Dist.CLIENT)
+        public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("star_platinum", STATE_DEFAULT);
+
+        @OnlyIn(Dist.CLIENT)
+        public static final ModelLayerLocation IDLE_LAYER = HuaJiLayers.create("star_platinum", STATE_IDLE);
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
+                STATE_DEFAULT, DEFAULT_LAYER,
+                STATE_IDLE, IDLE_LAYER
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
+                STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/star_platinum_default.png"),
+                STATE_IDLE, HuaJiAgeMod.prefix("textures/entity/stand/star_platinum_idle.png")
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
+                STATE_DEFAULT, List.of(0.0, -0.2, -0.75),
+                STATE_IDLE, List.of(0.0, -0.7, 0.5)
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
+                DEFAULT_LAYER, ModelStarPlatinum::createBodyLayer,
+                IDLE_LAYER, ModelStarPlatinumIdle::createBodyLayer
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
+                DEFAULT_LAYER, ModelStarPlatinum::new,
+                IDLE_LAYER, ModelStarPlatinumIdle::new
+        );
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, ModelLayerLocation> getModelLocations() {
+            return MODEL_LAYER_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, ResourceLocation> getModelTextures() {
+            return TEXTURE_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, List<Double>> getModelTranslations() {
+            return TRANSLATION_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
+            return MODEL_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
+            return MODEL_FUNCTION_MAP;
+        }
     }
 }

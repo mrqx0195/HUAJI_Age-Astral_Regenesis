@@ -90,7 +90,7 @@ public class ClientHandler {
         event.registerLayerDefinition(HuaJiLayers.SHEER_HEART_ATTACK, ModelSheerHeartAttack::createBodyLayer);
         event.registerLayerDefinition(HuaJiLayers.MULTI_KNIFE, ModelMultiKnife::createBodyLayer);
         event.registerLayerDefinition(HuaJiLayers.MULTI_KNIFE_SHINY, ModelMultiKnife::createBodyLayer);
-        HuaJiStands.REGISTRY.get().forEach(stand -> stand.getModels().forEach(event::registerLayerDefinition));
+        HuaJiStands.REGISTRY.get().forEach(stand -> stand.getStandResource().getModels().forEach(event::registerLayerDefinition));
     }
 
     @SubscribeEvent

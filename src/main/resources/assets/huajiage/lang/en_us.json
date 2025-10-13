@@ -99,6 +99,7 @@
   "entity.huajiage.road_roller": "Road Roller",
   "entity.huajiage.sheer_heart_attack": "Sheer Heart Attack",
   "event.huajiage.time_stop": "Time Stop",
+  "event.huajiage.time_stop.desc": "Stop the time of this dimension for a few seconds.",
   "gui.huajiage.polyfurnace.energy": "Energy (RF)",
   "gui.huajiage.polyfurnace.fuel": "Golden Spirit",
   "gui.huajiage.polyfurnace.pool": "Polymerization Pool",

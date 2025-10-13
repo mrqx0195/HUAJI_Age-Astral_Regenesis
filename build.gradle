@@ -43,6 +43,14 @@ repositories {
         url = "https://modmaven.dev"
     }
 
+    maven {
+        // Shadows
+        url "https://maven.shadowsoffire.dev/releases"
+        content {
+            includeGroup "dev.shadowsoffire"
+        }
+    }
+
     flatDir {
         dir 'libs'
     }
@@ -143,6 +151,10 @@ dependencies {
 
     // Re:Avaritia Compat
     modImplementation "maven.modrinth:re-avaritia:${re_avaritia_version}"
+
+    // ApothicAttributes Compat
+    modImplementation "dev.shadowsoffire:Placebo:${minecraft_version}-${placebo_version}"
+    modImplementation "dev.shadowsoffire:ApothicAttributes:${minecraft_version}-${attributes_lib_version}"
 
 
     // Test

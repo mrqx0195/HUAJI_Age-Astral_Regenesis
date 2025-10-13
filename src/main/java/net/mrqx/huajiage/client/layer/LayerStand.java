@@ -35,7 +35,7 @@ public class LayerStand extends RenderLayer<LivingEntity, EntityModel<LivingEnti
     public LayerStand(RenderLayerParent<LivingEntity, EntityModel<LivingEntity>> pRenderer, EntityModelSet pModelSet) {
         super(pRenderer);
         Map<ModelLayerLocation, ModelStandBase> map = new HashMap<>();
-        HuaJiStands.REGISTRY.get().forEach(stand -> stand.getModelFunction().forEach((modelLayerLocation, modelSupplier) -> map.put(modelLayerLocation, modelSupplier.apply(pModelSet.bakeLayer(modelLayerLocation)))));
+        HuaJiStands.REGISTRY.get().forEach(stand -> stand.getStandResource().getModelFunction().forEach((modelLayerLocation, modelSupplier) -> map.put(modelLayerLocation, modelSupplier.apply(pModelSet.bakeLayer(modelLayerLocation)))));
         modelMap = ImmutableMap.copyOf(map);
     }
 
@@ -48,9 +48,9 @@ public class LayerStand extends RenderLayer<LivingEntity, EntityModel<LivingEnti
                     pLivingEntity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                         Stand stand = Stand.getStand(data.getStand());
                         if (stand != null && data.isTriggered()) {
-                            VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
-                            ModelStandBase model = modelMap.get(stand.getModelLocations().get(data.getState()));
-                            List<Double> translations = stand.getModelTranslations().get(data.getState());
+                            VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getStandResource().getModelTextures().get(data.getState())));
+                            ModelStandBase model = modelMap.get(stand.getStandResource().getModelLocations().get(data.getState()));
+                            List<Double> translations = stand.getStandResource().getModelTranslations().get(data.getState());
 
                             pPoseStack.pushPose();
                             RenderSystem.enableBlend();
@@ -76,7 +76,7 @@ public class LayerStand extends RenderLayer<LivingEntity, EntityModel<LivingEnti
             Stand stand = Stand.getStand(data.getStand());
             if (stand != null && data.isTriggered()) {
                 PoseStack poseStack = event.getPoseStack();
-                ModelStandBase model = modelMap.get(stand.getModelLocations().get(data.getState()));
+                ModelStandBase model = modelMap.get(stand.getStandResource().getModelLocations().get(data.getState()));
                 poseStack.pushPose();
                 RenderSystem.enableBlend();
                 poseStack.translate(0, 0.8, 0.3);

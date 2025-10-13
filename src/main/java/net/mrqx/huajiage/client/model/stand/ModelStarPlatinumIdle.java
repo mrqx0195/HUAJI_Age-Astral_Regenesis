@@ -139,7 +139,7 @@ public class ModelStarPlatinumIdle extends ModelStandBase {
         float off = (float) (Math.cos(0.15 * pAgeInTicks)) + 1;
         pPoseStack.pushPose();
         pPoseStack.scale(6F / 5, 6F / 5, 6F / 5);
-        VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
+        VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getStandResource().getModelTextures().get(data.getState())));
         hands.render(pPoseStack, vertexconsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, 0.5F * off);
         pPoseStack.popPose();
     }

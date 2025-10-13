@@ -150,19 +150,7 @@ public abstract class Stand {
     public abstract List<String> getStates();
 
     @OnlyIn(Dist.CLIENT)
-    public abstract Map<String, ModelLayerLocation> getModelLocations();
-
-    @OnlyIn(Dist.CLIENT)
-    public abstract Map<String, ResourceLocation> getModelTextures();
-
-    @OnlyIn(Dist.CLIENT)
-    public abstract Map<String, List<Double>> getModelTranslations();
-
-    @OnlyIn(Dist.CLIENT)
-    public abstract Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels();
-
-    @OnlyIn(Dist.CLIENT)
-    public abstract Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction();
+    public abstract AbstractStandResource getStandResource();
 
     public boolean shouldRenderHand(LivingEntity livingEntity, IStandData data) {
         return true;
@@ -178,14 +166,32 @@ public abstract class Stand {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static BiConsumer<CompoundTag, Integer> setClientTag() {
-        return (tag, id) -> {
-            if (Minecraft.getInstance().level != null) {
-                Entity entity = Minecraft.getInstance().level.getEntity(id);
-                if (entity != null) {
-                    entity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> IStandData.deserializeNBT(tag, data));
+    public abstract static class AbstractStandResource {
+        @OnlyIn(Dist.CLIENT)
+        public abstract Map<String, ModelLayerLocation> getModelLocations();
+
+        @OnlyIn(Dist.CLIENT)
+        public abstract Map<String, ResourceLocation> getModelTextures();
+
+        @OnlyIn(Dist.CLIENT)
+        public abstract Map<String, List<Double>> getModelTranslations();
+
+        @OnlyIn(Dist.CLIENT)
+        public abstract Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels();
+
+        @OnlyIn(Dist.CLIENT)
+        public abstract Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction();
+
+        @OnlyIn(Dist.CLIENT)
+        public static BiConsumer<CompoundTag, Integer> setClientTag() {
+            return (tag, id) -> {
+                if (Minecraft.getInstance().level != null) {
+                    Entity entity = Minecraft.getInstance().level.getEntity(id);
+                    if (entity != null) {
+                        entity.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> IStandData.deserializeNBT(tag, data));
+                    }
                 }
-            }
-        };
+            };
+        }
     }
 }

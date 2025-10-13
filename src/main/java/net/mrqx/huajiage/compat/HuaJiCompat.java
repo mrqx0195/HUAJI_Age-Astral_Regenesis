@@ -27,6 +27,7 @@ public class HuaJiCompat {
     public final boolean hasSlashBlade;
     public final boolean hasTetra;
     public final boolean hasLaTiaoCraft;
+    public final boolean hasApothicAttributes;
 
     private HuaJiCompat() {
         this.hasJEI = LoaderUtil.isClassAvailable("mezz.jei.api.JeiPlugin");
@@ -36,6 +37,7 @@ public class HuaJiCompat {
         this.hasSlashBlade = LoaderUtil.isClassAvailable("mods.flammpfeil.slashblade.SlashBlade");
         this.hasTetra = LoaderUtil.isClassAvailable("se.mickelus.tetra.TetraMod");
         this.hasLaTiaoCraft = LoaderUtil.isClassAvailable("com.doggystudio.chirencqr.ltc.server.LatiaoCraft");
+        this.hasApothicAttributes = LoaderUtil.isClassAvailable("dev.shadowsoffire.attributeslib.AttributesLib");
     }
 
     public static Item makeInfiniteCharmCurios() {

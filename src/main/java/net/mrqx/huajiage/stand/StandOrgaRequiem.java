@@ -158,74 +158,86 @@ public class StandOrgaRequiem extends Stand {
         });
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("orga_requiem", STATE_DEFAULT);
-
-    @OnlyIn(Dist.CLIENT)
-    public static final ModelLayerLocation FLY_LAYER = HuaJiLayers.create("orga_requiem", STATE_FLY);
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
-            STATE_DEFAULT, DEFAULT_LAYER,
-            STATE_FLY, FLY_LAYER
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
-            STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/orga_requiem_default.png"),
-            STATE_FLY, HuaJiAgeMod.prefix("textures/entity/stand/orga_requiem_fly.png")
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
-            STATE_DEFAULT, List.of(-0.5, -0.7, 0.75),
-            STATE_FLY, List.of(0.0, -0.9, 0.0)
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
-            DEFAULT_LAYER, ModelOrgaRequiem::createBodyLayer,
-            FLY_LAYER, ModelOrgaRequiemFly::createBodyLayer
-    );
-
-    @OnlyIn(Dist.CLIENT)
-    public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
-            DEFAULT_LAYER, ModelOrgaRequiem::new,
-            FLY_LAYER, ModelOrgaRequiemFly::new
-    );
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, ModelLayerLocation> getModelLocations() {
-        return MODEL_LAYER_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, ResourceLocation> getModelTextures() {
-        return TEXTURE_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<String, List<Double>> getModelTranslations() {
-        return TRANSLATION_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
-        return MODEL_MAP;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
-        return MODEL_FUNCTION_MAP;
-    }
-
     @Override
     public boolean shouldRenderHand(LivingEntity livingEntity, IStandData data) {
         return !(data.isTriggered() && data.getState().equals(STATE_FLY));
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public AbstractStandResource getStandResource() {
+        return StandResource.INSTANCE;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static class StandResource extends AbstractStandResource {
+        @OnlyIn(Dist.CLIENT)
+        public static final StandResource INSTANCE = new StandResource();
+
+        @OnlyIn(Dist.CLIENT)
+        public static final ModelLayerLocation DEFAULT_LAYER = HuaJiLayers.create("orga_requiem", STATE_DEFAULT);
+
+        @OnlyIn(Dist.CLIENT)
+        public static final ModelLayerLocation FLY_LAYER = HuaJiLayers.create("orga_requiem", STATE_FLY);
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, ModelLayerLocation> MODEL_LAYER_MAP = Map.of(
+                STATE_DEFAULT, DEFAULT_LAYER,
+                STATE_FLY, FLY_LAYER
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, ResourceLocation> TEXTURE_MAP = Map.of(
+                STATE_DEFAULT, HuaJiAgeMod.prefix("textures/entity/stand/orga_requiem_default.png"),
+                STATE_FLY, HuaJiAgeMod.prefix("textures/entity/stand/orga_requiem_fly.png")
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<String, List<Double>> TRANSLATION_MAP = Map.of(
+                STATE_DEFAULT, List.of(-0.5, -0.7, 0.75),
+                STATE_FLY, List.of(0.0, -0.9, 0.0)
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<ModelLayerLocation, Supplier<LayerDefinition>> MODEL_MAP = Map.of(
+                DEFAULT_LAYER, ModelOrgaRequiem::createBodyLayer,
+                FLY_LAYER, ModelOrgaRequiemFly::createBodyLayer
+        );
+
+        @OnlyIn(Dist.CLIENT)
+        public static final Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> MODEL_FUNCTION_MAP = Map.of(
+                DEFAULT_LAYER, ModelOrgaRequiem::new,
+                FLY_LAYER, ModelOrgaRequiemFly::new
+        );
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, ModelLayerLocation> getModelLocations() {
+            return MODEL_LAYER_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, ResourceLocation> getModelTextures() {
+            return TEXTURE_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<String, List<Double>> getModelTranslations() {
+            return TRANSLATION_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels() {
+            return MODEL_MAP;
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction() {
+            return MODEL_FUNCTION_MAP;
+        }
     }
 }

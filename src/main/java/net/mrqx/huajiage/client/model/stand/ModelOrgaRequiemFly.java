@@ -141,7 +141,7 @@ public class ModelOrgaRequiemFly extends ModelStandBase {
     @Override
     public void renderHand(RenderHandEvent event, LocalPlayer player, Stand stand, IStandData data) {
         PoseStack poseStack = event.getPoseStack();
-        VertexConsumer vertexConsumer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
+        VertexConsumer vertexConsumer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentCull(stand.getStandResource().getModelTextures().get(data.getState())));
         float alpha = player.hasEffect(HuaJiEffects.STAND_POWER.get()) ? 0.6F : 0.3F;
         poseStack.mulPose(Axis.ZP.rotation(179.1F));
         poseStack.translate(0, 0.2, -2);

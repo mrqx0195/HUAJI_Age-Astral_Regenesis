@@ -226,7 +226,7 @@ public class ModelKillerQueenPunch extends ModelStandBase {
     public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, IStandData data, Stand stand) {
         pPoseStack.pushPose();
         pPoseStack.scale(1.3F, 1.3F, 1.3F);
-        VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
+        VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucentCull(stand.getStandResource().getModelTextures().get(data.getState())));
         hands_l.render(pPoseStack, vertexconsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, 0.5F);
         hands_r.render(pPoseStack, vertexconsumer, 0xF000F0, OverlayTexture.NO_OVERLAY, 1, 1, 1, 0.5F);
         pPoseStack.popPose();
@@ -235,7 +235,7 @@ public class ModelKillerQueenPunch extends ModelStandBase {
     @Override
     public void renderHand(RenderHandEvent event, LocalPlayer player, Stand stand, IStandData data) {
         PoseStack poseStack = event.getPoseStack();
-        VertexConsumer vertexConsumer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentCull(stand.getModelTextures().get(data.getState())));
+        VertexConsumer vertexConsumer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucentCull(stand.getStandResource().getModelTextures().get(data.getState())));
         poseStack.translate(0, -1, -0.75);
         float alpha = player.hasEffect(HuaJiEffects.STAND_POWER.get()) ? 0.6F : 0.3F;
         float speed = stand.getSpeed(player, data);
