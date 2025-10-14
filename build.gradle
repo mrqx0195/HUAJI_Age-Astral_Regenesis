@@ -80,7 +80,6 @@ legacyForge {
         server {
             server()
             gameDirectory = project.file('run/server')
-            programArgument '--nogui'
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 

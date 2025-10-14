@@ -63,7 +63,7 @@ public record HuaJiPolyfurnaceRecipe(RecipeType<?> type, ResourceLocation id, St
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return HuaJiRecipes.HUAJI_BLENDER_RECIPE_SERIALIZER.get();
+        return HuaJiRecipes.HUAJI_POLYFURNACE_RECIPE_SERIALIZER.get();
     }
 
     @Override
