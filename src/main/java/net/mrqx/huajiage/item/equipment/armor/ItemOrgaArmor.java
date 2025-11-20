@@ -17,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.client.HuaJiLayers;
-import net.mrqx.huajiage.client.model.HuaJiArmorModel;
+import net.mrqx.huajiage.client.model.armor.HuaJiArmorModel;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.stand.StandOrgaRequiem;
@@ -55,13 +55,13 @@ public abstract class ItemOrgaArmor extends ArmorItem {
         Player player = Minecraft.getInstance().player;
         if (player != null) {
             tooltip.add(Component.translatable("message.huajiage.prefix", Component.translatable(HuaJiItems.ORGA_HELMET.get().getDescriptionId())
-                    .withStyle(player.getInventory().armor.get(3).is(HuaJiItems.ORGA_HELMET.get()) ? ChatFormatting.YELLOW : ChatFormatting.GRAY)));
+                    .withStyle(player.getInventory().armor.get(EquipmentSlot.HEAD.getIndex()).is(HuaJiItems.ORGA_HELMET.get()) ? ChatFormatting.YELLOW : ChatFormatting.GRAY)));
             tooltip.add(Component.translatable("message.huajiage.prefix", Component.translatable(HuaJiItems.ORGA_CHESTPLATE.get().getDescriptionId())
-                    .withStyle(player.getInventory().armor.get(2).is(HuaJiItems.ORGA_CHESTPLATE.get()) ? ChatFormatting.YELLOW : ChatFormatting.GRAY)));
+                    .withStyle(player.getInventory().armor.get(EquipmentSlot.CHEST.getIndex()).is(HuaJiItems.ORGA_CHESTPLATE.get()) ? ChatFormatting.YELLOW : ChatFormatting.GRAY)));
             tooltip.add(Component.translatable("message.huajiage.prefix", Component.translatable(HuaJiItems.ORGA_LEGGINGS.get().getDescriptionId())
-                    .withStyle(player.getInventory().armor.get(1).is(HuaJiItems.ORGA_LEGGINGS.get()) ? ChatFormatting.YELLOW : ChatFormatting.GRAY)));
+                    .withStyle(player.getInventory().armor.get(EquipmentSlot.LEGS.getIndex()).is(HuaJiItems.ORGA_LEGGINGS.get()) ? ChatFormatting.YELLOW : ChatFormatting.GRAY)));
             tooltip.add(Component.translatable("message.huajiage.prefix", Component.translatable(HuaJiItems.ORGA_BOOTS.get().getDescriptionId())
-                    .withStyle(player.getInventory().armor.get(0).is(HuaJiItems.ORGA_BOOTS.get()) ? ChatFormatting.YELLOW : ChatFormatting.GRAY)));
+                    .withStyle(player.getInventory().armor.get(EquipmentSlot.FEET.getIndex()).is(HuaJiItems.ORGA_BOOTS.get()) ? ChatFormatting.YELLOW : ChatFormatting.GRAY)));
         }
     }
 

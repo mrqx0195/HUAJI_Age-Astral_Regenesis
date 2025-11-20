@@ -12,6 +12,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
@@ -30,7 +31,7 @@ public class StandExtraRenderer {
     @OnlyIn(Dist.CLIENT)
     public static void renderTick(RenderGuiOverlayEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.player != null) {
+        if (minecraft.player != null && event.getOverlay().equals(VanillaGuiOverlay.HOTBAR.type())) {
             LocalPlayer player = minecraft.player;
             player.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                 Stand stand = Stand.getStand(data.getStand());

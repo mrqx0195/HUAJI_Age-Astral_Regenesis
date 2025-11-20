@@ -1,0 +1,17 @@
+{
+  "category": "huajiage:the_infinite_starry_river",
+  "icon": "huajiage:singularity",
+  "name": "Singularity",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(o)According to the theory of $(0)$(l)Dark Priest Snake$(), the succession of universes is a cycle. Time accelerates infinitely towards a Singularity, the universe collapses into a point at that instant, and a new universe forms after another Big Bang. (The difference is that all surviving beings from the previous world return to the new world, while beings who died during the acceleration are replaced by not-quite-identical counterparts from different spacetimes.) This is 「Heaven」.$()$(br)$()$(br)The power of the Infinite Universe Star is immense, but still insufficient to accelerate the entire universe—but, if it's just accelerating yourself, it is enough."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:singularity",
+      "text": "Hold a Stand that is not at its maximum level, then use the Singularity while holding it to activate its power: For a period of time thereafter, you will continuously suffer high damage and multiple negative status effects. If you can find a way to endure through this period, your Stand will evolve to the next level.$()$(br)$()$(br)Evolved Stands gain the ability to use 「Stand Skills」, activated by pressing [$(k:huajiage.stand_skill)]. Different Stands have different skills; some can even achieve 「Time Stop」."
+    }
+  ],
+  "sortnum": 0
+}

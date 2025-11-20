@@ -1,0 +1,17 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:hero_bow",
+  "name": "大英雄之弓",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "不属于鬼畜明星的武器，但仍是一把强力的宝具。$(br)$(l)健硕（EX）$()：手持时大英雄之弓获得多种增益效果。$(br)$(l)千里眼（A）$()：由大英雄之弓射出的箭矢将会获得额外的强化。$(br)$(l)弓矢作成（A）$()：大英雄之弓射击时将不会消耗箭矢。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:hero_bow",
+      "text": "手持时按下$(l)$(6)[$(k:sneak)+$(k:use)]$()可以切换形态。处于$(e)$(l)真名解放$()形态时，射出的箭矢将会造成大范围高额伤害——但射击者也将会受到强烈的反噬。$(br2)$(o)Stella！！！——$()"
+    }
+  ],
+  "sortnum": 0
+}

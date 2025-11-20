@@ -1,0 +1,17 @@
+{
+  "category": "huajiage:the_infinite_starry_river",
+  "icon": "huajiage:infinite_charm",
+  "name": "无限耐久盔甲护身符",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "由$(item)无尽之星$()制成的护身符，能够快速修复你装备栏及双手中的物品——简单，粗暴，且强大。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:infinite_charm",
+      "text": "$(o)如果你装备了全套黑色高级西装，它的外观会发生变化……然而并没有什么卵用。$()"
+    }
+  ],
+  "sortnum": 0
+}

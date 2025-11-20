@@ -1,0 +1,26 @@
+{
+  "category": "huajiage:stand",
+  "icon": "huajiage:disc",
+  "name": "Overview",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(o)Stand POWER!!!$()$(br)A $(l)$(thing)Stand$() is a special ability that can be awakened by using the $(item)Stand Arrow$() or by obtaining a $(item)Disc$() from chests."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:disc",
+      "text": "There are various types of Stands. The Stand obtained via the Stand Arrow is random, while the Stand obtained via a Disc is the same as the one written in the Disc's description. If you already have a Stand, you cannot obtain another one by the above methods."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:arrow_stand"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "After obtaining a Stand, several pieces of Stand-related information will be displayed on the left side of your field of view:$()$(br)$(br)$(l)Stand Name$(): The name of your current Stand.$()$(br)$(l)Level$(): The current level of your Stand. Shows as \"Complete\" at max level.$()$(br)$(l)State$(): The current active state of your Stand.$()$(br)$(l)Mental Power (MP)$(): Current Mental Power and maximum Mental Power.$()$(br)$(br)Here, $(l)$(thing)Mental Power$() is an important resource required for Stands. Summoning a Stand and using Stand skills both consume a certain amount of MP.$()$(br)After being summoned, a Stand can only exist for a limited time. Beyond this time, it will consume additional hunger to maintain its presence.$()$(br)"
+    }
+  ],
+  "priority": true,
+  "sortnum": 0
+}

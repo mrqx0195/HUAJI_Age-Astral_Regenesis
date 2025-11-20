@@ -1,0 +1,7 @@
+{
+  "parent": "huajiage:huaji_items",
+  "description": "Aahhh... It's all materials, materials!",
+  "icon": "huajiage:huaji_ingot",
+  "name": "Materials",
+  "sortnum": 0
+}

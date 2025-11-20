@@ -17,9 +17,12 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrqx.huajiage.HuaJiAgeMod;
+import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.item.BaseItem;
 import net.mrqx.huajiage.registy.HuaJiEffects;
 import net.mrqx.huajiage.registy.HuaJiItems;
+import net.mrqx.huajiage.stand.Stand;
+import net.mrqx.huajiage.stand.StandOrgaRequiem;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,6 +35,10 @@ public class ItemOrgaRequiem extends BaseItem {
     public static final String ORGA_REQUIEM_OWNER_KEY = HuaJiAgeMod.MODID + "." + "orgaRequiemOwner";
 
     public static boolean hasValidOrgaRequiem(LivingEntity living) {
+        if (living.getCapability(StandDataCapabilityProvider.STAND_DATA)
+                .map(data -> Stand.getStand(data.getStand()) instanceof StandOrgaRequiem).orElse(false)) {
+            return true;
+        }
         if (living instanceof Player player) {
             return player.getInventory().hasAnyMatching(itemStack ->
                     itemStack.is(HuaJiItems.ORGA_REQUIEM.get())

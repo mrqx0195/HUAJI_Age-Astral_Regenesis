@@ -20,7 +20,7 @@ import net.mrqx.huajiage.stand.Stand;
 /**
  * Made with Blockbench 4.12.6
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "DuplicatedCode"})
 public class ModelStarPlatinum extends ModelStandBase {
     private final ModelPart body;
     private final ModelPart left_hands;
@@ -40,7 +40,7 @@ public class ModelStarPlatinum extends ModelStandBase {
     private final ModelPart rightleg;
 
     public ModelStarPlatinum(ModelPart root) {
-        super(root);
+        super();
         this.body = root.getChild("body");
         this.left_hands = root.getChild("left_hands");
         this.handl1 = this.left_hands.getChild("handl1");

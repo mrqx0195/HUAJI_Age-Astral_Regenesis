@@ -74,6 +74,10 @@ public class HuaJiSoundEvents {
     public static final RegistryObject<SoundEvent> REO_CHERRY = registerSound("reo_cherry");
     public static final RegistryObject<SoundEvent> WAVE_OVERDRIVE_1 = registerSound("wave_overdrive_1");
     public static final RegistryObject<SoundEvent> WAVE_OVERDRIVE_RUN = registerSound("wave_overdrive_run");
+    public static final RegistryObject<SoundEvent> FIFTY_FIFTY_HELMET_ACTIVE = registerSound("50_50_helmet_active");
+    public static final RegistryObject<SoundEvent> FIFTY_FIFTY_HELMET_OPEN = registerSound("50_50_helmet_open");
+    public static final RegistryObject<SoundEvent> LBWNB = registerSound("lbwnb");
+    public static final RegistryObject<SoundEvent> ARMOR_EQUIP_LORD_LU = registerSound("armor_equip_lord_lu");
 
     private static RegistryObject<SoundEvent> registerSound(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(HuaJiAgeMod.prefix(name)));

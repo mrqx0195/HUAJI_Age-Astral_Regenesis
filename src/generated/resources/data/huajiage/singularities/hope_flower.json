@@ -1,0 +1,13 @@
+{
+  "colors": [
+    "b9f4ff",
+    "9a49ff"
+  ],
+  "enabled": true,
+  "ingredient": {
+    "item": "huajiage:hope_flower"
+  },
+  "name": "singularity.huajiage.hope_flower",
+  "recipeDisabled": false,
+  "timeRequired": 10
+}

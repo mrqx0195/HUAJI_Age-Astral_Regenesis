@@ -1,0 +1,29 @@
+{
+  "advancement": "huajiage:50_50_helmet",
+  "category": "huajiage:kichiku_all_star_codex",
+  "icon": "huajiage:50_50_helmet",
+  "name": "Lord.Lu",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:https://zh.wikipedia.org/wiki/卢本伟)Lord.Lu$(), also known as the Lu-lai Buddha, Fifty-Fifty, or the Gambling Ace, is one of the pinnacles of combat strength among the Kichiku All-Stars. It is said that no matter how powerful the enemy, he can, at worst, achieve a fifty-fifty stalemate."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Class: Scientist$()$(br)A unique class variant of the Archer class, possessing extremely powerful ranged and melee capabilities. However, as a trade-off, he can only use modern weaponry.$(br2)$(l)Strength: B$()$(br)$(l)Endurance: A$()$(br)$(l)Agility: A$()$(br)$(l)Mana: A$()$(br)$(l)Luck: B$()$(br)$(l)Noble Phantasm: A+$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class Skills:$()$(br)$(l)Hacks (EX)$(): Abilities akin to using cheats in a game, including multiple sub-skills such as Aimbot (automatically aims when attempting to target), Wallhacks (can see living entities through any obstacle), and Headshot (hits on any part of the body deal damage equivalent to a vital strike)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Personal Skills:$()$(br)$(l)Seventeen Shots in Two Seconds (B++)$(): When using any weapon defined as a \"gun,\" fixes its rate of fire to seventeen shots in two seconds, regardless of whether its original fire rate was higher or lower.$(br)$(l)Gambling Ace (A-)$(): The manifestation of Lord.Lu's melee combat ability, allowing him to materialize a deck of playing cards for mid-to-close range combat. As it is a skill, it is not restricted by his Class. However, there is a chance he might manifest the \"Fated Losing Deck,\" leading to defeat in battle.$(br)$(l)Light Wings Deployment (A+)$(): Deploys eight angelic light wings (each wing formed from a condensed firearm), enabling the use of the derivative skill \"Overload Mode\" to bombard targets with high frequency.$(br)$(l)Summon Friend from Nothingness (B)$(): Can summon a friend. The strength of the summoned individual varies and is typically used to draw enemy fire."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Noble Phantasm:$()$(br)$(l)SKS Marksman Rifle - Lu Custom (A++)$(): A modified version based on the SKS rifle. Beyond having its rate of fire increased to full-auto seventeen shots in two seconds, it can simultaneously materialize eight rifles to fire together. Its base power is not high, but it can temporarily merge with other firearms and fire with their power, typically used in conjunction with \"Light Wings Deployment.\" Its activation triggers the battle cry \"LBWNB\".$(br)$(l)The Fifty-Fifty Helmet (A+)$(): A helmet that, when worn, defends against omnidirectional attacks and unconditionally reflects half of the damage received back onto the attacker."
+    }
+  ],
+  "sortnum": 0
+}

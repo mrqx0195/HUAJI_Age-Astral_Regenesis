@@ -4,7 +4,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -26,6 +25,7 @@ import net.mrqx.huajiage.item.BaseItem;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
+import net.mrqx.huajiage.utils.ItemUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -35,6 +35,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Mod.EventBusSubscriber
 public class ItemSingularity extends BaseItem {
     public static final String SINGULARITY_COUNT = HuaJiAgeMod.MODID + "." + "singularityCount";
+    public static final int SINGULARITY_TIME = 20 * 30;
 
     public ItemSingularity() {
         super(new Item.Properties().rarity(Rarity.EPIC).fireResistant().stacksTo(1));
@@ -75,13 +76,13 @@ public class ItemSingularity extends BaseItem {
             if (stand != null && stand.getMaxLevel() >= data.getLevel() + 1) {
                 CompoundTag persistentData = pPlayer.getPersistentData();
                 if (!persistentData.contains(SINGULARITY_COUNT, Tag.TAG_INT) || persistentData.getInt(SINGULARITY_COUNT) <= 0) {
-                    persistentData.putInt(SINGULARITY_COUNT, 200);
-                    pPlayer.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200));
-                    pPlayer.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 200));
-                    pPlayer.addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 9));
-                    pPlayer.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 9));
-                    pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 5));
-                    pPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 9));
+                    persistentData.putInt(SINGULARITY_COUNT, SINGULARITY_TIME);
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, SINGULARITY_TIME));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.DARKNESS, SINGULARITY_TIME));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.WITHER, SINGULARITY_TIME, 9));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.POISON, SINGULARITY_TIME, 9));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, SINGULARITY_TIME, 5));
+                    pPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, SINGULARITY_TIME, 9));
                     HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.CHARGE.get());
                     HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.ENERGY_HIT.get());
                     HuaJiSoundPlayer.playMovingSoundToClient(pPlayer, HuaJiSoundEvents.NOISE_FURNACE.get());
@@ -90,15 +91,7 @@ public class ItemSingularity extends BaseItem {
                 }
             }
         });
-        pPlayer.swing(pUsedHand, true);
-        if (flag.get()) {
-            pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
-            if (!pPlayer.getAbilities().instabuild) {
-                itemStack.shrink(1);
-            }
-            return InteractionResultHolder.success(itemStack);
-        }
-        return InteractionResultHolder.consume(itemStack);
+        return ItemUtils.swingAndShrinkItem(pPlayer, pUsedHand, itemStack, flag);
     }
 
     @SubscribeEvent

@@ -16,6 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.capability.stand.StandDataCapabilityProvider;
 import net.mrqx.huajiage.client.layer.LayerStand;
+import net.mrqx.huajiage.event.handler.OrgaEventHandler;
 import net.mrqx.huajiage.item.equipment.armor.ItemOrgaArmor;
 import net.mrqx.huajiage.item.stand.ItemOrgaRequiem;
 import net.mrqx.huajiage.mixin.AccessorLivingEntityRenderer;
@@ -107,16 +108,21 @@ public class OrgaClientHandler {
     }
 
     private static void startRequiemMusic(LivingEntity living) {
-        if (living.hasEffect(HuaJiEffects.REQUIEM.get())) {
-            MobEffectInstance effect = living.getEffect(HuaJiEffects.REQUIEM.get());
-            if (effect != null) {
-                int requiemDuration = effect.getDuration();
-                if (requiemDuration == 30 * 20 - 1) {
-                    if (living.level().isClientSide) {
-                        Minecraft.getInstance().getSoundManager().stop();
-                        HuaJiSoundPlayer.playMusic(HuaJiSoundEvents.ORGA_REQUIEM_GOLD.get());
-                    }
+        MobEffectInstance effect = living.getEffect(HuaJiEffects.REQUIEM.get());
+        if (effect != null) {
+            int requiemDuration = effect.getDuration();
+            if (requiemDuration == 30 * 20 - 1) {
+                if (living.level().isClientSide) {
+                    Minecraft.getInstance().getSoundManager().stop();
+                    HuaJiSoundPlayer.playMusic(HuaJiSoundEvents.ORGA_REQUIEM_GOLD.get());
                 }
+            }
+        }
+        MobEffectInstance effectHopeFlower = living.getEffect(HuaJiEffects.HOPE_FLOWER.get());
+        if (effectHopeFlower != null) {
+            if (effectHopeFlower.getDuration() == OrgaEventHandler.HOPE_FLOWER_TIME) {
+                Minecraft.getInstance().getSoundManager().stop();
+                HuaJiSoundPlayer.playMusic(HuaJiSoundEvents.ORGA_FLOWER.get());
             }
         }
     }

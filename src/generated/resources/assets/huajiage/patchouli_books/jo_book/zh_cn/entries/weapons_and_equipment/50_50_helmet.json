@@ -1,0 +1,31 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:50_50_helmet",
+  "name": "五五开头盔",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "传说中$(l:codex_lord_lu)Lord.Lu$()的宝具，能够提供很强的防御力……但其真正的力量似乎还在封印之中。"
+    },
+    {
+      "type": "patchouli:smithing",
+      "recipe": "huajiage:50_50_helmet_smithing"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:lord_core",
+      "text": "形似平底锅的物体，蕴含着空域之星的力量，能够唤醒一部分Lord.Lu的力量，装备五五开头盔时长按右键即可使用、激活五五开头盔的$(thing)解放模式$()。$(br)按下$(l)$(6)[$(k:huajiage.change_mode)]$()即可切换五五开头盔的模式，在解放模式下，五五开头盔将持续提供多种增益效果。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:lord_key",
+      "text": "一把钥匙，解放Lord.Lu真正的无上之力。使用后，五五开头盔将能提供更强的增益，还能为你提供常驻飞行能力，并将你受到的一半伤害返还给攻击者。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:lord_core",
+      "recipe2": "huajiage:lord_key"
+    }
+  ],
+  "sortnum": 0
+}

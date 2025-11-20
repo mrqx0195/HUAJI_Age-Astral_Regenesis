@@ -1,0 +1,13 @@
+{
+  "colors": [
+    "ff0300",
+    "a90403"
+  ],
+  "enabled": true,
+  "ingredient": {
+    "item": "huajiage:ether_circumflux_board"
+  },
+  "name": "singularity.huajiage.ether_circumflux_board",
+  "recipeDisabled": false,
+  "timeRequired": 10
+}

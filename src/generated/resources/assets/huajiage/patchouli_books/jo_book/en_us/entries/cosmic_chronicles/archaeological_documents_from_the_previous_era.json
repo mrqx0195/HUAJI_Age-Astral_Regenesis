@@ -1,0 +1,23 @@
+{
+  "category": "huajiage:cosmic_chronicles",
+  "icon": "minecraft:writable_book",
+  "name": "Archaeological Documents from the Previous Era",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The previous era was destroyed in the cosmic collapse. However, fragments of ancient information were preserved within HUAJI particles. Using consciousness-particle super-resonance reconstruction technology, scientists have vividly recreated precious images left from that time."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "huajiage:textures/book/story/cheer_up.png"
+      ],
+      "text": "Allied \"Oligei Fleet\" Commander Gimeng Jan Jone delivering a pre-battle speech at the Stardock"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "“\"Whatever difficulties we encounter, let's not be afraid! Face it with a smile! The best way to eliminate fear is to face fear! Perseverance is victory! Go for it, Oligei!\"$()$(br)— Gimeng Jan Jone$(br2)Following this battle, nearly all 2,000 warships of the Oligei Fleet were annihilated."
+    }
+  ],
+  "sortnum": 1
+}

@@ -1,0 +1,28 @@
+{
+  "category": "huajiage:huaji_items",
+  "icon": "huajiage:huaji",
+  "name": "HUAJI",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:https://zh.moegirl.org.cn/滑稽)HUAJI$()—one of the fundamental sources of the world, a crystallization of Kichiku elements. This substance is distributed among all things in the universe, albeit in very low concentrations, making direct extraction difficult. Its high-concentration crystals are only found deep in the earth's crust."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:huaji_fragment,huajiage:ore_huaji",
+      "text": "Stone fragments rich in HUAJI, accumulated deep underground. Due to the high boiling point characteristic of HUAJI in high concentrations, it can be directly heated to extract HUAJI. The latest \"Tieba Geology\" studies suggest that these HUAJI crystal ore deposits seem to have been formed from HUAJI-rich seawater and groundwater through hundreds of millions of years of subterranean deposition and transformation."
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "huajiage:huaji_from_smelting_huaji_fragment",
+      "recipe2": "huajiage:huaji_from_smelting_ore_huaji"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:huaji",
+      "text": "The form HUAJI naturally takes when crystallized at room temperature. Its peculiar shape has been an inexhaustible source of artistic inspiration for thousands of years."
+    }
+  ],
+  "priority": true,
+  "sortnum": 0
+}

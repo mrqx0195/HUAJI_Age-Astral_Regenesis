@@ -1,0 +1,29 @@
+{
+  "advancement": "huajiage:ultimate_egg_rice",
+  "category": "huajiage:kichiku_all_star_codex",
+  "icon": "huajiage:ultimate_egg_rice",
+  "name": "The King of \"So Fragrant!\"",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Full title: $(l:https://zh.wikipedia.org/wiki/王境泽)The King of \"So Fragrant!\" · Jingze$(). An elder of the Kichiku All-Stars. Although he has retired from the forefront due to gradually being outmatched by newer-generation stars, he should not be underestimated."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class: Archer$()$(br)Despite being an Archer, the King of \"So Fragrant!\" possesses considerable close-quarters combat ability. Under certain circumstances, he can even overcome class affinity and defeat Lancers of equal strength.$(br2)$(l)Strength A$()$(br)$(l)Endurance B$()$(br)$(l)Agility A$()$(br)$(l)Mana C$()$(br)$(l)Luck B$()$(br)$(l)Noble Phantasm A++$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class Skills:$()$(br)$(l)Magic Resistance (E)$(): The King's Magic Resistance is extremely weak, making it difficult for him to defeat opponents who rely primarily on magic, which is one reason he fell behind the newer-generation stars.$(br)$(l)Independent Action (A++)$(): As Kichiku stars have no Master restrictions, the utility of this skill is hard to manifest. However, for the King, this ability allows him to exhibit exceptional prowess when operating without teammates."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Personal Skills:$()$(br)$(l)Firearm Projection (E~A++)$(): Can project and use any weapon defined as a \"firearm.\" This is the King's primary means of combat.$()$(br)$(l)Gun-Kata (A)$(): When using certain firearms, he can employ Gun-Kata for close-quarters combat, often gaining significant advantage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Noble Phantasm:$()$(br)$(l)Treasure of \"So Fragrant!\" (A++)$(): Summons a vast number of firearms to bombard the target. These are typically matchlock muskets, but when going all out, he can also summon modern weaponry.$(br)$(l)\"So Fragrant!\" Fried Rice (A++)$(): A plate of egg fried rice that, regardless of his current state as long as he is alive, instantly restores him to his prime condition. The usage time is very short, but it can still be interrupted."
+    }
+  ],
+  "sortnum": 0
+}

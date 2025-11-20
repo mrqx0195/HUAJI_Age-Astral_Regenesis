@@ -1,0 +1,22 @@
+{
+  "category": "huajiage:huaji_items",
+  "icon": "huajiage:jin_ke_la",
+  "name": "金坷垃",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "作为一种常见的肥料，骨粉被广泛用于Minecraft的农牧业中……但，如果在其基础上加入滑稽的力量，会发生什么呢？$(br2)$(o)“肥料掺了金坷垃 一袋能顶两袋撒！”$()$(br)$(o)“肥料掺了金坷垃 小麦亩产一千八！”$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:jin_ke_la",
+      "text": "$(o)“每一粒金坷垃的能量，就像一颗原子弹。”——据说金坷垃的广告中曾有过这句话$()"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "huajiage:jin_ke_la_bomb",
+      "text": "如果尝试对滑稽炸弹使用金坷垃，将会引发一场比原来更大的爆炸……或许这就是那句广告词的含义？"
+    }
+  ],
+  "sortnum": 0
+}

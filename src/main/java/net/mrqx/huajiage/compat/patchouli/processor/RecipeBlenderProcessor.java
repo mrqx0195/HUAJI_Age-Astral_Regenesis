@@ -18,7 +18,7 @@ public class RecipeBlenderProcessor implements IComponentProcessor {
     public void setup(Level level, IVariableProvider iVariableProvider) {
         String recipeId = iVariableProvider.get("recipe").asString();
         RecipeManager manager = level.getRecipeManager();
-        if (manager.byKey(new ResourceLocation(recipeId)).orElseThrow(() -> new IllegalArgumentException("Invalid recipe id:" + recipeId)) instanceof HuaJiBlenderRecipe huaJiBlenderRecipe) {
+        if (manager.byKey(ResourceLocation.parse(recipeId)).orElseThrow(() -> new IllegalArgumentException("Invalid recipe id:" + recipeId)) instanceof HuaJiBlenderRecipe huaJiBlenderRecipe) {
             recipe = huaJiBlenderRecipe;
         } else {
             throw new IllegalArgumentException("Invalid recipe id:" + recipeId);
@@ -34,8 +34,10 @@ public class RecipeBlenderProcessor implements IComponentProcessor {
             case "item_out" -> {
                 return IVariable.from(recipe.getResultItem(level.registryAccess()));
             }
+            default -> {
+                HuaJiAgeMod.LOGGER.error("Error while processing HuaJiBlenderRecipe:", new IllegalArgumentException("Invalid recipe key:" + key));
+                return IVariable.empty();
+            }
         }
-        HuaJiAgeMod.LOGGER.error("Error while processing HuaJiBlenderRecipe:", new IllegalArgumentException("Invalid recipe key:" + key));
-        return IVariable.empty();
     }
 }

@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("AlibabaAbstractMethodOrInterfaceMethodMustUseJavadoc")
 @Mixin(ModelPart.class)
 public interface AccessorModelPart {
     @Accessor("children")

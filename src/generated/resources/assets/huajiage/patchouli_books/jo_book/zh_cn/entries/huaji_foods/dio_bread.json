@@ -1,0 +1,20 @@
+{
+  "category": "huajiage:huaji_foods",
+  "icon": "huajiage:dio_bread",
+  "name": "Dio的面包",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "GIOGIO甜品屋推出的纪念款面包，以纪念其集团董事长父亲逝世30周年，现由荒木庄联合出品。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:dio_bread"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(o)注：该面包中存在一种特殊的力量，食用后将会短暂暂停整个维度的时间……除了食用者以外。并且，该面包在不与生命体接触时也会保持一种类似时间停止的不毁状态。$()$(br)$(o)目前已确认，即便将面包粉碎、与其他食物混合，该特性仍然存在。鬼畜全明星联盟已联系$(l:https://zh.moegirl.org.cn/SCP基金会)SCP基金会$()以处理此事件。$()"
+    }
+  ],
+  "sortnum": 0
+}

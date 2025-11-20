@@ -37,7 +37,7 @@ public class HuaJiBlenderRecipeSerializer implements RecipeSerializer<HuaJiBlend
             itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"));
         } else {
             String s1 = GsonHelper.getAsString(pJson, "result");
-            ResourceLocation resourcelocation = new ResourceLocation(s1);
+            ResourceLocation resourcelocation = ResourceLocation.parse(s1);
             itemstack = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
         }
         float f = GsonHelper.getAsFloat(pJson, "experience", 0.0F);
@@ -64,6 +64,7 @@ public class HuaJiBlenderRecipeSerializer implements RecipeSerializer<HuaJiBlend
         pBuffer.writeVarInt(pRecipe.processTime());
     }
 
+    @SuppressWarnings("AlibabaAbstractMethodOrInterfaceMethodMustUseJavadoc")
     public interface CookieBaker<T extends HuaJiBlenderRecipe> {
         T create(ResourceLocation pId, String pGroup, Ingredient pIngredient, ItemStack pResult, float pExperience, int processTime);
     }

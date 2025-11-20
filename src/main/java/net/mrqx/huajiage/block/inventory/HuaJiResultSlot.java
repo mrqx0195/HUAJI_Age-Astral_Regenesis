@@ -12,8 +12,8 @@ public class HuaJiResultSlot extends Slot {
     private final Player player;
     private int removeCount;
 
-    public HuaJiResultSlot(Player pPlayer, Container pContainer, int pSlot, int pXPosition, int pYPosition) {
-        super(pContainer, pSlot, pXPosition, pYPosition);
+    public HuaJiResultSlot(Player pPlayer, Container pContainer, int pSlot, int xPosition, int yPosition) {
+        super(pContainer, pSlot, xPosition, yPosition);
         this.player = pPlayer;
     }
 

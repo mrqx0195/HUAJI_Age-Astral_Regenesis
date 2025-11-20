@@ -1,0 +1,16 @@
+{
+  "category": "huajiage:stand",
+  "icon": "huajiage:tarot",
+  "name": "Tarot Card of Fate",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Sometimes, you might want to change your Stand. In this case, you can use the $(item)Tarot Card of Fate$() to unload your current Stand into the card, allowing you to acquire a new one.$()$(br)Of course, you can also reload the Stand from the Tarot card back to yourself when you don't have a Stand."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:tarot"
+    }
+  ],
+  "sortnum": 0
+}

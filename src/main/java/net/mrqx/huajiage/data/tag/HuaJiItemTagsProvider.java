@@ -16,8 +16,8 @@ import net.mrqx.huajiage.registy.HuaJiItems;
 import java.util.concurrent.CompletableFuture;
 
 public class HuaJiItemTagsProvider extends ItemTagsProvider {
-    public HuaJiItemTagsProvider(PackOutput pGenerator, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> provider,
-                                 ExistingFileHelper existingFileHelper) {
+    public HuaJiItemTagsProvider(PackOutput pGenerator, CompletableFuture<HolderLookup.Provider> lookupProvider,
+                                 CompletableFuture<TagLookup<Block>> provider, ExistingFileHelper existingFileHelper) {
         super(pGenerator, lookupProvider, provider, HuaJiAgeMod.MODID, existingFileHelper);
     }
 

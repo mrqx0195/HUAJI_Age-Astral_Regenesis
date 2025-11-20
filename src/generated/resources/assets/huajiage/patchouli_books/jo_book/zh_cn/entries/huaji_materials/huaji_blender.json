@@ -1,0 +1,38 @@
+{
+  "category": "huajiage:huaji_materials",
+  "icon": "huajiage:huaji_blender",
+  "name": "滚筒式滑稽之力混合仪",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "滑稽粒子具有重要的应用价值，不过其单质具有很强的惰性，直接应用价值不高，只在与其他材料混合之后，其特殊之处才能真正体现出来。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_blender",
+      "text": "借助下界之星的力量，该仪器可将滑稽与其他材料混合，进而激发出其中的鬼畜要素，从而转化为各种滑稽素材。",
+      "title": "滑稽灌注"
+    },
+    {
+      "type": "huajiage:blender",
+      "r1": "huajiage:huaji_blender/huaji_ingot",
+      "r2": "huajiage:huaji_blender/neutron_star_fragment"
+    },
+    {
+      "type": "huajiage:blender",
+      "r1": "huajiage:huaji_blender/redstone_druse",
+      "r2": "huajiage:huaji_blender/flash_flour"
+    },
+    {
+      "type": "huajiage:blender",
+      "r1": "huajiage:huaji_blender/hope_element",
+      "r2": "huajiage:huaji_blender/wave_crystal"
+    },
+    {
+      "type": "huajiage:blender",
+      "r1": "huajiage:huaji_blender/huaji",
+      "r2": "huajiage:huaji_blender/anti_huaji"
+    }
+  ],
+  "sortnum": 0
+}

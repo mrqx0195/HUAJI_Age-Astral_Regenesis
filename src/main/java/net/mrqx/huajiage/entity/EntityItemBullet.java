@@ -33,6 +33,7 @@ public class EntityItemBullet extends Fireball {
 
     private static final EntityDataAccessor<Long> DELAY = SynchedEntityData
             .defineId(EntityItemBullet.class, EntityDataSerializers.LONG);
+    public static final int MAX_LIFE_TIME = -300;
 
     public final long randomSeed;
     public final Consumer<EntityItemBullet> onShoot;
@@ -139,7 +140,7 @@ public class EntityItemBullet extends Fireball {
                 this.onShoot.accept(this);
             }
             super.tick();
-            if (this.getDelay() < -300) {
+            if (this.getDelay() < MAX_LIFE_TIME) {
                 this.discard();
             }
         }
@@ -160,7 +161,7 @@ public class EntityItemBullet extends Fireball {
         super.onHitBlock(pResult);
         if (!hasExploded) {
             explode();
-            this.setDelay(-300);
+            this.setDelay(MAX_LIFE_TIME);
         }
     }
 
@@ -170,7 +171,7 @@ public class EntityItemBullet extends Fireball {
         if (!(pResult.getEntity() instanceof EntityItemBullet) && !pResult.getEntity().equals(this.getOwner())) {
             if (!hasExploded) {
                 explode();
-                this.setDelay(-300);
+                this.setDelay(MAX_LIFE_TIME);
             }
         }
     }

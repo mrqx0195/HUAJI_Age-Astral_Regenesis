@@ -10,7 +10,7 @@ import net.minecraft.world.entity.Entity;
 /**
  * Made with Blockbench 4.12.6
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "DuplicatedCode"})
 public class ModelKillerQueen extends ModelStandBase {
     private final ModelPart body;
     private final ModelPart head;
@@ -18,7 +18,7 @@ public class ModelKillerQueen extends ModelStandBase {
     private final ModelPart rightleg;
 
     public ModelKillerQueen(ModelPart root) {
-        super(root);
+        super();
         this.body = root.getChild("body");
         this.head = root.getChild("head");
         this.leftleg = root.getChild("leftleg");

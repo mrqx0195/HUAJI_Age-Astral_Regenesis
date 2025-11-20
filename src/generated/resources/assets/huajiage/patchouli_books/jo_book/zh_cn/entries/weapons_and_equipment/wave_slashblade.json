@@ -1,0 +1,28 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:wave_crystal",
+  "name": "澜刀「波澜怒涛」",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "flag": "!mod:slashblade",
+      "text": "$(o)拔刀剑：重锋（SlashBlade:Resharped）联动物品$()$(br)$(o)你需要安装此mod以查看该物品相关内容$()"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "mod:slashblade",
+      "text": "传说中由$(thing)波澜剑圣$()所使用的武士刀，能够像水流一样在敌群中穿梭，也能像海啸一般淹没敌人。$(br)由于$(thing)波澜剑圣$()与$(thing)“面筋哥”$()有着深厚的友情，两人的武器相遇时将会触发特殊的效果。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "flag": "mod:slashblade",
+      "recipe": "huajiage:slashblade/wave_yamato"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "mod:slashblade",
+      "text": "SA：$(l)波澜居合$()$(br)向后退一步，然后发动一次特殊的疾走居合，期间每一刀附带一道幻影刃。完美释放时不会后退一步。$(br)$(br)SE：$(br)$(l)掀起波澜$()：在水中/雨中时，获得多种增益效果，挥刀时额外产生一道幻影刃。$(br)$(l)义结筋澜$()：副手持有EX·面筋棒时，挥刀命中敌人将会附带EX·面筋棒的攻击效果。使用波澜居合时，可以无后摇连续发动。"
+    }
+  ],
+  "sortnum": 0
+}

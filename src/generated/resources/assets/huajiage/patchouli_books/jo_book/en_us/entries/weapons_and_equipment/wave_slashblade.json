@@ -1,0 +1,28 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:wave_crystal",
+  "name": "Wave Blade -Raging Billows-",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "flag": "!mod:slashblade",
+      "text": "$(o)SlashBlade: Resharped Crossover Item$()$(br)$(o)You need this mod to view this item's related content$()"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "mod:slashblade",
+      "text": "The legendary katana used by the $(thing)Sword Saint of Waves$(). It can flow through enemy hordes like water and overwhelm foes like a tsunami.$(br)Due to the deep friendship between the $(thing)Sword Saint of Waves$() and $(thing)\"The Gluten Brother\"$(), special effects trigger when their weapons meet."
+    },
+    {
+      "type": "patchouli:crafting",
+      "flag": "mod:slashblade",
+      "recipe": "huajiage:slashblade/wave_yamato"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "mod:slashblade",
+      "text": "SA：$(l)Wave Iaido$()$(br)Step back, then unleash a special Rapid Slash. Each slash during this releases a phantom blade. Does not step back if executed perfectly.$(br)$(br)SE：$(br)$(l)Waving Edge$(): When in water/rain, gain multiple buffs. Swinging the blade generates an additional phantom blade.$(br)$(l)Sworn Kinship$(): When holding EX·Glutenbur in the off-hand, sword swings will apply the attack effects of EX·Glutenbur. Can be used consecutively without recovery frames after using Wave Iaido."
+    }
+  ],
+  "sortnum": 0
+}

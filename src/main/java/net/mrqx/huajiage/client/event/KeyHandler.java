@@ -12,8 +12,6 @@ import net.mrqx.huajiage.client.HuaJiKeyMappings;
 import net.mrqx.huajiage.network.FivePowerMessage;
 import net.mrqx.huajiage.network.HuaJiKeyMessage;
 import net.mrqx.huajiage.network.NetworkManager;
-import net.mrqx.huajiage.registy.HuaJiEffects;
-import net.mrqx.huajiage.registy.HuaJiItems;
 
 import java.util.EnumSet;
 
@@ -66,13 +64,11 @@ public class KeyHandler {
     @OnlyIn(Dist.CLIENT)
     @SuppressWarnings("InstantiationOfUtilityClass")
     public static void onLeftClick(PlayerInteractEvent event) {
-        if (event.getEntity().getCooldowns().isOnCooldown(HuaJiItems.FIFTY_FIFTY_HELMET.get())
-                || !event.getEntity().hasEffect(HuaJiEffects.FIVE.get())) {
-            return;
-        }
         if (event instanceof PlayerInteractEvent.LeftClickBlock
                 || event instanceof PlayerInteractEvent.LeftClickEmpty) {
-            NetworkManager.INSTANCE.sendToServer(new FivePowerMessage());
+            if (event.getEntity().getMainHandItem().isEmpty()) {
+                NetworkManager.INSTANCE.sendToServer(new FivePowerMessage());
+            }
         }
     }
 }

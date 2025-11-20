@@ -7,29 +7,39 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.mrqx.huajiage.registy.HuaJiItems;
+import net.mrqx.huajiage.registy.HuaJiSoundEvents;
 
 import java.util.EnumMap;
 import java.util.function.Supplier;
 
 public enum HuaJiArmorMaterials implements ArmorMaterial {
+    /**
+     * @see ItemHuajiArmor
+     */
     HUAJI("huaji", 20, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);
         map.put(ArmorItem.Type.CHESTPLATE, 6);
         map.put(ArmorItem.Type.HELMET, 2);
     }), 16, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.5F, 0.1F, () -> Ingredient.of(HuaJiItems.HUAJI.get(), HuaJiItems.ANTI_HUAJI.get())),
+    /**
+     * @see ItemOrgaArmor
+     */
     ORGA("orga", 19, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 5);
         map.put(ArmorItem.Type.LEGGINGS, 5);
         map.put(ArmorItem.Type.CHESTPLATE, 5);
         map.put(ArmorItem.Type.HELMET, 5);
     }), 44, SoundEvents.ARMOR_EQUIP_DIAMOND, 3, 0.25F, () -> Ingredient.of(HuaJiItems.HOPE_ELEMENT.get())),
+    /**
+     * @see ItemFiftyFiftyHelmet
+     */
     FIFTY_FIFTY("fifty_fifty", 5050 / 11D, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 10);
         map.put(ArmorItem.Type.LEGGINGS, 10);
         map.put(ArmorItem.Type.CHESTPLATE, 10);
         map.put(ArmorItem.Type.HELMET, 10);
-    }), 16, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.5F, 1.0F, () -> Ingredient.of(HuaJiItems.NEUTRON_STAR_FRAGMENT.get()));
+    }), 16, HuaJiSoundEvents.ARMOR_EQUIP_LORD_LU.get(), 2.5F, 1.0F, () -> Ingredient.of(HuaJiItems.NEUTRON_STAR_FRAGMENT.get()));
 
     private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 13);

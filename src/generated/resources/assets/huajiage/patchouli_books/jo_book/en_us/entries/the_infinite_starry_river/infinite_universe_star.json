@@ -1,0 +1,28 @@
+{
+  "category": "huajiage:the_infinite_starry_river",
+  "icon": "huajiage:infinite_universe_star",
+  "name": "Infinite Universe Star",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "\"If each HUAJI Star can be considered a single star, what would countless HUAJI Stars polymerize into?\"$()$(br)$(br)— No one knows which Senpai first posed this question, but for this query of his, the $(item)HUAJI Ultimate Polyfurnace$() might just give us the answer."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_polyfurnace",
+      "text": "By throwing a massive amount of $(item)HUAJI Stars$() into the HUAJI Ultimate Polyfurnace and using HUAJI as fuel for polymerization, one can obtain the final result—the $(item)Infinite Universe Star$().$()$(br)$()$(br)Using the Infinite Universe Star, one can draw more Kichiku power from the previous universe, thereby crafting even stronger HUAJI items."
+    },
+    {
+      "type": "huajiage:poly",
+      "r1": "huajiage:huaji_polyfurnace/huaji_star",
+      "r2": "huajiage:huaji_polyfurnace/huaji_star_block"
+    },
+    {
+      "type": "huajiage:poly",
+      "r1": "huajiage:huaji_polyfurnace/airspace_star",
+      "r2": "huajiage:huaji_polyfurnace/airspace_star_block"
+    }
+  ],
+  "priority": true,
+  "sortnum": 0
+}

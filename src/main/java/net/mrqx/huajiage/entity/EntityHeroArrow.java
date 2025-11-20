@@ -18,6 +18,7 @@ import net.mrqx.huajiage.init.HuaJiTickets;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 
 public class EntityHeroArrow extends AbstractArrow implements ItemSupplier {
+    public static final int MAX_INGROUND_TIME = 4;
     private boolean hasExploded = false;
 
     public EntityHeroArrow(EntityType<? extends AbstractArrow> pEntityType, Level pLevel) {
@@ -72,7 +73,7 @@ public class EntityHeroArrow extends AbstractArrow implements ItemSupplier {
             serverLevel.sendParticles(ParticleTypes.LAVA, getX(), getY(), getZ(), 5, 0, 0, 0, 0.01);
             serverLevel.sendParticles(ParticleTypes.FIREWORK, getX(), getY(), getZ(), 0, 0, 0, 0, 0.3);
         }
-        if (this.inGroundTime > 2) {
+        if (this.inGroundTime > MAX_INGROUND_TIME) {
             this.discard();
         }
     }

@@ -1,0 +1,17 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:exglutenbur",
+  "name": "EX · Glutenbur",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A Noble Phantasm said to be held by $(thing)\"The Gluten Brother\"$(). Hold $(l)$(6)[$(k:sneak)+$(k:use)]$() while holding it to change its flavor:$(br)Aromatic: Base attack damage increased and grants permanent buff effects. Attacks consume extra durability but restore hunger and inflict Hunger on the target.$(br)Spicy: Base attack damage increased. Attacks ignite the target and other nearby creatures, dealing extra fire damage.$(br)Lime!: Base attack damage increased. Continuously receive the Wither effect, but attacks inflict additional negative status effects and have a chance to deal a large amount of special damage to the target."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:exglutenbur",
+      "text": "哎香香的口味，你吃过没，辣辣的感觉，你尝过没，网爆红人的歌声，你听过没，真正的烤面筋，可带劲了，让你吃到真正的实惠，不一样的滋味，烤面筋烤面筋，我的烤面筋，让你吃到每天都开心，烤面筋烤面筋，我的烤面筋，让你吃到每个清晨黄昏都精神~$(br)— Allegedly an early song made for gluten by \"The Gluten Brother,\" also the original version of \"My Baked Gluten, Melts Your Heart\"."
+    }
+  ],
+  "sortnum": 0
+}

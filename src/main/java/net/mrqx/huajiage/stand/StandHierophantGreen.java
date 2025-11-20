@@ -175,7 +175,7 @@ public class StandHierophantGreen extends Stand {
 
     @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return data.isTriggered() && data.getState().equals(STATE_IDLE) ? 160 : 80;
+        return !data.isTriggered() ? 160 : data.getState().equals(STATE_IDLE) ? 80 : 0;
     }
 
     @Override

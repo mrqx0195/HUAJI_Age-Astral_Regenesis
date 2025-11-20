@@ -1,0 +1,27 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:orga_helmet",
+  "name": "黑  色  高  级  西  装",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)希望之花·奥尔加$()的标志性装束。虽然是滑稽盔甲的升级版，但却不能提供常驻增益效果……或许，它的真正力量只会在$(o)生死边缘$()体现？"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:orga_helmet",
+      "recipe2": "huajiage:orga_chestplate"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:orga_leggings",
+      "recipe2": "huajiage:orga_boots"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "huajiage:hope_flower",
+      "text": "$(o)当你身着奥尔加的衣物死亡时，希望之花的力量将会拒绝死亡——随后，希望之花会将当年奥尔加遇刺的剧情具现出来，在这段剧情结束前你将不会死亡。$()$(br)$(o)然而，一旦剧情结束，你就会因时间线收束而强制死亡……或许，有$(l)什么东西$()的力量，可以逆转这一切？$()"
+    }
+  ],
+  "sortnum": 0
+}

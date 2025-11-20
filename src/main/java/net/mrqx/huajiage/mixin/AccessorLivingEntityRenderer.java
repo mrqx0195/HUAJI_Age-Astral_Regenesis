@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 import java.util.List;
 
+@SuppressWarnings("AlibabaAbstractMethodOrInterfaceMethodMustUseJavadoc")
 @Mixin(LivingEntityRenderer.class)
 public interface AccessorLivingEntityRenderer<T extends LivingEntity, M extends EntityModel<T>> {
     @Accessor("layers")

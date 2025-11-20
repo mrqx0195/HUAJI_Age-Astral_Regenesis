@@ -1,0 +1,29 @@
+{
+  "advancement": "huajiage:huaji_sword",
+  "category": "huajiage:kichiku_all_star_codex",
+  "icon": "huajiage:wave_crystal",
+  "name": "Sword Saint of Waves",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Once a musician with dreams, he failed to seize his opportunity and was eliminated in a talent show. With all hope lost, he abandoned music for the sword, embarking on the path of a swordsman."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class: Saber$()$(br)A well-balanced swordsman in all aspects. However, due to the unique Noble Phantasm he possesses, he can hold his own against enemies on par with the King of \"So Fragrant\".$(br2)$(l)Strength B$()$(br)$(l)Endurance B$()$(br)$(l)Agility B$()$(br)$(l)Mana B$()$(br)$(l)Luck C$()$(br)$(l)Noble Phantasm E~EX$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class Skills:$()$(br)$(l)Magic Resistance (A)$(): Conventional magecraft finds it difficult to affect the Sword Saint of Waves—according to legend, his sword can cut through anything, including magical energy.$(br)$(l)Riding (C)$(): The Sword Saint of Waves rarely uses mounts, but when necessary, he can handle them as well as an ordinary person."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Personal Skills:$()$(br)$(l)Sword Barrel Replication (E~A+)$(): Can replicate and use most melee weapons. Although the replicated weapons are one rank lower than the originals, his Noble Phantasm compensates for this quite well."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Noble Phantasm:$()$(br)$(l)Unlimited Blade Works (EX)$(): A vast space storing countless weapons. Compared to $(l:https://en.wikipedia.org/wiki/Shirou_Emiya)the Reality Marble \"Unlimited Blade Works\" from a certain world$(), the Sword Saint of Waves' version is a veritable miniature world. It can drag others inside, or overlay the space around himself. Weapons replicated by his Personal Skill \"Sword Barrel Replication\" can perform on par with the originals within this Unlimited Blade Works, and in extreme cases, can even restore divine artifacts."
+    }
+  ],
+  "sortnum": 0
+}

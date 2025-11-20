@@ -1,0 +1,25 @@
+{
+  "category": "huajiage:the_infinite_starry_river",
+  "icon": "huajiage:arrow_requiem",
+  "name": "Arrow of Requiem",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "According to apocryphal accounts, during the final battle of the previous universe, $(4)$(l)The Flower of Hope · Orga$() was struck by an arrow that flew out of a spacetime rift as he was dying, subsequently obtaining the power to turn the tide of battle.$()$(br)$()$(br)Regardless of the records, the power contained within this arrow, crafted from the Infinite Universe Star, can indeed resonate with Orga's power—when the \"Flower of Hope\" begins its chant, use this arrow on yourself to transform the power of the Flower of Hope into a special item. This is the $(4)$(l)「Unstoppable Orga Requiem」$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:arrow_requiem"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:orga_requiem",
+      "text": "$(6)Ability I - Unstoppable Orga$(): Using the Requiem's power on himself, Orga can never reach the truth of death.$()$(br)$(6)Ability II - Assassin Decreed by Causality$(): Any enemy who attempts to attack Orga will suffer double the damage they dealt in return.$()$(br)$(6)Ability III - Requiem$(): Approaching the critical point of death, Orga activates the Requiem's power, continuously Muda-punching the opponent with a Stand (invisible even to Stand users)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "If you use the Requiem Arrow on yourself again, the $(4)$(l)「Unstoppable Orga Requiem」$() will transform into a Stand. At this point, some methods that disable items will no longer affect the $(4)$(l)「Unstoppable Orga Requiem」$()."
+    }
+  ],
+  "sortnum": 0
+}

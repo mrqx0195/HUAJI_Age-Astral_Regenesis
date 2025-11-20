@@ -107,6 +107,7 @@ public class HuaJiPolyfurnaceMenu extends AbstractContainerMenu {
         return this.container.stillValid(pPlayer);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         ItemStack itemStack = ItemStack.EMPTY;
@@ -138,7 +139,7 @@ public class HuaJiPolyfurnaceMenu extends AbstractContainerMenu {
                         && !this.moveItemStackTo(itemStack1, FURNACE_SLOTS_COUNT, FURNACE_SLOTS_COUNT + VANILLA_SLOT_COUNT - HOTBAR_SLOT_COUNT, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemStack1, FURNACE_SLOTS_COUNT, 39, false)) {
+            } else if (!this.moveItemStackTo(itemStack1, FURNACE_SLOTS_COUNT, FURNACE_SLOTS_COUNT + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
 

@@ -1,0 +1,13 @@
+{
+  "colors": [
+    "ffff00",
+    "b99d00"
+  ],
+  "enabled": true,
+  "ingredient": {
+    "item": "huajiage:huaji_ingot"
+  },
+  "name": "singularity.huajiage.huaji_ingot",
+  "recipeDisabled": false,
+  "timeRequired": 10
+}

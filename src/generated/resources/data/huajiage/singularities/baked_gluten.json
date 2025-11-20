@@ -1,0 +1,13 @@
+{
+  "colors": [
+    "fdf83f",
+    "fe9c02"
+  ],
+  "enabled": true,
+  "ingredient": {
+    "item": "huajiage:baked_gluten"
+  },
+  "name": "singularity.huajiage.baked_gluten",
+  "recipeDisabled": false,
+  "timeRequired": 10
+}

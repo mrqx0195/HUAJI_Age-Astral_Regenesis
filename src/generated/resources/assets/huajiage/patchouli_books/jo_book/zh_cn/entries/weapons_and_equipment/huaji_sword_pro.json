@@ -1,0 +1,28 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:huaji_star_sword",
+  "name": "滑稽剑 Pro",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在滑稽剑的基础上加以改造，可以使其变得更强。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_star_sword",
+      "text": "滑稽剑与滑稽之星结合的成果。手持时按下$(l)$(6)[$(k:sneak)+$(k:use)]$()可以切换形态。激活状态下伤害大幅提升且额外造成虚空伤害，但会使自己陷入饥饿效果。"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "!mod:ltc2",
+      "text": "$(o)辣条工艺2（Latiao Craft 2）联动物品$()$(br)$(o)你需要安装此mod以查看以下相关内容$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "flag": "mod:ltc2",
+      "recipe": "huajiage:huaji_latiao_sword",
+      "text": "由辣条铸成的剑，手持时按下$(l)$(6)[$(k:sneak)+$(k:use)]$()可以切换形态。未激活时会消耗饥饿值修复耐久，激活时攻击能够额外造成熔岩伤害，且按下手持时按下$(l)$(6)[$(k:use)]$()能够释放「烈焰腾空」，造成范围伤害并向上移动。"
+    }
+  ],
+  "sortnum": 0
+}

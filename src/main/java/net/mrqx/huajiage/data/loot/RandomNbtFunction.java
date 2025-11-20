@@ -9,7 +9,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.TagParser;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -48,7 +47,7 @@ public class RandomNbtFunction extends LootItemConditionalFunction {
 
     public static void register() {
         TYPE = Registry.register(BuiltInRegistries.LOOT_FUNCTION_TYPE,
-                new ResourceLocation(HuaJiAgeMod.MODID, "random_nbt_function"),
+                HuaJiAgeMod.prefix("random_nbt_function"),
                 new LootItemFunctionType(new Serializer()));
     }
 

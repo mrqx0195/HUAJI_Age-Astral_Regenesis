@@ -111,6 +111,8 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
                 case DATA_FE_ENERGY:
                     HuaJiPolyfurnaceBlockEntity.this.feEnergy = p_58434_;
                     break;
+                default:
+                    break;
             }
 
         }
@@ -144,7 +146,7 @@ public class HuaJiPolyfurnaceBlockEntity extends BaseContainerBlockEntity implem
         this.feEnergy = pTag.getInt("FEEnergy");
         CompoundTag compoundtag = pTag.getCompound("RecipesUsed");
         for (String s : compoundtag.getAllKeys()) {
-            this.recipesUsed.put(new ResourceLocation(s), compoundtag.getInt(s));
+            this.recipesUsed.put(ResourceLocation.parse(s), compoundtag.getInt(s));
         }
         if (pTag.contains("Energy")) {
             this.energyHandler.ifPresent(energyStorage -> energyStorage.deserializeNBT(pTag.get("Energy")));

@@ -5,16 +5,17 @@
     "J": {
       "item": "huajiage:huaji"
     },
-    "P": {
-      "item": "minecraft:gunpowder"
+    "T": {
+      "item": "minecraft:tnt"
     }
   },
   "pattern": [
-    "PPP",
-    "PJP",
-    "PPP"
+    "JTJ",
+    "TJT",
+    "JTJ"
   ],
   "result": {
+    "count": 4,
     "item": "huajiage:huaji_bomb"
   },
   "show_notification": true

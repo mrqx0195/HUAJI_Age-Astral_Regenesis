@@ -30,7 +30,7 @@ public class ItemInfiniteCharm extends BaseItem {
         if (entity instanceof LivingEntity living) {
             for (EquipmentSlot equipmentslot : EquipmentSlot.values()) {
                 ItemStack itemstack = living.getItemBySlot(equipmentslot);
-                if (!itemstack.isEmpty() && itemstack.isDamaged()) {
+                if (!itemstack.isEmpty() && itemstack.isDamaged() && itemstack.isRepairable()) {
                     itemstack.setDamageValue(0);
                 }
             }

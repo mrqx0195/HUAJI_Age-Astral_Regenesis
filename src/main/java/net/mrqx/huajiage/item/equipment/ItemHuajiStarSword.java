@@ -2,6 +2,7 @@ package net.mrqx.huajiage.item.equipment;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -32,6 +33,9 @@ import java.util.List;
 
 @Mod.EventBusSubscriber
 public class ItemHuajiStarSword extends SwordItem {
+
+    public static final String HUAJI_STAR_SWORD_MODE_KEY = "huaji_star_sword_mode";
+
     public ItemHuajiStarSword() {
         super(HuaJiTiers.HUAJI_STAR.get(), 14, -1.4F, new Item.Properties().rarity(Rarity.RARE).durability(5400));
     }
@@ -108,21 +112,29 @@ public class ItemHuajiStarSword extends SwordItem {
     }
 
     public enum Mode {
-        ON, OFF;
+        /**
+         * Active Mode
+         */
+        ON,
+        /**
+         * Inactive Mode
+         */
+        OFF;
 
         public static Mode getMode(ItemStack itemStack) {
-            if (ItemTagHelper.getBoolean(itemStack, "huaji_star_sword_mode", false)) {
+            if (ItemTagHelper.getBoolean(itemStack, HUAJI_STAR_SWORD_MODE_KEY, false)) {
                 return ON;
             }
             return OFF;
         }
 
+        @CanIgnoreReturnValue
         public static Mode changeMode(ItemStack itemStack) {
             if (getMode(itemStack) == Mode.OFF) {
-                ItemTagHelper.setBoolean(itemStack, "huaji_star_sword_mode", true);
+                ItemTagHelper.setBoolean(itemStack, HUAJI_STAR_SWORD_MODE_KEY, true);
                 return ON;
             }
-            ItemTagHelper.setBoolean(itemStack, "huaji_star_sword_mode", false);
+            ItemTagHelper.setBoolean(itemStack, HUAJI_STAR_SWORD_MODE_KEY, false);
             return OFF;
         }
     }

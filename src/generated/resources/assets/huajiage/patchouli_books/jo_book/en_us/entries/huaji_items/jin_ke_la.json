@@ -1,0 +1,22 @@
+{
+  "category": "huajiage:huaji_items",
+  "icon": "huajiage:jin_ke_la",
+  "name": "Jin Ke La",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "As a common fertilizer, Bone Meal is widely used in Minecraft's agriculture and animal husbandry... but what happens if you infuse it with the power of HUAJI?$(br2)$(o)\"With Jin Ke La mixed in the fertilizer, one bag does the work of two!\"$()$(br)$(o)\"With Jin Ke La mixed in the fertilizer, wheat yield reaches 1800 per mu!\"$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:jin_ke_la",
+      "text": "$(o)\"The energy in every grain of Jin Ke La is like an atomic bomb.\" — It is said this line once appeared in a Jin Ke La advertisement.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "huajiage:jin_ke_la_bomb",
+      "text": "If you attempt to use Jin Ke La on a HUAJI Bomb, it will cause an even larger explosion than the original... Perhaps this is the true meaning behind that advertising slogan?"
+    }
+  ],
+  "sortnum": 0
+}

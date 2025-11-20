@@ -55,7 +55,7 @@ public class ItemTarot extends BaseItem {
                 pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
                     Stand stand1 = Stand.getStand(data.getStand());
                     if (stand1 == null) {
-                        data.setStand(stand);
+                        data.setStandAndResetData(stand);
                         data.setLevel(ItemTagHelper.getInt(itemStack, TAROT_STAND_LEVEL_KEY, 0));
                         data.setMaxEnergy(stand.getMaxEnergy(pPlayer, data));
                         ItemTagHelper.removeEntry(itemStack, TAROT_STAND_KEY);
@@ -72,7 +72,7 @@ public class ItemTarot extends BaseItem {
                     if (stand1 != null) {
                         ItemTagHelper.setString(itemStack, TAROT_STAND_KEY, data.getStand().toString());
                         ItemTagHelper.setInt(itemStack, TAROT_STAND_LEVEL_KEY, data.getLevel());
-                        data.setStand((ResourceLocation) null);
+                        data.setStand(null);
                         data.setLevel(0);
                         pPlayer.swing(pUsedHand, true);
                         pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));

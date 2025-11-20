@@ -1,0 +1,22 @@
+{
+  "category": "huajiage:huaji_items",
+  "icon": "huajiage:huaji_bomb",
+  "name": "滑稽炸弹",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "将滑稽元素掺入TNT中，会使得TNT具有更大的威力，但会变得不稳定——方便起见，我们一般将其称为 $(item)“滑稽炸弹” $()。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:huaji_bomb,huajiage:huaji_antimatter_bomb",
+      "text": "滑稽炸弹还有一种改进型：滑稽微型反物质炸弹，能够直接湮灭一块区域内的一切。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_bomb",
+      "recipe2": "huajiage:huaji_antimatter_bomb"
+    }
+  ],
+  "sortnum": 0
+}

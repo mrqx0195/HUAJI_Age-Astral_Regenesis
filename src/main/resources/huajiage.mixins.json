@@ -11,9 +11,12 @@
     "AccessorLivingEntity",
     "MixinAbstractArrow",
     "MixinOreFeature",
-    "MixinTimeStopUtils"
+    "MixinTimeStopUtils",
+    "tacz.MixinEntityKineticBullet",
+    "tacz.MixinModernKineticGunScriptApi"
   ],
   "package": "net.mrqx.huajiage.mixin",
+  "plugin": "net.mrqx.huajiage.utils.HuaJiAgeMixinPlugin",
   "refmap": "huajiage.refmap.json",
   "required": true
 }

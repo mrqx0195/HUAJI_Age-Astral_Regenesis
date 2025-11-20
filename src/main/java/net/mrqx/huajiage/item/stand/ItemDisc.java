@@ -67,7 +67,7 @@ public class ItemDisc extends BaseItem {
         Stand stand = getStand(itemStack);
         if (stand != null) {
             pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-                data.setStand(stand);
+                data.setStandAndResetData(stand);
                 data.setMaxEnergy(stand.getMaxEnergy(pPlayer, data));
                 data.setLevel(ItemTagHelper.getInt(itemStack, DISC_STAND_LEVEL_KEY, 0));
             });

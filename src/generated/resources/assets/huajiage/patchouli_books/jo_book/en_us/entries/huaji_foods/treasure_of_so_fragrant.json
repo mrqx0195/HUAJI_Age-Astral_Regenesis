@@ -1,0 +1,22 @@
+{
+  "category": "huajiage:huaji_foods",
+  "icon": "huajiage:egg_rice",
+  "name": "The Treasure of \"So Fragrant\"",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Legend says the title $(l:codex_the_king_of_so_fragrant)\"King of 'So Fragrant'\"$() originates from an ordinary food—egg fried rice. He comprehended the truth of \"So Fragrant\" upon tasting a bowl of egg fried rice, eventually becoming the legendary figure he is today."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:egg_rice",
+      "text": "A long-lost delicacy, said to be made from a recipe written by the King of \"So Fragrant\" himself, capable of making all who eat it praise it from the bottom of their hearts: \"So Fragrant!\". Provides various buffs after consumption."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:ultimate_egg_rice",
+      "text": "Egg fried rice blessed by the King of \"So Fragrant\" himself, brought into the world by the $(l:the_shining_star)HUAJI Star$(). Provides more and stronger buffs after consumption."
+    }
+  ],
+  "sortnum": 0
+}

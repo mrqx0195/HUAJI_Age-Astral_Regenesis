@@ -1,0 +1,24 @@
+{
+  "category": "huajiage:huaji_foods",
+  "icon": "huajiage:baked_gluten",
+  "name": "烤面筋",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "由“面筋哥”$(thing)淳·简·拉基·茨德$()所创造的一种美食，由于造价低廉、口味强劲，在民间广受好评。$(br)而在烤面筋走红之后，$(thing)淳·简·拉基·茨德$()邀请$(thing)波澜剑圣$()，与他合唱了一首《我的烤面筋，融化你的心》，深深地将烤面筋刻在了每一位鬼畜人的心里。"
+    },
+    {
+      "type": "patchouli:stonecutting",
+      "recipe": "huajiage:raw_gluten_from_flash_flour_stonecutting"
+    },
+    {
+      "type": "patchouli:smoking",
+      "recipe": "huajiage:baked_gluten_from_smoking"
+    },
+    {
+      "type": "patchouli:campfire",
+      "recipe": "huajiage:baked_gluten_from_campfire_cooking"
+    }
+  ],
+  "sortnum": 0
+}

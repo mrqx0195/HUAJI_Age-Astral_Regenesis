@@ -12,9 +12,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.data.advancement.HuaJiAdvancementProvider;
+import net.mrqx.huajiage.data.avaritia.HuaJiSingularityProvider;
 import net.mrqx.huajiage.data.loot.HuaJiLootTables;
 import net.mrqx.huajiage.data.model.HuaJiBlockStateGenerator;
 import net.mrqx.huajiage.data.model.HuaJiItemModelGenerator;
+import net.mrqx.huajiage.data.patchouli.HuaJiPatchouliProvider;
 import net.mrqx.huajiage.data.slashblade.HuaJiSlashBladeDefinitions;
 import net.mrqx.huajiage.data.sound.HuaJiSoundDefinitions;
 import net.mrqx.huajiage.data.tag.HuaJiBlockTagsProvider;
@@ -34,29 +36,33 @@ public class DataGen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        boolean isIncludedServer = event.includeServer();
+        boolean isIncludedClient = event.includeClient();
 
         DatapackBuiltinEntriesProvider datapackProvider = new HuaJiRegistryDataGenerator(packOutput, lookupProvider);
         generator.addProvider(true, datapackProvider);
         lookupProvider = datapackProvider.getRegistryProvider();
+        generator.addProvider(true, new HuaJiPatchouliProvider(lookupProvider, packOutput));
 
         HuaJiBlockTagsProvider blockTagsProvider = new HuaJiBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
-        generator.addProvider(event.includeServer(), blockTagsProvider);
-        generator.addProvider(event.includeServer(), new HuaJiItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
-        generator.addProvider(event.includeServer(), new HuaJiDamageTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
-        generator.addProvider(event.includeServer(), new StandTagsProvider(packOutput, lookupProvider, HuaJiAgeMod.MODID, existingFileHelper));
-        generator.addProvider(event.includeServer(), new HuaJiAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
-        generator.addProvider(event.includeServer(), new HuaJiLootTables(packOutput));
-        generator.addProvider(event.includeServer(), new HuaJiRecipeGenerator(packOutput));
+        generator.addProvider(isIncludedServer, blockTagsProvider);
+        generator.addProvider(isIncludedServer, new HuaJiItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+        generator.addProvider(isIncludedServer, new HuaJiDamageTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(isIncludedServer, new StandTagsProvider(packOutput, lookupProvider, HuaJiAgeMod.MODID, existingFileHelper));
+        generator.addProvider(isIncludedServer, new HuaJiAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(isIncludedServer, new HuaJiLootTables(packOutput));
+        generator.addProvider(isIncludedServer, new HuaJiRecipeGenerator(packOutput));
+        generator.addProvider(isIncludedServer, new HuaJiSingularityProvider(packOutput));
 
         RegistrySetBuilder bladeBuilder = (new RegistrySetBuilder()).add(SlashBladeDefinition.REGISTRY_KEY, HuaJiSlashBladeDefinitions::registerAll);
-        generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, bladeBuilder, Set.of(HuaJiAgeMod.MODID)) {
+        generator.addProvider(isIncludedServer, new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, bladeBuilder, Set.of(HuaJiAgeMod.MODID)) {
             public String getName() {
                 return "HuaJiAge SlashBlade Definition Registry";
             }
         });
 
-        generator.addProvider(event.includeClient(), new HuaJiBlockStateGenerator(packOutput, existingFileHelper));
-        generator.addProvider(event.includeClient(), new HuaJiItemModelGenerator(packOutput, existingFileHelper));
-        generator.addProvider(event.includeClient(), new HuaJiSoundDefinitions(packOutput, existingFileHelper));
+        generator.addProvider(isIncludedClient, new HuaJiBlockStateGenerator(packOutput, existingFileHelper));
+        generator.addProvider(isIncludedClient, new HuaJiItemModelGenerator(packOutput, existingFileHelper));
+        generator.addProvider(isIncludedClient, new HuaJiSoundDefinitions(packOutput, existingFileHelper));
     }
 }

@@ -1,0 +1,29 @@
+{
+  "advancement": "huajiage:infinite_universe_star",
+  "category": "huajiage:kichiku_all_star_codex",
+  "icon": "huajiage:neutron_star_fragment",
+  "name": "VAN-sama",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The man known as the 「Dark Knight」, the leader of the dark side of Shinihogahara, the Man of Black♂ness and Blazing Flame, the Conqueror of All Things.$()$(br)$(o)My name is Van. I'm an artist, I'm a performance artist. I'm hired for people to fulfill their fantasies, their deep♂dark♂fantasies.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class: Van♂quisher$()$(br)A unique class belonging to VAN-sama, a variant of the Berserker class. Compared to the original, the Van♂quisher class skills lack the side effect of losing rationality and possess a remarkably balanced parameter set.$(br2)$(l)Strength A$()$(br)$(l)Endurance A$()$(br)$(l)Agility A$()$(br)$(l)Mana A$()$(br)$(l)Luck A$()$(br)$(l)Noble Phantasm A$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class Skills:$()$(br)$(l)Demonic♂Metamorphosis (A+)$(): Condenses magical energy within oneself, greatly enhancing one's capabilities, while simultaneously activating the 「Dark♂Demon Sword」. Requires raising the right middle finger to the sky and shouting \"FA♂Q!\" at the moment of activation."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Personal Skills:$()$(br)$(l)Blazing♂Male Soul (A)$(): Rubs his own body to accumulate heat, which can be released as flames during melee combat. If sufficient flame is accumulated, it can even cause an explosion.$()$(br)$(l)Dark♂Prison (A+)$(): Creates a bounded field, restraining the target within it. When the target attempts to leave, they are pushed back and take damage. With continuous attacks, the target can be pinned against the field's boundary for maximum damage.$()$(br)$(l)Dark♂Fairy (A)$(): The manifestation of the authority of Shinihogahara's dark side. Allows him to absorb energy through physical contact, restoring health and mana, which also grants VAN-sama considerable close-quarters combat ability."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Noble Phantasm:$()$(br)$(l)Dark♂Demon Sword (A)$(): A greatsword that can only be used during Demonic♂Metamorphosis. Swinging it leaves afterimages that cause consecutive hits. Its substance is VAN-sama's own magical energy; therefore, even if it is deliberately detonated using 「Broken Phantasm」, a new one can be regenerated through Demonic♂Metamorphosis."
+    }
+  ],
+  "sortnum": 0
+}

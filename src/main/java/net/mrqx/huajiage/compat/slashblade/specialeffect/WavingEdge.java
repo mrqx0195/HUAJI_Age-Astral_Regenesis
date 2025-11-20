@@ -36,7 +36,7 @@ public class WavingEdge extends SpecialEffect {
             int level = player.experienceLevel;
 
             if (SpecialEffect.isEffective(HuaJiSpecialEffects.WAVING_EDGE.get(), level) && player.isInWaterRainOrBubble()) {
-                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 100, 2));
+                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 100, 0));
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 2));
                 player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 0));
             }

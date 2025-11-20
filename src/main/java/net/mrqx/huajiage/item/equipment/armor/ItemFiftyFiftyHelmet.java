@@ -2,6 +2,7 @@ package net.mrqx.huajiage.item.equipment.armor;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -29,7 +30,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.client.HuaJiKeyMappings;
 import net.mrqx.huajiage.client.HuaJiLayers;
-import net.mrqx.huajiage.client.model.ModelFiftyFiftyHelmet;
+import net.mrqx.huajiage.client.model.armor.ModelFiftyFiftyHelmet;
 import net.mrqx.huajiage.event.HuaJiCanFlyEvent;
 import net.mrqx.huajiage.event.KeyInputEvent;
 import net.mrqx.huajiage.network.HuaJiKeyMessage;
@@ -47,6 +48,7 @@ import java.util.function.Consumer;
 public class ItemFiftyFiftyHelmet extends ArmorItem {
     public static final String FIFTY_FIFTY_ACTIVE_KEY = HuaJiAgeMod.MODID + "." + "fiftyFiftyActive";
     public static final String FIFTY_FIFTY_LORD_KEY = HuaJiAgeMod.MODID + "." + "fiftyFiftyLord";
+    public static final String FIFTY_FIFTY_MODE_KEY = "50_50_mode";
 
     public static boolean isFiftyFiftyActive(LivingEntity livingEntity) {
         return hasFiftyFiftyHelmet(livingEntity) && ItemTagHelper.getBoolean(livingEntity.getItemBySlot(EquipmentSlot.HEAD), ItemFiftyFiftyHelmet.FIFTY_FIFTY_ACTIVE_KEY, false);
@@ -80,18 +82,16 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltips.1",
-                Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC)
-        ).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltips.1").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("item.huajiage.tooltips.shift.1",
                         Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC))
                 .withStyle(ChatFormatting.DARK_RED));
         if (Screen.hasShiftDown()) {
             if (Minecraft.getInstance().player != null) {
-                if (ItemFiftyFiftyHelmet.isFiftyFiftyLord(Minecraft.getInstance().player)) {
+                if (ItemTagHelper.getBoolean(stack, ItemFiftyFiftyHelmet.FIFTY_FIFTY_LORD_KEY, false)) {
                     tooltip.add(Component.translatable("message.huajiage.prefix", Component.translatable(this.getDescriptionId() + ".tooltips.shift.3")
                             .withStyle(ChatFormatting.YELLOW).withStyle(ChatFormatting.BOLD)));
-                } else if (ItemFiftyFiftyHelmet.isFiftyFiftyActive(Minecraft.getInstance().player)) {
+                } else if (ItemTagHelper.getBoolean(stack, ItemFiftyFiftyHelmet.FIFTY_FIFTY_ACTIVE_KEY, false)) {
                     tooltip.add(Component.translatable("message.huajiage.prefix", Component.translatable(this.getDescriptionId() + ".tooltips.shift.2",
                                     Component.translatable(HuaJiItems.LORD_KEY.get().getDescriptionId()).withStyle(ChatFormatting.DARK_GREEN))
                             .withStyle(ChatFormatting.DARK_RED)));
@@ -116,7 +116,7 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
         if (!pLevel.isClientSide
                 && pEntity instanceof Player player
-                && player.getInventory().armor.get(3).equals(pStack)
+                && player.getInventory().armor.get(EquipmentSlot.HEAD.getIndex()).equals(pStack)
                 && Mode.getMode(pStack).equals(Mode.ON)) {
             if (ItemFiftyFiftyHelmet.isFiftyFiftyActive(player)) {
                 boolean isLord = ItemFiftyFiftyHelmet.isFiftyFiftyLord(player);
@@ -126,7 +126,7 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
                 player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 50, isLord ? 5 : 2, false, false));
                 if (isLord) {
                     player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 50, 5, false, false));
-                    player.addEffect(new MobEffectInstance(HuaJiEffects.FIVE.get(), 50, 0, false, true));
+                    player.addEffect(new MobEffectInstance(HuaJiEffects.FIVE.get(), 50, 0, false, false));
                 }
             } else {
                 Mode.changeMode(pStack);
@@ -207,21 +207,29 @@ public class ItemFiftyFiftyHelmet extends ArmorItem {
     }
 
     public enum Mode {
-        ON, OFF;
+        /**
+         * Active Mode
+         */
+        ON,
+        /**
+         * Inactive Mode
+         */
+        OFF;
 
         public static Mode getMode(ItemStack itemStack) {
-            if (ItemTagHelper.getBoolean(itemStack, "50_50_mode", false)) {
+            if (ItemTagHelper.getBoolean(itemStack, FIFTY_FIFTY_MODE_KEY, false)) {
                 return ON;
             }
             return OFF;
         }
 
+        @CanIgnoreReturnValue
         public static Mode changeMode(ItemStack itemStack) {
             if (getMode(itemStack) == Mode.OFF) {
-                ItemTagHelper.setBoolean(itemStack, "50_50_mode", true);
+                ItemTagHelper.setBoolean(itemStack, FIFTY_FIFTY_MODE_KEY, true);
                 return ON;
             }
-            ItemTagHelper.setBoolean(itemStack, "50_50_mode", false);
+            ItemTagHelper.setBoolean(itemStack, FIFTY_FIFTY_MODE_KEY, false);
             return OFF;
         }
     }

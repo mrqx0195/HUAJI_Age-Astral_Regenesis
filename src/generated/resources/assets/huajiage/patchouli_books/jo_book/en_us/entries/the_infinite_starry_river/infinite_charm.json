@@ -1,0 +1,17 @@
+{
+  "category": "huajiage:the_infinite_starry_river",
+  "icon": "huajiage:infinite_charm",
+  "name": "Infinite Durability Armor Charm",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A charm made from the $(item)Infinite Universe Star$(), capable of rapidly repairing items in your equipment slots and hands—simple, crude, and powerful."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:infinite_charm",
+      "text": "$(o)If you equip a full set of the Black Premium Suit, its appearance will change... but it's utterly useless.$()"
+    }
+  ],
+  "sortnum": 0
+}

@@ -39,7 +39,7 @@ body:
     attributes:
       label: HUAJI Age Astral Regenesis Version / 滑稽纪元：轮回星启 版本
       description: |
-        The version of Avaritia you are using? / 您正在使用的 滑稽纪元：轮回星启 版本？
+        The version of HUAJI Age Astral Regenesis you are using? / 您正在使用的 滑稽纪元：轮回星启 版本？
       placeholder: "Example: 1.0.0"
     validations:
       required: true

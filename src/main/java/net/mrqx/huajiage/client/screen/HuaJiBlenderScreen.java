@@ -7,11 +7,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.block.inventory.HuaJiBlenderMenu;
 
 @OnlyIn(Dist.CLIENT)
 public class HuaJiBlenderScreen extends AbstractContainerScreen<HuaJiBlenderMenu> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("huajiage", "textures/gui/container/gui_huaji_blender.png");
+    private static final ResourceLocation TEXTURE = HuaJiAgeMod.prefix("textures/gui/container/gui_huaji_blender.png");
 
     public final int COOK_BAR_XPOS = 76;
     public final int COOK_BAR_YPOS = 29;

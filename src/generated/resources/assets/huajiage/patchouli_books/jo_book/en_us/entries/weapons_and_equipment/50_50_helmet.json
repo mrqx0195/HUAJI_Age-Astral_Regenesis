@@ -1,0 +1,31 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:50_50_helmet",
+  "name": "The \"50-50\" Helmet",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The legendary Noble Phantasm of $(l:codex_lord_lu)Lord.Lu$(), capable of providing strong defense... but its true power seems to still be sealed."
+    },
+    {
+      "type": "patchouli:smithing",
+      "recipe": "huajiage:50_50_helmet_smithing"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:lord_core",
+      "text": "An object resembling a frying pan, containing the power of the Airspace Star. It can awaken a part of Lord.Lu's power. Hold right-click while equipped with the Fifty-Fifty Helmet to use it and activate the helmet's $(thing)Release Mode$().$(br)Press $(l)$(6)[$(k:huajiage.change_mode)]$() to toggle the Fifty-Fifty Helmet's mode. In Release Mode, the helmet continuously provides multiple buff effects."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:lord_key",
+      "text": "A key that unleashes Lord.Lu's true supreme power. After use, the Fifty-Fifty Helmet provides stronger buffs, grants permanent creative flight, and reflects half of the damage you receive back to the attacker."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:lord_core",
+      "recipe2": "huajiage:lord_key"
+    }
+  ],
+  "sortnum": 0
+}

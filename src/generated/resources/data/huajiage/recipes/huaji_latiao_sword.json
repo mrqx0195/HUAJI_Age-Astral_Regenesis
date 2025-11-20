@@ -6,10 +6,10 @@
       "item": "minecraft:diamond"
     },
     "H": {
-      "item": "ltc2:hotaurum_sword"
+      "item": "huajiage:huaji_sword"
     },
     "N": {
-      "item": "huajiage:neutron_star_fragment"
+      "item": "ltc2:hotaurum_ingot"
     }
   },
   "pattern": [

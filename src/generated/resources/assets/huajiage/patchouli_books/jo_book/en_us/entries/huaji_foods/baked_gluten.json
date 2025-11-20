@@ -1,0 +1,24 @@
+{
+  "category": "huajiage:huaji_foods",
+  "icon": "huajiage:baked_gluten",
+  "name": "Baked Gluten",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A delicacy created by \"Baked Gluten Bro\" $(thing)Chun · Jian · Laji · Cide$(). Due to its low cost and bold flavor, it has been widely praised among the people.$(br)After Baked Gluten became popular, $(thing)Chun · Jian · Laji · Cide$() invited the $(thing)Sword Saint of Waves$() to sing a duet with him titled \"My Baked Gluten, Melts Your Heart,\" deeply etching Baked Gluten into the heart of every Kichiku enthusiast."
+    },
+    {
+      "type": "patchouli:stonecutting",
+      "recipe": "huajiage:raw_gluten_from_flash_flour_stonecutting"
+    },
+    {
+      "type": "patchouli:smoking",
+      "recipe": "huajiage:baked_gluten_from_smoking"
+    },
+    {
+      "type": "patchouli:campfire",
+      "recipe": "huajiage:baked_gluten_from_campfire_cooking"
+    }
+  ],
+  "sortnum": 0
+}

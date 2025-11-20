@@ -36,6 +36,8 @@ public class EntityFivePower extends Fireball {
     private static final EntityDataAccessor<Long> DELAY = SynchedEntityData
             .defineId(EntityFivePower.class, EntityDataSerializers.LONG);
 
+    public static final int MAX_LIFE_TIME = -300;
+
     public final long randomSeed;
     public boolean timeStopFix = false;
 
@@ -123,7 +125,7 @@ public class EntityFivePower extends Fireball {
         this.setDelay(this.getDelay() - 1);
         if (this.getDelay() <= 0) {
             super.tick();
-            if (this.getDelay() < -300) {
+            if (this.getDelay() < MAX_LIFE_TIME) {
                 this.discard();
             }
         }
@@ -139,6 +141,7 @@ public class EntityFivePower extends Fireball {
         super.onHitBlock(pResult);
         if (!this.level().isClientSide) {
             explode();
+            this.setDelay(MAX_LIFE_TIME);
         }
     }
 
@@ -147,6 +150,7 @@ public class EntityFivePower extends Fireball {
         super.onHitEntity(pResult);
         if (!(pResult.getEntity() instanceof EntityFivePower) && !pResult.getEntity().equals(this.getOwner()) && !this.level().isClientSide) {
             explode();
+            this.setDelay(MAX_LIFE_TIME);
         }
     }
 

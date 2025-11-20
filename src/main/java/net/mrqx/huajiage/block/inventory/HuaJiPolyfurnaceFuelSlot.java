@@ -7,8 +7,8 @@ import net.minecraft.world.item.ItemStack;
 public class HuaJiPolyfurnaceFuelSlot extends Slot {
     private final HuaJiPolyfurnaceMenu menu;
 
-    public HuaJiPolyfurnaceFuelSlot(HuaJiPolyfurnaceMenu pFurnaceMenu, Container pFurnaceContainer, int pSlot, int pXPosition, int pYPosition) {
-        super(pFurnaceContainer, pSlot, pXPosition, pYPosition);
+    public HuaJiPolyfurnaceFuelSlot(HuaJiPolyfurnaceMenu pFurnaceMenu, Container pFurnaceContainer, int pSlot, int xPosition, int yPosition) {
+        super(pFurnaceContainer, pSlot, xPosition, yPosition);
         this.menu = pFurnaceMenu;
     }
 

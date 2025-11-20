@@ -1,0 +1,29 @@
+{
+  "category": "huajiage:cosmic_chronicles",
+  "icon": "minecraft:writable_book",
+  "name": "Kichiku Warriors: The Shining Stars",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "1,145,141,919,810,000,000 years ago, with the $(7)$(l)alliance♂$() of $(l:https://en.wikipedia.org/wiki/Billy_Herrington)$(7)$(l)「THE KING」Billy$() and $(l:https://zh.wikipedia.org/wiki/范·达克霍姆)$(0)$(l)「Dark Knight」VAN-sama$(), the formerly warring Shinihogahara united overnight against external forces, FA♂ging a massive cam♂paign of conquest across the galaxies. This period became known as the $(0)$(l)\"Dark Tide\"$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In this time of crisis, numerous heroes stepped forward, forming the \"$(6)$(l)Kichiku All-Star Alliance$()\" to jointly resist the dark tyranny. During the protracted war, the names of many Kichiku stars resounded throughout the cosmos: $(l:https://zh.wikipedia.org/wiki/卢本伟)$(6)$(l)Lord.Lu$(), $(l:https://zh.wikipedia.org/wiki/王境泽)$(c)$(l)The King of \"So Fragrant!\"$(), $(l:https://zh.moegirl.org.cn/不要停下来啊！)$(4)$(l)The Flower of Hope · Orga$(), $(l:https://zh.moegirl.org.cn/波澜哥)$(b)$(l)The Sword Saint of Waves$(), $(l:https://zh.wikipedia.org/wiki/程书林)$(8)$(l)Chun · Jian · Laji · Cide$()... and many more Kichiku Senpais, whose brilliance shone brightly in that war."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "After arduous battles, $(6)$(l)Lord.Lu$() used his $(6)$(l)「Lu's Divine Palm」$() to seal away Billy and VAN. But at that very moment, the mastermind lurking in the shadows seized the opportunity to usurp the supreme power of the two emperors. This was $(0)$(l)Dark Priest Snake$(). He transformed Shinihogahara into his \"Heaven,\" gaining the power to accelerate time infinitely. With this power, he effortlessly decimated most of the $(6)$(l)Kichiku All-Star Alliance$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "However, to his utter astonishment, just as the All-Stars faced annihilation, the dying $(4)$(l)The Flower of Hope · Orga$() stood up and detonated his ultimate $(b)$(l)Secret Art · $(4)$(l)「Don't Stop!」$(), forcibly pulling back all the fallen Kichiku stars. The final confrontation unfolded at the edge of the universe."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In the end, the $(6)$(l)Kichiku All-Star Alliance$(), under the ultimate accelerated time, perished together with $(0)$(l)Dark Priest Snake$(). The universe collapsed into a singularity along with the time acceleration. After another Big Bang, the $(7)$(l)Radiance of the Infinite Stars$(), symbolizing the brilliantly shining souls of the Kichiku warriors, burst forth, forming the present-day HUAJI Universe."
+    }
+  ],
+  "priority": true,
+  "sortnum": 0
+}

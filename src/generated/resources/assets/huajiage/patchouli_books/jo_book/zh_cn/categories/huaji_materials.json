@@ -1,0 +1,7 @@
+{
+  "parent": "huajiage:huaji_items",
+  "description": "啊啊啊……都是素材啊，素材啊！",
+  "icon": "huajiage:huaji_ingot",
+  "name": "材料",
+  "sortnum": 0
+}

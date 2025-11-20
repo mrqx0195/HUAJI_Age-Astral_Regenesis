@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.item.equipment;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -36,10 +37,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class ItemHeroBow extends BowItem {
+
+    public static final String HERO_BOW_MODE_KEY = "hero_bow_mode";
+
     public ItemHeroBow() {
         super(new Item.Properties().rarity(Rarity.EPIC).fireResistant().durability(384));
     }
@@ -107,6 +110,7 @@ public class ItemHeroBow extends BowItem {
                 if (!pLevel.isClientSide) {
                     ArrowItem arrowitem = (ArrowItem) (itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                     AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, itemstack, player);
+                    abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() * 2);
                     boolean isOn = Mode.getMode(pStack).equals(Mode.ON) && f >= 1.0F;
 
                     if (isOn) {
@@ -121,24 +125,25 @@ public class ItemHeroBow extends BowItem {
 
                     int j = pStack.getEnchantmentLevel(Enchantments.POWER_ARROWS);
                     if (j > 0) {
-                        abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + j * 0.5D + 0.5D);
+                        abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + j + 1);
                     }
 
                     int k = pStack.getEnchantmentLevel(Enchantments.PUNCH_ARROWS);
                     if (k > 0) {
-                        abstractarrow.setKnockback(k);
+                        abstractarrow.setKnockback(k * 2);
                     }
 
                     if (pStack.getEnchantmentLevel(Enchantments.FLAMING_ARROWS) > 0) {
-                        abstractarrow.setSecondsOnFire(100);
+                        abstractarrow.setSecondsOnFire(200);
                     }
 
                     pStack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(player.getUsedItemHand()));
 
                     abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 
-                    if (player.hasEffect(MobEffects.DAMAGE_BOOST)) {
-                        int l = Objects.requireNonNull(player.getEffect(MobEffects.DAMAGE_BOOST)).getAmplifier();
+                    MobEffectInstance effect = player.getEffect(MobEffects.DAMAGE_BOOST);
+                    if (effect != null) {
+                        int l = effect.getAmplifier();
                         abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + l * 2D);
                     }
 
@@ -198,21 +203,29 @@ public class ItemHeroBow extends BowItem {
     }
 
     public enum Mode {
-        ON, OFF;
+        /**
+         * Active Mode
+         */
+        ON,
+        /**
+         * Inactive Mode
+         */
+        OFF;
 
         public static Mode getMode(ItemStack itemStack) {
-            if (ItemTagHelper.getBoolean(itemStack, "hero_bow_mode", false)) {
+            if (ItemTagHelper.getBoolean(itemStack, HERO_BOW_MODE_KEY, false)) {
                 return ON;
             }
             return OFF;
         }
 
+        @CanIgnoreReturnValue
         public static Mode changeMode(ItemStack itemStack) {
             if (getMode(itemStack) == Mode.OFF) {
-                ItemTagHelper.setBoolean(itemStack, "hero_bow_mode", true);
+                ItemTagHelper.setBoolean(itemStack, HERO_BOW_MODE_KEY, true);
                 return ON;
             }
-            ItemTagHelper.setBoolean(itemStack, "hero_bow_mode", false);
+            ItemTagHelper.setBoolean(itemStack, HERO_BOW_MODE_KEY, false);
             return OFF;
         }
     }

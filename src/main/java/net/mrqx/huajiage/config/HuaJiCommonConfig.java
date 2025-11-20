@@ -18,6 +18,8 @@ import java.util.Map;
 public class HuaJiCommonConfig {
     public static final ForgeConfigSpec COMMON_CONFIG;
 
+    public static final ForgeConfigSpec.BooleanValue LORD_LU_WING_ALL_GUN;
+
     public static final ForgeConfigSpec.IntValue POLYFURNACE_TOTAL_POINT;
     public static final ForgeConfigSpec.IntValue POLYFURNACE_MAX_ENERGY;
     public static final ForgeConfigSpec.IntValue POLYFURNACE_MAX_FE;
@@ -30,6 +32,12 @@ public class HuaJiCommonConfig {
     static {
         ForgeConfigSpec.Builder commonBuilder = new ForgeConfigSpec.Builder();
         commonBuilder.comment("HUAJI Age: Astral Regenesis common settings");
+
+        commonBuilder.push("Item settings");
+        LORD_LU_WING_ALL_GUN = commonBuilder
+                .comment("Lord.Lu's wing can use any gun. (default: false)")
+                .define("lord_lu_wing_all_gun", false);
+        commonBuilder.pop();
 
         commonBuilder.push("Machine settings");
         POLYFURNACE_TOTAL_POINT = commonBuilder

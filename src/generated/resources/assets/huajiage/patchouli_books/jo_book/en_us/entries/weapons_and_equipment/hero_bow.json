@@ -1,0 +1,17 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:hero_bow",
+  "name": "Hero's Bow",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A weapon not belonging to a Kichiku star, but still a powerful Noble Phantasm.$(br)$(l)Robustness (EX)$(): Grants multiple buff effects to the wielder while held.$(br)$(l)Clairvoyance (A)$(): Arrows shot from the Hero's Bow receive extra enhancements.$(br)$(l)Bow and Arrow Construction (A)$(): The Hero's Bow does not consume arrows when shooting."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:hero_bow",
+      "text": "Hold $(l)$(6)[$(k:sneak)+$(k:use)]$() while holding it to change form. While in the $(e)True Name Release$() form, shot arrows cause large area, high damage—but the shooter will also suffer severe backlash.$(br2)$(o)Stella！！！——$()"
+    }
+  ],
+  "sortnum": 0
+}

@@ -20,13 +20,14 @@ import net.mrqx.huajiage.stand.Stand;
 /**
  * Made with Blockbench 4.12.6
  */
+@SuppressWarnings({"DuplicatedCode"})
 public class ModelOrgaRequiemFly extends ModelStandBase {
     private final ModelPart head;
     private final ModelPart body;
     private final ModelPart extra;
 
     public ModelOrgaRequiemFly(ModelPart root) {
-        super(root);
+        super();
         this.head = root.getChild("head");
         this.body = root.getChild("body");
         this.extra = root.getChild("extra");

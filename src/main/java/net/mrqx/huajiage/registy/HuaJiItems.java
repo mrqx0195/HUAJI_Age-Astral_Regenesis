@@ -14,6 +14,7 @@ import net.mrqx.huajiage.item.*;
 import net.mrqx.huajiage.item.equipment.*;
 import net.mrqx.huajiage.item.equipment.armor.ItemFiftyFiftyHelmet;
 import net.mrqx.huajiage.item.equipment.armor.ItemHuajiArmor;
+import net.mrqx.huajiage.item.equipment.armor.ItemLordLuWing;
 import net.mrqx.huajiage.item.equipment.armor.ItemOrgaArmor;
 import net.mrqx.huajiage.item.stand.*;
 
@@ -111,6 +112,7 @@ public class HuaJiItems {
     public static final RegistryObject<Item> ORGA_BOOTS = ITEMS.register("orga_boots", ItemOrgaArmor.ItemOrgaArmorBoots::new);
 
     public static final RegistryObject<Item> FIFTY_FIFTY_HELMET = ITEMS.register("50_50_helmet", ItemFiftyFiftyHelmet::new);
+    public static final RegistryObject<Item> LORD_LU_WING = ITEMS.register("lord_lu_wing", ItemLordLuWing::new);
     public static final RegistryObject<Item> LORD_CORE = ITEMS.register("lord_core", ItemLordCore::new);
     public static final RegistryObject<Item> LORD_KEY = ITEMS.register("lord_key", ItemLordKey::new);
 
@@ -118,7 +120,12 @@ public class HuaJiItems {
     public static final RegistryObject<Item> BLACK_CAR = ITEMS.register("black_car", ItemRoadRoller::new);
     public static final RegistryObject<Item> ORGA_HAIR_KNIFE = ITEMS.register("orga_hair_knife", ItemOrgaHairKnife::new);
 
-    public static final RegistryObject<Item> INFINITE_CHARM = ITEMS.register("infinite_charm", HuaJiCompat::makeInfiniteCharmCurios);
+    public static final RegistryObject<Item> INFINITE_CHARM = ITEMS.register("infinite_charm", HuaJiCompat.Factories::makeInfiniteCharmCurios);
+
+    /**
+     * Misc
+     */
+    public static final RegistryObject<Item> JIN_KE_LA = ITEMS.register("jin_ke_la", ItemJinKeLa::new);
 
     /**
      * Stands

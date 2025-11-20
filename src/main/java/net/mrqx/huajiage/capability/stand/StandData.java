@@ -17,7 +17,7 @@ public class StandData implements IStandData {
     private final Scheduler scheduler = new Scheduler();
 
     @Override
-    public void setStand(Stand stand) {
+    public void setStandAndResetData(Stand stand) {
         setStand(HuaJiStands.REGISTRY.get().getKey(stand));
         setState(Stand.STATE_DEFAULT);
         setLevel(0);

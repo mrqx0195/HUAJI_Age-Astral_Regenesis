@@ -1,0 +1,28 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:huaji_star_sword",
+  "name": "HUAJI Sword Pro",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The HUAJI Sword can be modified and enhanced."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_star_sword",
+      "text": "Stellar Sword: The result of combining the HUAJI Sword with the HUAJI Star. Hold $(l)$(6)[$(k:sneak)+$(k:use)]$() while holding it to change form. In its active state, damage is greatly increased and deals extra void damage, but inflicts the Hunger effect on the user."
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "!mod:ltc2",
+      "text": "$(o)Latiao Craft 2 Crossover Item$()$(br)$(o)You need this mod to view the related content below.$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "flag": "mod:ltc2",
+      "recipe": "huajiage:huaji_latiao_sword",
+      "text": "A sword cast from spicy strips. Hold $(l)$(6)[$(k:sneak)+$(k:use)]$() while holding it to change form. When inactive, consumes hunger to repair durability. When active, attacks deal extra lava damage, and pressing $(l)$(6)[$(k:use)]$() while holding releases 「Soaring Flames」, causing area damage and moving you upward."
+    }
+  ],
+  "sortnum": 0
+}

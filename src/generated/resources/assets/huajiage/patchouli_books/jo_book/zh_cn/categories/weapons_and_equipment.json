@@ -1,0 +1,7 @@
+{
+  "parent": "huajiage:huaji_items",
+  "description": "白帝圣剑，华夏第一剑！白帝圣剑，御剑跟着我！",
+  "icon": "huajiage:huaji_star_sword",
+  "name": "武器与装备",
+  "sortnum": 2
+}

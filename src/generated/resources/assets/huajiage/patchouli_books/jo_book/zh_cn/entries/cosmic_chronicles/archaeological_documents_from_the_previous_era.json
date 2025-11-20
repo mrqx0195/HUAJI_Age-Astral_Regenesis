@@ -1,0 +1,23 @@
+{
+  "category": "huajiage:cosmic_chronicles",
+  "icon": "minecraft:writable_book",
+  "name": "前纪元考古文献资料",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "前纪元毁于宇宙坍缩，然而，一些古老的信息却在滑稽粒子的内部保留了下来，科学家利用意识-粒子超谐振脑补技术，生动的重现了当时留下的珍贵影像。"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "huajiage:textures/book/story/cheer_up.png"
+      ],
+      "text": "盟军奥利给舰队指挥官吉蒙·詹·琼恩在星港发表战前演讲"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "“我们遇到什么困难，也不要怕，微笑着面对它！消除恐惧的最好办法就是面对恐惧！坚持，才是胜利！加油，奥利给！”$()$(br)——吉蒙·詹·琼恩$(br2)此战后，奥利给舰队近2000艘战舰几乎全灭。"
+    }
+  ],
+  "sortnum": 1
+}

@@ -1,6 +1,5 @@
 package net.mrqx.huajiage.registy;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -37,7 +36,7 @@ public class HuaJiRecipes {
         return new RecipeType<>() {
             @Override
             public String toString() {
-                return new ResourceLocation(HuaJiAgeMod.MODID, name).toString();
+                return HuaJiAgeMod.prefix(name).toString();
             }
         };
     }

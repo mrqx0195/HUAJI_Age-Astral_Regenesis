@@ -103,7 +103,6 @@ public class OrgaEventHandler {
                 living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, hopeDuration, 5));
                 living.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, hopeDuration, 5));
                 living.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, hopeDuration, 5));
-                HuaJiSoundPlayer.playMovingSoundToClient(living, HuaJiSoundEvents.ORGA_FLOWER.get(), 5);
             }
             if (hopeDuration == 844) {
                 living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 844, 9));

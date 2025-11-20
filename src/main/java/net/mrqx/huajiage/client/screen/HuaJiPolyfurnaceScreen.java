@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.mrqx.huajiage.HuaJiAgeMod;
 import net.mrqx.huajiage.block.blockentity.HuaJiPolyfurnaceBlockEntity;
 import net.mrqx.huajiage.block.inventory.HuaJiPolyfurnaceMenu;
 import net.mrqx.huajiage.utils.HuaJiUtils;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class HuaJiPolyfurnaceScreen extends AbstractContainerScreen<HuaJiPolyfurnaceMenu> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("huajiage", "textures/gui/container/gui_huaji_polyfurnace.png");
+    private static final ResourceLocation TEXTURE = HuaJiAgeMod.prefix("textures/gui/container/gui_huaji_polyfurnace.png");
 
     public final int COOK_BAR_XPOS = 62;
     public final int COOK_BAR_YPOS = 33;

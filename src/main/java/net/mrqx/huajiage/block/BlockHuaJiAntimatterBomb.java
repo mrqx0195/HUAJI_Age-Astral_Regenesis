@@ -24,9 +24,10 @@ public class BlockHuaJiAntimatterBomb extends BlockHuaJiBomb {
         if (!pLevel.isClientSide) {
             posList.add(pPos);
             pLevel.removeBlock(pPos, true);
-            for (int i = -radius; i <= radius; i++) {
-                for (int j = -radius; j <= radius; j++) {
-                    for (int k = -radius; k <= radius; k++) {
+            int radius1 = radius * (isBig ? 2 : 1);
+            for (int i = -radius1; i <= radius1; i++) {
+                for (int j = -radius1; j <= radius1; j++) {
+                    for (int k = -radius1; k <= radius1; k++) {
                         BlockPos blockPos = new BlockPos(pPos.getX() + i, pPos.getY() + j, pPos.getZ() + k);
                         if (!posList.contains(blockPos)) {
                             posList.add(blockPos);
@@ -40,7 +41,7 @@ public class BlockHuaJiAntimatterBomb extends BlockHuaJiBomb {
                     }
                 }
             }
-            pLevel.getEntitiesOfClass(Entity.class, new AABB(pPos.getX() - radius, pPos.getY() - radius, pPos.getZ() - radius, pPos.getX() + radius, pPos.getY() + radius, pPos.getZ() + radius)).forEach(entity -> {
+            pLevel.getEntitiesOfClass(Entity.class, new AABB(pPos.getX() - radius1, pPos.getY() - radius1, pPos.getZ() - radius1, pPos.getX() + radius1, pPos.getY() + radius1, pPos.getZ() + radius1)).forEach(entity -> {
                 if (entity instanceof LivingEntity living) {
                     living.hurt(HuaJiDamageSources.antimatter(pLevel, null, null, pPos.getCenter()), 20);
                 } else {

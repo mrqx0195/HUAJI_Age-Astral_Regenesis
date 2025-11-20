@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bone_block"
+    },
+    "G": {
+      "item": "minecraft:green_dye"
+    },
+    "H": {
+      "item": "huajiage:huaji"
+    },
+    "S": {
+      "item": "huajiage:huaji_star"
+    }
+  },
+  "pattern": [
+    "HSH",
+    "GBG",
+    "HBH"
+  ],
+  "result": {
+    "item": "huajiage:jin_ke_la"
+  },
+  "show_notification": true
+}

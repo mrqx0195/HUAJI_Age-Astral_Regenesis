@@ -7,7 +7,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
@@ -29,6 +28,7 @@ import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.stand.StandKillerQueen;
 import net.mrqx.huajiage.utils.HuaJiDamageSources;
 import net.mrqx.huajiage.utils.ItemTagHelper;
+import net.mrqx.huajiage.utils.ItemUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -93,15 +93,7 @@ public class ItemKillerQueenTrigger extends BaseItem {
                 player.sendSystemMessage(Component.translatable("message.huajiage.killer_queen_trigger.failed.stand").withStyle(ChatFormatting.GRAY));
             }
         });
-        player.swing(usedHand, true);
-        if (flag.get()) {
-            player.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
-            if (!player.getAbilities().instabuild) {
-                itemStack.shrink(1);
-            }
-            return InteractionResultHolder.success(itemStack);
-        }
-        return InteractionResultHolder.consume(itemStack);
+        return ItemUtils.swingAndShrinkItem(player, usedHand, itemStack, flag);
     }
 
     public static List<Trigger> getTriggers(ItemStack itemStack) {

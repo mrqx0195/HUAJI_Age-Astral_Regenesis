@@ -78,7 +78,7 @@ public class ItemExglutenbur extends SwordItem {
                                 15 + getDamage(), AttributeModifier.Operation.ADDITION));
                 case SPICY ->
                         multimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier",
-                                1 + getDamage(), AttributeModifier.Operation.ADDITION));
+                                8 + getDamage(), AttributeModifier.Operation.ADDITION));
                 case LIME ->
                         multimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier",
                                 10 + getDamage(), AttributeModifier.Operation.ADDITION));
@@ -160,6 +160,8 @@ public class ItemExglutenbur extends SwordItem {
                 pAttacker.heal(1);
                 pStack.hurtAndBreak(12, pAttacker, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
             }
+            default -> {
+            }
         }
         return super.hurtEnemy(pStack, pTarget, pAttacker);
     }
@@ -182,6 +184,8 @@ public class ItemExglutenbur extends SwordItem {
                             living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1, false, false));
                             living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 4, false, false));
                         }
+                    }
+                    default -> {
                     }
                 }
             }
@@ -224,7 +228,22 @@ public class ItemExglutenbur extends SwordItem {
     }
 
     public enum Flavor {
-        BASE, FRAGRANT, SPICY, LIME;
+        /**
+         * Base Mode
+         */
+        BASE,
+        /**
+         * Fragrant Mode
+         */
+        FRAGRANT,
+        /**
+         * Spicy Mode
+         */
+        SPICY,
+        /**
+         * Lime! Mode
+         */
+        LIME;
 
         public static Flavor getFlavor(ItemStack itemStack) {
             switch (ItemTagHelper.getInt(itemStack, "exglutenbur_flavor", 0)) {

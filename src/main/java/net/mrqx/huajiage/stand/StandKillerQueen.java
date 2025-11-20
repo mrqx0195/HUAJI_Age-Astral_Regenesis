@@ -1,23 +1,15 @@
 package net.mrqx.huajiage.stand;
 
-import com.mega.endinglib.util.time.TimeStopUtils;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.OwnableEntity;
-import net.minecraft.world.entity.boss.EnderDragonPart;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -31,15 +23,12 @@ import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.stand.ModelKillerQueen;
 import net.mrqx.huajiage.client.model.stand.ModelKillerQueenPunch;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
-import net.mrqx.huajiage.data.HuaJiDamageTypes;
-import net.mrqx.huajiage.entity.EntityRoadRoller;
 import net.mrqx.huajiage.entity.EntitySheerHeartAttack;
 import net.mrqx.huajiage.item.ItemKillerQueenTrigger;
 import net.mrqx.huajiage.registy.HuaJiItems;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
-import net.mrqx.huajiage.utils.HuaJiDamageSources;
-import net.mrqx.huajiage.utils.HuaJiMathHelper;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
+import net.mrqx.huajiage.utils.StandUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -52,36 +41,7 @@ public class StandKillerQueen extends Stand {
     public static final BiConsumer<LivingEntity, IStandData> KILLER_QUEEN_TICK = (living, data) -> {
         Stand stand = Stand.getStand(data.getStand());
         if (stand != null && !living.level().isClientSide && STATE_PUNCH.equals(data.getState())) {
-            living.level().getEntitiesOfClass(Entity.class, living.getBoundingBox().inflate(stand.getDistance(living, data) / 50)).forEach(entity -> {
-                if (HuaJiMathHelper.getDegreeXZ(living.getLookAngle(), HuaJiMathHelper.getVectorEntityEye(living, entity)) > 45) {
-                    return;
-                }
-                Vec3 back = HuaJiMathHelper.getVectorEntityEye(living, entity);
-                DamageSource damageSource = HuaJiDamageSources.simple(living, HuaJiDamageTypes.STAND_HIT);
-
-                if (entity instanceof EnderDragonPart enderDragonPart) {
-                    enderDragonPart.parentMob.hurt(enderDragonPart.parentMob.head, damageSource, stand.getDamage(living, data));
-                } else if (entity instanceof LivingEntity target && !target.equals(living)) {
-                    boolean isTimeStopping = TimeStopUtils.isTimeStop && TimeStopUtils.andSameDimension(living.level());
-                    if (living.level().getGameTime() % 4 == 0 || isTimeStopping) {
-                        target.invulnerableTime = 0;
-                        target.hurt(damageSource, stand.getDamage(living, data) / 2);
-                        target.invulnerableTime = 0;
-                        if (!isTimeStopping) {
-                            living.level().levelEvent(2001, target.blockPosition().offset(0, (int) (target.getEyePosition(0).y - target.position().y), 0), Block.getId(Blocks.OBSIDIAN.defaultBlockState()));
-                        }
-                        if (HuaJiMathHelper.getVectorEntityEye(living, target).length() < stand.getDistance(living, data) / 25) {
-                            target.setDeltaMovement(back);
-                        }
-                    }
-                } else if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
-                    if (entity instanceof EntityRoadRoller roadRoller) {
-                        roadRoller.hurt(damageSource, stand.getDamage(living, data) / 2);
-                    } else {
-                        entity.setDeltaMovement(back.scale(stand.getDamage(living, data) / 10));
-                    }
-                }
-            });
+            StandUtils.standPunch(living, data, stand, 50, 45, null);
         }
     };
 
@@ -145,7 +105,7 @@ public class StandKillerQueen extends Stand {
 
     @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return data.isTriggered() && data.getState().equals(STATE_DEFAULT) ? 104 : 80;
+        return !data.isTriggered() ? 104 : data.getState().equals(STATE_DEFAULT) ? 80 : 0;
     }
 
     @Override

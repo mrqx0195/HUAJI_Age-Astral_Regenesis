@@ -13,6 +13,7 @@ import net.mrqx.huajiage.stand.Stand;
 /**
  * Made with Blockbench 4.12.6
  */
+@SuppressWarnings({"DuplicatedCode"})
 public class ModelOrgaRequiem extends ModelStandBase {
     private final ModelPart head;
     private final ModelPart body;
@@ -30,7 +31,7 @@ public class ModelOrgaRequiem extends ModelStandBase {
     private final ModelPart hair_p_7;
 
     public ModelOrgaRequiem(ModelPart root) {
-        super(root);
+        super();
         this.head = root.getChild("head");
         this.body = root.getChild("body");
         this.leftArm = root.getChild("leftArm");

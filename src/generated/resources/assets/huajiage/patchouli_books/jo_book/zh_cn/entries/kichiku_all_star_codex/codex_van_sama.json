@@ -1,0 +1,29 @@
+{
+  "advancement": "huajiage:infinite_universe_star",
+  "category": "huajiage:kichiku_all_star_codex",
+  "icon": "huajiage:neutron_star_fragment",
+  "name": "VAN様",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "被称作「Dark Knight」的男♂人，新日暮里黑暗之侧的领袖，黑♂暗与炽焱之男，世间万物的征服者。$()$(br)$(o)My name is Van. I'm an artist, I'm a performance artist. I'm hired for people to fulfill their fantasies, their deep♂dark♂fantasies.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)职阶：Van♂quisher / 征♂服者$()$(br)VAN様的专属职阶，是Berserker职阶的变种。与原先相比，Van♂quisher的职阶技能没有失去理性的副作用，并有着相当均衡的面板。$(br2)$(l)力量 A$()$(br)$(l)耐久 A$()$(br)$(l)敏捷 A$()$(br)$(l)魔力 A$()$(br)$(l)幸运 A$()$(br)$(l)宝具 A$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)职阶技能：$()$(br)$(l)魔♂男化（A+）$()：凝聚魔力于自身，大幅强化自身，同时激活「黑暗♂魔剑」。释放瞬间需要朝天竖右手中指并大喊“FA♂Q!”。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)固有技能：$()$(br)$(l)烈焰♂男魂（A）$()：摩擦自己的身体积蓄热量，肉搏时能够将热量释放出来形成烈焰。如果积蓄了足够的火焰，甚至可以引发爆炸。$()$(br)$(l)暗黑♂牢笼（A+）$()：制造一块领域，将目标束缚在领域之中，目标尝试离开时会被推回并受到伤害。在连续攻击的情况下，可以将目标按在领域边界连打以使伤害最大化。$()$(br)$(l)暗♂之妖精（A）$()：新日暮里黑暗面的权能具现。能够通过身体接触汲取能量，恢复生命力及魔力，这也使得VAN様有着不俗的近身作战能力。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)宝具：$()$(br)$(l)黑暗♂魔剑（A+）$()：只能在魔♂男化期间使用的大剑，挥舞时会留下残影造成连续打击。其实质是VAN様自身的魔力，因此即便使用「幻想崩坏」将其主动引爆，也可以通过魔♂男化重新生成一把。"
+    }
+  ],
+  "sortnum": 0
+}

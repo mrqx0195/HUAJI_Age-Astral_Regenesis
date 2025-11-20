@@ -10,7 +10,6 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -33,11 +32,11 @@ public class HuaJiAgeMod {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static ResourceLocation prefix(String s) {
-        return new ResourceLocation(MODID, s);
+        return ResourceLocation.fromNamespaceAndPath(MODID, s);
     }
 
-    public HuaJiAgeMod() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public HuaJiAgeMod(FMLJavaModLoadingContext modLoadingContext) {
+        IEventBus modEventBus = modLoadingContext.getModEventBus();
         HuaJiItems.ITEMS.register(modEventBus);
         HuaJiBlocks.BLOCKS.register(modEventBus);
         HuaJiBlocks.BLOCK_ENTITIES.register(modEventBus);
@@ -52,8 +51,8 @@ public class HuaJiAgeMod {
 
         HuaJiCompat.register(modEventBus);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, HuaJiCommonConfig.COMMON_CONFIG);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, HuaJiClientConfig.CLIENT_CONFIG);
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, HuaJiCommonConfig.COMMON_CONFIG);
+        modLoadingContext.registerConfig(ModConfig.Type.CLIENT, HuaJiClientConfig.CLIENT_CONFIG);
     }
 
     @Mod.EventBusSubscriber(

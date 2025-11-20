@@ -1,0 +1,22 @@
+{
+  "category": "huajiage:huaji_items",
+  "icon": "huajiage:huaji_bomb",
+  "name": "HUAJI Bomb",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Incorporating HUAJI elements into TNT results in a greater explosive yield, but also makes it unstable—for convenience, we generally refer to it as the $(item)HUAJI Bomb$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:huaji_bomb,huajiage:huaji_antimatter_bomb",
+      "text": "The HUAJI Bomb also has an improved version: the HUAJI Miniature Antimatter Bomb, capable of annihilating everything within an area."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_bomb",
+      "recipe2": "huajiage:huaji_antimatter_bomb"
+    }
+  ],
+  "sortnum": 0
+}

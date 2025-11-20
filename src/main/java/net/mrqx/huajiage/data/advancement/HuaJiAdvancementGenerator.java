@@ -52,6 +52,24 @@ public class HuaJiAdvancementGenerator implements ForgeAdvancementProvider.Advan
                 .addCriterion("get_" + HuaJiItems.HUAJI.getId().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(HuaJiItems.HUAJI.get()))
                 .save(saver, HuaJiAgeMod.prefix("huaji"), existingFileHelper);
 
+        Advancement jinKeLa = Advancement.Builder.advancement().parent(huaji)
+                .display(HuaJiItems.JIN_KE_LA.get(),
+                        Component.translatable("advancement.huajiage.jin_ke_la.title"),
+                        Component.translatable("advancement.huajiage.jin_ke_la.desc"),
+                        null,
+                        FrameType.TASK, true, true, false)
+                .addCriterion("get_" + HuaJiItems.JIN_KE_LA.getId().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(HuaJiItems.JIN_KE_LA.get()))
+                .save(saver, HuaJiAgeMod.prefix("jin_ke_la"), existingFileHelper);
+
+        Advancement.Builder.advancement().parent(jinKeLa)
+                .display(HuaJiItems.HUAJI_BOMB.get(),
+                        Component.translatable("advancement.huajiage.jin_ke_la_bomb.title"),
+                        Component.translatable("advancement.huajiage.jin_ke_la_bomb.desc"),
+                        null,
+                        FrameType.CHALLENGE, true, true, true)
+                .addCriterion("custom", new ImpossibleTrigger.TriggerInstance())
+                .save(saver, HuaJiAgeMod.prefix("jin_ke_la_bomb"), existingFileHelper);
+
         Advancement huajiBlender = Advancement.Builder.advancement().parent(huaji)
                 .display(HuaJiItems.HUAJI_BLENDER.get(),
                         Component.translatable("advancement.huajiage.huaji_blender.title"),

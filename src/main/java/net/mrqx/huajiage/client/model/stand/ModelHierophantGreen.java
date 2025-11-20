@@ -10,7 +10,7 @@ import net.minecraft.world.entity.Entity;
 /**
  * Made with Blockbench 4.12.6
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "DuplicatedCode"})
 public class ModelHierophantGreen extends ModelStandBase {
     private final ModelPart head;
     private final ModelPart body;
@@ -21,7 +21,7 @@ public class ModelHierophantGreen extends ModelStandBase {
     private final ModelPart extra;
 
     public ModelHierophantGreen(ModelPart root) {
-        super(root);
+        super();
         this.head = root.getChild("head");
         this.body = root.getChild("body");
         this.leftarm = root.getChild("leftarm");

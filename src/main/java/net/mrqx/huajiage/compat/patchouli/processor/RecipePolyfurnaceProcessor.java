@@ -19,7 +19,7 @@ public class RecipePolyfurnaceProcessor implements IComponentProcessor {
     public void setup(Level level, IVariableProvider iVariableProvider) {
         String recipeId = iVariableProvider.get("recipe").asString();
         RecipeManager manager = level.getRecipeManager();
-        if (manager.byKey(new ResourceLocation(recipeId)).orElseThrow(() -> new IllegalArgumentException("Invalid recipe id:" + recipeId)) instanceof HuaJiPolyfurnaceRecipe huaJiPolyfurnaceRecipe) {
+        if (manager.byKey(ResourceLocation.parse(recipeId)).orElseThrow(() -> new IllegalArgumentException("Invalid recipe id:" + recipeId)) instanceof HuaJiPolyfurnaceRecipe huaJiPolyfurnaceRecipe) {
             recipe = huaJiPolyfurnaceRecipe;
         } else {
             throw new IllegalArgumentException("Invalid recipe id:" + recipeId);
@@ -41,8 +41,10 @@ public class RecipePolyfurnaceProcessor implements IComponentProcessor {
             case "ipool" -> {
                 return IVariable.wrap(Component.translatable("gui.jei.category.huajiage.polyfurnace.pool", recipe.point()).getString());
             }
+            default -> {
+                HuaJiAgeMod.LOGGER.error("Error while processing HuaJiPolyfurnaceRecipe:", new IllegalArgumentException("Invalid recipe key:" + key));
+                return IVariable.empty();
+            }
         }
-        HuaJiAgeMod.LOGGER.error("Error while processing HuaJiPolyfurnaceRecipe:", new IllegalArgumentException("Invalid recipe key:" + key));
-        return IVariable.empty();
     }
 }

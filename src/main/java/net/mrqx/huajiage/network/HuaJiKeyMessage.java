@@ -34,9 +34,21 @@ public class HuaJiKeyMessage {
     }
 
     public enum Keys {
+        /**
+         * @see net.mrqx.huajiage.client.HuaJiKeyMappings#KEY_CHANGE_MODE
+         */
         CHANGE_MODE,
+        /**
+         * @see net.mrqx.huajiage.client.HuaJiKeyMappings#KEY_TRIGGER_STAND
+         */
         TRIGGER_STAND,
+        /**
+         * @see net.mrqx.huajiage.client.HuaJiKeyMappings#KEY_STAND_SKILL
+         */
         STAND_SKILL,
+        /**
+         * @see net.mrqx.huajiage.client.HuaJiKeyMappings#KEY_CHANGE_STAND_MODE
+         */
         CHANGE_STAND_MODE
     }
 }

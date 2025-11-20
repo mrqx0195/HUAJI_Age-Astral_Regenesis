@@ -1,0 +1,28 @@
+{
+  "category": "huajiage:the_infinite_starry_river",
+  "icon": "huajiage:infinite_universe_star",
+  "name": "无尽之星",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "“如果每一颗滑稽之星都可以看作一枚星辰的话，无数枚滑稽之星聚合在一起，会变成什么？”$()$(br)$(br)——没人知道最早提出这个问题的先辈是谁，但对于他提出的这个问题，$(item)滑稽终极熔炼炉$()或许能告诉我们答案。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_polyfurnace",
+      "text": "将海量的$(item)滑稽之星$()投入滑稽终极熔炼炉，再以滑稽作为燃料进行聚合，就能得到最后的结果——$(item)无尽之星$()。$()$(br)$()$(br)利用无尽之星，可以从上个宇宙中获取更多的鬼畜之力，进而打造更强的滑稽物品。"
+    },
+    {
+      "type": "huajiage:poly",
+      "r1": "huajiage:huaji_polyfurnace/huaji_star",
+      "r2": "huajiage:huaji_polyfurnace/huaji_star_block"
+    },
+    {
+      "type": "huajiage:poly",
+      "r1": "huajiage:huaji_polyfurnace/airspace_star",
+      "r2": "huajiage:huaji_polyfurnace/airspace_star_block"
+    }
+  ],
+  "priority": true,
+  "sortnum": 0
+}

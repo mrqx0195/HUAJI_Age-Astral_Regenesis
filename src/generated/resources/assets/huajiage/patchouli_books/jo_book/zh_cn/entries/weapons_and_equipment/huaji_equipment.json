@@ -1,0 +1,43 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:huaji_helmet",
+  "name": "滑稽装备",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "由于颜色相近，滑稽和金锭具有很好的相性。将两者混合得到的$(l:huaji_blender)滑稽锭$()能够用于制作性能不输于钻石护甲的滑稽护甲。尽管防御力略弱于钻石盔甲，但在穿戴时，每件滑稽护甲能够各持续提供一种增益效果。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_helmet",
+      "recipe2": "huajiage:huaji_chestplate"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_leggings",
+      "recipe2": "huajiage:huaji_boots"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_sword",
+      "text": "然而，作为同由滑稽锭制作的装备，滑稽剑并不能提供额外的效果……或许是因为这把剑不够滑稽？"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "!mod:slashblade",
+      "text": "$(o)拔刀剑：重锋（SlashBlade:Resharped）联动物品$()$(br)$(o)你需要安装此mod以查看以下相关内容$()"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "mod:slashblade",
+      "text": "作为一种基础材料，滑稽锭也可以用于打造露台拔刀剑，而在此基础上，可以将其打造成更强的「滑稽大刀」。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "flag": "mod:slashblade",
+      "recipe": "huajiage:slashblade/rodai_huaji",
+      "recipe2": "huajiage:slashblade/huaji_blade"
+    }
+  ],
+  "sortnum": 0
+}

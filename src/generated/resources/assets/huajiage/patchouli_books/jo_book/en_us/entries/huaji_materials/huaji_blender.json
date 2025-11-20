@@ -1,0 +1,38 @@
+{
+  "category": "huajiage:huaji_materials",
+  "icon": "huajiage:huaji_blender",
+  "name": "Tumbling HUAJI Power Blender",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "HUAJI particles have significant application value; however, the elemental form is highly inert and has little direct use. Its special properties only truly manifest after being blended with other materials."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_blender",
+      "text": "Leveraging the power of the Nether Star, this instrument can blend HUAJI with other materials, thereby activating the Kichiku elements within and transforming them into various HUAJI materials.",
+      "title": "HUAJI Perfusion"
+    },
+    {
+      "type": "huajiage:blender",
+      "r1": "huajiage:huaji_blender/huaji_ingot",
+      "r2": "huajiage:huaji_blender/neutron_star_fragment"
+    },
+    {
+      "type": "huajiage:blender",
+      "r1": "huajiage:huaji_blender/redstone_druse",
+      "r2": "huajiage:huaji_blender/flash_flour"
+    },
+    {
+      "type": "huajiage:blender",
+      "r1": "huajiage:huaji_blender/hope_element",
+      "r2": "huajiage:huaji_blender/wave_crystal"
+    },
+    {
+      "type": "huajiage:blender",
+      "r1": "huajiage:huaji_blender/huaji",
+      "r2": "huajiage:huaji_blender/anti_huaji"
+    }
+  ],
+  "sortnum": 0
+}

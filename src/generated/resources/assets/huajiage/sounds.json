@@ -1,4 +1,31 @@
 {
+  "50_50_helmet_active": {
+    "sounds": [
+      {
+        "name": "huajiage:50_50_helmet_active",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.huajiage.50_50_helmet_active"
+  },
+  "50_50_helmet_open": {
+    "sounds": [
+      {
+        "name": "huajiage:50_50_helmet_open",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.huajiage.50_50_helmet_open"
+  },
+  "armor_equip_lord_lu": {
+    "sounds": [
+      {
+        "name": "huajiage:armor_equip_lord_lu",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.huajiage.armor_equip_lord_lu"
+  },
   "bike_ring_ear0": {
     "sounds": [
       {
@@ -77,6 +104,15 @@
       }
     ],
     "subtitle": "subtitles.huajiage.exglutenbur_hit"
+  },
+  "lbwnb": {
+    "sounds": [
+      {
+        "name": "huajiage:lbwnb",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.huajiage.lbwnb"
   },
   "noise_furnace": {
     "sounds": [

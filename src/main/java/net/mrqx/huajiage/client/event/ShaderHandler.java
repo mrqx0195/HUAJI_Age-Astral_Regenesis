@@ -67,10 +67,10 @@ public class ShaderHandler {
                         }
 
                         if (timePassed == 1) {
-                            addShader(new ResourceLocation("shaders/post/invert.json"));
+                            addShader(ResourceLocation.parse("shaders/post/invert.json"));
                         } else if (timePassed == 20) {
                             if (!HuaJiCompat.getInstance().hasFantasyEnding) {
-                                addShader(new ResourceLocation("shaders/post/desaturate.json"));
+                                addShader(ResourceLocation.parse("shaders/post/desaturate.json"));
                             } else {
                                 HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
                             }
@@ -79,7 +79,7 @@ public class ShaderHandler {
                         if (endTime - timePassed == 20) {
                             HuaJiSoundPlayer.playClient(HuaJiSoundPlayer.getMovingSound(minecraft.player, HuaJiSoundEvents.THE_WORLD_RE.get(), SoundSource.PLAYERS, 1));
                         } else if (endTime - timePassed == 10) {
-                            addShader(new ResourceLocation("shaders/post/pencil.json"));
+                            addShader(ResourceLocation.parse("shaders/post/pencil.json"));
                         } else if (endTime - timePassed <= 3) {
                             HuaJiShaderManager.removeShader(TIME_STOP_SHADER);
                         }

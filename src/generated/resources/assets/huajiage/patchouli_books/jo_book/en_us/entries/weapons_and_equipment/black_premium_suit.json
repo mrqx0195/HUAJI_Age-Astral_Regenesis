@@ -1,0 +1,27 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:orga_helmet",
+  "name": "B l a c k  P r e m i u m  S u i t",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The signature attire of Flower of Hope · Orga. Although it is an upgraded version of HUAJI Armor, it does not provide persistent buff effects... Perhaps its true power only manifests at the $(o)brink of life and death$()?"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:orga_helmet",
+      "recipe2": "huajiage:orga_chestplate"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:orga_leggings",
+      "recipe2": "huajiage:orga_boots"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "huajiage:hope_flower",
+      "text": "$(o)When you die while wearing Orga's attire, the power of the Flower of Hope will reject death— subsequently, the Flower of Hope will materialize the scene of Orga's assassination. You will not die until this scene concludes.$()$(br)$(o)However, once the scene ends, you will die forcibly due to worldline convergence... Perhaps there is $(l)something$() with the power to reverse this?$()"
+    }
+  ],
+  "sortnum": 0
+}

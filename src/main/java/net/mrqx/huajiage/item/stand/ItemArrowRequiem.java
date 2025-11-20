@@ -24,6 +24,7 @@ import net.mrqx.huajiage.registy.HuaJiStands;
 import net.mrqx.huajiage.stand.Stand;
 import net.mrqx.huajiage.utils.AdvancementHelper;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
+import net.mrqx.huajiage.utils.ItemTagHelper;
 
 public class ItemArrowRequiem extends BaseItem {
     public ItemArrowRequiem() {
@@ -36,11 +37,11 @@ public class ItemArrowRequiem extends BaseItem {
         pPlayer.startUsingItem(pUsedHand);
         if (!pPlayer.level().isClientSide && ItemOrgaArmor.hasAllOrgaArmor(pPlayer)) {
             pPlayer.getCapability(StandDataCapabilityProvider.STAND_DATA).ifPresent(data -> {
-                if (pPlayer.getInventory().hasAnyMatching(stack -> stack.is(HuaJiItems.ORGA_REQUIEM.get()))) {
+                if (ItemOrgaRequiem.hasValidOrgaRequiem(pPlayer)) {
                     Stand stand = Stand.getStand(data.getStand());
                     if (stand == null) {
                         Stand stand2 = HuaJiStands.ORGA_REQUIEM.get();
-                        data.setStand(stand2);
+                        data.setStandAndResetData(stand2);
                         data.setLevel(0);
                         data.setMaxEnergy(stand2.getMaxEnergy(pPlayer, data));
                         AdvancementHelper.grantCriterion(pPlayer, AdvancementHelper.ORGA_STAND);
@@ -48,6 +49,14 @@ public class ItemArrowRequiem extends BaseItem {
                         pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
                         if (!pPlayer.getAbilities().instabuild) {
                             itemStack.shrink(1);
+                            pPlayer.getInventory().hasAnyMatching(itemStack1 -> {
+                                if (itemStack1.is(HuaJiItems.ORGA_REQUIEM.get())
+                                        && ItemTagHelper.getString(itemStack1, ItemOrgaRequiem.ORGA_REQUIEM_OWNER_KEY, "").equals(pPlayer.getStringUUID())) {
+                                    itemStack1.shrink(1);
+                                    return true;
+                                }
+                                return false;
+                            });
                         }
                     } else {
                         pPlayer.sendSystemMessage(Component.translatable("message.huajiage.tarot.stand.failed").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));

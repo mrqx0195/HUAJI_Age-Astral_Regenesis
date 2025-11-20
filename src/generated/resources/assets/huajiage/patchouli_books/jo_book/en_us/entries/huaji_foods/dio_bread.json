@@ -1,0 +1,20 @@
+{
+  "category": "huajiage:huaji_foods",
+  "icon": "huajiage:dio_bread",
+  "name": "Dio's Bread",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A commemorative bread released by GIOGIO's Bakery to mark the 30th anniversary of the death of their conglomerate chairman's father. Now jointly produced by the Araki Manor."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:dio_bread"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(o)Note: This bread contains a peculiar power. Upon consumption, it will briefly stop time for the entire dimension... except for the consumer. Furthermore, the bread maintains an indestructible state, similar to time stop, even when not in contact with living beings.$()$(br)$(o)It has been confirmed that this property persists even if the bread is pulverized and mixed with other foods. The Kichiku All-Star Alliance has contacted the $(l:https://en.wikipedia.org/wiki/SCP_Foundation)SCP Foundation$() to handle this incident.$()"
+    }
+  ],
+  "sortnum": 0
+}

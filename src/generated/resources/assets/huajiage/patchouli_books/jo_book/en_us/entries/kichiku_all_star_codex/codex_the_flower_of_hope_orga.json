@@ -1,0 +1,29 @@
+{
+  "advancement": "huajiage:orga_requiem",
+  "category": "huajiage:kichiku_all_star_codex",
+  "icon": "huajiage:orga_requiem",
+  "name": "The Flower of Hope · Orga",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "As the leader of Tekkadan, $(l:https://zh.moegirl.org.cn/不要停下来啊！)$(4)$(l)Orga$() does not typically stand on the front lines of battle—however, when the situation becomes critical, he is one of the very few Kichiku stars capable of turning the tide."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class: Ruler$()$(br)Since the Kichiku Universe has no Holy Grail War, the Ruler class has lost its primary function. However, there still seems to be potential to utilize the abilities附带 (fùdài: attached/included with) this class...$(br2)$(l)Strength D$()$(br)$(l)Endurance D$()$(br)$(l)Agility E$()$(br)$(l)Mana A$()$(br)$(l)Luck C$()$(br)$(l)Noble Phantasm EX$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Class Skills:$()$(br)$(l)Magic Resistance (EX)$(): The supreme ability to completely ignore magecraft. But precisely because it completely ignores magecraft, there exists the risk of being defeated by purely physical means."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Personal Skills:$()$(br)$(l)Flower of Hope → Secret Art · 「Don't Stop!」 (B → EX)$(): An ability to briefly sustain life when on the verge of death. Originally a skill meant to work briefly on himself, it evolved for unknown reasons during the final battle, pulling back all the Kichiku All-Stars and sustaining their lives until the end of the universe. Although the reason for its evolution is unknown, based on its manifestation, it ranks among the strongest even within EX-rank abilities."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Noble Phantasm:$()$(br)$(l)Black Premium Sedan (B)$(): A car that can be summoned at any time, carrying three assassins armed with assault rifles. Possesses a trait making it difficult to detect; it will not be noticed by the target until it initiates its attack."
+    }
+  ],
+  "sortnum": 0
+}

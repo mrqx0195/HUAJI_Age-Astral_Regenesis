@@ -7,17 +7,9 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.boss.EnderDragonPart;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrqx.huajiage.HuaJiAgeMod;
@@ -26,11 +18,7 @@ import net.mrqx.huajiage.client.HuaJiLayers;
 import net.mrqx.huajiage.client.model.stand.ModelStandBase;
 import net.mrqx.huajiage.client.model.stand.ModelStarPlatinum;
 import net.mrqx.huajiage.client.model.stand.ModelStarPlatinumIdle;
-import net.mrqx.huajiage.data.HuaJiDamageTypes;
-import net.mrqx.huajiage.entity.EntityRoadRoller;
 import net.mrqx.huajiage.registy.HuaJiSoundEvents;
-import net.mrqx.huajiage.utils.HuaJiDamageSources;
-import net.mrqx.huajiage.utils.HuaJiMathHelper;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.StandUtils;
 
@@ -44,40 +32,13 @@ public class StandStarPlatinum extends Stand {
     public static final BiConsumer<LivingEntity, IStandData> STAR_PLATINUM_TICK = (living, data) -> {
         Stand stand = Stand.getStand(data.getStand());
         if (stand instanceof StandStarPlatinum starPlatinum && !living.level().isClientSide && STATE_DEFAULT.equals(data.getState())) {
-            living.level().getEntitiesOfClass(Entity.class, living.getBoundingBox().inflate(stand.getDistance(living, data))).forEach(entity -> {
-                if (HuaJiMathHelper.getDegreeXZ(living.getLookAngle(), HuaJiMathHelper.getVectorEntityEye(living, entity)) > 120) {
-                    return;
-                }
-                Vec3 back = HuaJiMathHelper.getVectorEntityEye(living, entity);
-                DamageSource damageSource = HuaJiDamageSources.simple(living, HuaJiDamageTypes.STAND_HIT);
-
-                if (entity instanceof EnderDragonPart enderDragonPart) {
-                    enderDragonPart.parentMob.hurt(enderDragonPart.parentMob.head, damageSource, stand.getDamage(living, data));
-                } else if (entity instanceof LivingEntity target && !target.equals(living)) {
-                    boolean isTimeStopping = TimeStopUtils.isTimeStop && TimeStopUtils.andSameDimension(living.level());
-                    if (living.level().getGameTime() % 4 == 0 || isTimeStopping) {
-                        target.invulnerableTime = 0;
-                        target.hurt(damageSource, stand.getDamage(living, data) / 2);
-                        target.invulnerableTime = 0;
-                        if (!isTimeStopping) {
-                            living.level().levelEvent(2001, target.blockPosition().offset(0, (int) (target.getEyePosition(0).y - target.position().y), 0), Block.getId(Blocks.OBSIDIAN.defaultBlockState()));
-                        }
-                        if (HuaJiMathHelper.getVectorEntityEye(living, target).length() < stand.getDistance(living, data)) {
-                            target.setDeltaMovement(back);
-                        }
-                        starPlatinum.counter += isTimeStopping ? 1 : 5;
-                        if (data.getLevel() > 0 && starPlatinum.counter > 4) {
-                            starPlatinum.counter = 0;
-                            HuaJiSoundPlayer.playMovingSoundToClient(living, SoundEvents.GENERIC_EXPLODE, 0.25F);
-                            HuaJiSoundPlayer.playMovingSoundToClient(living, isTimeStopping ? HuaJiSoundEvents.STAND_STAR_PLATINUM_REPEAT_1.get() : HuaJiSoundEvents.STAND_STAR_PLATINUM_5.get(), isTimeStopping ? 1 : 0.3F);
-                        }
-                    }
-                } else if (!(entity instanceof ItemEntity || entity instanceof ExperienceOrb)) {
-                    if (entity instanceof EntityRoadRoller roadRoller) {
-                        roadRoller.hurt(damageSource, stand.getDamage(living, data) / 2);
-                    } else {
-                        entity.setDeltaMovement(back.scale(stand.getDamage(living, data) / 10));
-                    }
+            StandUtils.standPunch(living, data, starPlatinum, 1, 120, (living1, integer) -> {
+                boolean isTimeStopping = TimeStopUtils.isTimeStop && TimeStopUtils.andSameDimension(living1.level());
+                starPlatinum.counter += isTimeStopping ? 1 : 5;
+                if (data.getLevel() > 0 && starPlatinum.counter > 4) {
+                    starPlatinum.counter = 0;
+                    HuaJiSoundPlayer.playMovingSoundToClient(living1, SoundEvents.GENERIC_EXPLODE, 0.25F);
+                    HuaJiSoundPlayer.playMovingSoundToClient(living1, isTimeStopping ? HuaJiSoundEvents.STAND_STAR_PLATINUM_REPEAT_1.get() : HuaJiSoundEvents.STAND_STAR_PLATINUM_5.get(), isTimeStopping ? 1 : 0.3F);
                 }
             });
         }
@@ -138,7 +99,7 @@ public class StandStarPlatinum extends Stand {
 
     @Override
     public int chargePerTick(LivingEntity livingEntity, IStandData data) {
-        return data.isTriggered() && data.getState().equals(STATE_IDLE) ? 190 : 95;
+        return !data.isTriggered() ? 190 : data.getState().equals(STATE_IDLE) ? 95 : 0;
     }
 
     @Override

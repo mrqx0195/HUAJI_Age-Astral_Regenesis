@@ -3,7 +3,6 @@ package net.mrqx.huajiage.client.model.stand;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.Entity;
@@ -13,7 +12,7 @@ import net.mrqx.huajiage.capability.stand.IStandData;
 import net.mrqx.huajiage.stand.Stand;
 
 public abstract class ModelStandBase extends EntityModel<Entity> {
-    public ModelStandBase(ModelPart root) {
+    public ModelStandBase() {
     }
 
     public void renderExtra(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, LivingEntity pLivingEntity, float pLimbSwing,

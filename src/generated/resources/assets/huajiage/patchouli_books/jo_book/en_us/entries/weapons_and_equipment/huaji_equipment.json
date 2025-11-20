@@ -1,0 +1,43 @@
+{
+  "category": "huajiage:weapons_and_equipment",
+  "icon": "huajiage:huaji_helmet",
+  "name": "HUAJI Equipment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Due to their similar color, HUAJI and gold ingots have good compatibility. $(l:huaji_blender)HUAJI Ingots$(), obtained by mixing the two, can be used to craft HUAJI Armor with performance rivaling diamond armor. Although its defense is slightly weaker than diamond armor, each piece of HUAJI Armor provides a continuous buff effect while worn."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_helmet",
+      "recipe2": "huajiage:huaji_chestplate"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_leggings",
+      "recipe2": "huajiage:huaji_boots"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_sword",
+      "text": "However, the HUAJI Sword, also made from HUAJI Ingots, does not provide additional effects... Perhaps this sword isn't \"HUAJI\" enough?"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "!mod:slashblade",
+      "text": "$(o)SlashBlade: Resharped Crossover Item$()$(br)$(o)You need this mod to view the related content below.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "mod:slashblade",
+      "text": "As a basic material, HUAJI Ingots can also be forged into a Rodai SlashBlade. Furthermore, it can be crafted into the stronger \"-HuaJi Blade-\"."
+    },
+    {
+      "type": "patchouli:crafting",
+      "flag": "mod:slashblade",
+      "recipe": "huajiage:slashblade/rodai_huaji",
+      "recipe2": "huajiage:slashblade/huaji_blade"
+    }
+  ],
+  "sortnum": 0
+}

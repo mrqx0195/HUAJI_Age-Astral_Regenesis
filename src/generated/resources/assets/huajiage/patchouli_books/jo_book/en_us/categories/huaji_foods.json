@@ -1,0 +1,7 @@
+{
+  "parent": "huajiage:huaji_items",
+  "description": "This Steve isn't eating properly. How about we...",
+  "icon": "huajiage:egg_rice",
+  "name": "Foods",
+  "sortnum": 1
+}

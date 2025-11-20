@@ -1,0 +1,26 @@
+{
+  "category": "huajiage:stand",
+  "icon": "huajiage:disc",
+  "name": "概述",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(o)Stand POWER!!!$()$(br)$(l)$(thing)替身$()是一种特殊的能力，可以通过使用$(item)替身之箭$()或在宝箱中得到的$(item)Disc$()觉醒。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:disc",
+      "text": "替身分为多种，通过替身之箭觉醒获得的替身是随机的，而通过Disc获得的替身与Disc的描述中所写的替身相同。已有替身时，将无法使用以上方式获得替身。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:arrow_stand"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "获得替身后，在你视野的左侧将会展示几项与替身相关的信息：$()$(br)$(br)$(l)替身名$()：当前持有替身的名称$()$(br)$(l)等级$()：当前持有替身的等级，满级时会显示为“完成”$()$(br)$(l)状态$()：替身当前的活动状态$()$(br)$(l)精神力$()：目前的精神力与精神力上限$()$(br)$(br)其中，$(l)$(thing)精神力$()是替身所需的一种重要资源。召唤替身、使用替身技能时，均会消耗一定量的精神力。$()$(br)替身被召唤后只能存在一段时间，超出时间后将会额外消耗饥饿值来维持替身的存在。$()$(br)"
+    }
+  ],
+  "priority": true,
+  "sortnum": 0
+}

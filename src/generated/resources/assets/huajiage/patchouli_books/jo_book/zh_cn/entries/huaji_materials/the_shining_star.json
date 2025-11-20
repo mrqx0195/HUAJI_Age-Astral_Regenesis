@@ -1,0 +1,27 @@
+{
+  "category": "huajiage:huaji_materials",
+  "icon": "huajiage:airspace_star",
+  "name": "闪耀的星辰",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "经“俺寻思”法研究表明，$(item)下界之星$()中所蕴含的能量能够很好地与滑稽之力融合，进而创造出一类全新的材料——$(item)滑稽之星$()。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:huaji_star,huajiage:airspace_star",
+      "text": "“无论何时，击碎星辰的都是普通的人类啊。”$(br)“星辰？”“没事，只是件往事罢了。”$(br)（远远地，传来一声：Stella！！！）"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_star",
+      "recipe2": "huajiage:airspace_star"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_star_block_packed",
+      "recipe2": "huajiage:airspace_star_block_packed"
+    }
+  ],
+  "sortnum": 0
+}

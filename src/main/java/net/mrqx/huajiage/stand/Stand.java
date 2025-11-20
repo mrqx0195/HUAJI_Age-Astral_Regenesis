@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.stand;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -81,6 +82,7 @@ public abstract class Stand {
         data.setEnergy(Math.min(data.getEnergy() + this.chargePerTick(livingEntity, data), data.getMaxEnergy()));
     }
 
+    @CanIgnoreReturnValue
     public boolean trySkill(LivingEntity livingEntity, IStandData data) {
         int energyDemand = this.skillEnergyDemand(livingEntity, data);
         if (energyDemand >= 0 && data.getEnergy() >= energyDemand) {
@@ -100,7 +102,11 @@ public abstract class Stand {
 
     protected void timeoutPenalty(LivingEntity livingEntity, IStandData data) {
         if (!livingEntity.level().isClientSide) {
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 20, 24, false, false));
+            if (data.getLevel() >= this.getMaxLevel() && data.getEnergy() >= HuaJiCommonConfig.STAND_TRIGGER_COST.get()) {
+                costAndTrigger(livingEntity, data);
+            } else {
+                livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 20, 24, false, false));
+            }
         }
     }
 
@@ -115,6 +121,10 @@ public abstract class Stand {
     public void onTriggered(LivingEntity livingEntity, IStandData data) {
         data.setState(Stand.STATE_DEFAULT);
         livingEntity.sendSystemMessage(Component.translatable(this.getDescriptionId() + ".triggered"));
+        costAndTrigger(livingEntity, data);
+    }
+
+    private void costAndTrigger(LivingEntity livingEntity, IStandData data) {
         float cost = (float) data.getEnergy() / HuaJiCommonConfig.STAND_TRIGGER_COST.get();
         if (cost > 1) {
             cost = 1;
@@ -135,20 +145,58 @@ public abstract class Stand {
         return -1;
     }
 
+    /**
+     * 获取替身的基础伤害，对应原作的“破坏力”属性
+     *
+     * @param livingEntity 正在使用替身的生物
+     * @param data         替身数据
+     * @return 替身的基础伤害
+     */
     public abstract float getDamage(LivingEntity livingEntity, IStandData data);
 
+    /**
+     * 获取替身的基础速度，对应原作的“速度”属性
+     *
+     * @param livingEntity 正在使用替身的生物
+     * @param data         替身数据
+     * @return 替身的基础速度
+     */
     public abstract float getSpeed(LivingEntity livingEntity, IStandData data);
 
+    /**
+     * 获取替身的基础持续时间，对应原作的“持续力”属性
+     *
+     * @param livingEntity 正在使用替身的生物
+     * @param data         替身数据
+     * @return 替身的基础持续力
+     */
     public abstract int getDuration(LivingEntity livingEntity, IStandData data);
 
+    /**
+     * 获取替身的基础射程距离，对应原作的“射程距离”属性
+     *
+     * @param livingEntity 正在使用替身的生物
+     * @param data         替身数据
+     * @return 替身的基础射程距离
+     */
     public abstract float getDistance(LivingEntity livingEntity, IStandData data);
 
     public long getMaxEnergy(LivingEntity livingEntity, IStandData data) {
         return this.chargePerTick(livingEntity, data) * 1200L;
     }
 
+    /**
+     * 该替身可用的状态
+     *
+     * @return 状态列表
+     */
     public abstract List<String> getStates();
 
+    /**
+     * 获取用于存储替身客户端资源的类
+     *
+     * @return 一个AbstractStandResource实例
+     */
     @OnlyIn(Dist.CLIENT)
     public abstract AbstractStandResource getStandResource();
 
@@ -167,18 +215,43 @@ public abstract class Stand {
 
     @OnlyIn(Dist.CLIENT)
     public abstract static class AbstractStandResource {
+        /**
+         * 替身状态与{@link ModelLayerLocation}的映射表
+         *
+         * @return 一个映射表实例
+         */
         @OnlyIn(Dist.CLIENT)
         public abstract Map<String, ModelLayerLocation> getModelLocations();
 
+        /**
+         * 替身状态与{@link ResourceLocation}的映射表
+         *
+         * @return 一个映射表实例
+         */
         @OnlyIn(Dist.CLIENT)
         public abstract Map<String, ResourceLocation> getModelTextures();
 
+        /**
+         * 替身状态与该状态下替身模型基础位移的映射表
+         *
+         * @return 一个映射表实例
+         */
         @OnlyIn(Dist.CLIENT)
         public abstract Map<String, List<Double>> getModelTranslations();
 
+        /**
+         * {@link ModelLayerLocation}与其对应的{@link LayerDefinition}的映射表
+         *
+         * @return 一个映射表实例
+         */
         @OnlyIn(Dist.CLIENT)
         public abstract Map<ModelLayerLocation, Supplier<LayerDefinition>> getModels();
 
+        /**
+         * {@link ModelLayerLocation}与其对应的{@link ModelStandBase#ModelStandBase()}的映射表
+         *
+         * @return 一个映射表实例
+         */
         @OnlyIn(Dist.CLIENT)
         public abstract Map<ModelLayerLocation, Function<ModelPart, ModelStandBase>> getModelFunction();
 

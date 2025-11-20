@@ -80,6 +80,10 @@ public class HuaJiSoundDefinitions extends SoundDefinitionsProvider {
         this.addSoundWithSubTitle(HuaJiSoundEvents.REO_CHERRY.get());
         this.addSoundWithSubTitle(HuaJiSoundEvents.WAVE_OVERDRIVE_1.get());
         this.addSoundWithSubTitle(HuaJiSoundEvents.WAVE_OVERDRIVE_RUN.get());
+        this.addSoundWithSubTitle(HuaJiSoundEvents.FIFTY_FIFTY_HELMET_ACTIVE.get());
+        this.addSoundWithSubTitle(HuaJiSoundEvents.FIFTY_FIFTY_HELMET_OPEN.get());
+        this.addSoundWithSubTitle(HuaJiSoundEvents.LBWNB.get());
+        this.addSoundWithSubTitle(HuaJiSoundEvents.ARMOR_EQUIP_LORD_LU.get());
     }
 
     protected void addSound(SoundEvent soundEvent) {

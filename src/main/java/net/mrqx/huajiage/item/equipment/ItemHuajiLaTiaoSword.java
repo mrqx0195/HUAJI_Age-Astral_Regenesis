@@ -2,6 +2,7 @@ package net.mrqx.huajiage.item.equipment;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleTypes;
@@ -30,6 +31,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrqx.huajiage.init.HuaJiTiers;
 import net.mrqx.huajiage.registy.HuaJiItems;
+import net.mrqx.huajiage.utils.HuaJiMathHelper;
 import net.mrqx.huajiage.utils.HuaJiSoundPlayer;
 import net.mrqx.huajiage.utils.ItemTagHelper;
 import org.jetbrains.annotations.Nullable;
@@ -38,6 +40,9 @@ import java.util.List;
 
 @Mod.EventBusSubscriber
 public class ItemHuajiLaTiaoSword extends SwordItem {
+
+    public static final String HUAJI_LATIAO_SWORD_MODE_KEY = "huaji_latiao_sword_mode";
+
     public ItemHuajiLaTiaoSword() {
         super(HuaJiTiers.HUAJI_LATIAO.get(), 12, -1, new Item.Properties().rarity(Rarity.RARE).durability(3998));
     }
@@ -120,7 +125,17 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
             } else if (Mode.getMode(itemStack).equals(Mode.ON) && player instanceof ServerPlayer serverPlayer) {
                 if (serverPlayer.getFoodData().getFoodLevel() < 20) {
                     serverPlayer.getFoodData().setFoodLevel(serverPlayer.getFoodData().getFoodLevel() + 2);
-                    itemStack.hurtAndBreak(20, serverPlayer, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                    itemStack.hurtAndBreak(10, serverPlayer, living -> living.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                }
+                List<LivingEntity> entities = serverPlayer.level().getEntitiesOfClass(LivingEntity.class, serverPlayer.getBoundingBox().inflate(2));
+                for (LivingEntity entity : entities) {
+                    if (entity != serverPlayer) {
+                        Vec3 vec = HuaJiMathHelper.getVectorEntity(serverPlayer, entity);
+                        if (vec.length() != 0) {
+                            entity.hurt(entity.level().damageSources().lava(), (float) (20f / vec.length()));
+                            entity.setDeltaMovement(entity.getDeltaMovement().add(-vec.x / vec.length(), -vec.y / vec.length(), -vec.z / vec.length()));
+                        }
+                    }
                 }
                 serverPlayer.setDeltaMovement(serverPlayer.getDeltaMovement().x, 0.6, serverPlayer.getDeltaMovement().z);
                 serverPlayer.fallDistance = 0;
@@ -142,21 +157,29 @@ public class ItemHuajiLaTiaoSword extends SwordItem {
     }
 
     public enum Mode {
-        ON, OFF;
+        /**
+         * Active Mode
+         */
+        ON,
+        /**
+         * Inactive Mode
+         */
+        OFF;
 
         public static Mode getMode(ItemStack itemStack) {
-            if (ItemTagHelper.getBoolean(itemStack, "huaji_latiao_sword_mode", false)) {
+            if (ItemTagHelper.getBoolean(itemStack, HUAJI_LATIAO_SWORD_MODE_KEY, false)) {
                 return ON;
             }
             return OFF;
         }
 
+        @CanIgnoreReturnValue
         public static Mode changeMode(ItemStack itemStack) {
             if (getMode(itemStack) == Mode.OFF) {
-                ItemTagHelper.setBoolean(itemStack, "huaji_latiao_sword_mode", true);
+                ItemTagHelper.setBoolean(itemStack, HUAJI_LATIAO_SWORD_MODE_KEY, true);
                 return ON;
             }
-            ItemTagHelper.setBoolean(itemStack, "huaji_latiao_sword_mode", false);
+            ItemTagHelper.setBoolean(itemStack, HUAJI_LATIAO_SWORD_MODE_KEY, false);
             return OFF;
         }
     }

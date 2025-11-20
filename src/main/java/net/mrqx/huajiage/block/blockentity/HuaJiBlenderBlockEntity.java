@@ -93,6 +93,9 @@ public class HuaJiBlenderBlockEntity extends BaseContainerBlockEntity implements
                     break;
                 case DATA_COOKING_TOTAL_TIME:
                     HuaJiBlenderBlockEntity.this.processingTotalTime = p_58434_;
+                    break;
+                default:
+                    break;
             }
 
         }
@@ -126,7 +129,7 @@ public class HuaJiBlenderBlockEntity extends BaseContainerBlockEntity implements
         CompoundTag compoundtag = pTag.getCompound("RecipesUsed");
 
         for (String s : compoundtag.getAllKeys()) {
-            this.recipesUsed.put(new ResourceLocation(s), compoundtag.getInt(s));
+            this.recipesUsed.put(ResourceLocation.parse(s), compoundtag.getInt(s));
         }
 
     }
@@ -413,7 +416,7 @@ public class HuaJiBlenderBlockEntity extends BaseContainerBlockEntity implements
     private static void createExperience(ServerLevel pLevel, Vec3 pPopVec, int pRecipeIndex, float pExperience) {
         int i = Mth.floor((float) pRecipeIndex * pExperience);
         float f = Mth.frac((float) pRecipeIndex * pExperience);
-        if (f > 0.0F && Math.random() < (double) f) {
+        if (f > 0 && Math.random() < (double) f) {
             ++i;
         }
 

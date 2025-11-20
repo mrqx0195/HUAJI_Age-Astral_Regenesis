@@ -1,0 +1,16 @@
+{
+  "category": "huajiage:stand",
+  "icon": "huajiage:tarot",
+  "name": "命运的塔罗牌",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "有时，你或许会需要更换替身——此时，你可以使用$(item)命运的塔罗牌$()来将自己已有的替身卸载至塔罗牌中，以便获取新的替身。$()$(br)当然，你也可以在没有替身的情况下重新将塔罗牌中的替身装载至自身。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:tarot"
+    }
+  ],
+  "sortnum": 0
+}

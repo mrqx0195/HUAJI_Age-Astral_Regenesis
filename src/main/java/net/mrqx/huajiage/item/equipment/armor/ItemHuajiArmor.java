@@ -26,6 +26,13 @@ public abstract class ItemHuajiArmor extends ArmorItem {
         public ItemHuajiArmorHelmet() {
             super(Type.HELMET);
         }
+
+        @Override
+        public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+            if (player.getInventory().armor.get(EquipmentSlot.HEAD.getIndex()).equals(stack)) {
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false));
+            }
+        }
     }
 
     public static class ItemHuajiArmorChestplate extends ItemHuajiArmor {
@@ -35,8 +42,8 @@ public abstract class ItemHuajiArmor extends ArmorItem {
 
         @Override
         public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
-            if (player.getInventory().armor.get(2).equals(stack)) {
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 0, false, false));
+            if (player.getInventory().armor.get(EquipmentSlot.CHEST.getIndex()).equals(stack)) {
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 220, 0, false, false));
             }
         }
     }
@@ -48,8 +55,8 @@ public abstract class ItemHuajiArmor extends ArmorItem {
 
         @Override
         public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
-            if (player.getInventory().armor.get(1).equals(stack)) {
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false));
+            if (player.getInventory().armor.get(EquipmentSlot.LEGS.getIndex()).equals(stack)) {
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 220, 0, false, false));
             }
         }
     }
@@ -61,8 +68,8 @@ public abstract class ItemHuajiArmor extends ArmorItem {
 
         @Override
         public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
-            if (player.getInventory().armor.get(0).equals(stack)) {
-                player.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
+            if (player.getInventory().armor.get(EquipmentSlot.FEET.getIndex()).equals(stack)) {
+                player.addEffect(new MobEffectInstance(MobEffects.JUMP, 220, 0, false, false));
             }
         }
     }

@@ -53,6 +53,7 @@ public class HuaJiPolyfurnaceRecipeSerializer implements RecipeSerializer<HuaJiP
         pBuffer.writeVarInt(pRecipe.processTime());
     }
 
+    @SuppressWarnings("AlibabaAbstractMethodOrInterfaceMethodMustUseJavadoc")
     public interface CookieBaker<T extends HuaJiPolyfurnaceRecipe> {
         T create(ResourceLocation pId, String pGroup, Ingredient pIngredient, float pExperience, int processTime, int point);
     }

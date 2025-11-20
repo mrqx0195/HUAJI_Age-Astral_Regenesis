@@ -87,7 +87,7 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .define('S', Ingredient.of(Tags.Items.STRING))
                 .define('P', Ingredient.of(SBItems.proudsoul_trapezohedron))
                 .unlockedBy(getHasName(SBItems.slashblade_silverbamboo), has(SBItems.slashblade_silverbamboo))
-                .save(pWriter);
+                .save(pWriter, HuaJiAgeMod.prefix("slashblade/rodai_huaji"));
 
         SlashBladeShapedRecipeBuilder.shaped(HuaJiSlashBladeDefinitions.HUAJI_BLADE.location())
                 .pattern(" EF")
@@ -104,9 +104,8 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                         .addEnchantment(new EnchantmentDefinition(EnchantmentHelper.getEnchantmentId(Enchantments.MOB_LOOTING), 1))
                         .addEnchantment(new EnchantmentDefinition(EnchantmentHelper.getEnchantmentId(Enchantments.SMITE), 1))
                         .build()))
-
                 .unlockedBy(getHasName(SBItems.slashblade_silverbamboo), has(SBItems.slashblade_silverbamboo))
-                .save(pWriter);
+                .save(pWriter, HuaJiAgeMod.prefix("slashblade/huaji_blade"));
 
         SlashBladeShapedRecipeBuilder.shaped(HuaJiSlashBladeDefinitions.WAVE.location())
                 .pattern("WTS")
@@ -215,11 +214,11 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .requires(Items.DIAMOND_BLOCK)
                 .unlockedBy(getHasName(HuaJiItems.HUAJI.get()), has(HuaJiItems.HUAJI.get())).save(pWriter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, HuaJiItems.HUAJI_BOMB.get())
-                .pattern("PPP")
-                .pattern("PJP")
-                .pattern("PPP")
-                .define('P', Items.GUNPOWDER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, HuaJiItems.HUAJI_BOMB.get(), 4)
+                .pattern("JTJ")
+                .pattern("TJT")
+                .pattern("JTJ")
+                .define('T', Items.TNT)
                 .define('J', HuaJiItems.HUAJI.get())
                 .unlockedBy(getHasName(HuaJiItems.HUAJI.get()), has(HuaJiItems.HUAJI.get())).save(pWriter);
 
@@ -341,6 +340,10 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                         Ingredient.of(HuaJiItems.NEUTRON_STAR_FRAGMENT.get()), RecipeCategory.COMBAT, HuaJiItems.FIFTY_FIFTY_HELMET.get())
                 .unlocks(getHasName(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get()), has(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get())).save(pWriter, HuaJiAgeMod.prefix(getItemName(HuaJiItems.FIFTY_FIFTY_HELMET.get()) + "_smithing"));
 
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get()), Ingredient.of(Items.ELYTRA),
+                        Ingredient.of(HuaJiItems.AIRSPACE_STAR.get()), RecipeCategory.COMBAT, HuaJiItems.LORD_LU_WING.get())
+                .unlocks(getHasName(HuaJiItems.AIRSPACE_STAR.get()), has(HuaJiItems.AIRSPACE_STAR.get())).save(pWriter, HuaJiAgeMod.prefix(getItemName(HuaJiItems.LORD_LU_WING.get()) + "_smithing"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.HERO_BOW.get())
                 .pattern(" NE")
                 .pattern("NS ")
@@ -448,8 +451,8 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .pattern(" N ")
                 .pattern("NHN")
                 .pattern(" D ")
-                .define('H', LTCItems.HOTAURUM_SWORD.get())
-                .define('N', HuaJiItems.NEUTRON_STAR_FRAGMENT.get())
+                .define('H', HuaJiItems.HUAJI_SWORD.get())
+                .define('N', LTCItems.HOTAURUM_INGOT.get())
                 .define('D', Items.DIAMOND)
                 .unlockedBy(getHasName(HuaJiItems.HUAJI_SWORD.get()), has(HuaJiItems.HUAJI_SWORD.get())).save(pWriter);
 
@@ -491,6 +494,25 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                 .define('D', HuaJiItems.HUAJI_INGOT.get())
                 .define('L', Items.LAVA_BUCKET)
                 .unlockedBy(getHasName(HuaJiItems.HUAJI_INGOT.get()), has(HuaJiItems.HUAJI_INGOT.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.LORD_LU_WING.get())
+                .pattern("GGG")
+                .pattern("SES")
+                .pattern("G G")
+                .define('G', Items.GLOWSTONE_DUST)
+                .define('S', HuaJiItems.AIRSPACE_STAR.get())
+                .define('E', Items.ELYTRA)
+                .unlockedBy(getHasName(HuaJiItems.AIRSPACE_STAR.get()), has(HuaJiItems.AIRSPACE_STAR.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HuaJiItems.JIN_KE_LA.get())
+                .pattern("HSH")
+                .pattern("GBG")
+                .pattern("HBH")
+                .define('B', Items.BONE_BLOCK)
+                .define('H', HuaJiItems.HUAJI.get())
+                .define('S', HuaJiItems.HUAJI_STAR.get())
+                .define('G', Items.GREEN_DYE)
+                .unlockedBy(getHasName(HuaJiItems.HUAJI_STAR.get()), has(HuaJiItems.HUAJI_STAR.get())).save(pWriter);
     }
 
 

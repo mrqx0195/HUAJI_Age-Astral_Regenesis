@@ -1,0 +1,27 @@
+{
+  "category": "huajiage:huaji_materials",
+  "icon": "huajiage:airspace_star",
+  "name": "The Shining Star",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Research using the \"I Reckon\" method has shown that the energy contained within the $(item)Nether Star$() can fuse well with HUAJI power, leading to the creation of a whole new class of materials—the $(item)HUAJI Stars$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "huajiage:huaji_star,huajiage:airspace_star",
+      "text": "\"No matter the era, it is ordinary humans who shatter the stars.\"$(br)\"The stars?\" \"It's nothing, just a thing of the past.\"$(br)(From afar, a cry is heard: Stella!!!)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_star",
+      "recipe2": "huajiage:airspace_star"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:huaji_star_block_packed",
+      "recipe2": "huajiage:airspace_star_block_packed"
+    }
+  ],
+  "sortnum": 0
+}

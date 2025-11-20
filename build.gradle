@@ -51,6 +51,10 @@ repositories {
         }
     }
 
+    maven {
+        url = 'https://jitpack.io'
+    }
+
     flatDir {
         dir 'libs'
     }
@@ -129,6 +133,7 @@ dependencies {
     // Patchouli Compat
     modCompileOnlyApi "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     modLocalRuntime "vazkii.patchouli:Patchouli:${patchouli_version}"
+    modImplementation "com.github.Reimnop:PGen:1.1.0-1.20.1"
 
     // Curios Compat
     modLocalRuntime "top.theillusivec4.curios:curios-forge:${curios_version}"
@@ -140,6 +145,7 @@ dependencies {
     // Slashblade Compat
     modImplementation "maven.modrinth:slashblade-resharped:${slash_blade_version}"
     modImplementation "maven.modrinth:sjap:${sjap_version}"
+    modImplementation "maven.modrinth:mmlib:1.6.30-1.20.1"
 
     // (WIP) Tetra Compat
 //    modImplementation "maven.modrinth:mutil:6.2.0"
@@ -155,11 +161,16 @@ dependencies {
     modImplementation "dev.shadowsoffire:Placebo:${minecraft_version}-${placebo_version}"
     modImplementation "dev.shadowsoffire:ApothicAttributes:${minecraft_version}-${attributes_lib_version}"
 
+    // TACZ Compat
+    modImplementation "maven.modrinth:timeless-and-classics-zero:${tacz_version}"
+    modImplementation "com.github.FiguraMC.luaj:luaj-core:3.0.8-figura"
+    modImplementation "com.github.FiguraMC.luaj:luaj-jse:3.0.8-figura"
+
 
     // Test
     modLocalRuntime "maven.modrinth:moonlight:1.20-2.16.1-forge"
     modLocalRuntime "maven.modrinth:mmmmmmmmmmmm:1.20-2.0.9"
-
+    modLocalRuntime "maven.modrinth:shoulder-surfing-reloaded:1.20.1-4.14.3+forge"
     modLocalRuntime "maven.modrinth:jade:11.13.2+forge"
 
     // FE Test
@@ -172,10 +183,10 @@ dependencies {
     modLocalRuntime "maven.modrinth:thermal-locomotion:11.0.1"
     modLocalRuntime "maven.modrinth:thermal-dynamics:11.0.1"
 
-    jarJar(modImplementation("blank:EndingLibrary-1.20.1:1.3.1-all")) {
+    jarJar(modImplementation("blank:EndingLibrary-1.20.1:1.4.1-all")) {
         version {
-            strictly '[1.3,)'
-            prefer '1.3.1-all'
+            strictly '[1.4,)'
+            prefer '1.4.1-all'
         }
     }
 
@@ -185,7 +196,6 @@ dependencies {
 mixin {
     add sourceSets.main, "${mod_id}.refmap.json"
     config "${mod_id}.mixins.json"
-    config "${mod_id}.avaritia.mixins.json"
 }
 
 dependencies {
@@ -194,7 +204,7 @@ dependencies {
 
 jar {
     manifest.attributes([
-            "MixinConfigs": "${mod_id}.mixins.json, ${mod_id}.avaritia.mixins.json"
+            "MixinConfigs": "${mod_id}.mixins.json"
     ])
 }
 

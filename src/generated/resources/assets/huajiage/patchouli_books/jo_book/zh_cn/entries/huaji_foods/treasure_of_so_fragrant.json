@@ -1,0 +1,22 @@
+{
+  "category": "huajiage:huaji_foods",
+  "icon": "huajiage:egg_rice",
+  "name": "真香财宝",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "传说，$(l:codex_the_king_of_so_fragrant)真香之王$()的称号来自一种普普通通的食物——蛋炒饭。他在品尝一碗蛋炒饭时领悟了“真香”的道理，进而成为了如今的传奇人物。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:egg_rice",
+      "text": "一种早已失传的美食，据说其食谱由真香之王亲自书写，能让所有食客发自内心地赞美：“真香！”。食用后能够提供多种增益效果。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "huajiage:ultimate_egg_rice",
+      "text": "因$(l:the_shining_star)滑稽之星$()而现世的、由真香之王亲自祝福的蛋炒饭。食用后能够提供更多、更强的增益效果。"
+    }
+  ],
+  "sortnum": 0
+}

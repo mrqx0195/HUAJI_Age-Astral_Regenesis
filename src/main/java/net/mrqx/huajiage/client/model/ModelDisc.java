@@ -55,14 +55,14 @@ public class ModelDisc implements BakedModel {
     }
 
     public static ResourceLocation getModelResourceLocation(ResourceLocation resourceLocation) {
-        return new ResourceLocation(resourceLocation.getNamespace(), "item/disc/disc_" + resourceLocation.getPath());
+        return ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), "item/disc/disc_" + resourceLocation.getPath());
     }
 
     @Nullable
     public static ResourceLocation getModelFromItemStack(ItemStack stack) {
         ResourceLocation resourceLocation = ItemDisc.getStandResourceLocation(stack);
         if (resourceLocation != null) {
-            return new ResourceLocation(resourceLocation.getNamespace(), "item/disc/disc_" + resourceLocation.getPath());
+            return ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), "item/disc/disc_" + resourceLocation.getPath());
         } else {
             return null;
         }

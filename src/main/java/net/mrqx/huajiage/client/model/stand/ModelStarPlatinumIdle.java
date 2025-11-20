@@ -16,7 +16,7 @@ import net.mrqx.huajiage.stand.Stand;
 /**
  * Made with Blockbench 4.12.6
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "DuplicatedCode"})
 public class ModelStarPlatinumIdle extends ModelStandBase {
     private final ModelPart body;
     private final ModelPart head;
@@ -25,7 +25,7 @@ public class ModelStarPlatinumIdle extends ModelStandBase {
     private final ModelPart hands;
 
     public ModelStarPlatinumIdle(ModelPart root) {
-        super(root);
+        super();
         this.body = root.getChild("body");
         this.head = root.getChild("head");
         this.leftleg = root.getChild("leftleg");

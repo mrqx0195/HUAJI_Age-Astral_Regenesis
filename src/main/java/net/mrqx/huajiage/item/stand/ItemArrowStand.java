@@ -38,9 +38,9 @@ public class ItemArrowStand extends BaseItem {
                     if (pLevel.random.nextDouble() < HuaJiCommonConfig.ARROW_STAND_CHANCE.get()) {
                         String stand1 = HuaJiCommonConfig.ARROW_STAND_RANGE_MAP.get(pLevel.random.nextDouble() * HuaJiCommonConfig.arrowStandTotalRange);
                         if (stand1 != null) {
-                            Stand stand2 = HuaJiStands.REGISTRY.get().getValue(new ResourceLocation(stand1));
+                            Stand stand2 = HuaJiStands.REGISTRY.get().getValue(ResourceLocation.parse(stand1));
                             if (stand2 != null) {
-                                data.setStand(stand2);
+                                data.setStandAndResetData(stand2);
                                 data.setLevel(0);
                                 data.setMaxEnergy(stand2.getMaxEnergy(pPlayer, data));
                                 AdvancementHelper.grantCriterion(pPlayer, AdvancementHelper.STAND);

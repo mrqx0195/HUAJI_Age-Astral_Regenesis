@@ -7,8 +7,8 @@ import net.minecraft.world.item.ItemStack;
 public class HuaJiBlenderFuelSlot extends Slot {
     private final HuaJiBlenderMenu menu;
 
-    public HuaJiBlenderFuelSlot(HuaJiBlenderMenu pFurnaceMenu, Container pFurnaceContainer, int pSlot, int pXPosition, int pYPosition) {
-        super(pFurnaceContainer, pSlot, pXPosition, pYPosition);
+    public HuaJiBlenderFuelSlot(HuaJiBlenderMenu pFurnaceMenu, Container pFurnaceContainer, int pSlot, int xPosition, int yPosition) {
+        super(pFurnaceContainer, pSlot, xPosition, yPosition);
         this.menu = pFurnaceMenu;
     }
 

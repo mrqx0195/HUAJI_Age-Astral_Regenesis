@@ -1,0 +1,7 @@
+{
+  "parent": "huajiage:huaji_items",
+  "description": "这个史蒂夫不好好吃东西，不如我们把它……",
+  "icon": "huajiage:egg_rice",
+  "name": "食物",
+  "sortnum": 1
+}
