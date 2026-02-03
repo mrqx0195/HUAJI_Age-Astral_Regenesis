@@ -1,13 +1,14 @@
 {
-  "colors": [
-    "ff0300",
-    "a90403"
-  ],
+  "conditions": [],
+  "count": 1000,
+  "displayName": "singularity.huajiage.ether_circumflux_board",
   "enabled": true,
   "ingredient": {
     "item": "huajiage:ether_circumflux_board"
   },
-  "name": "singularity.huajiage.ether_circumflux_board",
-  "recipeDisabled": false,
-  "timeRequired": 10
+  "name": "huajiage:ether_circumflux_board",
+  "overlayColor": "ff0300",
+  "recipeDisabled": true,
+  "timeCost": 240,
+  "underlayColor": "a90403"
 }

@@ -52,7 +52,7 @@ public class DataGen {
         generator.addProvider(isIncludedServer, new HuaJiAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(isIncludedServer, new HuaJiLootTables(packOutput));
         generator.addProvider(isIncludedServer, new HuaJiRecipeGenerator(packOutput));
-        generator.addProvider(isIncludedServer, new HuaJiSingularityProvider(packOutput));
+        generator.addProvider(isIncludedServer, new HuaJiSingularityProvider(generator, lookupProvider, existingFileHelper));
 
         RegistrySetBuilder bladeBuilder = (new RegistrySetBuilder()).add(SlashBladeDefinition.REGISTRY_KEY, HuaJiSlashBladeDefinitions::registerAll);
         generator.addProvider(isIncludedServer, new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, bladeBuilder, Set.of(HuaJiAgeMod.MODID)) {

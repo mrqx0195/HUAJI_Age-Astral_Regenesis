@@ -1,13 +1,14 @@
 {
-  "colors": [
-    "fdf83f",
-    "fe9c02"
-  ],
+  "conditions": [],
+  "count": 1000,
+  "displayName": "singularity.huajiage.baked_gluten",
   "enabled": true,
   "ingredient": {
     "item": "huajiage:baked_gluten"
   },
-  "name": "singularity.huajiage.baked_gluten",
-  "recipeDisabled": false,
-  "timeRequired": 10
+  "name": "huajiage:baked_gluten",
+  "overlayColor": "fdf83f",
+  "recipeDisabled": true,
+  "timeCost": 240,
+  "underlayColor": "fe9c02"
 }

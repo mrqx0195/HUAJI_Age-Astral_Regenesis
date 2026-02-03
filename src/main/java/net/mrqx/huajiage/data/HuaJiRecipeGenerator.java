@@ -340,10 +340,6 @@ public class HuaJiRecipeGenerator extends RecipeProvider {
                         Ingredient.of(HuaJiItems.NEUTRON_STAR_FRAGMENT.get()), RecipeCategory.COMBAT, HuaJiItems.FIFTY_FIFTY_HELMET.get())
                 .unlocks(getHasName(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get()), has(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get())).save(pWriter, HuaJiAgeMod.prefix(getItemName(HuaJiItems.FIFTY_FIFTY_HELMET.get()) + "_smithing"));
 
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(HuaJiItems.ETHER_CIRCUMFLUX_BOARD.get()), Ingredient.of(Items.ELYTRA),
-                        Ingredient.of(HuaJiItems.AIRSPACE_STAR.get()), RecipeCategory.COMBAT, HuaJiItems.LORD_LU_WING.get())
-                .unlocks(getHasName(HuaJiItems.AIRSPACE_STAR.get()), has(HuaJiItems.AIRSPACE_STAR.get())).save(pWriter, HuaJiAgeMod.prefix(getItemName(HuaJiItems.LORD_LU_WING.get()) + "_smithing"));
-
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HuaJiItems.HERO_BOW.get())
                 .pattern(" NE")
                 .pattern("NS ")

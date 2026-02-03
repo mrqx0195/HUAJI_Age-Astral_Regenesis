@@ -1,5 +1,6 @@
 package net.mrqx.huajiage.mixin.tacz;
 
+import com.mega.endinglib.util.annotation.ModDependsMixin;
 import com.tacz.guns.entity.EntityKineticBullet;
 import net.minecraft.network.FriendlyByteBuf;
 import org.joml.Vector3f;
@@ -11,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @SuppressWarnings("AlibabaAbstractMethodOrInterfaceMethodMustUseJavadoc")
 @Mixin(EntityKineticBullet.class)
+@ModDependsMixin("tacz")
 public abstract class MixinEntityKineticBullet {
     @Shadow(remap = false)
     public abstract Vector3f getFirstPersonRenderOffset();

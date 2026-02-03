@@ -77,6 +77,8 @@ public class ItemDisc extends BaseItem {
                 itemStack.shrink(1);
             }
             pPlayer.swing(pUsedHand, true);
+            pPlayer.getCooldowns().addCooldown(itemStack.getItem(), 20);
+            pPlayer.releaseUsingItem();
             return InteractionResultHolder.success(itemStack);
         }
         return InteractionResultHolder.consume(itemStack);

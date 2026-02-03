@@ -59,7 +59,7 @@ public class EntityHeroArrow extends AbstractArrow implements ItemSupplier {
 
     protected void explode() {
         Explosion explosion = new ExplosionHuaJi(this.level(), this, HuaJiDamageSources.stella(this.level(), this, this.getOwner(), this.position()),
-                null, getX(), getY(), getZ(), 50, Explosion.BlockInteraction.KEEP, this.getBaseDamage(), this.getKnockback(), true);
+                null, getX(), getY(), getZ(), 50, Explosion.BlockInteraction.KEEP, this.getBaseDamage() * this.getBaseDamage(), this.getKnockback(), true);
 
         explosion.explode();
         explosion.finalizeExplosion(true);
